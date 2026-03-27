@@ -774,7 +774,7 @@
       // Wave Command Center
       const waves = D.waves || [];
       if (waves.length > 0) {
-        h += waveCommandCenter(waves, D.deliveryCoverage, D.playbook);
+        h += waveCommandCenter(waves, D.playbook);
       }
 
       // Donut + Phase Progress
@@ -1376,7 +1376,7 @@
     }
 
     // ── Wave Command Center ──
-    function waveCommandCenter(waves, coverage, playbook) {
+    function waveCommandCenter(waves, playbook) {
       const LANE_META = {
         human:   { label: 'Boris Huai', color: 'var(--yellow)', icon: '👤' },
         agentpm: { label: 'AgentPM',  color: 'var(--blue)',   icon: '📋' },
@@ -1584,42 +1584,6 @@
         h += '<span><span style="color:var(--green)">🔄</span> Knowledge Loop</span>';
       }
       h += '</div>';
-
-      // ── Delivery Coverage (粗细两用) ──
-      if (coverage && coverage.total > 0) {
-        const pct = coverage.coverage;
-        const barColor = pct >= 90 ? 'var(--green)' : pct >= 70 ? 'var(--yellow)' : 'var(--red)';
-        h += '<div style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border)">';
-        h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem">';
-        h += `<span style="font-size:0.72rem;font-weight:700;color:var(--text)">${lang === 'zh' ? '能力可用率 (Capability Coverage)' : 'Capability Coverage'}</span>`;
-        h += `<span style="font-size:0.85rem;font-weight:800;color:${barColor}">${pct}%</span>`;
-        h += '</div>';
-        h += `<div style="height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;margin-bottom:0.4rem"><div style="width:${pct}%;height:100%;background:${barColor};border-radius:4px"></div></div>`;
-        h += `<div style="display:flex;gap:1rem;font-size:0.65rem;color:var(--text3)">`;
-        h += `<span style="color:var(--green)">✅ ${coverage.implemented} ${lang === 'zh' ? '已实现' : 'Implemented'}</span>`;
-        h += `<span style="color:var(--yellow)">⚠️ ${coverage.partial} ${lang === 'zh' ? '部分' : 'Partial'}</span>`;
-        h += `<span style="color:var(--red)">❌ ${coverage.todo} ${lang === 'zh' ? '未实现' : 'Todo'}</span>`;
-        h += `<span>${lang === 'zh' ? '共' : 'Total:'} ${coverage.total} ${lang === 'zh' ? '交互点' : 'touchpoints'}</span>`;
-        h += '</div>';
-
-        // Per-page breakdown (细粒度预览)
-        if (coverage.pages && coverage.pages.length > 0) {
-          h += '<div style="margin-top:0.5rem;font-size:0.65rem">';
-          coverage.pages.forEach(p => {
-            const ppct = p.total > 0 ? Math.round(p.ok / p.total * 100) : 0;
-            const pc = ppct >= 90 ? 'var(--green)' : ppct >= 70 ? 'var(--yellow)' : 'var(--red)';
-            h += `<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:2px">`;
-            h += `<span style="width:120px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ct(p.title))}</span>`;
-            h += `<div style="flex:1;height:4px;background:var(--surface2);border-radius:2px"><div style="width:${ppct}%;height:100%;background:${pc};border-radius:2px"></div></div>`;
-            h += `<span style="color:${pc};width:35px;text-align:right">${ppct}%</span>`;
-            h += `<span style="color:var(--text3);width:50px">${p.ok}/${p.total}</span>`;
-            h += '</div>';
-          });
-          h += `<div style="text-align:center;margin-top:0.3rem;color:var(--text3);font-size:0.6rem">${lang === 'zh' ? '细粒度详情见' : 'Details in'} docs/delivery-checklist.md</div>`;
-          h += '</div>';
-        }
-        h += '</div>';
-      }
 
       h += '</div></div>';
       return h;
