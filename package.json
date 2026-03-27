@@ -1,0 +1,10 @@
+{
+  "name": "pm-dashboard",
+  "version": "1.0.0",
+  "description": "Unified PM Dashboard — multi-project migration control hub",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "serve": "node server.js",
+    "deploy": "npm run build && flyctl deploy"
+  }
+}

@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swarm-Loop 作战手册 v1.0</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #232733; --border: #2d3248;
+      --text: #e4e6ef; --text2: #8b8fa3; --text3: #5c6078;
+      --blue: #4f8ff7; --green: #34d399; --yellow: #fbbf24; --orange: #f97316;
+      --red: #ef4444; --purple: #a78bfa; --cyan: #22d3ee;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* Header */
+    .header { padding: 1.2rem 2rem; border-bottom: 1px solid var(--border); background: var(--surface); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; height: 60px; }
+    .header h1 { font-size: 1.2rem; font-weight: 800; }
+    .header h1 .accent { color: var(--blue); }
+    .header .sub { font-size: 0.72rem; color: var(--text3); margin-top: 2px; }
+    .back-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 0.4rem 0.8rem; color: var(--text2); font-size: 0.75rem; cursor: pointer; text-decoration: none; transition: border-color 0.15s; }
+    .back-btn:hover { border-color: var(--blue); color: var(--text); }
+    .header-right { display: flex; align-items: center; gap: 0.6rem; }
+    .lang-toggle { display: inline-flex; align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; font-size: 0.72rem; }
+    .lang-toggle span { padding: 0.3rem 0.55rem; cursor: pointer; color: var(--text3); transition: background 0.15s, color 0.15s; user-select: none; }
+    .lang-toggle span.active { background: rgba(79,143,247,0.18); color: var(--blue); font-weight: 600; }
+    .lang-toggle span:hover:not(.active) { color: var(--text2); }
+    .lang-en { display: none; }
+    body.en .lang-zh { display: none; }
+    body.en .lang-en { display: block; }
+    /* Inline lang spans stay inline */
+    body.en span.lang-en, body.en div.lang-en.inline { display: inline; }
+
+    /* Nav */
+    .nav { position: sticky; top: 61px; z-index: 99; background: var(--bg); border-bottom: 1px solid var(--border); padding: 0.5rem 2rem; display: flex; gap: 0.4rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .nav a { padding: 0.35rem 0.7rem; border-radius: 6px; font-size: 0.72rem; color: var(--text2); text-decoration: none; white-space: nowrap; transition: all 0.15s; }
+    .nav a:hover, .nav a.active { background: var(--surface2); color: var(--text); }
+
+    /* Content */
+    .content { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 4rem; }
+    .section { margin-bottom: 2.5rem; scroll-margin-top: 110px; }
+    .section h2 { font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+    .section h3 { font-size: 0.85rem; font-weight: 600; color: var(--purple); margin: 1rem 0 0.5rem; }
+
+    /* Cards */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 0.8rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.8rem; }
+    .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+    @media (max-width: 900px) { .card-grid-3 { grid-template-columns: 1fr; } }
+
+    /* Slogan */
+    .slogan { text-align: center; padding: 2rem 0; }
+    .slogan .big { font-size: 1.5rem; font-weight: 800; color: var(--text); letter-spacing: 0.05em; }
+    .slogan .big .dot { color: var(--blue); }
+    .slogan .sub { font-size: 0.8rem; color: var(--text3); margin-top: 0.5rem; }
+
+    /* Comparison Table */
+    table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+    th { text-align: left; padding: 0.5rem; border-bottom: 2px solid var(--border); color: var(--text3); font-weight: 600; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.05em; }
+    td { padding: 0.5rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+    td:last-child { color: var(--green); font-weight: 500; }
+    tr:hover td { background: var(--surface2); }
+
+    /* Architecture Diagram */
+    .arch { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; font-family: 'Menlo', 'Consolas', monospace; font-size: 0.72rem; line-height: 1.6; color: var(--text2); white-space: pre; overflow-x: auto; }
+    .arch .human { color: var(--yellow); font-weight: 700; }
+    .arch .agent { color: var(--blue); font-weight: 700; }
+    .arch .guardian { color: var(--purple); font-weight: 700; }
+    .arch .knowledge { color: var(--green); font-weight: 700; }
+
+    /* Motto Pills */
+    .motto-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .motto { background: var(--surface2); border: 1px solid var(--border); border-radius: 24px; padding: 0.5rem 1rem; cursor: default; transition: border-color 0.15s, transform 0.1s; }
+    .motto:hover { border-color: var(--blue); transform: translateY(-1px); }
+    .motto .name { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+    .motto .meaning { font-size: 0.68rem; color: var(--text3); margin-top: 2px; }
+
+    /* Feature Cards */
+    .feat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+    .feat-card .feat-num { font-size: 1.5rem; font-weight: 800; color: var(--purple); opacity: 0.3; }
+    .feat-card .feat-name { font-size: 0.85rem; font-weight: 700; color: var(--text); margin: 0.3rem 0; }
+    .feat-card .feat-old { font-size: 0.68rem; color: var(--text3); }
+    .feat-card .feat-new { font-size: 0.72rem; color: var(--green); margin-top: 0.3rem; }
+
+    /* Command Block */
+    .cmd { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 1rem; margin-bottom: 0.5rem; font-family: 'Menlo', 'Consolas', monospace; font-size: 0.75rem; color: var(--green); cursor: pointer; transition: border-color 0.15s; display: flex; justify-content: space-between; align-items: center; }
+    .cmd:hover { border-color: var(--green); }
+    .cmd .desc { font-family: inherit; font-size: 0.65rem; color: var(--text3); }
+    .cmd .copy-hint { font-size: 0.6rem; color: var(--text3); opacity: 0; transition: opacity 0.15s; }
+    .cmd:hover .copy-hint { opacity: 1; }
+    .cmd.copied { border-color: var(--green); }
+    .cmd.copied .copy-hint { opacity: 1; color: var(--green); }
+
+    /* Prompt Block */
+    .prompt-block { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 0.8rem; }
+    .prompt-block .prompt-title { font-size: 0.78rem; font-weight: 700; color: var(--orange); margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.4rem; }
+    .prompt-block .prompt-trigger { font-size: 0.68rem; color: var(--text3); margin-bottom: 0.5rem; }
+    .prompt-block .prompt-text { font-size: 0.72rem; color: var(--text2); line-height: 1.6; white-space: pre-wrap; background: var(--surface2); border-radius: 6px; padding: 0.8rem; cursor: pointer; }
+    .prompt-block .prompt-text:hover { border: 1px solid var(--orange); }
+
+    /* Wave Flow */
+    .flow { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; padding: 0.5rem 0; }
+    .flow-step { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 0.8rem; font-size: 0.72rem; text-align: center; }
+    .flow-step .step-title { font-weight: 700; color: var(--text); }
+    .flow-step .step-sub { font-size: 0.62rem; color: var(--text3); margin-top: 2px; }
+    .flow-step.ritual { border-color: var(--red); }
+    .flow-step.ritual .step-title { color: var(--red); }
+    .flow-arrow { color: var(--text3); font-size: 1rem; }
+
+    /* Agent Cards */
+    .agent-card { background: var(--surface); border-left: 3px solid; border-radius: 0 8px 8px 0; padding: 0.8rem 1rem; margin-bottom: 0.5rem; }
+    .agent-card .agent-name { font-size: 0.82rem; font-weight: 700; }
+    .agent-card .agent-role { font-size: 0.72rem; color: var(--text2); margin-top: 0.2rem; }
+    .agent-card .agent-outputs { font-size: 0.68rem; color: var(--text3); margin-top: 0.3rem; }
+
+    /* Checklist */
+    .checklist { font-size: 0.75rem; color: var(--text2); line-height: 1.8; }
+    .checklist li { list-style: none; padding-left: 1.2rem; position: relative; }
+    .checklist li::before { content: '☐'; position: absolute; left: 0; color: var(--text3); }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1><span class="accent">Swarm-Loop</span> <span data-zh="作战手册" data-en="Playbook">作战手册</span></h1>
+    <div class="sub">v1.0 — <span data-zh="一人指挥 · 多Agent协作 · 知识飞轮驱动 · 守护贯穿 · 大事问鬼 · 帧帧有据" data-en="One Human · Multi-Agent · Knowledge Flywheel · Guardian Layer · Adversarial Rituals · Recording-Driven">一人指挥 · 多Agent协作 · 知识飞轮驱动 · 守护贯穿 · 大事问鬼 · 帧帧有据</span></div>
+  </div>
+  <div class="header-right">
+    <div class="lang-toggle" id="langToggle">
+      <span class="active" data-lang="zh" onclick="switchLang('zh')">中文</span>
+      <span data-lang="en" onclick="switchLang('en')">EN</span>
+    </div>
+    <a class="back-btn" href="/">← Dashboard</a>
+  </div>
+</div>
+
+<nav class="nav" id="navBar">
+  <a href="#overview" data-zh="总览" data-en="Overview">总览</a>
+  <a href="#architecture" data-zh="架构" data-en="Architecture">架构</a>
+  <a href="#agents" data-zh="角色" data-en="Roles">角色</a>
+  <a href="#wave" data-zh="Wave模型" data-en="Wave Model">Wave模型</a>
+  <a href="#knowledge" data-zh="知识飞轮" data-en="Knowledge">知识飞轮</a>
+  <a href="#activation" data-zh="知识激活" data-en="Activation">知识激活</a>
+  <a href="#hooks" data-zh="Hook机制" data-en="Hooks">Hook机制</a>
+  <a href="#guardian" data-zh="Guardian守护" data-en="Guardian">Guardian守护</a>
+  <a href="#rituals" data-zh="对抗性仪式" data-en="Rituals">对抗性仪式</a>
+  <a href="#recording" data-zh="录屏驱动" data-en="Recording">录屏驱动</a>
+  <a href="#awareness" data-zh="态势感知" data-en="Awareness">态势感知</a>
+  <a href="#mottos" data-zh="口诀" data-en="Mottos">口诀</a>
+  <a href="#commands" data-zh="命令速查" data-en="Commands">命令速查</a>
+  <a href="#prompts" data-zh="常用Prompt" data-en="Prompts">常用Prompt</a>
+</nav>
+
+<div class="content">
+
+  <!-- Overview -->
+  <div class="section" id="overview">
+    <div class="slogan">
+      <div class="big" data-zh="蜂群协作 × 知识飞轮" data-en="Swarm Collaboration × Knowledge Flywheel"><span data-zh="蜂群协作" data-en="Swarm Collaboration">蜂群协作</span> <span class="dot">×</span> <span data-zh="知识飞轮" data-en="Knowledge Flywheel">知识飞轮</span></div>
+      <div class="sub" data-zh="1 人 + N AI Agent 的应用迁移/复刻方法论" data-en="App Migration Methodology for 1 Human + N AI Agents">1 人 + N AI Agent 的应用迁移/复刻方法论</div>
+    </div>
+
+    <div class="lang-zh">
+    <table>
+      <tr><th>维度</th><th>瀑布</th><th>敏捷/Scrum</th><th>Swarm-Loop</th></tr>
+      <tr><td>团队</td><td>多人分工</td><td>多人自组织</td><td>1 人 + N 个 AI Agent</td></tr>
+      <tr><td>计划单位</td><td>阶段 Phase</td><td>Sprint (2周)</td><td>Wave (弹性时长，收敛驱动)</td></tr>
+      <tr><td>需求载体</td><td>PRD / SRS</td><td>User Story</td><td>Spec + 源码引用 + 录屏锚点</td></tr>
+      <tr><td>质量保障</td><td>最后阶段</td><td>每个 Sprint</td><td>Guardian 贯穿每个环节</td></tr>
+      <tr><td>风险审视</td><td>评审会</td><td>回顾会</td><td>对抗性仪式 (4个决策点)</td></tr>
+      <tr><td>知识管理</td><td>无</td><td>回顾会</td><td>飞轮: 播种→注入→沉淀→收割</td></tr>
+      <tr><td>迭代信号</td><td>里程碑</td><td>Sprint 结束</td><td>收敛信号 (条件满足才进下一Wave)</td></tr>
+      <tr><td>核心瓶颈</td><td>人力</td><td>沟通</td><td>人类决策带宽</td></tr>
+    </table>
+    </div>
+    <div class="lang-en">
+    <table>
+      <tr><th>Dimension</th><th>Waterfall</th><th>Agile/Scrum</th><th>Swarm-Loop</th></tr>
+      <tr><td>Team</td><td>Multi-person, divided roles</td><td>Multi-person, self-organized</td><td>1 Human + N AI Agents</td></tr>
+      <tr><td>Planning unit</td><td>Phase</td><td>Sprint (2 weeks)</td><td>Wave (elastic duration, convergence-driven)</td></tr>
+      <tr><td>Requirements</td><td>PRD / SRS</td><td>User Story</td><td>Spec + source reference + recording anchor</td></tr>
+      <tr><td>Quality assurance</td><td>Final phase</td><td>Every Sprint</td><td>Guardian across every step</td></tr>
+      <tr><td>Risk review</td><td>Review meeting</td><td>Retrospective</td><td>Adversarial Rituals (4 decision points)</td></tr>
+      <tr><td>Knowledge mgmt</td><td>None</td><td>Retrospective</td><td>Flywheel: Seed → Inject → Deposit → Harvest</td></tr>
+      <tr><td>Iteration signal</td><td>Milestone</td><td>Sprint end</td><td>Convergence signal (conditions met before next Wave)</td></tr>
+      <tr><td>Core bottleneck</td><td>Headcount</td><td>Communication</td><td>Human decision bandwidth</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <!-- Architecture -->
+  <div class="section" id="architecture">
+    <h2><span data-zh="架构模型 — 三面分离 + Guardian 横切" data-en="Architecture — Three-Plane Separation + Guardian Layer">架构模型 — 三面分离 + Guardian 横切</span></h2>
+    <div class="arch"><span class="human">                 ┌───────────────────┐
+                 │       人类        │
+                 │  决策 · 验收      │
+                 └────────┬──────────┘</span>
+                          │
+         ┌────────────────┼────────────────┐
+         ▼                ▼                ▼
+   <span class="agent">┌──────────┐    ┌──────────┐    ┌──────────┐
+   │ AgentPM  │    │ AgentA   │    │ AgentH   │
+   │ 规划·Spec│    │ 源码分析 │    │ 目标实现 │
+   └────┬─────┘    └────┬─────┘    └────┬─────┘</span>
+        │               │               │
+   <span class="guardian">┌────┴───────────────┴───────────────┴────┐
+   │          AgentG (Guardian 守护层)         │
+   │  约束注入 · 过程监控 · 验证执行          │
+   │  闭环保障 · 收敛裁决                     │
+   └────┬───────────────┬───────────────┬────┘</span>
+        │               │               │
+   <span class="knowledge">┌──────────────────────────────────────────┐
+   │           知识层 (Knowledge Layer)         │
+   │  pitfalls/ · patterns/ · api-notes/       │
+   └──────────────────────────────────────────┘</span>
+        │               │               │
+    控制面           参考面           执行面
+   (PM中心)       (Android源)     (HarmonyOS)</div>
+    <div class="lang-zh">
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem">控制面永远不包含代码，执行面永远不包含决策。AgentG 横切所有 Agent 的交互和所有 Wave 的门控。</div>
+    </div>
+    <div class="lang-en">
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem">Control plane never contains code. Execution plane never contains decisions. AgentG cuts across all Agents and all Wave gate controls.</div>
+    </div>
+  </div>
+
+  <!-- Agents -->
+  <div class="section" id="agents">
+    <h2><span data-zh="角色定义" data-en="Role Definitions">角色定义</span></h2>
+    <div class="lang-zh">
+      <div class="agent-card" style="border-color: var(--yellow)">
+        <div class="agent-name" style="color: var(--yellow)">人类 — 唯一决策者</div>
+        <div class="agent-role">做：决策(DR仲裁)、真机验证(L3/L4)、评审签署、方向调整、外部输入(社区/OpenClaw)</div>
+        <div class="agent-outputs">不做：写代码、写Spec细节、分析源码、写知识条目、手动回归</div>
+      </div>
+      <div class="agent-card" style="border-color: var(--blue)">
+        <div class="agent-name" style="color: var(--blue)">AgentPM — 项目经理</div>
+        <div class="agent-role">规划、编写Spec、分解任务、评审交付、仲裁DR、维护roadmap/taskboard</div>
+        <div class="agent-outputs">产出：Spec / Task Doc / Decision / Report</div>
+      </div>
+      <div class="agent-card" style="border-color: var(--green)">
+        <div class="agent-name" style="color: var(--green)">AgentH — HarmonyOS 开发者 + 源码分析</div>
+        <div class="agent-role">分析Android源码 → 按Spec实现功能 → 编写L1/L2测试 → 沉淀知识 → 自验后提交（原AgentA职责已合并）</div>
+        <div class="agent-outputs">产出：分析文档 + 代码 + 测试 + 知识条目</div>
+      </div>
+      <div class="agent-card" style="border-color: var(--purple)">
+        <div class="agent-name" style="color: var(--purple)">AgentG — Guardian 守护者</div>
+        <div class="agent-role">全流程质量守护：约束注入(开发前) · 过程监控(开发中) · 验证执行(开发后) · 闭环保障(修复后) · 收敛裁决(Wave门控)</div>
+        <div class="agent-outputs">产出：AC / DoD / 偏离警报 / 测试报告 / 收敛报告 (GO/NO-GO)</div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <div class="agent-card" style="border-color: var(--yellow)">
+        <div class="agent-name" style="color: var(--yellow)">Human — Sole Decision-Maker</div>
+        <div class="agent-role">Does: decisions (DR arbitration), device verification (L3/L4), review sign-off, direction adjustment, external input (community/OpenClaw)</div>
+        <div class="agent-outputs">Does NOT: write code, write Spec details, analyze source, write knowledge entries, manual regression</div>
+      </div>
+      <div class="agent-card" style="border-color: var(--blue)">
+        <div class="agent-name" style="color: var(--blue)">AgentPM — Project Manager</div>
+        <div class="agent-role">Plans, writes Specs, breaks down tasks, reviews deliverables, arbitrates DRs, maintains roadmap/taskboard</div>
+        <div class="agent-outputs">Outputs: Spec / Task Doc / Decision / Report</div>
+      </div>
+      <div class="agent-card" style="border-color: var(--green)">
+        <div class="agent-name" style="color: var(--green)">AgentH — HarmonyOS Developer + Source Analysis</div>
+        <div class="agent-role">Analyzes Android source → implements features per Spec → writes L1/L2 tests → deposits knowledge → self-verifies before submit (AgentA role merged)</div>
+        <div class="agent-outputs">Outputs: analysis docs + code + tests + knowledge entries</div>
+      </div>
+      <div class="agent-card" style="border-color: var(--purple)">
+        <div class="agent-name" style="color: var(--purple)">AgentG — Guardian</div>
+        <div class="agent-role">Full-pipeline quality protection: constraint injection (pre-dev) · process monitoring (in-dev) · verification execution (post-dev) · closure assurance (post-fix) · convergence ruling (Wave gate)</div>
+        <div class="agent-outputs">Outputs: AC / DoD / deviation alerts / test reports / convergence report (GO/NO-GO)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave Model -->
+  <div class="section" id="wave">
+    <h2><span data-zh="Wave 收敛模型" data-en="Wave Convergence Model">Wave 收敛模型</span></h2>
+    <div class="lang-zh">
+      <div class="card">
+        <p style="font-size:0.78rem;color:var(--text2);margin-bottom:0.8rem">Wave 不是时间盒(Sprint)也不是阶段门(Phase)。它是一个<b style="color:var(--text)">收敛单元</b>：一组可并行执行的任务 + 一个收敛条件。条件满足才结束，不看时间。</p>
+        <h3>收敛条件类型</h3>
+        <table>
+          <tr><th>条件</th><th>含义</th><th>示例</th></tr>
+          <tr><td>BUILD_PASS</td><td>编译零错误</td><td>hvigorw build SUCCESS</td></tr>
+          <tr><td>SMOKE_PASS</td><td>核心路径真机通过</td><td>J-01~J-05 全绿</td></tr>
+          <tr><td>BUG_ZERO_P0</td><td>无 P0 Bug</td><td>Bug Tracker P0=0</td></tr>
+          <tr><td>SPEC_SIGNED</td><td>Spec 评审通过</td><td>人类签署</td></tr>
+          <tr><td>KNOWLEDGE_SYNCED</td><td>知识沉淀完成</td><td>新 pitfall 已入库</td></tr>
+          <tr><td>COVERAGE_MET</td><td>测试覆盖率达标</td><td>L1 > 80%</td></tr>
+          <tr><td>VISUAL_MATCH</td><td>帧对比相似度达标</td><td>关键页面 > 80%</td></tr>
+        </table>
+      </div>
+      <h3>Wave 内部结构 — 多轨并行</h3>
+      <div class="card" style="font-family:monospace;font-size:0.72rem;color:var(--text2);white-space:pre;overflow-x:auto">人类轨道          AgentPM 轨道        AgentH 轨道         AgentG 轨道
+────────          ────────────        ────────────         ──────────────
+真机验证 Wave N   编写 Wave N+1 Spec  修复 Wave N Bug      监控修复质量+回归验证
+                  分解 Wave N+2 任务  编写 L1 测试         为 N+1 注入约束+AC
+                  评审 Wave N 知识    沉淀 pitfall         出具 Wave N 收敛报告</div>
+      <h3>完整生命周期</h3>
+      <div class="flow">
+        <div class="flow-step"><div class="step-title">第零阶段</div><div class="step-sub">播种知识</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">分析+规划</div><div class="step-sub">Wave A~B</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step ritual"><div class="step-title">🔴 事前验尸</div><div class="step-sub">Spec签署前</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">实现</div><div class="step-sub">Wave C~F</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step ritual"><div class="step-title">🔴 魔鬼代言人</div><div class="step-sub">每Wave GO前</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">收敛+发布</div><div class="step-sub">Wave G~H</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step ritual"><div class="step-title">🔴 灾难推演</div><div class="step-sub">发布前</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">收割</div><div class="step-sub">→下个项目播种</div></div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <div class="card">
+        <p style="font-size:0.78rem;color:var(--text2);margin-bottom:0.8rem">A Wave is neither a time-box (Sprint) nor a phase gate (Phase). It is a <b style="color:var(--text)">convergence unit</b>: a set of parallelizable tasks + a convergence condition. It ends when conditions are met, not when time runs out.</p>
+        <h3>Convergence Condition Types</h3>
+        <table>
+          <tr><th>Condition</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td>BUILD_PASS</td><td>Zero compilation errors</td><td>hvigorw build SUCCESS</td></tr>
+          <tr><td>SMOKE_PASS</td><td>Core paths pass on device</td><td>J-01~J-05 all green</td></tr>
+          <tr><td>BUG_ZERO_P0</td><td>No P0 bugs</td><td>Bug Tracker P0=0</td></tr>
+          <tr><td>SPEC_SIGNED</td><td>Spec review passed</td><td>Human sign-off</td></tr>
+          <tr><td>KNOWLEDGE_SYNCED</td><td>Knowledge deposited</td><td>New pitfall committed</td></tr>
+          <tr><td>COVERAGE_MET</td><td>Test coverage threshold met</td><td>L1 &gt; 80%</td></tr>
+          <tr><td>VISUAL_MATCH</td><td>Frame comparison similarity met</td><td>Key pages &gt; 80%</td></tr>
+        </table>
+      </div>
+      <h3>Wave Internal Structure — Parallel Tracks</h3>
+      <div class="card" style="font-family:monospace;font-size:0.72rem;color:var(--text2);white-space:pre;overflow-x:auto">Human Track        AgentPM Track           AgentH Track            AgentG Track
+────────────       ─────────────           ────────────            ────────────
+Device verify N    Write Wave N+1 Spec     Fix Wave N bugs         Monitor fix quality + regression
+                   Break down N+2 tasks    Write L1 tests          Inject constraints+AC for N+1
+                   Review Wave N knowledge Deposit pitfalls        Issue Wave N convergence report</div>
+      <h3>Full Lifecycle</h3>
+      <div class="flow">
+        <div class="flow-step"><div class="step-title">Phase Zero</div><div class="step-sub">Seed knowledge</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">Analysis+Planning</div><div class="step-sub">Wave A~B</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step ritual"><div class="step-title">🔴 Pre-mortem</div><div class="step-sub">Before Spec sign-off</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">Implementation</div><div class="step-sub">Wave C~F</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step ritual"><div class="step-title">🔴 Devil's Advocate</div><div class="step-sub">Before each Wave GO</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">Converge+Release</div><div class="step-sub">Wave G~H</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step ritual"><div class="step-title">🔴 Day-1 Drill</div><div class="step-sub">Before release</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">Harvest</div><div class="step-sub">→ seed next project</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Knowledge Flywheel -->
+  <div class="section" id="knowledge">
+    <h2><span data-zh="知识飞轮 — 越做越快" data-en="Knowledge Flywheel — Faster Each Time">知识飞轮 — 越做越快</span></h2>
+    <div class="lang-zh">
+      <div class="flow" style="justify-content:center">
+        <div class="flow-step"><div class="step-title">播种 Seed</div><div class="step-sub">前项目知识→新项目</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">注入 Inject</div><div class="step-sub">任务前读知识库</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">沉淀 Deposit</div><div class="step-sub">任务后写新发现</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">收割 Harvest</div><div class="step-sub">提炼→下个项目</div></div>
+      </div>
+      <div class="card" style="margin-top:0.8rem">
+        <h3>知识源矩阵</h3>
+        <table>
+          <tr><th>来源</th><th>类型</th><th>流入方式</th></tr>
+          <tr><td>前项目知识库</td><td>pitfall/pattern/api-note</td><td>项目初始化时批量播种</td></tr>
+          <tr><td>Android 源码</td><td>行为细节、边界处理</td><td>AgentA 分析产出</td></tr>
+          <tr><td>Android 录屏</td><td>交互时序、视觉细节</td><td>提帧→行为标注→锚定 Spec</td></tr>
+          <tr><td>社区反馈</td><td>Bug 模式、用户痛点</td><td>定期采集 → 防御用例</td></tr>
+          <tr><td>真机验证</td><td>API 实际行为</td><td>人类验证 → Agent 记录</td></tr>
+          <tr><td>编译错误</td><td>ArkTS 限制</td><td>每次失败立即入库</td></tr>
+          <tr><td>OpenClaw/外部</td><td>开源情报</td><td>人类探索 → Agent 结构化</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="lang-en">
+      <div class="flow" style="justify-content:center">
+        <div class="flow-step"><div class="step-title">Seed</div><div class="step-sub">Prior project knowledge → new project</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">Inject</div><div class="step-sub">Read knowledge base before task</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">Deposit</div><div class="step-sub">Write new findings after task</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><div class="step-title">Harvest</div><div class="step-sub">Distill → seed next project</div></div>
+      </div>
+      <div class="card" style="margin-top:0.8rem">
+        <h3>Knowledge Source Matrix</h3>
+        <table>
+          <tr><th>Source</th><th>Type</th><th>Ingestion method</th></tr>
+          <tr><td>Prior project knowledge base</td><td>pitfall/pattern/api-note</td><td>Bulk seed at project init</td></tr>
+          <tr><td>Android source code</td><td>Behavior details, edge handling</td><td>AgentA analysis output</td></tr>
+          <tr><td>Android screen recordings</td><td>Interaction timing, visual details</td><td>Frame extraction → annotation → Spec anchor</td></tr>
+          <tr><td>Community feedback</td><td>Bug patterns, user pain points</td><td>Periodic collection → defensive test cases</td></tr>
+          <tr><td>Device verification</td><td>Actual API behavior</td><td>Human verifies → Agent records</td></tr>
+          <tr><td>Compilation errors</td><td>ArkTS constraints</td><td>Immediately committed on every failure</td></tr>
+          <tr><td>OpenClaw / external</td><td>Open-source intelligence</td><td>Human explores → Agent structures</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Knowledge Activation -->
+  <div class="section" id="activation">
+    <h2><span data-zh="知识激活 — 你不需要记任何命令" data-en="Knowledge Activation — You Don't Need to Remember Commands">知识激活 — 你不需要记任何命令</span></h2>
+
+    <div class="lang-zh">
+      <div class="card" style="border-left: 3px solid var(--red); margin-bottom: 1rem">
+        <p style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:0.5rem">核心理念</p>
+        <p style="font-size:0.78rem;color:var(--text2);line-height:1.7">
+          知识存在文件里但不等于被用了。<b style="color:var(--text)">文件是存储，Skill 是激活，Hook 是强制。</b><br>
+          你不需要记命令——流程和机制替你记住。你只需要说人话。
+        </p>
+      </div>
+
+      <h3>三层保障，层层递进</h3>
+      <div class="card-grid-3">
+        <div class="card" style="border-top: 3px solid var(--green)">
+          <h3 style="color:var(--green)">L1 系统自动</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            <b>Hook</b> 在你开对话的瞬间自动执行：<br>
+            → 输出当前 Wave 状态<br>
+            → 输出最近新增知识<br>
+            → 提醒 Agent 做 preflight/postflight<br>
+            <span style="color:var(--green)">你什么都不用做，系统保障。</span>
+          </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--blue)">
+          <h3 style="color:var(--blue)">L2 Agent 自觉</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            CLAUDE.md 规则强制 Agent：<br>
+            → 开始任务前：自动跑 preflight（读知识库，注入 pitfall）<br>
+            → 完成任务后：自动跑 postflight（捕获知识，验 DoD）<br>
+            <span style="color:var(--blue)">Agent 自己记住，不需要你提醒。</span>
+          </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--purple)">
+          <h3 style="color:var(--purple)">L3 人工兜底</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            万一 L1+L2 都没拦住，你可以手动：<br>
+            → <code>/swarm:preflight T-xxx</code><br>
+            → <code>/swarm:postflight T-xxx</code><br>
+            → <code>/migrate:knowledge query xxx</code><br>
+            <span style="color:var(--purple)">备用手段，正常不需要。</span>
+          </p>
+        </div>
+      </div>
+
+      <h3>知识激活的完整链路</h3>
+      <div class="card" style="font-family:monospace;font-size:0.7rem;color:var(--text2);white-space:pre;overflow-x:auto;line-height:1.7">你开一个新对话
+  ↓ <span style="color:var(--green)">[Hook 自动]</span> SessionStart → 输出态势 + 最近知识 + 提醒
+  ↓
+你说"做 T-065" 或 "继续"
+  ↓ <span style="color:var(--blue)">[Agent 自动]</span> preflight → 实时搜索知识库 → 注入相关 pitfall
+  ↓
+Agent 写代码...
+  ↓
+Agent 写完了
+  ↓ <span style="color:var(--blue)">[Agent 自动]</span> postflight → 引导知识捕获 → 验证 DoD → 更新看板
+  ↓ <span style="color:var(--green)">[Hook 自动]</span> taskboard 被编辑 → 检测到任务完成 → 提醒沉淀
+  ↓
+下一个任务... (新知识已经在库里，下次 preflight 自动拿到)</div>
+
+      <h3>为什么 Skill 每次都实时读？</h3>
+      <div class="card">
+        <p style="font-size:0.75rem;color:var(--text2);line-height:1.6">
+          知识不是静态的——每个任务完成都可能沉淀新 pitfall。<br>
+          Skill <b style="color:var(--text)">不缓存</b>，每次执行都从 <code>knowledge/</code> 目录实时读取最新文件。<br>
+          5 分钟前另一个 Agent 刚沉淀的 pitfall，下一次 preflight 立刻拿到。<br><br>
+          成本：每次 preflight 约读 400 行（INDEX + 匹配文件），约 2k tokens，占对话总量 &lt;1%。<b style="color:var(--green)">完全可忽略。</b>
+        </p>
+      </div>
+
+      <h3>跨项目知识播种</h3>
+      <div class="card">
+        <table>
+          <tr><th>级别</th><th>条件</th><th>播种方式</th></tr>
+          <tr><td style="color:var(--red)">必须播种</td><td>Fatal 级 pitfall + 已验证 api-note</td><td>直接复制，标注"已验证"</td></tr>
+          <tr><td style="color:var(--yellow)">建议播种</td><td>Serious 级 pitfall + 通用 pattern</td><td>复制但标注"需重新验证"</td></tr>
+          <tr><td style="color:var(--text3)">不播种</td><td>Medium/Low 级 + 项目特有的</td><td>留在源项目供参考</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="lang-en">
+      <div class="card" style="border-left: 3px solid var(--red); margin-bottom: 1rem">
+        <p style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:0.5rem">Core Concept</p>
+        <p style="font-size:0.78rem;color:var(--text2);line-height:1.7">
+          Knowledge in files is not the same as knowledge being used. <b style="color:var(--text)">Files are storage, Skills are activation, Hooks are enforcement.</b><br>
+          You don't need to remember any commands — the process and mechanisms remember for you. Just speak naturally.
+        </p>
+      </div>
+
+      <h3>Three-Layer Guarantee, Progressive</h3>
+      <div class="card-grid-3">
+        <div class="card" style="border-top: 3px solid var(--green)">
+          <h3 style="color:var(--green)">L1 System Automatic</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            <b>Hook</b> fires the instant you open a conversation:<br>
+            → Output current Wave status<br>
+            → Output recently added knowledge<br>
+            → Remind Agent to run preflight/postflight<br>
+            <span style="color:var(--green)">You do nothing. The system handles it.</span>
+          </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--blue)">
+          <h3 style="color:var(--blue)">L2 Agent Discipline</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            CLAUDE.md rules enforce Agents to:<br>
+            → Before task: auto-run preflight (read knowledge base, inject pitfalls)<br>
+            → After task: auto-run postflight (capture knowledge, verify DoD)<br>
+            <span style="color:var(--blue)">The Agent remembers. You don't need to remind it.</span>
+          </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--purple)">
+          <h3 style="color:var(--purple)">L3 Manual Fallback</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            If L1+L2 both missed, you can manually:<br>
+            → <code>/swarm:preflight T-xxx</code><br>
+            → <code>/swarm:postflight T-xxx</code><br>
+            → <code>/migrate:knowledge query xxx</code><br>
+            <span style="color:var(--purple)">Fallback only. Normally not needed.</span>
+          </p>
+        </div>
+      </div>
+
+      <h3>Complete Knowledge Activation Chain</h3>
+      <div class="card" style="font-family:monospace;font-size:0.7rem;color:var(--text2);white-space:pre;overflow-x:auto;line-height:1.7">You open a new conversation
+  ↓ <span style="color:var(--green)">[Hook auto]</span> SessionStart → situation briefing + recent knowledge + reminder
+  ↓
+You say "do T-065" or "continue"
+  ↓ <span style="color:var(--blue)">[Agent auto]</span> preflight → live search knowledge base → inject relevant pitfalls
+  ↓
+Agent writes code...
+  ↓
+Agent finishes
+  ↓ <span style="color:var(--blue)">[Agent auto]</span> postflight → guides knowledge capture → verifies DoD → updates taskboard
+  ↓ <span style="color:var(--green)">[Hook auto]</span> taskboard edited → task completion detected → deposit reminder
+  ↓
+Next task... (new knowledge is already in the base, next preflight picks it up automatically)</div>
+
+      <h3>Why Does the Skill Always Read in Real Time?</h3>
+      <div class="card">
+        <p style="font-size:0.75rem;color:var(--text2);line-height:1.6">
+          Knowledge is not static — every completed task may deposit a new pitfall.<br>
+          The Skill <b style="color:var(--text)">does not cache</b>. Every execution reads the latest files from the <code>knowledge/</code> directory live.<br>
+          A pitfall deposited by another Agent 5 minutes ago is available at the very next preflight.<br><br>
+          Cost: each preflight reads ~400 lines (INDEX + matched files), ~2k tokens, &lt;1% of total conversation volume. <b style="color:var(--green)">Completely negligible.</b>
+        </p>
+      </div>
+
+      <h3>Cross-Project Knowledge Seeding</h3>
+      <div class="card">
+        <table>
+          <tr><th>Level</th><th>Condition</th><th>Seeding method</th></tr>
+          <tr><td style="color:var(--red)">Must seed</td><td>Fatal-level pitfall + verified api-note</td><td>Copy directly, mark as "verified"</td></tr>
+          <tr><td style="color:var(--yellow)">Recommend seed</td><td>Serious-level pitfall + generic pattern</td><td>Copy but mark "needs re-verification"</td></tr>
+          <tr><td style="color:var(--text3)">Do not seed</td><td>Medium/Low level + project-specific</td><td>Leave in source project for reference</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hook Mechanism -->
+  <div class="section" id="hooks">
+    <h2><span data-zh="Hook 机制 — 流程替你记住一切" data-en="Hook Mechanism — The System Remembers Everything">Hook 机制 — 流程替你记住一切</span></h2>
+
+    <div class="lang-zh">
+      <div class="card" style="border-left: 3px solid var(--red); margin-bottom: 1rem">
+        <p style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:0.3rem">核心理念</p>
+        <p style="font-size:0.78rem;color:var(--text2);line-height:1.7">
+          方法论的每一条"必须"规则，都不依赖人的记忆或 Agent 的自觉。<br>
+          <b style="color:var(--text)">Hook 在关键节点自动触发检查和提醒</b>——你什么都不用记，系统记住了。
+        </p>
+      </div>
+
+      <h3>8 个 Hook 覆盖全流程</h3>
+      <div class="card">
+        <table>
+          <tr><th style="width:15%">触发时机</th><th style="width:15%">对应规则</th><th style="width:45%">系统自动做什么</th><th style="width:25%">你做什么</th></tr>
+          <tr>
+            <td style="color:var(--green)">🟢 开对话</td>
+            <td style="font-size:0.65rem">态势感知</td>
+            <td>输出当前 Wave + 任务统计 + 等待你的事项 + 最近 24h 新增知识</td>
+            <td style="color:var(--text3)">无需操作</td>
+          </tr>
+          <tr>
+            <td style="color:var(--blue)">🔵 新建 .ets 文件</td>
+            <td style="font-size:0.65rem">先读后写</td>
+            <td>提醒 "确认 preflight？" — 检查 ArkTS 语法陷阱（PIT-004/005/007/008/009）</td>
+            <td style="color:var(--text3)">无需操作</td>
+          </tr>
+          <tr>
+            <td style="color:var(--blue)">🔵 写/改 Task Doc</td>
+            <td style="font-size:0.65rem">守护贯穿</td>
+            <td>检查 Guardian 约束完整性：有 DoD？有 Pitfall 注入表？有回归用例？缺了就报 ⚠️</td>
+            <td style="color:var(--text3)">无需操作</td>
+          </tr>
+          <tr>
+            <td style="color:var(--orange)">🟠 写/改 Spec</td>
+            <td style="font-size:0.65rem">大事问鬼</td>
+            <td>提醒 "签署前执行 Pre-mortem 仪式？" — 避免盲区</td>
+            <td style="color:var(--text3)">无需操作</td>
+          </tr>
+          <tr>
+            <td style="color:var(--purple)">🟣 新建知识条目</td>
+            <td style="font-size:0.65rem">逢做必沉</td>
+            <td>检查 INDEX.md 是否已索引该条目 — 防止知识写了但找不到</td>
+            <td style="color:var(--text3)">无需操作</td>
+          </tr>
+          <tr>
+            <td style="color:var(--green)">🟢 Taskboard 标记完成</td>
+            <td style="font-size:0.65rem">逢做必沉</td>
+            <td>提醒 "已执行 postflight？知识沉淀了？DoD 验证了？"</td>
+            <td style="color:var(--text3)">无需操作</td>
+          </tr>
+          <tr>
+            <td style="color:var(--green)">🟢 编辑看板文件</td>
+            <td style="font-size:0.65rem">看板为准</td>
+            <td>自动重建 dashboard 数据 → 线上看板实时同步</td>
+            <td style="color:var(--text3)">无需操作</td>
+          </tr>
+          <tr>
+            <td style="color:var(--red)">🔴 对话结束</td>
+            <td style="font-size:0.65rem">逢做必沉</td>
+            <td>检查是否有任务已标记完成但未执行 postflight — 最后一道防线</td>
+            <td style="color:var(--text3)">无需操作</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>Hook 在流程中的位置</h3>
+      <div class="card" style="font-family:monospace;font-size:0.7rem;color:var(--text2);white-space:pre;overflow-x:auto;line-height:1.8">你开对话
+  ↓ <span style="color:var(--green)">🟢 SessionStart</span> → 态势简报 + 知识统计 + 提醒
+你说"继续" / "做 T-065"
+  ↓ <span style="color:var(--blue)">[Agent 自动]</span> → preflight: 读知识库，注入 pitfall
+Agent 创建新 .ets 文件
+  ↓ <span style="color:var(--blue)">🔵 PreToolUse(Write)</span> → "确认 preflight？ArkTS 陷阱检查了？"
+Agent 写/改 Task Doc
+  ↓ <span style="color:var(--blue)">🔵 PostToolUse(Write|Edit)</span> → Guardian 约束完整性检查
+Agent 写/改 Spec
+  ↓ <span style="color:var(--orange)">🟠 PostToolUse(Write|Edit)</span> → "签署前跑 Pre-mortem？"
+Agent 完成任务，更新 taskboard
+  ↓ <span style="color:var(--green)">🟢 PostToolUse(Edit)</span> → "postflight 跑了？知识沉淀了？"
+  ↓ <span style="color:var(--green)">🟢 PostToolUse(Edit)</span> → 自动重建 dashboard 数据
+Agent 沉淀新知识到 knowledge/
+  ↓ <span style="color:var(--purple)">🟣 PostToolUse(Write)</span> → "INDEX.md 更新了？"
+对话结束
+  ↓ <span style="color:var(--red)">🔴 Stop</span> → "有未完成的 postflight 吗？"</div>
+
+      <h3>三层保障体系</h3>
+      <div class="card-grid-3">
+        <div class="card" style="border-top: 3px solid var(--green)">
+          <h3 style="color:var(--green)">L1 Hook 强制</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            系统级，100% 执行。<br>
+            不依赖任何人或 Agent 的记忆。<br>
+            在关键节点自动检查和提醒。
+          </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--blue)">
+          <h3 style="color:var(--blue)">L2 Agent 规则</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            CLAUDE.md 写死的规则。<br>
+            Agent 开始任务自动跑 preflight。<br>
+            Agent 完成任务自动跑 postflight。
+          </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--purple)">
+          <h3 style="color:var(--purple)">L3 手动兜底</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            万一 L1+L2 都没拦住。<br>
+            <code>/swarm:preflight</code><br>
+            <code>/swarm:postflight</code><br>
+            正常不需要用。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-en">
+      <div class="card" style="border-left: 3px solid var(--red); margin-bottom: 1rem">
+        <p style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:0.3rem">Core Concept</p>
+        <p style="font-size:0.78rem;color:var(--text2);line-height:1.7">
+          Every "must" rule in the methodology relies on neither human memory nor Agent self-discipline.<br>
+          <b style="color:var(--text)">Hooks automatically trigger checks and reminders at key nodes</b> — you remember nothing; the system does.
+        </p>
+      </div>
+
+      <h3>8 Hooks Cover the Full Pipeline</h3>
+      <div class="card">
+        <table>
+          <tr><th style="width:15%">Trigger</th><th style="width:15%">Rule</th><th style="width:45%">What the system does automatically</th><th style="width:25%">What you do</th></tr>
+          <tr>
+            <td style="color:var(--green)">🟢 Open conversation</td>
+            <td style="font-size:0.65rem">Situational awareness</td>
+            <td>Output current Wave + task stats + items awaiting you + knowledge added in last 24h</td>
+            <td style="color:var(--text3)">Nothing</td>
+          </tr>
+          <tr>
+            <td style="color:var(--blue)">🔵 Create .ets file</td>
+            <td style="font-size:0.65rem">Read before write</td>
+            <td>Prompt "Confirm preflight?" — check ArkTS syntax pitfalls (PIT-004/005/007/008/009)</td>
+            <td style="color:var(--text3)">Nothing</td>
+          </tr>
+          <tr>
+            <td style="color:var(--blue)">🔵 Write/edit Task Doc</td>
+            <td style="font-size:0.65rem">Guardian throughout</td>
+            <td>Check Guardian constraint completeness: DoD present? Pitfall injection table? Regression cases? Missing items flagged ⚠️</td>
+            <td style="color:var(--text3)">Nothing</td>
+          </tr>
+          <tr>
+            <td style="color:var(--orange)">🟠 Write/edit Spec</td>
+            <td style="font-size:0.65rem">Challenge before commit</td>
+            <td>Prompt "Run Pre-mortem before sign-off?" — avoid blind spots</td>
+            <td style="color:var(--text3)">Nothing</td>
+          </tr>
+          <tr>
+            <td style="color:var(--purple)">🟣 Create knowledge entry</td>
+            <td style="font-size:0.65rem">Always deposit</td>
+            <td>Check if INDEX.md already indexes the entry — prevent knowledge written but unfindable</td>
+            <td style="color:var(--text3)">Nothing</td>
+          </tr>
+          <tr>
+            <td style="color:var(--green)">🟢 Taskboard marked done</td>
+            <td style="font-size:0.65rem">Always deposit</td>
+            <td>Prompt "Ran postflight? Knowledge deposited? DoD verified?"</td>
+            <td style="color:var(--text3)">Nothing</td>
+          </tr>
+          <tr>
+            <td style="color:var(--green)">🟢 Edit dashboard files</td>
+            <td style="font-size:0.65rem">Taskboard is truth</td>
+            <td>Auto-rebuild dashboard data → live sync to online board</td>
+            <td style="color:var(--text3)">Nothing</td>
+          </tr>
+          <tr>
+            <td style="color:var(--red)">🔴 Conversation ends</td>
+            <td style="font-size:0.65rem">Always deposit</td>
+            <td>Check if any task was marked done but postflight not run — last line of defense</td>
+            <td style="color:var(--text3)">Nothing</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>Hook Position in the Flow</h3>
+      <div class="card" style="font-family:monospace;font-size:0.7rem;color:var(--text2);white-space:pre;overflow-x:auto;line-height:1.8">You open a conversation
+  ↓ <span style="color:var(--green)">🟢 SessionStart</span> → situation briefing + knowledge stats + reminders
+You say "continue" / "do T-065"
+  ↓ <span style="color:var(--blue)">[Agent auto]</span> → preflight: read knowledge base, inject pitfalls
+Agent creates new .ets file
+  ↓ <span style="color:var(--blue)">🔵 PreToolUse(Write)</span> → "Confirm preflight? ArkTS pitfalls checked?"
+Agent writes/edits Task Doc
+  ↓ <span style="color:var(--blue)">🔵 PostToolUse(Write|Edit)</span> → Guardian constraint completeness check
+Agent writes/edits Spec
+  ↓ <span style="color:var(--orange)">🟠 PostToolUse(Write|Edit)</span> → "Run Pre-mortem before sign-off?"
+Agent completes task, updates taskboard
+  ↓ <span style="color:var(--green)">🟢 PostToolUse(Edit)</span> → "Postflight ran? Knowledge deposited?"
+  ↓ <span style="color:var(--green)">🟢 PostToolUse(Edit)</span> → Auto-rebuild dashboard data
+Agent deposits new knowledge to knowledge/
+  ↓ <span style="color:var(--purple)">🟣 PostToolUse(Write)</span> → "INDEX.md updated?"
+Conversation ends
+  ↓ <span style="color:var(--red)">🔴 Stop</span> → "Any incomplete postflights?"</div>
+
+      <h3>Three-Layer Assurance System</h3>
+      <div class="card-grid-3">
+        <div class="card" style="border-top: 3px solid var(--green)">
+          <h3 style="color:var(--green)">L1 Hook Enforcement</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            System-level, 100% execution.<br>
+            Relies on no one's memory.<br>
+            Auto-checks and reminds at key nodes.
+          </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--blue)">
+          <h3 style="color:var(--blue)">L2 Agent Rules</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            Hard-coded in CLAUDE.md.<br>
+            Agent auto-runs preflight at task start.<br>
+            Agent auto-runs postflight at task end.
+          </p>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--purple)">
+          <h3 style="color:var(--purple)">L3 Manual Fallback</h3>
+          <p style="font-size:0.72rem;color:var(--text2);line-height:1.6">
+            If L1+L2 both missed it.<br>
+            <code>/swarm:preflight</code><br>
+            <code>/swarm:postflight</code><br>
+            Normally never needed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guardian -->
+  <div class="section" id="guardian">
+    <h2><span data-zh="Guardian 守护层 — 系统的免疫系统" data-en="Guardian Layer — The System's Immune System">Guardian 守护层 — 系统的免疫系统</span></h2>
+    <div class="lang-zh">
+      <p style="font-size:0.78rem;color:var(--text2);margin-bottom:0.8rem">不是事后体检，而是全流程预防、检测、响应。AgentG 横切所有 Agent 和所有 Wave。</p>
+      <div class="card-grid-3">
+        <div class="card"><h3 style="color:var(--blue)">G1 约束注入</h3><p style="font-size:0.72rem;color:var(--text2)">开发前：为 Spec 注入 AC，为 Task 注入 DoD + Pitfall + 回归用例</p></div>
+        <div class="card"><h3 style="color:var(--blue)">G2 过程监控</h3><p style="font-size:0.72rem;color:var(--text2)">开发中：监控 Spec 偏离、知识遵从、测试覆盖率</p></div>
+        <div class="card"><h3 style="color:var(--blue)">G3 验证执行</h3><p style="font-size:0.72rem;color:var(--text2)">开发后：执行/辅助 L1~L4 测试</p></div>
+        <div class="card"><h3 style="color:var(--blue)">G4 闭环保障</h3><p style="font-size:0.72rem;color:var(--text2)">修复后：回归验证 + 知识沉淀确认</p></div>
+        <div class="card"><h3 style="color:var(--blue)">G5 收敛裁决</h3><p style="font-size:0.72rem;color:var(--text2)">Wave门控：出具 GO/NO-GO 收敛报告</p></div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <p style="font-size:0.78rem;color:var(--text2);margin-bottom:0.8rem">Not a post-mortem checkup — it is prevention, detection, and response across the full pipeline. AgentG cuts across all Agents and all Waves.</p>
+      <div class="card-grid-3">
+        <div class="card"><h3 style="color:var(--blue)">G1 Constraint Injection</h3><p style="font-size:0.72rem;color:var(--text2)">Pre-dev: inject AC into Spec, inject DoD + Pitfall + regression cases into Task</p></div>
+        <div class="card"><h3 style="color:var(--blue)">G2 Process Monitoring</h3><p style="font-size:0.72rem;color:var(--text2)">In-dev: monitor Spec deviation, knowledge compliance, test coverage</p></div>
+        <div class="card"><h3 style="color:var(--blue)">G3 Verification</h3><p style="font-size:0.72rem;color:var(--text2)">Post-dev: execute / assist L1~L4 tests</p></div>
+        <div class="card"><h3 style="color:var(--blue)">G4 Closure Assurance</h3><p style="font-size:0.72rem;color:var(--text2)">Post-fix: regression verification + confirm knowledge deposited</p></div>
+        <div class="card"><h3 style="color:var(--blue)">G5 Convergence Ruling</h3><p style="font-size:0.72rem;color:var(--text2)">Wave gate: issue GO/NO-GO convergence report</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adversarial Rituals -->
+  <div class="section" id="rituals">
+    <h2><span data-zh="对抗性仪式 — 大事问鬼" data-en="Adversarial Rituals — Challenge Before You Commit">对抗性仪式 — 大事问鬼</span></h2>
+    <div class="lang-zh">
+      <p style="font-size:0.78rem;color:var(--text2);margin-bottom:0.8rem">不养常驻红军。在 4 个高杠杆决策点，切换 Agent 为对抗性提示框架。</p>
+      <div class="card-grid">
+        <div class="card" style="border-left:3px solid var(--red)">
+          <h3 style="color:var(--red)">🔴 事前验尸 Pre-mortem</h3>
+          <div style="font-size:0.7rem;color:var(--text3);margin-bottom:0.3rem">触发：Spec 签署前</div>
+          <div style="font-size:0.72rem;color:var(--text2)">"假设这个 Spec 实现后完全失败了，最可能因为什么？"<br>5 维度：平台假设 / 数据模型差异 / 用户路径遗漏 / 隐式依赖 / 规模边界</div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--orange)">
+          <h3 style="color:var(--orange)">🟠 假设挑战 Assumption Challenge</h3>
+          <div style="font-size:0.7rem;color:var(--text3);margin-bottom:0.3rem">触发：首次使用新平台 API</div>
+          <div style="font-size:0.72rem;color:var(--text2)">"这个 API 行为是文档推测还是真机验证？假设错了影响多大？最小验证 demo 怎么写？"</div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--yellow)">
+          <h3 style="color:var(--yellow)">🟡 魔鬼代言人 Devil's Advocate</h3>
+          <div style="font-size:0.7rem;color:var(--text3);margin-bottom:0.3rem">触发：Wave 收敛 GO 决策前</div>
+          <div style="font-size:0.72rem;color:var(--text2)">"指标都绿，但指标没覆盖什么？修复是治标还是治本？明天发布最丢人的 Bug 是什么？"</div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--purple)">
+          <h3 style="color:var(--purple)">🟣 Day-1 灾难推演</h3>
+          <div style="font-size:0.7rem;color:var(--text3);margin-bottom:0.3rem">触发：发布前</div>
+          <div style="font-size:0.72rem;color:var(--text2)">"100 个用户下载后：前 10 秒最可能崩在哪？前 10 分钟最可能丢数据在哪？1 星评论写什么？"</div>
+        </div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <p style="font-size:0.78rem;color:var(--text2);margin-bottom:0.8rem">No permanent red team. At 4 high-leverage decision points, switch Agent to an adversarial prompt framework.</p>
+      <div class="card-grid">
+        <div class="card" style="border-left:3px solid var(--red)">
+          <h3 style="color:var(--red)">🔴 Pre-mortem</h3>
+          <div style="font-size:0.7rem;color:var(--text3);margin-bottom:0.3rem">Trigger: Before Spec sign-off</div>
+          <div style="font-size:0.72rem;color:var(--text2)">"Assume this Spec was implemented and completely failed — what is the most likely cause?"<br>5 dimensions: platform assumptions / data model differences / missing user paths / implicit dependencies / scale limits</div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--orange)">
+          <h3 style="color:var(--orange)">🟠 Assumption Challenge</h3>
+          <div style="font-size:0.7rem;color:var(--text3);margin-bottom:0.3rem">Trigger: First use of a new platform API</div>
+          <div style="font-size:0.72rem;color:var(--text2)">"Is this API's behavior based on docs or device-verified? How bad is it if the assumption is wrong? What is the minimum verification demo?"</div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--yellow)">
+          <h3 style="color:var(--yellow)">🟡 Devil's Advocate</h3>
+          <div style="font-size:0.7rem;color:var(--text3);margin-bottom:0.3rem">Trigger: Before Wave convergence GO decision</div>
+          <div style="font-size:0.72rem;color:var(--text2)">"All metrics are green — but what do the metrics not cover? Is the fix treating symptoms or root cause? What is the most embarrassing bug if we ship tomorrow?"</div>
+        </div>
+        <div class="card" style="border-left:3px solid var(--purple)">
+          <h3 style="color:var(--purple)">🟣 Day-1 Disaster Drill</h3>
+          <div style="font-size:0.7rem;color:var(--text3);margin-bottom:0.3rem">Trigger: Before release</div>
+          <div style="font-size:0.72rem;color:var(--text2)">"After 100 users download: where is the most likely crash in the first 10 seconds? Where is data most likely lost in the first 10 minutes? What does the 1-star review say?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recording-Driven -->
+  <div class="section" id="recording">
+    <h2><span data-zh="录屏驱动 — 帧帧有据" data-en="Recording-Driven — Every Frame Has Evidence">录屏驱动 — 帧帧有据</span></h2>
+    <div class="lang-zh">
+      <p style="font-size:0.78rem;color:var(--text2);margin-bottom:0.8rem">录屏不只是测试工具，是贯穿全流程的信息源。源码告诉你"代码是什么"，录屏告诉你"用户看到什么"。</p>
+      <table>
+        <tr><th>阶段</th><th>录屏怎么用</th><th>价值</th></tr>
+        <tr><td>分析</td><td>行为基线标注 (带时间戳)</td><td>从录屏提取源码看不到的交互细节</td></tr>
+        <tr><td>Spec</td><td>每个 FR 锚定到具体帧 "见 F008"</td><td>比文字描述精确 10 倍</td></tr>
+        <tr><td>任务分解</td><td>帧序列 "从点击到响应经历这 4 帧"</td><td>AgentH 不用猜</td></tr>
+        <tr><td>实现</td><td>先看帧理解目标，再看源码理解实现</td><td>先知道做成什么样</td></tr>
+        <tr><td>测试</td><td>两端录屏逐帧对比 → 差异清单</td><td>差异量化</td></tr>
+        <tr><td>验收</td><td>并排播放，人类终审</td><td>最直接的"一样不一样"</td></tr>
+      </table>
+    </div>
+    <div class="lang-en">
+      <p style="font-size:0.78rem;color:var(--text2);margin-bottom:0.8rem">Screen recordings are not just a testing tool — they are an information source throughout the pipeline. Source code tells you "what the code is"; recordings tell you "what the user sees".</p>
+      <table>
+        <tr><th>Phase</th><th>How recordings are used</th><th>Value</th></tr>
+        <tr><td>Analysis</td><td>Behavior baseline annotation (with timestamps)</td><td>Extract interaction details that source code cannot show</td></tr>
+        <tr><td>Spec</td><td>Anchor each FR to a specific frame "see F008"</td><td>10x more precise than text descriptions</td></tr>
+        <tr><td>Task breakdown</td><td>Frame sequence "4 frames from tap to response"</td><td>AgentH doesn't have to guess</td></tr>
+        <tr><td>Implementation</td><td>Watch frames to understand the goal, then read source to understand the impl</td><td>Know what it should look like before coding</td></tr>
+        <tr><td>Testing</td><td>Frame-by-frame comparison of both sides → diff list</td><td>Quantified differences</td></tr>
+        <tr><td>Acceptance</td><td>Side-by-side playback, human final review</td><td>Most direct "same or different" answer</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Situational Awareness -->
+  <div class="section" id="awareness">
+    <h2><span data-zh="三层态势感知" data-en="Three-Layer Situational Awareness">三层态势感知</span></h2>
+    <div class="lang-zh">
+      <div class="card-grid-3">
+        <div class="card">
+          <h3 style="color:var(--blue)">L1 仪表盘</h3>
+          <div style="font-size:0.72rem;color:var(--text2)">载体：pm-dashboard (本站)<br>问题："我不在时发生了什么？"<br>内容：全局进度、质量趋势、知识增长<br>刷新：每次 build</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--green)">L2 情报简报</h3>
+          <div style="font-size:0.72rem;color:var(--text2)">载体：/continue 命令输出<br>问题："我现在该做什么？"<br>内容：Wave 状态、等待事项、推荐下一步<br>刷新：每次对话开始</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--purple)">L3 按需查询</h3>
+          <div style="font-size:0.72rem;color:var(--text2)">载体：Agent 对话<br>问题："这个具体事项什么状态？"<br>内容：任意任务/Bug/知识的细节<br>刷新：实时</div>
+        </div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <div class="card-grid-3">
+        <div class="card">
+          <h3 style="color:var(--blue)">L1 Dashboard</h3>
+          <div style="font-size:0.72rem;color:var(--text2)">Vehicle: pm-dashboard (this site)<br>Question: "What happened while I was away?"<br>Content: Global progress, quality trends, knowledge growth<br>Refresh: Every build</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--green)">L2 Intelligence Briefing</h3>
+          <div style="font-size:0.72rem;color:var(--text2)">Vehicle: /continue command output<br>Question: "What should I do right now?"<br>Content: Wave status, pending items, recommended next step<br>Refresh: Every conversation start</div>
+        </div>
+        <div class="card">
+          <h3 style="color:var(--purple)">L3 On-Demand Query</h3>
+          <div style="font-size:0.72rem;color:var(--text2)">Vehicle: Agent conversation<br>Question: "What is the status of this specific item?"<br>Content: Details of any task / bug / knowledge entry<br>Refresh: Real-time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mottos -->
+  <div class="section" id="mottos">
+    <h2><span data-zh="十一字口诀" data-en="11 Core Mottos">十一字口诀</span></h2>
+    <div class="motto-grid" id="mottoGrid"></div>
+  </div>
+
+  <!-- Commands -->
+  <div class="section" id="commands">
+    <h2><span data-zh="命令速查" data-en="Command Reference">命令速查</span></h2>
+
+    <div class="lang-zh">
+      <div class="card" style="border-left:3px solid var(--green);margin-bottom:1rem">
+        <p style="font-size:0.78rem;color:var(--text);font-weight:700;margin-bottom:0.3rem">大部分命令你不需要手动执行</p>
+        <p style="font-size:0.72rem;color:var(--text2)">知识激活三件套（brief / preflight / postflight）由 Hook + Agent 自动触发。以下仅供手动备用或直接对 Agent 说人话。</p>
+      </div>
+
+      <h3>你只需要说的话（Agent 自动处理）</h3>
+      <div class="cmd" onclick="copyCmd(this)" style="border-left:3px solid var(--yellow)"><span>继续</span><span class="desc">→ Agent 自动跑 brief + 按优先级推荐下一步</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)" style="border-left:3px solid var(--yellow)"><span>开始做 T-065</span><span class="desc">→ Agent 自动跑 preflight + 注入知识 + 开始实现</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)" style="border-left:3px solid var(--yellow)"><span>出收敛报告</span><span class="desc">→ Agent 自动跑魔鬼代言人仪式 + GO/NO-GO</span><span class="copy-hint">点击复制</span></div>
+
+      <h3>手动备用（正常不需要）</h3>
+      <div class="cmd" onclick="copyCmd(this)"><span>/swarm:brief</span><span class="desc">30秒情报简报</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/swarm:preflight T-065</span><span class="desc">任务起飞前知识注入</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/swarm:postflight T-065</span><span class="desc">任务着陆后知识捕获</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/migrate:knowledge query 视频播放</span><span class="desc">搜索知识库</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/migrate:knowledge record</span><span class="desc">创建新知识条目</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/migrate:knowledge arkts-lint ViewingPage.ets</span><span class="desc">扫描ArkTS陷阱</span><span class="copy-hint">点击复制</span></div>
+
+      <h3>管理脚本（需要时才用）</h3>
+      <div class="cmd" onclick="copyCmd(this)"><span>node scripts/new-wave.js C "功能补缺"</span><span class="desc">创建 Wave 文档</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>node scripts/new-task.js 065 "标题"</span><span class="desc">创建任务文档</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>node scripts/new-ritual.js premortem "Spec签署"</span><span class="desc">发起对抗性仪式</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>node scripts/check-consistency.js</span><span class="desc">一致性审计</span><span class="copy-hint">点击复制</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>cd C:/Project/pm-dashboard && node scripts/build.js && flyctl deploy</span><span class="desc">重建+部署看板</span><span class="copy-hint">点击复制</span></div>
+    </div>
+
+    <div class="lang-en">
+      <div class="card" style="border-left:3px solid var(--green);margin-bottom:1rem">
+        <p style="font-size:0.78rem;color:var(--text);font-weight:700;margin-bottom:0.3rem">Most commands do not need to be run manually</p>
+        <p style="font-size:0.72rem;color:var(--text2)">The knowledge activation trio (brief / preflight / postflight) is triggered automatically by Hooks + Agents. The following is for manual fallback or when you want to speak directly to an Agent.</p>
+      </div>
+
+      <h3>Just say this (Agent handles the rest)</h3>
+      <div class="cmd" onclick="copyCmd(this)" style="border-left:3px solid var(--yellow)"><span>继续</span><span class="desc">→ Agent auto-runs brief + recommends next step by priority</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)" style="border-left:3px solid var(--yellow)"><span>开始做 T-065</span><span class="desc">→ Agent auto-runs preflight + injects knowledge + starts implementation</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)" style="border-left:3px solid var(--yellow)"><span>出收敛报告</span><span class="desc">→ Agent auto-runs Devil's Advocate ritual + GO/NO-GO</span><span class="copy-hint">Click to copy</span></div>
+
+      <h3>Manual fallback (normally not needed)</h3>
+      <div class="cmd" onclick="copyCmd(this)"><span>/swarm:brief</span><span class="desc">30-second intelligence briefing</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/swarm:preflight T-065</span><span class="desc">Knowledge injection before task takeoff</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/swarm:postflight T-065</span><span class="desc">Knowledge capture after task landing</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/migrate:knowledge query 视频播放</span><span class="desc">Search knowledge base</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/migrate:knowledge record</span><span class="desc">Create new knowledge entry</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>/migrate:knowledge arkts-lint ViewingPage.ets</span><span class="desc">Scan for ArkTS pitfalls</span><span class="copy-hint">Click to copy</span></div>
+
+      <h3>Admin scripts (use when needed)</h3>
+      <div class="cmd" onclick="copyCmd(this)"><span>node scripts/new-wave.js C "功能补缺"</span><span class="desc">Create Wave document</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>node scripts/new-task.js 065 "标题"</span><span class="desc">Create task document</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>node scripts/new-ritual.js premortem "Spec签署"</span><span class="desc">Launch adversarial ritual</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>node scripts/check-consistency.js</span><span class="desc">Consistency audit</span><span class="copy-hint">Click to copy</span></div>
+      <div class="cmd" onclick="copyCmd(this)"><span>cd C:/Project/pm-dashboard && node scripts/build.js && flyctl deploy</span><span class="desc">Rebuild + deploy dashboard</span><span class="copy-hint">Click to copy</span></div>
+    </div>
+  </div>
+
+  <!-- Prompts -->
+  <div class="section" id="prompts">
+    <h2><span data-zh="常用 Prompt" data-en="Common Prompts">常用 Prompt</span></h2>
+
+    <div class="lang-zh">
+      <div class="prompt-block">
+        <div class="prompt-title">继续工作</div>
+        <div class="prompt-trigger">场景：每次坐下来恢复工作时</div>
+        <div class="prompt-text" onclick="copyCmd(this)">继续</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">分析 Android 模块</div>
+        <div class="prompt-trigger">场景：需要 AgentA 深入分析某个 Android 功能模块</div>
+        <div class="prompt-text" onclick="copyCmd(this)">分析 Android 源码中的 [模块名/Activity名]，产出分析文档到 analysis/，标注风险和未知项</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">编写 Spec</div>
+        <div class="prompt-trigger">场景：分析完成后，让 AgentPM 编写功能规格</div>
+        <div class="prompt-text" onclick="copyCmd(this)">基于分析文档 analysis/xxx.md，编写 [功能名] 的 Spec，使用 spec-template，每个 FR 必须有视觉锚点和验收标准</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">分解任务</div>
+        <div class="prompt-trigger">场景：Spec 签署后，拆解为可执行任务</div>
+        <div class="prompt-text" onclick="copyCmd(this)">将 specs/xxx/spec.md 分解为任务，使用 task-template，每个任务必须包含：Android 源码引用 + 录屏参考 + Guardian 约束（DoD + Pitfall 注入 + 回归用例）</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">开始新 Wave</div>
+        <div class="prompt-trigger">场景：上一个 Wave 收敛后，启动下一个</div>
+        <div class="prompt-text" onclick="copyCmd(this)">开始 Wave [X]，主题是 [名称]。定义收敛条件，分配各轨道任务，注入 Guardian 约束</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">出收敛报告</div>
+        <div class="prompt-trigger">场景：Wave 结束时，评估是否 GO</div>
+        <div class="prompt-text" onclick="copyCmd(this)">出 Wave [X] 的收敛报告，检查所有收敛条件，执行魔鬼代言人仪式，给出 GO/NO-GO 建议</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">社区反馈采集</div>
+        <div class="prompt-trigger">场景：定期从社区采集新的 Bug 报告和用户反馈</div>
+        <div class="prompt-text" onclick="copyCmd(this)">从 GitHub Issues (SimpleMobileTools/Simple-Gallery + FossifyOrg/Gallery) 采集最新的 Bug 报告，转化为防御性测试用例，更新 docs/test-cases/community-defense/</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">知识库审计</div>
+        <div class="prompt-trigger">场景：检查知识库的健康度</div>
+        <div class="prompt-text" onclick="copyCmd(this)">审计知识库：检查 INDEX.md 与实际文件一致性，检查是否有未索引的条目，检查最近完成的任务是否都沉淀了知识</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">A-B 录屏对比</div>
+        <div class="prompt-trigger">场景：真机测试后，对比两端录屏</div>
+        <div class="prompt-text" onclick="copyCmd(this)">对比 Android 录屏帧和 HarmonyOS 最新录屏帧，按 6 层审视框架（执行逻辑/功能完整性/UI视觉/语言文字/导航逻辑/性能）逐页分析差异，更新 ui-comparison.json</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">看项目全貌</div>
+        <div class="prompt-trigger">场景：想快速了解整个项目当前状态</div>
+        <div class="prompt-text" onclick="copyCmd(this)">给我一个项目全貌简报：当前 Wave + 收敛状态 + 等待我的事项 + 全局进度 + 风险 + 最近变化</div>
+      </div>
+    </div>
+
+    <div class="lang-en">
+      <div class="prompt-block">
+        <div class="prompt-title">Resume work</div>
+        <div class="prompt-trigger">When: every time you sit down to pick up where you left off</div>
+        <div class="prompt-text" onclick="copyCmd(this)">继续</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">Analyze Android module</div>
+        <div class="prompt-trigger">When: need AgentA to deep-analyze a specific Android feature module</div>
+        <div class="prompt-text" onclick="copyCmd(this)">分析 Android 源码中的 [模块名/Activity名]，产出分析文档到 analysis/，标注风险和未知项</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">Write a Spec</div>
+        <div class="prompt-trigger">When: analysis is complete; ask AgentPM to write the feature specification</div>
+        <div class="prompt-text" onclick="copyCmd(this)">基于分析文档 analysis/xxx.md，编写 [功能名] 的 Spec，使用 spec-template，每个 FR 必须有视觉锚点和验收标准</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">Break down tasks</div>
+        <div class="prompt-trigger">When: Spec is signed off; decompose into executable tasks</div>
+        <div class="prompt-text" onclick="copyCmd(this)">将 specs/xxx/spec.md 分解为任务，使用 task-template，每个任务必须包含：Android 源码引用 + 录屏参考 + Guardian 约束（DoD + Pitfall 注入 + 回归用例）</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">Start a new Wave</div>
+        <div class="prompt-trigger">When: previous Wave has converged; launch the next one</div>
+        <div class="prompt-text" onclick="copyCmd(this)">开始 Wave [X]，主题是 [名称]。定义收敛条件，分配各轨道任务，注入 Guardian 约束</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">Issue convergence report</div>
+        <div class="prompt-trigger">When: Wave is ending; assess whether to GO</div>
+        <div class="prompt-text" onclick="copyCmd(this)">出 Wave [X] 的收敛报告，检查所有收敛条件，执行魔鬼代言人仪式，给出 GO/NO-GO 建议</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">Collect community feedback</div>
+        <div class="prompt-trigger">When: periodically collecting new bug reports and user feedback from the community</div>
+        <div class="prompt-text" onclick="copyCmd(this)">从 GitHub Issues (SimpleMobileTools/Simple-Gallery + FossifyOrg/Gallery) 采集最新的 Bug 报告，转化为防御性测试用例，更新 docs/test-cases/community-defense/</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">Knowledge base audit</div>
+        <div class="prompt-trigger">When: checking the health of the knowledge base</div>
+        <div class="prompt-text" onclick="copyCmd(this)">审计知识库：检查 INDEX.md 与实际文件一致性，检查是否有未索引的条目，检查最近完成的任务是否都沉淀了知识</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">A-B recording comparison</div>
+        <div class="prompt-trigger">When: after device testing, compare recordings from both platforms</div>
+        <div class="prompt-text" onclick="copyCmd(this)">对比 Android 录屏帧和 HarmonyOS 最新录屏帧，按 6 层审视框架（执行逻辑/功能完整性/UI视觉/语言文字/导航逻辑/性能）逐页分析差异，更新 ui-comparison.json</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-title">Project overview briefing</div>
+        <div class="prompt-trigger">When: want a quick read on the entire project's current state</div>
+        <div class="prompt-text" onclick="copyCmd(this)">给我一个项目全貌简报：当前 Wave + 收敛状态 + 等待我的事项 + 全局进度 + 风险 + 最近变化</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Motto data
+  const mottos = [
+    { zh: '人不等机', en: 'Human Never Waits', mzh: '人类永远有可审/可决的事做，Agent 在后台并行', men: 'Human always has items to review/decide; Agents work in parallel' },
+    { zh: '机不等人', en: 'Agent Never Idles', mzh: 'Agent 被阻塞时切换任务，不空转等决策', men: 'When blocked, Agent switches tasks instead of waiting' },
+    { zh: '先种后收', en: 'Seed First, Harvest Later', mzh: '每个项目开始前先播种知识，结束时收割', men: 'Seed knowledge before project starts; harvest when it ends' },
+    { zh: '先读后写', en: 'Read Before Write', mzh: '写代码前必须读知识库', men: 'Must check knowledge base before writing code' },
+    { zh: '先破后立', en: 'Break Before Build', mzh: '约束和用例先于代码（或至少并行）', men: 'Constraints and test cases come before (or parallel to) code' },
+    { zh: '逢做必沉', en: 'Always Deposit', mzh: '每个 Wave 结束必须沉淀知识', men: 'Every Wave must deposit new knowledge entries' },
+    { zh: '收敛驱动', en: 'Convergence-Driven', mzh: '不看时间看条件，条件满足才进下一 Wave', men: 'Not time-boxed — conditions met, then proceed' },
+    { zh: '三面分离', en: 'Three-Plane Separation', mzh: '控制面 / 参考面 / 执行面各司其职', men: 'Control / Reference / Execution planes stay separate' },
+    { zh: '守护贯穿', en: 'Guardian Throughout', mzh: 'AgentG 不在末端，在每个环节注入约束、监控、验证', men: 'AgentG is not at the end — it injects, monitors, validates at every step' },
+    { zh: '大事问鬼', en: 'Challenge Before Commit', mzh: '关键决策前触发对抗性仪式，换视角挑战假设', men: 'At key decisions, trigger adversarial rituals to challenge assumptions' },
+    { zh: '帧帧有据', en: 'Frame by Frame Evidence', mzh: '每个 UI 功能的 Spec/Task 都锚定到 Android 录屏帧', men: 'Every UI feature in Spec/Task is anchored to Android recording frames' },
+  ];
+
+  let lang = localStorage.getItem('pm-dashboard-lang') || 'zh';
+
+  function renderMottos() {
+    const grid = document.getElementById('mottoGrid');
+    grid.innerHTML = '';
+    mottos.forEach(m => {
+      const name = lang === 'zh' ? m.zh : m.en;
+      const meaning = lang === 'zh' ? m.mzh : m.men;
+      grid.innerHTML += `<div class="motto"><div class="name">${name}</div><div class="meaning">${meaning}</div></div>`;
+    });
+  }
+
+  function switchLang(newLang) {
+    lang = newLang;
+    localStorage.setItem('pm-dashboard-lang', lang);
+    document.body.classList.toggle('en', lang === 'en');
+    document.querySelectorAll('#langToggle span').forEach(s => {
+      s.classList.toggle('active', s.dataset.lang === lang);
+    });
+    document.querySelectorAll('#navBar a').forEach(a => {
+      if (a.dataset[lang]) a.textContent = a.dataset[lang];
+    });
+    document.querySelectorAll('[data-zh][data-en]').forEach(el => {
+      el.textContent = el.dataset[lang];
+    });
+    renderMottos();
+  }
+
+  renderMottos();
+  if (lang !== 'zh') switchLang(lang);
+
+  // Copy command
+  function copyCmd(el) {
+    const text = el.querySelector('span') ? el.querySelector('span').textContent : el.textContent;
+    navigator.clipboard.writeText(text.trim());
+    el.classList.add('copied');
+    const hint = el.querySelector('.copy-hint');
+    if (hint) hint.textContent = '已复制 ✓';
+    setTimeout(() => {
+      el.classList.remove('copied');
+      if (hint) hint.textContent = '点击复制';
+    }, 1500);
+  }
+
+  // Nav active state
+  const navLinks = document.querySelectorAll('.nav a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.nav a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-120px 0px -60% 0px' });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

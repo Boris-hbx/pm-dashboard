@@ -1,0 +1,14 @@
+[
+  {
+    "id": "antennapod",
+    "name": "AntennaPod",
+    "pmPath": "C:/Project/antennapodPM",
+    "description": "AntennaPod Android → HarmonyOS Migration"
+  },
+  {
+    "id": "simplegallery",
+    "name": "Simple Gallery",
+    "pmPath": "C:/Project/simplegalleryPM",
+    "description": "Simple Gallery Android → HarmonyOS Migration"
+  }
+]
