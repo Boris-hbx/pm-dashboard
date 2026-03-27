@@ -203,42 +203,37 @@
     .gantt-bar.todo { background: var(--text3); }
     .gantt-dates { display: flex; justify-content: space-between; margin-top: 0.2rem; font-size: 0.62rem; color: var(--text3); }
 
-    /* Feature Tree */
-    .ft-summary { display: flex; gap: 0.8rem; margin-bottom: 1rem; flex-wrap: wrap; }
-    .ft-stat { background: var(--surface2); border-radius: 8px; padding: 0.5rem 0.8rem; text-align: center; flex: 1; min-width: 80px; }
-    .ft-stat .ft-num { font-size: 1.3rem; font-weight: 700; line-height: 1.2; }
-    .ft-stat .ft-lbl { font-size: 0.62rem; color: var(--text3); }
-    .ft-stat.s-done .ft-num { color: var(--green); }
-    .ft-stat.s-fix .ft-num { color: var(--orange); }
-    .ft-stat.s-skip .ft-num { color: var(--text3); }
-    .ft-stat.s-block .ft-num { color: var(--red); }
-    .ft-stat.s-total .ft-num { color: var(--blue); }
+    /* Feature Tree — compact */
+    .ft-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .ft-pct { font-size: 1.4rem; font-weight: 800; color: var(--green); }
+    .ft-bar-wrap { flex: 1; min-width: 120px; }
+    .ft-bar-track { height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+    .ft-bar-seg { height: 100%; float: left; }
+    .ft-legend { display: flex; gap: 0.8rem; font-size: 0.62rem; color: var(--text3); flex-wrap: wrap; }
+    .ft-legend span { display: flex; align-items: center; gap: 3px; }
+    .ft-legend .dot { width: 6px; height: 6px; border-radius: 2px; flex-shrink: 0; }
 
-    .ft-cat { margin-bottom: 0.6rem; }
-    .ft-cat-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0; cursor: pointer; user-select: none; }
-    .ft-cat-header:hover { opacity: 0.85; }
-    .ft-cat-id { font-size: 0.68rem; font-weight: 700; color: var(--blue); min-width: 32px; }
-    .ft-cat-name { font-size: 0.78rem; font-weight: 600; color: var(--text); flex: 1; }
-    .ft-cat-bar { width: 120px; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
-    .ft-cat-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.4s; }
-    .ft-cat-pct { font-size: 0.65rem; color: var(--text2); min-width: 32px; text-align: right; }
-    .ft-cat-arrow { font-size: 0.55rem; color: var(--text3); transition: transform 0.2s; }
+    .ft-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    @media (max-width: 700px) { .ft-grid { grid-template-columns: 1fr; } }
+    .ft-cat { background: var(--surface2); border-radius: 6px; padding: 0.35rem 0.5rem; cursor: pointer; user-select: none; transition: background 0.12s; }
+    .ft-cat:hover { background: var(--border); }
+    .ft-cat-row { display: flex; align-items: center; gap: 0.4rem; }
+    .ft-cat-arrow { font-size: 0.5rem; color: var(--text3); transition: transform 0.15s; width: 8px; }
     .ft-cat-arrow.open { transform: rotate(90deg); }
+    .ft-cat-name { font-size: 0.7rem; font-weight: 600; color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ft-cat-mini { width: 50px; height: 4px; background: var(--bg); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
+    .ft-cat-mini-fill { height: 100%; background: var(--green); border-radius: 2px; }
+    .ft-cat-cnt { font-size: 0.6rem; color: var(--text3); min-width: 28px; text-align: right; }
 
-    .ft-sub { padding-left: 1rem; display: none; }
-    .ft-sub.show { display: block; }
-    .ft-sub-header { font-size: 0.7rem; font-weight: 600; color: var(--text2); padding: 0.3rem 0 0.15rem; }
-    .ft-feat { display: flex; align-items: center; gap: 0.4rem; padding: 0.15rem 0; font-size: 0.7rem; }
-    .ft-feat-id { color: var(--text3); min-width: 52px; font-size: 0.62rem; font-family: monospace; }
-    .ft-feat-name { color: var(--text2); flex: 1; }
-    .ft-badge { font-size: 0.55rem; padding: 0.1rem 0.35rem; border-radius: 3px; font-weight: 600; }
-    .ft-badge.done { background: rgba(52,211,153,0.15); color: var(--green); }
-    .ft-badge.fixing { background: rgba(249,115,22,0.15); color: var(--orange); }
-    .ft-badge.notMigrated { background: rgba(92,96,120,0.15); color: var(--text3); }
-    .ft-badge.blocked { background: rgba(239,68,68,0.15); color: var(--red); }
-    .ft-scroll { max-height: 500px; overflow-y: auto; }
-    .ft-scroll::-webkit-scrollbar { width: 3px; }
-    .ft-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .ft-detail { display: none; padding-top: 0.3rem; }
+    .ft-detail.show { display: block; }
+    .ft-detail-sub { font-size: 0.6rem; font-weight: 600; color: var(--text3); margin: 0.2rem 0 0.1rem; }
+    .ft-tags { display: flex; flex-wrap: wrap; gap: 2px; }
+    .ft-tag { font-size: 0.58rem; padding: 1px 5px; border-radius: 3px; white-space: nowrap; }
+    .ft-tag.done { background: rgba(52,211,153,0.1); color: var(--green); }
+    .ft-tag.fixing { background: rgba(249,115,22,0.15); color: var(--orange); }
+    .ft-tag.notMigrated { background: rgba(92,96,120,0.12); color: var(--text3); }
+    .ft-tag.blocked { background: rgba(239,68,68,0.12); color: var(--red); }
 
     /* Daily Reports */
     .dr-section-wrap { margin-top: 0; }
@@ -1909,51 +1904,51 @@
     function featureTreeSection(ft) {
       if (!ft || !ft.categories || ft.categories.length === 0) return '';
       const s = ft.stats;
-      let h = '<div class="row row-full"><div class="card">';
-      h += `<h2>${t('Feature Tree')} (${s.total})</h2>`;
-
-      // Summary stats bar
-      h += '<div class="ft-summary">';
-      h += `<div class="ft-stat s-total"><div class="ft-num">${s.total}</div><div class="ft-lbl">${t('Total')}</div></div>`;
-      h += `<div class="ft-stat s-done"><div class="ft-num">${s.done}</div><div class="ft-lbl">${t('Done')}</div></div>`;
-      h += `<div class="ft-stat s-fix"><div class="ft-num">${s.fixing}</div><div class="ft-lbl">${lang === 'zh' ? '修复中' : 'Fixing'}</div></div>`;
-      h += `<div class="ft-stat s-skip"><div class="ft-num">${s.notMigrated}</div><div class="ft-lbl">${lang === 'zh' ? '未迁移' : 'Not Migrated'}</div></div>`;
-      h += `<div class="ft-stat s-block"><div class="ft-num">${s.blocked}</div><div class="ft-lbl">${lang === 'zh' ? '平台限制' : 'Blocked'}</div></div>`;
-      // Overall progress bar
       const pct = s.total > 0 ? Math.round(s.done / s.total * 100) : 0;
-      h += `<div class="ft-stat s-done"><div class="ft-num">${pct}%</div><div class="ft-lbl">${lang === 'zh' ? '完成率' : 'Coverage'}</div></div>`;
-      h += '</div>';
+      let h = '<div class="row row-full"><div class="card">';
+      h += `<h2>${t('Feature Tree')}</h2>`;
 
-      // Category list
-      h += '<div class="ft-scroll">';
+      // Compact header: percentage + stacked bar + legend
+      h += '<div class="ft-head">';
+      h += `<span class="ft-pct">${pct}%</span>`;
+      h += '<div class="ft-bar-wrap">';
+      const pDone = (s.done / s.total * 100).toFixed(1);
+      const pFix = (s.fixing / s.total * 100).toFixed(1);
+      const pSkip = (s.notMigrated / s.total * 100).toFixed(1);
+      const pBlock = (s.blocked / s.total * 100).toFixed(1);
+      h += `<div class="ft-bar-track"><div class="ft-bar-seg" style="width:${pDone}%;background:var(--green)"></div><div class="ft-bar-seg" style="width:${pFix}%;background:var(--orange)"></div><div class="ft-bar-seg" style="width:${pSkip}%;background:var(--text3)"></div><div class="ft-bar-seg" style="width:${pBlock}%;background:var(--red)"></div></div>`;
+      h += '</div>';
+      h += '<div class="ft-legend">';
+      h += `<span><i class="dot" style="background:var(--green)"></i>${s.done} ${lang === 'zh' ? '已完成' : 'Done'}</span>`;
+      h += `<span><i class="dot" style="background:var(--orange)"></i>${s.fixing} ${lang === 'zh' ? '修复中' : 'Fixing'}</span>`;
+      h += `<span><i class="dot" style="background:var(--text3)"></i>${s.notMigrated} ${lang === 'zh' ? '未迁移' : 'Skipped'}</span>`;
+      if (s.blocked > 0) h += `<span><i class="dot" style="background:var(--red)"></i>${s.blocked} ${lang === 'zh' ? '受限' : 'Blocked'}</span>`;
+      h += '</div></div>';
+
+      // Two-column category grid
+      h += '<div class="ft-grid">';
       ft.categories.forEach((cat, ci) => {
-        const catPct = cat.total > 0 ? Math.round(cat.done / cat.total * 100) : 0;
-        h += '<div class="ft-cat">';
-        h += `<div class="ft-cat-header" onclick="document.getElementById('ftc${ci}').classList.toggle('show');this.querySelector('.ft-cat-arrow').classList.toggle('open')">`;
+        const cp = cat.total > 0 ? Math.round(cat.done / cat.total * 100) : 0;
+        h += `<div class="ft-cat" onclick="var d=document.getElementById('ftd${ci}');d.classList.toggle('show');this.querySelector('.ft-cat-arrow').classList.toggle('open')">`;
+        h += '<div class="ft-cat-row">';
         h += `<span class="ft-cat-arrow">&#9654;</span>`;
-        h += `<span class="ft-cat-id">${esc(cat.id)}</span>`;
         h += `<span class="ft-cat-name">${esc(ct(cat.name))}</span>`;
-        h += `<div class="ft-cat-bar"><div class="ft-cat-fill" style="width:${catPct}%"></div></div>`;
-        h += `<span class="ft-cat-pct">${cat.done}/${cat.total}</span>`;
+        h += `<div class="ft-cat-mini"><div class="ft-cat-mini-fill" style="width:${cp}%"></div></div>`;
+        h += `<span class="ft-cat-cnt">${cat.done}/${cat.total}</span>`;
         h += '</div>';
 
-        h += `<div class="ft-sub" id="ftc${ci}">`;
-
-        // Direct features (no sub-category)
+        // Expandable detail: tags flow
+        h += `<div class="ft-detail" id="ftd${ci}">`;
         if (cat.features.length > 0) {
-          cat.features.forEach(f => {
-            h += ftFeatRow(f);
-          });
+          h += '<div class="ft-tags">';
+          cat.features.forEach(f => { h += ftTag(f); });
+          h += '</div>';
         }
-
-        // Sub-categories
         cat.subs.forEach(sub => {
-          h += `<div class="ft-sub-header">${esc(sub.id)} ${esc(ct(sub.name))}</div>`;
-          sub.features.forEach(f => {
-            h += ftFeatRow(f);
-          });
+          h += `<div class="ft-detail-sub">${esc(ct(sub.name))}</div><div class="ft-tags">`;
+          sub.features.forEach(f => { h += ftTag(f); });
+          h += '</div>';
         });
-
         h += '</div></div>';
       });
       h += '</div>';
@@ -1962,12 +1957,8 @@
       return h;
     }
 
-    function ftFeatRow(f) {
-      const statusLabels = {
-        done: '✅', fixing: '🔧', notMigrated: '⏸', blocked: '⛔'
-      };
-      const badge = statusLabels[f.status] || '✅';
-      return `<div class="ft-feat"><span class="ft-feat-id">${esc(f.id)}</span><span class="ft-feat-name">${esc(ct(f.name))}</span><span class="ft-badge ${f.status}">${badge}</span></div>`;
+    function ftTag(f) {
+      return `<span class="ft-tag ${f.status}" title="${esc(f.id)}">${esc(ct(f.name))}</span>`;
     }
 
     // ── Daily Reports ──
