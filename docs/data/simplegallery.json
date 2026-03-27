@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-27 20:53:52",
+  "generatedAt": "2026-03-27 21:22:04",
   "project": {
     "id": "simplegallery",
     "name": "Simple Gallery",
@@ -4172,116 +4172,12 @@
       "date": "2026-03-27",
       "entries": [
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "**经验库**：新增 4 条（共 135 条）",
           "en": "**经验库**： Added 4 条（共 135 条）"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "**经验库**：新增 3 条（共 138 条）",
           "en": "**经验库**： Added 3 条（共 138 条）"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "壁纸方案裁决：方案 B（跳转系统图库，用户自行设壁纸）。改动量最小且功能可达。",
@@ -4292,62 +4188,34 @@
           "en": "T-042 Round 2 精简测试 10/10 PASS （100%）。覆盖： Folder 显示/@Reusable 回归、 Folder 计数实时更新、 Favorites 全系列(爱心/计数/连点)、 Wallpaper 方案 B 、 Widget 、视频/Search/Multi-select+Delete 回归。 Wave D Feature 验证达标。"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "Guardian Wave D 收敛审计完成（NOT-GO）。发现 4 个多选操作空壳 handler（G-001~G-004）+ ViewingPage 删除无确认。BUG-039 任务令发布（P0/M），阻塞 Wave E 进入。报告：docs/convergence/wave-D-guardian-audit.md",
           "en": "Guardian Wave D 收敛审计完成（ NOT-GO ）。发现 4 Multi-select 操作空壳 handler （ G-001~G-004）+ ViewingPage Delete 无确认。 BUG-039 任务令发布（ P0/M ），阻塞 Wave E 进入。报告： docs/convergence/wave-D-guardian-audit.md"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "Guardian 重新审计 PASS（TODO=0，空壳handler全部清除）。Wave D 收敛 GO。Wave E 验收阶段启动：Day-1 灾难推演 + 全量回归测试 + 最终准出检查。",
           "en": "Guardian 重新审计 PASS （ TODO=0，空壳 handler 全部清除）。 Wave D 收敛 GO 。 Wave E 验收 Phase 启动： Day-1 灾难推演 + Full Regression 测试 + Final Release Readiness Check 。"
         },
         {
+          "zh": "RITUAL-006 Day-1 灾难推演完成（CONDITIONAL-GO）。7场景推演：权限拒绝✅、大量照片⚠️、空设备✅、横竖屏⚠️、后台杀进程✅、并发操作✅、存储满⚠️。3项P0修复：ViewingPage删除确认+后台返回刷新+操作失败Toast。",
+          "en": "RITUAL-006 Day-1 灾难推演完成（ CONDITIONAL-GO ）。7场景推演： Permissions 拒绝✅、大量照片⚠️、空设备✅、横竖屏⚠️、后台杀进程✅、并发操作✅、存储满⚠️。3项 P0修复： ViewingPageDelete 确认+后台 Return 刷新+操作失败 Toast 。"
+        },
+        {
+          "zh": "功能树（Feature Tree）创建：`docs/feature-tree.md`。163 功能项，13 大类（F-1~F-13），已实现 121（74%）/ 修复中 5 / 未迁移 35 / 平台限制 2。",
+          "en": "Feature 树（ Feature Tree ）创建：`docs/feature-tree.md`。163 Feature 项，13 大类（ F-1~F-13），已实现 121（74%）/ 修复中 5 / 未迁移 35 / 平台限制 2。"
+        },
+        {
+          "zh": "PM 看板迁移：Fly.io → GitHub Pages。看板地址：https://boris-hbx.github.io/pm-dashboard/。build.js 输出到 docs/ 目录，git push 即部署。",
+          "en": "PM 看板迁移： Fly.io → GitHub Pages 。看板地址： https://boris-hbx.github.io/pm-dashboard/。 build.js 输出到 docs/ 目录， git push 即部署。"
+        },
+        {
+          "zh": "PM 看板新增功能树模块：可折叠分类树 + 进度条 + 状态标记，支持中英双语。",
+          "en": "PM 看板 AddedFeature 树模块：可折叠分类树 + 进度条 + 状态标记， Support 中英双语。"
+        },
+        {
+          "zh": "sync-log 清理：移除 172 行 `[object Object]` 脏数据（hook 写入 bug）。",
+          "en": "sync-log 清理：移除 172 lines `[object Object]` 脏数据（ hook 写入 bug ）。"
+        },
+        {
           "zh": "**任务完成**：[object Object]",
           "en": "**任务完成**：[object Object]"
         },
@@ -4356,8 +4224,12 @@
           "en": "**任务开始**：[object Object]"
         },
         {
-          "zh": "RITUAL-006 Day-1 灾难推演完成（CONDITIONAL-GO）。7场景推演：权限拒绝✅、大量照片⚠️、空设备✅、横竖屏⚠️、后台杀进程✅、并发操作✅、存储满⚠️。3项P0修复：ViewingPage删除确认+后台返回刷新+操作失败Toast。",
-          "en": "RITUAL-006 Day-1 灾难推演完成（ CONDITIONAL-GO ）。7场景推演： Permissions 拒绝✅、大量照片⚠️、空设备✅、横竖屏⚠️、后台杀进程✅、并发操作✅、存储满⚠️。3项 P0修复： ViewingPageDelete 确认+后台 Return 刷新+操作失败 Toast 。"
+          "zh": "**任务完成**：[object Object]",
+          "en": "**任务完成**：[object Object]"
+        },
+        {
+          "zh": "**任务开始**：[object Object]",
+          "en": "**任务开始**：[object Object]"
         }
       ]
     },
@@ -4365,220 +4237,28 @@
       "date": "2026-03-26",
       "entries": [
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**节点完成**：[object Object]（AgentPM）",
-          "en": "**节点完成**：[object Object]（ AgentPM ）"
-        },
-        {
-          "zh": "**节点完成**：[object Object]（AgentH）",
-          "en": "**节点完成**：[object Object]（ AgentH ）"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "**经验库**：新增 6 条（共 117 条）",
           "en": "**经验库**： Added 6 条（共 117 条）"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "**经验库**：新增 4 条（共 121 条）",
           "en": "**经验库**： Added 4 条（共 121 条）"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "Round 9 任务令发布。KL 系列知识落地审计：PAT-019(LazyForEach 五件套)落地 1/5，API-010(Image .alt)未落地，PIT-065(router废弃)按计划搁置。新增 T-069(LazyForEach优化) + T-070(Image占位图)。",
           "en": "Round 9 任务令发布。 KL 系列知识落地审计： PAT-019(LazyForEach 五件套)落地 1/5， API-010(Image .alt)未落地， PIT-065(router 废弃)按计划搁置。 Added T-069(LazyForEach 优化) + T-070(Image 占位图)。"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "**经验库**：新增 5 条（共 126 条）",
           "en": "**经验库**： Added 5 条（共 126 条）"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "T-069 + T-070 完成。LazyForEach 性能优化: MainPage 4处+MediaPage 2处加 cachedCount(3), DirectoryItem+MediaItem 加 @Reusable。Image 占位图: MediaItem 图片缩略图加灰色背景层(不用.alt()避免BUG-R6B-3)。",
           "en": "T-069 + T-070 完成。 LazyForEach 性能优化: MainPage 4处+MediaPage 2处加 cachedCount(3), DirectoryItem+MediaItem 加 @Reusable 。 Image 占位图: MediaItem 图片缩略图加灰色背景层(不用.alt()避免 BUG-R6B-3)。"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "Round 10 任务令发布。蓝军驳斥 RITUAL-005: 壁纸 API 对第三方 App 静默不生效（修了4轮），三方案待裁决。新增 BUG-034(收藏不持久) + BUG-035(搜索无结果)。",
           "en": "Round 10 任务令发布。蓝军驳斥 RITUAL-005: Wallpaper API 对第三方 App 静默不生效（修了4轮），三方案待裁决。 Added BUG-034(Favorites 不持久) + BUG-035(Search 无结果)。"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "**经验库**：新增 2 条（共 128 条）",
@@ -4589,30 +4269,6 @@
           "en": "Wallpaper 蓝军裁决：方案 B （ Navigate 系统图库）。 PIT-066 录入知识库。 ViewingPage Wallpaper 菜单改为 startAbility(viewData) 在系统图库打开。 SetWallpaperPage 不再使用。"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "**经验库**：新增 1 条（共 129 条）",
           "en": "**经验库**： Added 1 条（共 129 条）"
         },
@@ -4621,124 +4277,20 @@
           "en": "BlueAgent BA-002: SearchFeature 根因分析。结论：全量加载方案有缺陷，改为 DataSharePredicates.contains 服务端 Search (PAT-023)。 SearchPage.ets 完全重写。"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "**经验库**：新增 1 条（共 130 条）",
           "en": "**经验库**： Added 1 条（共 130 条）"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "BlueAgent BA-003 任务令发布。收藏 UI 不刷新根因：LazyForEach key 不含 isFavorite/mediaCnt（PIT-016 翻版）+ refreshFavoritesCount 原地修改违反 PIT-033。新增 BUG-034b，3 处修复点已精确定位。",
           "en": "BlueAgent BA-003 任务令发布。 Favorites UI 不刷新根因： LazyForEach key 不含 isFavorite/mediaCnt （ PIT-016 翻版）+ refreshFavoritesCount 原地修改违反 PIT-033。 Added BUG-034b ，3 处修复点已精确定位。"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "BUG-034c 任务令发布。收藏文件夹计数显示6实际1，根因：getAllPaths() 返回未验证的 favorites 表全量条目（含无效 URI）。修复方案：逐条验证 URI 存在性 + 自动清理无效条目。",
           "en": "BUG-034c 任务令发布。 FavoritesFolder 计数显示6实际1，根因： getAllPaths() Return 未验证的 favorites 表全量条目（含无效 URI ）。修复方案：逐条验证 URI 存在性 + 自动清理无效条目。"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "**经验库**：新增 1 条（共 131 条）",
           "en": "**经验库**： Added 1 条（共 131 条）"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "BUG-034d 任务令发布（BA-004 蓝军报告）。收藏快速连点竞态：toggleFavorite 的 async INSERT/DELETE 无序列化，事件循环交错导致 DB 行数\"多了或少了\"。修复方案：Promise 串行队列 + doToggleFavorite 先读 DB 真实状态 + ViewingPage 防抖 300ms。PIT-069 已由蓝军录入。",
@@ -4798,180 +4350,12 @@
           "en": "**T-067 确认完成** (AgentH): Video Thumbnail Fix 。代码已在先前会话中实现: PhotoAsset.getThumbnail()异 Steps 加载、 VIDEO_EXTENSIONS 快速检测、 PixelMap 回收、 lastTmbUriCache 、 onError fallback 、无播放图标。待 Device Test 。"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "**经验库**：新增 4 条（共 107 条）",
           "en": "**经验库**： Added 4 条（共 107 条）"
         },
         {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
           "zh": "**经验库**：新增 4 条（共 111 条）",
           "en": "**经验库**： Added 4 条（共 111 条）"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "**文档研读任务令发布**：DOC-001 ~ DOC-015（15 个任务令，覆盖 60+ 华为官方文档链接）。索引: `knowledge/huawei-doc-index.md`。按优先级分 P0(4) / P1(8) / P2(3)。已登记到 taskboard。",
@@ -4993,30 +4377,6 @@
         {
           "zh": "**日报更新**：3/23日报全量更新（13个任务完成+196条测试用例+双收敛报告）+ 3/24日报输出。PM看板数据重建+远程部署。",
           "en": "**Daily report update**：3/23Daily report full update （13任务完成+196条 Test cases+双 Convergence report ）+ 3/24Daily report output 。 PMDashboard data rebuild+Remote deployment 。"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
-        },
-        {
-          "zh": "**任务完成**：[object Object]",
-          "en": "**任务完成**：[object Object]"
-        },
-        {
-          "zh": "**任务开始**：[object Object]",
-          "en": "**任务开始**：[object Object]"
         },
         {
           "zh": "**📋 全量任务分配令发布** — 剩余开发任务全部分配：AgentH 立即执行 T-065(长按多选P0)+T-067(视频缩略图P1)并行；人类轨道 T-042/T-043/T-046 标记 NEEDS_DEVICE；T-047 Blocked by T-046；Wave E 全部 Blocked by Wave D GO。任务板重构为执行令格式，新增 T-047 task doc。",
