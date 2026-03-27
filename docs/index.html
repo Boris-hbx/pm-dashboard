@@ -601,7 +601,7 @@
     async function init() {
       const loadEl = document.getElementById('loadingText');
       if (loadEl) loadEl.textContent = t('Loading...');
-      manifest = await fetchJSON('/data/manifest.json');
+      manifest = await fetchJSON('data/manifest.json');
       if (!manifest) {
         document.getElementById('app').innerHTML = '<p class="empty">No data. Run: <code>node scripts/build.js</code></p>';
         return;
@@ -670,7 +670,7 @@
 
       if (!projectDataCache[id]) {
         document.getElementById('app').innerHTML = '<p class="empty"><span class="loading-dot"></span>' + t('Loading...') + '</p>';
-        projectDataCache[id] = await fetchJSON(`/data/${id}.json`);
+        projectDataCache[id] = await fetchJSON(`data/${id}.json`);
       }
       if (projectDataCache[id]) {
         document.getElementById('genTime').textContent = projectDataCache[id].generatedAt;
