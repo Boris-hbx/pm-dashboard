@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Dashboard Hub</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #232733; --border: #2d3248;
+      --text: #e4e6ef; --text2: #8b8fa3; --text3: #5c6078;
+      --blue: #4f8ff7; --green: #34d399; --yellow: #fbbf24; --orange: #f97316;
+      --red: #ef4444; --purple: #a78bfa; --cyan: #22d3ee;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    .header { padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--surface); }
+    .header-left { display: flex; align-items: center; gap: 1.2rem; }
+    .header h1 { font-size: 1.1rem; font-weight: 700; white-space: nowrap; }
+    .header h1 .accent { color: var(--blue); }
+
+    /* Project Switcher */
+    .project-switcher { position: relative; }
+    .project-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.45rem 1rem; color: var(--text); font-size: 0.82rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: border-color 0.15s; }
+    .project-btn:hover { border-color: var(--blue); }
+    .project-btn .arrow { font-size: 0.6rem; color: var(--text3); transition: transform 0.2s; }
+    .project-btn.open .arrow { transform: rotate(180deg); }
+    .project-dropdown { position: absolute; top: calc(100% + 6px); left: 0; min-width: 280px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.4); display: none; }
+    .project-dropdown.show { display: block; }
+    .project-option { padding: 0.6rem 0.8rem; border-radius: 7px; cursor: pointer; transition: background 0.12s; }
+    .project-option:hover { background: var(--surface2); }
+    .project-option.active { background: rgba(79,143,247,0.12); border: 1px solid rgba(79,143,247,0.3); }
+    .project-option .po-name { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+    .project-option .po-desc { font-size: 0.68rem; color: var(--text3); margin-top: 2px; }
+    .project-option .po-stats { font-size: 0.65rem; color: var(--text2); margin-top: 3px; display: flex; gap: 0.8rem; }
+    .project-option .po-stat { display: flex; align-items: center; gap: 3px; }
+    .project-option .po-dot { width: 5px; height: 5px; border-radius: 50%; }
+
+    .header-meta { font-size: 0.72rem; color: var(--text3); display: flex; gap: 1rem; align-items: center; }
+
+    .dashboard { padding: 1.2rem 2rem; max-width: 1440px; margin: 0 auto; }
+    .row { display: grid; gap: 1rem; margin-bottom: 1rem; }
+    .row-4 { grid-template-columns: repeat(4, 1fr); }
+    .row-2 { grid-template-columns: 1fr 1fr; }
+    .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .row-1-2 { grid-template-columns: 1fr 2fr; }
+    .row-full { grid-template-columns: 1fr; }
+    @media (max-width: 900px) { .row-4,.row-3,.row-2,.row-1-2 { grid-template-columns: 1fr; } }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+    .card h2 { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem; }
+
+    /* Stats */
+    .stat-card { text-align: center; }
+    .stat-card .big { font-size: 2rem; font-weight: 700; line-height: 1; }
+    .stat-card .label { font-size: 0.72rem; color: var(--text2); margin-top: 0.25rem; }
+    .stat-card.blue .big { color: var(--blue); }
+    .stat-card.green .big { color: var(--green); }
+    .stat-card.yellow .big { color: var(--yellow); }
+    .stat-card.purple .big { color: var(--purple); }
+    .stat-card.red .big { color: var(--red); }
+    .stat-card.cyan .big { color: var(--cyan); }
+
+    /* Donut */
+    .donut-wrap { display: flex; align-items: center; justify-content: center; gap: 1.2rem; }
+    .donut-legend { font-size: 0.75rem; }
+    .donut-legend div { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; }
+    .donut-legend .sw { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+
+    /* Phase Progress */
+    .phase-bar { margin-bottom: 0.6rem; }
+    .phase-bar:last-child { margin-bottom: 0; }
+    .phase-bar .ph { display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.2rem; }
+    .phase-bar .pn { color: var(--text); font-weight: 500; }
+    .phase-bar .pp { color: var(--text2); }
+    .bar-track { height: 7px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+    .bar-fill.done { background: linear-gradient(90deg, var(--green), #2dd4a0); }
+    .bar-fill.active { background: linear-gradient(90deg, var(--blue), #6ba3f9); }
+    .bar-fill.waiting { background: var(--text3); }
+
+    /* Task List */
+    .task-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.75rem; }
+    .task-item:last-child { border-bottom: none; }
+    .tdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .tdot.done { background: var(--green); }
+    .tdot.progress { background: var(--blue); }
+    .tdot.todo { background: var(--text3); }
+    .tdot.review { background: var(--yellow); }
+    .tdot.blocked { background: var(--red); }
+    .task-scroll { max-height: 260px; overflow-y: auto; }
+    .task-scroll::-webkit-scrollbar { width: 3px; }
+    .task-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* Knowledge */
+    .kn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .kn-card { background: var(--surface2); border-radius: 7px; padding: 0.7rem; text-align: center; }
+    .kn-card .kn-num { font-size: 1.5rem; font-weight: 700; }
+    .kn-card .kn-label { font-size: 0.65rem; color: var(--text3); margin-top: 0.15rem; }
+    .kn-card.pit .kn-num { color: var(--red); }
+    .kn-card.pat .kn-num { color: var(--purple); }
+    .kn-card.api .kn-num { color: var(--cyan); }
+
+    /* Changelog */
+    .cl-date { font-size: 0.72rem; font-weight: 600; color: var(--blue); margin-top: 0.5rem; }
+    .cl-date:first-child { margin-top: 0; }
+    .cl-entry { font-size: 0.72rem; color: var(--text2); padding: 0.1rem 0 0.1rem 0.8rem; border-left: 2px solid var(--border); margin-left: 0.2rem; }
+    .empty { color: var(--text3); font-style: italic; font-size: 0.78rem; text-align: center; padding: 0.8rem; }
+
+    /* Playbook */
+    .pb-section { margin-bottom: 0.8rem; }
+    .pb-section:last-child { margin-bottom: 0; }
+    .pb-section-title { font-size: 0.72rem; font-weight: 700; color: var(--blue); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.35rem; }
+    .pb-motto { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+    .pb-pill { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 0.2rem 0.65rem; font-size: 0.68rem; color: var(--text); cursor: default; position: relative; }
+    .pb-pill:hover { border-color: var(--blue); }
+    .pb-pill .pb-tip { display: none; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 0.4rem 0.6rem; font-size: 0.68rem; color: var(--text2); white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 10; }
+    .pb-pill:hover .pb-tip { display: block; }
+    .pb-cmd { background: var(--surface2); border-radius: 6px; padding: 0.45rem 0.65rem; margin-bottom: 0.35rem; font-family: 'Menlo', 'Consolas', monospace; font-size: 0.68rem; color: var(--green); cursor: pointer; border: 1px solid transparent; transition: border-color 0.15s; display: flex; justify-content: space-between; align-items: center; }
+    .pb-cmd:hover { border-color: var(--green); }
+    .pb-cmd .pb-cmd-desc { color: var(--text3); font-family: inherit; font-size: 0.62rem; }
+    .pb-feat { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.6rem; font-size: 0.7rem; }
+    .pb-feat-name { color: var(--purple); font-weight: 600; }
+    .pb-feat-desc { color: var(--text2); }
+    .pb-tpl { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .pb-tpl-tag { background: var(--surface2); border-radius: 4px; padding: 0.15rem 0.5rem; font-size: 0.65rem; color: var(--text2); }
+    .pb-wave-badge { display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(79,143,247,0.12); border: 1px solid rgba(79,143,247,0.3); border-radius: 6px; padding: 0.25rem 0.7rem; font-size: 0.75rem; font-weight: 600; color: var(--blue); margin-bottom: 0.5rem; }
+
+    /* Wave Command Center */
+    .wave-pipeline { display: flex; gap: 0; align-items: stretch; margin-bottom: 0.5rem; position: relative; }
+    .wave-node { flex: 1; min-width: 110px; background: var(--surface2); border: 2px solid var(--border); border-radius: 10px; padding: 0.5rem 0.4rem; text-align: center; position: relative; transition: all 0.2s; cursor: default; }
+    .wave-node.active { border-color: var(--blue); background: rgba(79,143,247,0.08); box-shadow: 0 0 12px rgba(79,143,247,0.15); }
+    .wave-node.done { border-color: var(--green); opacity: 0.7; }
+    .wave-node.todo { opacity: 0.5; }
+    .wave-node .wn-id { font-size: 1rem; font-weight: 800; }
+    .wave-node.active .wn-id { color: var(--blue); }
+    .wave-node.done .wn-id { color: var(--green); }
+    .wave-node .wn-name { font-size: 0.62rem; color: var(--text3); margin-top: 2px; }
+    .wave-node .wn-progress { margin-top: 0.3rem; height: 4px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+    .wave-node .wn-progress-fill { height: 100%; border-radius: 2px; background: var(--green); transition: width 0.5s; }
+    .wave-node.active .wn-progress-fill { background: var(--blue); }
+    .wave-node .wn-stats { font-size: 0.6rem; color: var(--text3); margin-top: 0.2rem; }
+    .wave-gate { width: 36px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; position: relative; }
+    .wave-gate .gate-icon { font-size: 0.85rem; }
+    .wave-gate .gate-label { font-size: 0.5rem; color: var(--text3); margin-top: 1px; white-space: nowrap; }
+    .wave-gate .gate-line { width: 1px; height: 8px; background: var(--border); }
+    .wave-alert { display: inline-flex; align-items: center; gap: 3px; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); border-radius: 4px; padding: 1px 5px; font-size: 0.55rem; color: var(--red); margin-top: 0.2rem; }
+    .wave-alert.warn { background: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.3); color: var(--yellow); }
+    /* Knowledge loop arrows */
+    .wave-loop { display: flex; align-items: center; justify-content: center; padding: 0.3rem 0; position: relative; }
+    .wave-loop-bar { display: flex; align-items: center; gap: 0.3rem; background: rgba(52,211,153,0.08); border: 1px dashed rgba(52,211,153,0.3); border-radius: 20px; padding: 0.2rem 0.8rem; font-size: 0.6rem; color: var(--green); }
+    .wave-loop-bar .loop-arrow { font-size: 0.8rem; }
+    .wave-detail { margin-top: 0.6rem; }
+    .wd-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.5rem; border-radius: 6px; font-size: 0.72rem; margin-bottom: 0.3rem; }
+    .wd-item.human { background: rgba(239,68,68,0.08); border-left: 3px solid var(--red); }
+    .wd-item.blocker { background: rgba(251,191,36,0.08); border-left: 3px solid var(--yellow); }
+    .wd-item .wd-tag { font-size: 0.6rem; font-weight: 600; padding: 1px 6px; border-radius: 3px; }
+    .wd-item.human .wd-tag { background: rgba(239,68,68,0.2); color: var(--red); }
+    .wd-item.blocker .wd-tag { background: rgba(251,191,36,0.2); color: var(--yellow); }
+
+    /* Topology */
+    .topo-container { overflow-x: auto; }
+    .topo-node rect { rx: 8; ry: 8; stroke-width: 1.5; }
+    .topo-edge { stroke: var(--text3); stroke-width: 1.5; fill: none; marker-end: url(#arr); }
+
+    /* Phase-Aggregated Topology */
+    .phase-topo-wrap { display: flex; align-items: center; justify-content: center; padding: 0.5rem 0; }
+    .phase-topo-btn { margin-top: 0.6rem; display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.9rem; font-size: 0.72rem; color: var(--blue); cursor: pointer; font-weight: 600; transition: background 0.15s, border-color 0.15s; }
+    .phase-topo-btn:hover { background: rgba(79,143,247,0.1); border-color: var(--blue); }
+
+    /* Swimlane Overlay */
+    .swimlane-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 200; background: rgba(0,0,0,0.85); display: flex; flex-direction: column; }
+    .swimlane-header { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1.2rem; background: var(--surface); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .swimlane-header .sh-title { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+    .swimlane-header .sh-legend { display: flex; gap: 1rem; font-size: 0.7rem; color: var(--text2); }
+    .swimlane-header .sh-legend span { display: flex; align-items: center; gap: 4px; }
+    .swimlane-header .sh-legend .ldot { width: 8px; height: 8px; border-radius: 50%; }
+    .swimlane-close { background: none; border: 1px solid var(--border); border-radius: 6px; color: var(--text2); font-size: 1rem; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.12s, color 0.12s; }
+    .swimlane-close:hover { background: var(--red); color: white; border-color: var(--red); }
+    .swimlane-container { flex: 1; overflow: hidden; cursor: grab; position: relative; }
+    .swimlane-container.grabbing { cursor: grabbing; }
+    .swimlane-container svg { display: block; }
+
+    /* Tooltip */
+    .topo-tooltip { position: fixed; z-index: 300; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem 0.9rem; font-size: 0.72rem; color: var(--text); max-width: 320px; box-shadow: 0 6px 20px rgba(0,0,0,0.5); pointer-events: none; display: none; }
+    .topo-tooltip .tt-id { font-weight: 700; color: var(--blue); margin-bottom: 3px; }
+    .topo-tooltip .tt-label { font-weight: 600; margin-bottom: 2px; }
+    .topo-tooltip .tt-meta { color: var(--text2); font-size: 0.68rem; margin-bottom: 2px; }
+    .topo-tooltip .tt-desc { color: var(--text3); font-size: 0.68rem; }
+    .topo-tooltip .tt-deps { color: var(--text3); font-size: 0.66rem; margin-top: 4px; }
+
+    /* Spinner for in-progress nodes */
+    @keyframes topo-spin { 0% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -20; } }
+    .topo-spinner { animation: topo-spin 1s linear infinite; }
+
+    /* Gantt */
+    .gantt-row { display: flex; align-items: center; margin-bottom: 0.35rem; }
+    .gantt-label { width: 150px; flex-shrink: 0; font-size: 0.72rem; color: var(--text2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .gantt-track { flex: 1; height: 18px; background: var(--surface2); border-radius: 4px; position: relative; overflow: hidden; }
+    .gantt-bar { position: absolute; height: 100%; border-radius: 4px; min-width: 2px; display: flex; align-items: center; padding-left: 5px; font-size: 0.6rem; color: white; font-weight: 600; }
+    .gantt-bar.done { background: linear-gradient(90deg, #059669, var(--green)); }
+    .gantt-bar.inprogress { background: linear-gradient(90deg, #2563eb, var(--blue)); }
+    .gantt-bar.todo { background: var(--text3); }
+    .gantt-dates { display: flex; justify-content: space-between; margin-top: 0.2rem; font-size: 0.62rem; color: var(--text3); }
+
+    /* Daily Reports */
+    .dr-section-wrap { margin-top: 0; }
+    .dr-nav { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+    .dr-nav-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.7rem; color: var(--text2); font-size: 0.75rem; cursor: pointer; transition: all 0.15s; }
+    .dr-nav-btn:hover { border-color: var(--blue); color: var(--text); }
+    .dr-nav-btn.active { background: rgba(79,143,247,0.15); border-color: var(--blue); color: var(--blue); font-weight: 600; }
+    .dr-content { font-size: 0.78rem; line-height: 1.7; color: var(--text2); }
+    .dr-content h3 { font-size: 0.82rem; font-weight: 700; color: var(--text); margin: 0.8rem 0 0.4rem; }
+    .dr-content h3:first-child { margin-top: 0; }
+    .dr-content ol, .dr-content ul { padding-left: 1.2rem; margin: 0.3rem 0; }
+    .dr-content li { margin-bottom: 0.2rem; }
+    .dr-content table { width: 100%; border-collapse: collapse; margin: 0.4rem 0; font-size: 0.72rem; }
+    .dr-content th { text-align: left; padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--border); color: var(--text3); font-weight: 600; }
+    .dr-content td { padding: 0.3rem 0.5rem; border-bottom: 1px solid rgba(45,50,72,0.4); }
+    .dr-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
+    .dr-section-header h3 { margin: 0 !important; }
+    .dr-full-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 0.25rem 0.6rem; color: var(--text2); font-size: 0.65rem; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+    .dr-full-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .dr-highlight { background: var(--surface2); border-radius: 8px; padding: 0.5rem 0.7rem; margin-bottom: 0.4rem; font-size: 0.78rem; line-height: 1.5; }
+    .dr-highlight-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-right: 0.4rem; }
+    .dr-highlight-tag.done { background: rgba(52,211,153,0.15); color: var(--green); }
+    .dr-highlight-tag.progress { background: rgba(79,143,247,0.15); color: var(--blue); }
+    .dr-highlight-tag.start { background: rgba(167,139,250,0.15); color: var(--purple); }
+    .dr-highlight-tag.resolve { background: rgba(251,191,36,0.15); color: var(--yellow); }
+    .dr-full-content { margin-top: 0.5rem; padding: 0.6rem; background: var(--surface2); border-radius: 8px; white-space: pre-wrap; font-family: monospace; font-size: 0.68rem; max-height: 400px; overflow-y: auto; color: var(--text2); line-height: 1.6; }
+
+    /* UI Comparison */
+    .uc-videos { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 900px) { .uc-videos { grid-template-columns: 1fr; } }
+    .uc-video-card { background: var(--surface2); border-radius: 8px; overflow: hidden; }
+    .uc-video-card video { width: 100%; max-height: 400px; background: #000; }
+    .uc-video-label { padding: 0.5rem 0.7rem; font-size: 0.72rem; display: flex; align-items: center; gap: 0.4rem; }
+    .uc-platform { font-size: 0.6rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; }
+    .uc-platform.android { background: rgba(52,211,153,0.15); color: var(--green); }
+    .uc-platform.harmonyos { background: rgba(79,143,247,0.15); color: var(--blue); }
+
+    .uc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 0.5rem; margin-bottom: 0.8rem; }
+    .uc-thumb { border-radius: 6px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; position: relative; aspect-ratio: 9/16; background: var(--surface2); }
+    .uc-thumb:hover { border-color: var(--blue); }
+    .uc-thumb.active { border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+    .uc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .uc-thumb-badge { position: absolute; bottom: 3px; right: 3px; font-size: 0.55rem; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
+    .uc-thumb-badge.match { background: rgba(52,211,153,0.9); color: #000; }
+    .uc-thumb-badge.diff { background: rgba(251,191,36,0.9); color: #000; }
+    .uc-thumb-badge.missing { background: rgba(239,68,68,0.9); color: #fff; }
+    .uc-thumb-badge.harmonyos-only { background: rgba(79,143,247,0.9); color: #fff; }
+
+    .uc-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 700px) { .uc-detail { grid-template-columns: 1fr; } }
+    .uc-detail-panel { text-align: center; }
+    .uc-detail-panel img { max-width: 100%; max-height: 500px; border-radius: 8px; cursor: zoom-in; box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+    .uc-detail-panel .uc-no-img { height: 300px; display: flex; align-items: center; justify-content: center; background: var(--surface2); border-radius: 8px; color: var(--text3); font-size: 0.78rem; }
+    .uc-detail-label { font-size: 0.68rem; color: var(--text3); margin-top: 0.3rem; }
+    .uc-detail-info { margin-top: 0.6rem; padding: 0.6rem; background: var(--surface2); border-radius: 8px; font-size: 0.75rem; }
+    .uc-similarity { font-size: 1.2rem; font-weight: 700; }
+    .uc-similarity.high { color: var(--green); }
+    .uc-similarity.med { color: var(--yellow); }
+    .uc-similarity.low { color: var(--red); }
+    .uc-notes { color: var(--text2); margin-top: 0.3rem; line-height: 1.5; }
+    .uc-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 0.6rem; }
+    .uc-nav button { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text2); padding: 0.3rem 0.8rem; font-size: 0.75rem; cursor: pointer; }
+    .uc-nav button:hover { border-color: var(--blue); color: var(--text); }
+    .uc-nav button:disabled { opacity: 0.3; cursor: default; }
+
+    .uc-lightbox { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 300; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; cursor: zoom-out; }
+    .uc-lightbox img { max-width: 95vw; max-height: 95vh; border-radius: 8px; }
+
+    /* Overview cards grid */
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+    .overview-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; cursor: pointer; transition: border-color 0.15s, transform 0.15s; }
+    .overview-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .overview-card .oc-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .overview-card .oc-desc { font-size: 0.75rem; color: var(--text2); margin-bottom: 0.8rem; }
+    .overview-card .oc-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .overview-card .oc-stat { text-align: center; }
+    .overview-card .oc-stat .ov { font-size: 1.3rem; font-weight: 700; }
+    .overview-card .oc-stat .ol { font-size: 0.62rem; color: var(--text3); }
+    .oc-progress { margin-top: 0.8rem; }
+    .oc-progress .bar-track { height: 5px; }
+    .oc-progress-label { font-size: 0.65rem; color: var(--text3); margin-bottom: 3px; display: flex; justify-content: space-between; }
+
+    /* Loading */
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .loading-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); animation: pulse 1s infinite; margin-right: 6px; }
+
+    /* Language Toggle */
+    .lang-toggle { display: inline-flex; align-items: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; font-size: 0.72rem; }
+    .lang-toggle span { padding: 0.3rem 0.55rem; cursor: pointer; color: var(--text3); transition: background 0.15s, color 0.15s; user-select: none; }
+    .lang-toggle span.active { background: rgba(79,143,247,0.18); color: var(--blue); font-weight: 600; }
+    .lang-toggle span:hover:not(.active) { color: var(--text2); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <h1><span class="accent">PM</span> Dashboard Hub</h1>
+      <div class="project-switcher" id="switcher">
+        <button class="project-btn" id="switcherBtn" onclick="toggleDropdown()">
+          <span id="currentProjectName">All Projects</span>
+          <span class="arrow">&#9660;</span>
+        </button>
+        <div class="project-dropdown" id="switcherDropdown">
+          <div class="project-option" onclick="showOverview()">
+            <div class="po-name">All Projects</div>
+            <div class="po-desc">Overview of all registered projects</div>
+          </div>
+          <div id="projectOptions"></div>
+        </div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="lang-toggle" id="langToggle">
+        <span class="active" data-lang="zh" onclick="switchLang('zh')">中文</span>
+        <span data-lang="en" onclick="switchLang('en')">English</span>
+      </div>
+      <span style="color:var(--text2);font-weight:500">Baoxing Huai</span>
+      <a href="/playbook.html" id="playbookLink" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.35rem 0.7rem;color:var(--purple);font-size:0.72rem;font-weight:600;text-decoration:none;transition:border-color 0.15s" onmouseover="this.style.borderColor='var(--purple)'" onmouseout="this.style.borderColor='var(--border)'">Playbook</a>
+      <span id="genTime"></span>
+    </div>
+  </div>
+  <div class="dashboard" id="app">
+    <p class="empty"><span class="loading-dot"></span><span id="loadingText">Loading...</span></p>
+  </div>
+
+  <div class="topo-tooltip" id="topoTooltip"></div>
+  <div class="swimlane-overlay" id="swimlaneOverlay" style="display:none">
+    <div class="swimlane-header" id="swimlaneHeader">
+      <span class="sh-title" id="shTitle">Full Topology Swimlane</span>
+      <div class="sh-legend" id="shLegend">
+        <span><span class="ldot" style="background:var(--green)"></span><span class="sl-done">Done</span></span>
+        <span><span class="ldot" style="background:var(--blue)"></span><span class="sl-ip">In Progress</span></span>
+        <span><span class="ldot" style="background:var(--text3)"></span><span class="sl-todo">To Do</span></span>
+        <span style="margin-left:1rem"><span class="ldot" style="background:var(--blue)"></span>AgentPM</span>
+        <span><span class="ldot" style="background:var(--orange)"></span>AgentA</span>
+        <span><span class="ldot" style="background:var(--green)"></span>AgentH</span>
+      </div>
+      <button class="swimlane-close" onclick="closeSwimlaneFull()" title="Close (Escape)">&times;</button>
+    </div>
+    <div class="swimlane-container" id="swimlaneContainer"></div>
+  </div>
+
+  <script>
+    // ── I18N ──
+    const I18N = {
+      en: {
+        'All Projects': 'All Projects',
+        'Overview of all registered projects': 'Overview of all registered projects',
+        'Projects': 'Projects',
+        'Total Tasks': 'Total Tasks',
+        'Completed': 'Completed',
+        'Knowledge': 'Knowledge',
+        'Tasks': 'Tasks',
+        'Done': 'Done',
+        'tasks': 'tasks',
+        'done': 'done',
+        'knowledge': 'knowledge',
+        'in progress': 'in progress',
+        'in review': 'in review',
+        'blocked': 'blocked',
+        'pending DR': 'pending DR',
+        'Phases': 'Phases',
+        'Risks': 'Risks',
+        'Task Distribution': 'Task Distribution',
+        'Phase Progress': 'Phase Progress',
+        'Topology Flow': 'Topology Flow',
+        'View Full Topology': 'View Full Topology',
+        'nodes': 'nodes',
+        'edges': 'edges',
+        'Timeline': 'Timeline',
+        'In Review': 'In Review',
+        'In Progress': 'In Progress',
+        'To Do': 'To Do',
+        'Blocked': 'Blocked',
+        'None': 'None',
+        'Knowledge Base': 'Knowledge Base',
+        'Pitfalls': 'Pitfalls',
+        'Patterns': 'Patterns',
+        'API Notes': 'API Notes',
+        'Risks & DR': 'Risks & DR',
+        'No risks or pending DRs': 'No risks or pending DRs',
+        'Activity Log': 'Activity Log',
+        'No log entries': 'No log entries',
+        'High Priority': 'High Priority',
+        'Medium Priority': 'Medium Priority',
+        'Low Priority': 'Low Priority',
+        'Daily Reports': 'Daily Reports',
+        'Show full report': 'Show full report',
+        'Top Highlights': 'Top Highlights',
+        'Outputs': 'Outputs',
+        'Type': 'Type',
+        'Count': 'Count',
+        'Detail': 'Detail',
+        'Next Day Plan': 'Next Day Plan',
+        'App Recordings': 'App Recordings',
+        'Video too large': 'Video too large',
+        'local only': 'local only',
+        'Frame Comparison': 'Frame Comparison',
+        'frames': 'frames',
+        'Avg similarity': 'Avg similarity',
+        'diff': 'diff',
+        'missing/extra': 'missing/extra',
+        'Similarity': 'Similarity',
+        'Match': 'Match',
+        'Differences': 'Differences',
+        'Missing in HarmonyOS': 'Missing in HarmonyOS',
+        'HarmonyOS Only': 'HarmonyOS Only',
+        'Prev': 'Prev',
+        'Next': 'Next',
+        'No Android frame': 'No Android frame',
+        'No HarmonyOS frame': 'No HarmonyOS frame',
+        'No tasks': 'No tasks',
+        'tasks_donut': 'tasks',
+        'No phases': 'No phases',
+        'Loading...': 'Loading...',
+        'Full Topology': 'Full Topology',
+        'Close': 'Close',
+        'Legend': 'Legend',
+        'Swarm-Loop Playbook': 'Swarm-Loop Playbook',
+        'Methodology': 'Methodology',
+        'Scripts': 'Scripts',
+        'Templates': 'Templates',
+        'Mottos': 'Mottos',
+      },
+      zh: {
+        'All Projects': '全部项目',
+        'Overview of all registered projects': '所有已注册项目一览',
+        'Projects': '项目',
+        'Total Tasks': '总任务',
+        'Completed': '已完成',
+        'Knowledge': '知识库',
+        'Tasks': '任务',
+        'Done': '已完成',
+        'tasks': '个任务',
+        'done': '已完成',
+        'knowledge': '条知识',
+        'in progress': '进行中',
+        'in review': '审查中',
+        'blocked': '阻塞',
+        'pending DR': '待决DR',
+        'Phases': '阶段',
+        'Risks': '风险',
+        'Task Distribution': '任务分布',
+        'Phase Progress': '阶段进度',
+        'Topology Flow': '拓扑流',
+        'View Full Topology': '查看完整拓扑',
+        'nodes': '节点',
+        'edges': '边',
+        'Timeline': '时间线',
+        'In Review': '审查中',
+        'In Progress': '进行中',
+        'To Do': '待办',
+        'Blocked': '阻塞',
+        'None': '暂无',
+        'Knowledge Base': '知识库',
+        'Pitfalls': '踩坑',
+        'Patterns': '模式',
+        'API Notes': 'API笔记',
+        'Risks & DR': '风险与决策',
+        'No risks or pending DRs': '无风险或待决DR',
+        'Activity Log': '活动日志',
+        'No log entries': '暂无日志',
+        'High Priority': '高优先级',
+        'Medium Priority': '中优先级',
+        'Low Priority': '低优先级',
+        'Daily Reports': '日报',
+        'Show full report': '查看完整报告',
+        'Top Highlights': '今日亮点',
+        'Outputs': '产出明细',
+        'Type': '类型',
+        'Count': '数量',
+        'Detail': '说明',
+        'Next Day Plan': '明日计划',
+        'App Recordings': '录屏对比',
+        'Video too large': '视频过大',
+        'local only': '仅本地可用',
+        'Frame Comparison': '关键帧对比',
+        'frames': '帧',
+        'Avg similarity': '平均相似度',
+        'diff': '差异',
+        'missing/extra': '缺失/多余',
+        'Similarity': '相似度',
+        'Match': '匹配',
+        'Differences': '有差异',
+        'Missing in HarmonyOS': 'HarmonyOS缺失',
+        'HarmonyOS Only': '仅HarmonyOS',
+        'Prev': '上一帧',
+        'Next': '下一帧',
+        'No Android frame': '无Android帧',
+        'No HarmonyOS frame': '无HarmonyOS帧',
+        'No tasks': '暂无任务',
+        'tasks_donut': '个任务',
+        'No phases': '暂无阶段',
+        'Loading...': '加载中...',
+        'Full Topology': '完整拓扑',
+        'Close': '关闭',
+        'Legend': '图例',
+        'Swarm-Loop Playbook': 'Swarm-Loop 工具箱',
+        'Methodology': '方法论',
+        'Scripts': '脚本',
+        'Templates': '模板',
+        'Mottos': '口诀',
+      }
+    };
+
+    let lang = localStorage.getItem('pm-dashboard-lang') || 'zh';
+
+    function t(key) { return I18N[lang][key] || I18N['en'][key] || key; }
+
+    // Content translator: handles bilingual {zh, en} objects from build data
+    function ct(v) {
+      if (v === null || v === undefined) return '';
+      if (typeof v === 'object' && v !== null && v.zh !== undefined) return v[lang] || v.zh || '';
+      return String(v);
+    }
+
+    function switchLang(newLang) {
+      lang = newLang;
+      localStorage.setItem('pm-dashboard-lang', lang);
+      // Update toggle button highlights
+      document.querySelectorAll('#langToggle span').forEach(s => {
+        s.classList.toggle('active', s.dataset.lang === lang);
+      });
+      // Re-render current view
+      if (currentView === 'overview') {
+        renderOverview();
+      } else if (projectDataCache[currentView]) {
+        renderProject(projectDataCache[currentView]);
+      }
+      // Update switcher text
+      if (currentView === 'overview') {
+        document.getElementById('currentProjectName').textContent = t('All Projects');
+      }
+      // Rebuild dropdown options with translated strings
+      if (manifest) buildProjectOptions();
+    }
+
+    // Initialize toggle highlight on load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#langToggle span').forEach(s => {
+        s.classList.toggle('active', s.dataset.lang === lang);
+      });
+    });
+
+    let manifest = null;
+    let projectDataCache = {};
+    let currentView = 'overview'; // 'overview' | project id
+
+    // ── Data fetching ──
+    async function fetchJSON(url) {
+      try {
+        const r = await fetch(url + '?t=' + Date.now());
+        if (!r.ok) return null;
+        return await r.json();
+      } catch { return null; }
+    }
+
+    async function init() {
+      const loadEl = document.getElementById('loadingText');
+      if (loadEl) loadEl.textContent = t('Loading...');
+      manifest = await fetchJSON('data/manifest.json');
+      if (!manifest) {
+        document.getElementById('app').innerHTML = '<p class="empty">No data. Run: <code>node scripts/build.js</code></p>';
+        return;
+      }
+      buildProjectOptions();
+      showOverview();
+    }
+
+    function buildProjectOptions() {
+      const el = document.getElementById('projectOptions');
+      // Also update the "All Projects" option in dropdown
+      const dropdownEl = document.getElementById('switcherDropdown');
+      const allProjOption = dropdownEl.querySelector('.project-option');
+      if (allProjOption) {
+        allProjOption.querySelector('.po-name').textContent = t('All Projects');
+        allProjOption.querySelector('.po-desc').textContent = t('Overview of all registered projects');
+      }
+      let h = '';
+      manifest.projects.forEach(p => {
+        const s = p.stats;
+        const doneP = s.totalTasks > 0 ? Math.round(s.done / s.totalTasks * 100) : 0;
+        h += `<div class="project-option" onclick="selectProject('${p.id}')">
+          <div class="po-name">${esc(p.name)}</div>
+          <div class="po-desc">${esc(p.description)}</div>
+          <div class="po-stats">
+            <span class="po-stat"><span class="po-dot" style="background:var(--blue)"></span>${s.totalTasks} ${t('tasks')}</span>
+            <span class="po-stat"><span class="po-dot" style="background:var(--green)"></span>${doneP}% ${t('done')}</span>
+            <span class="po-stat"><span class="po-dot" style="background:var(--purple)"></span>${s.knowledge} ${t('knowledge')}</span>
+          </div>
+        </div>`;
+      });
+      el.innerHTML = h;
+    }
+
+    // ── Dropdown ──
+    function toggleDropdown() {
+      const dd = document.getElementById('switcherDropdown');
+      const btn = document.getElementById('switcherBtn');
+      dd.classList.toggle('show');
+      btn.classList.toggle('open');
+    }
+
+    document.addEventListener('click', e => {
+      if (!document.getElementById('switcher').contains(e.target)) {
+        document.getElementById('switcherDropdown').classList.remove('show');
+        document.getElementById('switcherBtn').classList.remove('open');
+      }
+    });
+
+    // ── Navigation ──
+    function showOverview() {
+      currentView = 'overview';
+      document.getElementById('currentProjectName').textContent = t('All Projects');
+      document.getElementById('switcherDropdown').classList.remove('show');
+      document.getElementById('switcherBtn').classList.remove('open');
+      document.getElementById('genTime').textContent = manifest.generatedAt;
+      renderOverview();
+    }
+
+    async function selectProject(id) {
+      currentView = id;
+      const p = manifest.projects.find(p => p.id === id);
+      document.getElementById('currentProjectName').textContent = p ? p.name : id;
+      document.getElementById('switcherDropdown').classList.remove('show');
+      document.getElementById('switcherBtn').classList.remove('open');
+
+      if (!projectDataCache[id]) {
+        document.getElementById('app').innerHTML = '<p class="empty"><span class="loading-dot"></span>' + t('Loading...') + '</p>';
+        projectDataCache[id] = await fetchJSON(`data/${id}.json`);
+      }
+      if (projectDataCache[id]) {
+        document.getElementById('genTime').textContent = projectDataCache[id].generatedAt;
+        renderProject(projectDataCache[id]);
+      } else {
+        document.getElementById('app').innerHTML = '<p class="empty">Failed to load project data.</p>';
+      }
+    }
+
+    // ── Render: Overview ──
+    function renderOverview() {
+      const projects = manifest.projects;
+      let h = '';
+
+      // Global stats
+      let totalTasks = 0, totalDone = 0, totalKn = 0, totalRisks = 0;
+      projects.forEach(p => {
+        totalTasks += p.stats.totalTasks;
+        totalDone += p.stats.done;
+        totalKn += p.stats.knowledge;
+        totalRisks += p.stats.risks;
+      });
+
+      h += '<div class="row row-4">';
+      h += sc(t('Projects'), projects.length, 'blue');
+      h += sc(t('Total Tasks'), totalTasks, 'yellow');
+      h += sc(t('Completed'), totalDone, 'green');
+      h += sc(t('Knowledge'), totalKn, 'purple');
+      h += '</div>';
+
+      // Project cards
+      h += '<div class="overview-grid">';
+      projects.forEach(p => {
+        const s = p.stats;
+        const doneP = s.totalTasks > 0 ? Math.round(s.done / s.totalTasks * 100) : 0;
+        const phaseP = s.phases > 0 ? Math.round(s.phasesDone / s.phases * 100) : 0;
+
+        h += `<div class="overview-card" onclick="selectProject('${p.id}')">`;
+        h += `<div class="oc-name">${esc(p.name)}</div>`;
+        h += `<div class="oc-desc">${esc(p.description)}</div>`;
+        h += '<div class="oc-stats">';
+        h += `<div class="oc-stat"><div class="ov" style="color:var(--blue)">${s.totalTasks}</div><div class="ol">${t('Tasks')}</div></div>`;
+        h += `<div class="oc-stat"><div class="ov" style="color:var(--green)">${s.done}</div><div class="ol">${t('Done')}</div></div>`;
+        h += `<div class="oc-stat"><div class="ov" style="color:var(--purple)">${s.knowledge}</div><div class="ol">${t('Knowledge')}</div></div>`;
+        h += '</div>';
+        h += '<div class="oc-progress">';
+        h += `<div class="oc-progress-label"><span>${t('Tasks')}</span><span>${doneP}%</span></div>`;
+        h += `<div class="bar-track"><div class="bar-fill ${doneP === 100 ? 'done' : 'active'}" style="width:${doneP}%"></div></div>`;
+        h += `<div class="oc-progress-label" style="margin-top:6px"><span>${t('Phases')}</span><span>${s.phasesDone}/${s.phases}</span></div>`;
+        h += `<div class="bar-track"><div class="bar-fill ${phaseP === 100 ? 'done' : 'active'}" style="width:${phaseP}%"></div></div>`;
+        h += '</div>';
+
+        // Mini status row
+        if (s.inProgress > 0 || s.inReview > 0 || s.blocked > 0 || s.pendingDR > 0) {
+          h += '<div style="margin-top:0.6rem;display:flex;gap:0.6rem;font-size:0.68rem">';
+          if (s.inProgress > 0) h += `<span style="color:var(--blue)">${s.inProgress} ${t('in progress')}</span>`;
+          if (s.inReview > 0) h += `<span style="color:var(--yellow)">${s.inReview} ${t('in review')}</span>`;
+          if (s.blocked > 0) h += `<span style="color:var(--red)">${s.blocked} ${t('blocked')}</span>`;
+          if (s.pendingDR > 0) h += `<span style="color:var(--orange)">${s.pendingDR} ${t('pending DR')}</span>`;
+          h += '</div>';
+        }
+
+        h += '</div>';
+      });
+      h += '</div>';
+
+      document.getElementById('app').innerHTML = h;
+    }
+
+    // ── Render: Single Project ──
+    function renderProject(D) {
+      if (!D || !D.taskboard) {
+        document.getElementById('app').innerHTML = '<p class="empty">No data available for this project.</p>';
+        return;
+      }
+
+      const tb = D.taskboard;
+      const ip = tb.inProgress || [], todo = tb.todo || [], done = tb.done || [];
+      const inReview = tb.inReview || [], blocked = tb.blocked || [];
+      const total = ip.length + todo.length + done.length + inReview.length + blocked.length;
+      const nodes = (D.topology && D.topology.nodes) || [];
+      const edges = (D.topology && D.topology.edges) || [];
+      const phases = D.roadmap || [];
+      const kn = D.knowledge || {};
+      const pit = kn.pitfalls || [], pat = kn.patterns || [], apiN = kn.apiNotes || [];
+      const knTotal = pit.length + pat.length + apiN.length;
+      const risks = D.risks || [];
+      const dr = D.designDecisions || {};
+      const cl = D.changelog || [];
+
+      let h = '';
+
+      // Stats
+      h += '<div class="row row-4">';
+      h += sc(t('Total Tasks'), total, 'blue');
+      h += sc(t('Done'), done.length, 'green');
+      h += sc(t('Knowledge'), knTotal, 'purple');
+      h += sc(t('Risks'), risks.length, risks.length > 0 ? 'red' : 'cyan');
+      h += '</div>';
+
+      // Wave Command Center
+      const waves = D.waves || [];
+      if (waves.length > 0) {
+        h += waveCommandCenter(waves, D.deliveryCoverage, D.playbook);
+      }
+
+      // Donut + Phase Progress
+      h += '<div class="row row-1-2">';
+      h += '<div class="card"><h2>' + t('Task Distribution') + '</h2>' + donut(ip.length, todo.length, done.length, inReview.length, blocked.length, total) + '</div>';
+      h += '<div class="card"><h2>' + t('Phase Progress') + '</h2>' + phaseProgress(phases) + '</div>';
+      h += '</div>';
+
+      // Phase-Aggregated Topology
+      if (nodes.length > 0) {
+        h += '<div class="row row-full"><div class="card"><h2>' + t('Topology Flow') + '</h2><div class="topo-container">' + topoPhase(nodes, edges, phases) + '</div>';
+        h += `<div style="text-align:center"><button class="phase-topo-btn" onclick="openSwimlaneFull()">${t('View Full Topology')} (${nodes.length} ${t('nodes')}, ${edges.length} ${t('edges')})</button></div>`;
+        h += '</div></div>';
+        // stash data for swimlane
+        window._swimNodes = nodes; window._swimEdges = edges;
+      }
+
+      // Phase-Aggregated Gantt
+      if (nodes.length > 0 && nodes.some(n => n.startDate)) {
+        h += '<div class="row row-full"><div class="card"><h2>' + t('Timeline') + '</h2>' + ganttPhase(nodes, phases) + '</div></div>';
+      }
+
+      // Task lists
+      h += '<div class="row row-3">';
+      if (inReview.length > 0) h += taskList(t('In Review'), inReview, 'review');
+      else h += taskList(t('In Progress'), ip, 'progress');
+      h += taskList(t('To Do'), todo, 'todo');
+      h += taskList(t('Done'), done, 'done');
+      h += '</div>';
+
+      if (inReview.length > 0 && ip.length > 0) {
+        h += '<div class="row row-2">';
+        h += taskList(t('In Progress'), ip, 'progress');
+        if (blocked.length > 0) h += taskList(t('Blocked'), blocked, 'blocked');
+        h += '</div>';
+      } else if (blocked.length > 0) {
+        h += '<div class="row row-full">';
+        h += taskList(t('Blocked'), blocked, 'blocked');
+        h += '</div>';
+      }
+
+      // Knowledge + Risks + Changelog
+      h += '<div class="row row-3">';
+
+      // Knowledge
+      h += '<div class="card"><h2>' + t('Knowledge Base') + '</h2><div class="kn-grid">';
+      h += `<div class="kn-card pit"><div class="kn-num">${pit.length}</div><div class="kn-label">${t('Pitfalls')}</div></div>`;
+      h += `<div class="kn-card pat"><div class="kn-num">${pat.length}</div><div class="kn-label">${t('Patterns')}</div></div>`;
+      h += `<div class="kn-card api"><div class="kn-num">${apiN.length}</div><div class="kn-label">${t('API Notes')}</div></div>`;
+      h += '</div></div>';
+
+      // Risks & DR
+      h += '<div class="card"><h2>' + t('Risks & DR') + '</h2>';
+      if (risks.length === 0 && (dr.pending || []).length === 0) {
+        h += '<p class="empty">' + t('No risks or pending DRs') + '</p>';
+      } else {
+        h += '<div class="task-scroll">';
+        risks.forEach(r => {
+          const c = r.level === 'high' ? 'var(--red)' : r.level === 'medium' ? 'var(--yellow)' : 'var(--text3)';
+          h += `<div class="task-item"><div class="tdot" style="background:${c}"></div><span style="flex:1;color:var(--text2)">${esc(r.id)}: ${esc(ct(r.title))}</span></div>`;
+        });
+        (dr.pending || []).forEach(d => {
+          h += `<div class="task-item"><div class="tdot review"></div><span style="flex:1;color:var(--text2)">${esc(d.id)}: ${esc(ct(d.title))}</span></div>`;
+        });
+        h += '</div>';
+      }
+      h += '</div>';
+
+      // Changelog
+      h += '<div class="card"><h2>' + t('Activity Log') + '</h2>';
+      if (cl.length === 0) {
+        h += '<p class="empty">' + t('No log entries') + '</p>';
+      } else {
+        h += '<div class="task-scroll">';
+        cl.slice(0, 5).forEach(day => {
+          h += `<div class="cl-date">${day.date}</div>`;
+          day.entries.forEach(e => { h += `<div class="cl-entry">${esc(ct(e))}</div>`; });
+        });
+        h += '</div>';
+      }
+      h += '</div></div>';
+
+      // Backlog
+      const bl = D.backlog || {};
+      const blTotal = (bl.high || []).length + (bl.medium || []).length + (bl.low || []).length;
+      if (blTotal > 0) {
+        h += '<div class="row row-3">';
+        h += backlogCol(t('High Priority'), bl.high || [], 'var(--red)');
+        h += backlogCol(t('Medium Priority'), bl.medium || [], 'var(--yellow)');
+        h += backlogCol(t('Low Priority'), bl.low || [], 'var(--blue)');
+        h += '</div>';
+      }
+
+      // Playbook
+      const pb = D.playbook;
+      if (pb) {
+        h += playbookSection(pb);
+      }
+
+      // UI Comparison
+      const uc = D.uiComparison;
+      if (uc) {
+        h += uiComparisonSection(uc);
+      }
+
+      // Daily Reports
+      const reports = D.dailyReports || [];
+      if (reports.length > 0) {
+        h += dailyReportsSection(reports);
+      }
+
+      document.getElementById('app').innerHTML = h;
+
+      // Bind interactions after DOM is set
+      if (uc) bindUIComparisonEvents(uc);
+      if (reports.length > 0) bindDailyReportEvents(reports);
+    }
+
+    // ── Helpers ──
+    function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+    function sc(l, v, c) {
+      return `<div class="card stat-card ${c}"><div class="big">${v}</div><div class="label">${l}</div></div>`;
+    }
+
+    function donut(ipN, todoN, doneN, reviewN, blockedN, total) {
+      if (total === 0) return '<p class="empty">' + t('No tasks') + '</p>';
+      const r = 55, cx = 72, cy = 72, sw = 16, circ = 2 * Math.PI * r;
+      const slices = [
+        { v: doneN, c: 'var(--green)', l: t('Done') },
+        { v: reviewN || 0, c: 'var(--yellow)', l: t('In Review') },
+        { v: ipN, c: 'var(--blue)', l: t('In Progress') },
+        { v: todoN, c: '#5c6078', l: t('To Do') },
+        { v: blockedN || 0, c: 'var(--red)', l: t('Blocked') }
+      ].filter(s => s.v > 0);
+      let off = 0, circles = '';
+      slices.forEach(s => {
+        const d = s.v / total * circ;
+        circles += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.c}" stroke-width="${sw}" stroke-dasharray="${d} ${circ - d}" stroke-dashoffset="${-off}" transform="rotate(-90 ${cx} ${cy})"/>`;
+        off += d;
+      });
+      let legend = '';
+      slices.forEach(s => { legend += `<div><div class="sw" style="background:${s.c}"></div>${s.l}: ${s.v} (${Math.round(s.v / total * 100)}%)</div>`; });
+      return `<div class="donut-wrap"><svg width="144" height="144" viewBox="0 0 144 144"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--surface2)" stroke-width="${sw}"/>${circles}<text x="${cx}" y="${cy - 4}" text-anchor="middle" fill="var(--text)" font-size="22" font-weight="700">${total}</text><text x="${cx}" y="${cy + 11}" text-anchor="middle" fill="var(--text3)" font-size="9">${t('tasks_donut')}</text></svg><div class="donut-legend">${legend}</div></div>`;
+    }
+
+    function phaseProgress(phases) {
+      if (!phases.length) return '<p class="empty">' + t('No phases') + '</p>';
+      let h = '';
+      phases.forEach(p => {
+        const pct = p.status === 'done' ? 100 : p.status === 'active' ? 50 : 0;
+        const cls = p.status === 'done' ? 'done' : p.status === 'active' ? 'active' : 'waiting';
+        h += `<div class="phase-bar"><div class="ph"><span class="pn">${esc(p.id)}: ${esc(ct(p.name))}</span><span class="pp">${p.status}</span></div><div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div></div>`;
+      });
+      return h;
+    }
+
+    // ── Phase-Aggregated Topology ──
+    function topoPhase(nodes, edges, phases) {
+      // Group nodes by phase
+      const pg = {}, po = [];
+      nodes.forEach(n => { if (!pg[n.phase]) { pg[n.phase] = []; po.push(n.phase); } pg[n.phase].push(n); });
+      const W = 160, H = 60, px = 30, py = 20, gap = 40;
+      const svgW = po.length * (W + gap) - gap + px * 2;
+      const svgH = H + py * 2 + 10;
+      let s = `<svg width="100%" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" style="max-width:${svgW}px">`;
+      s += '<defs><marker id="arr" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="7" markerHeight="5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="var(--text3)"/></marker></defs>';
+
+      const phasePos = {};
+      po.forEach((phase, i) => {
+        const x = px + i * (W + gap);
+        const y = py;
+        phasePos[phase] = { x, y };
+        const group = pg[phase];
+        const doneCount = group.filter(n => n.status === 'done').length;
+        const ipCount = group.filter(n => n.status === 'inprogress').length;
+        const total = group.length;
+        const pct = total > 0 ? Math.round(doneCount / total * 100) : 0;
+
+        // Determine color: all done=green, any in-progress=blue, else gray
+        let bg, border, textCol;
+        if (doneCount === total) { bg = 'rgba(52,211,153,0.15)'; border = 'var(--green)'; textCol = 'var(--green)'; }
+        else if (ipCount > 0 || doneCount > 0) { bg = 'rgba(79,143,247,0.12)'; border = 'var(--blue)'; textCol = 'var(--blue)'; }
+        else { bg = 'var(--surface2)'; border = 'var(--text3)'; textCol = 'var(--text3)'; }
+
+        s += `<g>`;
+        s += `<rect x="${x}" y="${y}" width="${W}" height="${H}" fill="${bg}" stroke="${border}" rx="8" stroke-width="1.5"/>`;
+        // Phase name
+        s += `<text x="${x + W/2}" y="${y + 17}" text-anchor="middle" fill="var(--text)" font-size="11" font-weight="700">${esc(phase)}</text>`;
+        // Count text
+        s += `<text x="${x + W/2}" y="${y + 31}" text-anchor="middle" fill="${textCol}" font-size="9" font-weight="600">${doneCount}/${total} done</text>`;
+        // Progress bar background
+        const barX = x + 12, barY = y + 38, barW = W - 24, barH = 6;
+        s += `<rect x="${barX}" y="${barY}" width="${barW}" height="${barH}" fill="rgba(0,0,0,0.25)" rx="3"/>`;
+        // Progress bar fill
+        if (pct > 0) {
+          const fillCol = doneCount === total ? 'var(--green)' : 'var(--blue)';
+          s += `<rect x="${barX}" y="${barY}" width="${Math.round(barW * pct / 100)}" height="${barH}" fill="${fillCol}" rx="3"/>`;
+        }
+        // Percentage
+        s += `<text x="${x + W/2}" y="${y + 55}" text-anchor="middle" fill="var(--text3)" font-size="8">${total} nodes | ${pct}%</text>`;
+        s += `</g>`;
+      });
+
+      // Edges between sequential phases
+      for (let i = 0; i < po.length - 1; i++) {
+        const from = phasePos[po[i]], to = phasePos[po[i + 1]];
+        const x1 = from.x + W, y1 = from.y + H / 2;
+        const x2 = to.x, y2 = to.y + H / 2;
+        const mx = (x1 + x2) / 2;
+        s += `<path class="topo-edge" d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}"/>`;
+      }
+
+      s += '</svg>';
+      return s;
+    }
+
+    // ── Full Interactive Swimlane ──
+    let _swimPanState = null;
+
+    function openSwimlaneFull() {
+      const nodes = window._swimNodes || [];
+      const edges = window._swimEdges || [];
+      if (!nodes.length) return;
+
+      const overlay = document.getElementById('swimlaneOverlay');
+      const container = document.getElementById('swimlaneContainer');
+      overlay.style.display = 'flex';
+
+      // Update swimlane header with current language
+      document.getElementById('shTitle').textContent = t('Full Topology') + ' Swimlane';
+      document.querySelector('.sl-done').textContent = t('Done');
+      document.querySelector('.sl-ip').textContent = t('In Progress');
+      document.querySelector('.sl-todo').textContent = t('To Do');
+
+      // Agent lane config
+      const agentColors = { AgentPM: 'var(--blue)', AgentA: 'var(--orange)', AgentH: 'var(--green)' };
+      const agentBg = { AgentPM: 'rgba(79,143,247,0.06)', AgentA: 'rgba(249,115,22,0.06)', AgentH: 'rgba(52,211,153,0.06)' };
+      const agents = ['AgentPM', 'AgentA', 'AgentH'];
+
+      // Group by phase then agent
+      const pg = {}, po = [];
+      nodes.forEach(n => { if (!pg[n.phase]) { pg[n.phase] = []; po.push(n.phase); } pg[n.phase].push(n); });
+
+      // Layout constants
+      const NW = 140, NH = 32, nodeGapY = 6, nodeGapX = 8;
+      const laneHeaderW = 80, phaseHeaderH = 24;
+      const paddingX = 20, paddingY = 10;
+      const maxColH = 15; // max nodes per column before wrapping
+
+      // Compute phase column widths (based on max columns needed across agents)
+      const phaseWidths = {};
+      po.forEach(phase => {
+        let maxCols = 1;
+        agents.forEach(agent => {
+          const count = pg[phase].filter(n => (n.agent || 'AgentPM') === agent).length;
+          const cols = Math.ceil(count / maxColH) || 1;
+          if (cols > maxCols) maxCols = cols;
+        });
+        phaseWidths[phase] = maxCols * (NW + nodeGapX);
+      });
+
+      // Compute lane heights (based on max vertical stack in any phase)
+      const laneHeights = {};
+      agents.forEach(agent => {
+        let maxH = 2 * (NH + nodeGapY); // minimum height
+        po.forEach(phase => {
+          const count = pg[phase].filter(n => (n.agent || 'AgentPM') === agent).length;
+          const cols = Math.ceil(count / maxColH) || 1;
+          const perCol = Math.ceil(count / cols);
+          const h = perCol * (NH + nodeGapY);
+          if (h > maxH) maxH = h;
+        });
+        laneHeights[agent] = maxH + paddingY;
+      });
+
+      // Compute total dimensions
+      const totalPhaseW = po.reduce((s, p) => s + phaseWidths[p] + paddingX, 0);
+      const svgW = laneHeaderW + totalPhaseW + paddingX * 2;
+      const totalLaneH = agents.reduce((s, a) => s + laneHeights[a], 0);
+      const svgH = phaseHeaderH + totalLaneH + paddingY * 2;
+
+      // Position all nodes
+      const pos = {};
+      let phaseX = laneHeaderW + paddingX;
+      const phaseXMap = {};
+      po.forEach(phase => {
+        phaseXMap[phase] = phaseX;
+        let laneY = phaseHeaderH + paddingY;
+        agents.forEach(agent => {
+          const group = pg[phase].filter(n => (n.agent || 'AgentPM') === agent);
+          const cols = Math.ceil(group.length / maxColH) || 1;
+          group.forEach((n, idx) => {
+            const col = Math.floor(idx / maxColH);
+            const row = idx % maxColH;
+            pos[n.id] = {
+              x: phaseX + col * (NW + nodeGapX),
+              y: laneY + row * (NH + nodeGapY),
+              w: NW, h: NH
+            };
+          });
+          laneY += laneHeights[agent];
+        });
+        phaseX += phaseWidths[phase] + paddingX;
+      });
+
+      // Build SVG
+      let s = `<svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" id="swimlaneSVG">`;
+      s += '<defs><marker id="arrSL" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="6" markerHeight="4" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="var(--text3)"/></marker></defs>';
+
+      // Lane backgrounds and labels
+      let laneY = phaseHeaderH + paddingY;
+      agents.forEach(agent => {
+        s += `<rect x="0" y="${laneY}" width="${svgW}" height="${laneHeights[agent]}" fill="${agentBg[agent]}"/>`;
+        s += `<line x1="0" y1="${laneY}" x2="${svgW}" y2="${laneY}" stroke="var(--border)" stroke-width="0.5"/>`;
+        s += `<text x="${laneHeaderW/2}" y="${laneY + laneHeights[agent]/2 + 4}" text-anchor="middle" fill="${agentColors[agent]}" font-size="10" font-weight="700">${agent.replace('Agent','')}</text>`;
+        laneY += laneHeights[agent];
+      });
+
+      // Phase headers
+      po.forEach(phase => {
+        const px2 = phaseXMap[phase];
+        const w = phaseWidths[phase];
+        s += `<text x="${px2 + w/2}" y="${phaseHeaderH - 4}" text-anchor="middle" fill="var(--text3)" font-size="9" font-weight="600">${esc(phase)}</text>`;
+      });
+
+      // Edges
+      const nodeMap = {};
+      nodes.forEach(n => { nodeMap[n.id] = n; });
+      edges.forEach(e => {
+        const f = pos[e.from], t = pos[e.to];
+        if (!f || !t) return;
+        const x1 = f.x + f.w, y1 = f.y + f.h / 2;
+        const x2 = t.x, y2 = t.y + t.h / 2;
+        const mx = (x1 + x2) / 2;
+        s += `<path data-from="${e.from}" data-to="${e.to}" class="topo-edge swim-edge" d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}" stroke="var(--text3)" stroke-width="1" fill="none" marker-end="url(#arrSL)" opacity="0.4"/>`;
+      });
+
+      // Nodes
+      const statusStyle = {
+        done: { bg: 'rgba(52,211,153,0.18)', b: '#34d399' },
+        inprogress: { bg: 'rgba(79,143,247,0.18)', b: '#4f8ff7' },
+        todo: { bg: 'rgba(92,96,120,0.18)', b: '#5c6078' }
+      };
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        if (!p) return;
+        const st = statusStyle[n.status] || statusStyle.todo;
+        const agent = n.agent || 'AgentPM';
+        const agentBorder = agentColors[agent] || 'var(--text3)';
+        const rawLabel = ct(n.label);
+        const label = rawLabel.length > 18 ? rawLabel.slice(0, 17) + '..' : rawLabel;
+
+        s += `<g class="swim-node" data-id="${n.id}" style="cursor:pointer">`;
+        s += `<rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" fill="${st.bg}" stroke="${st.b}" rx="5" stroke-width="1.2"/>`;
+
+        // Status icon
+        const ix = p.x + 10, iy = p.y + p.h / 2;
+        if (n.status === 'done') {
+          s += `<circle cx="${ix}" cy="${iy}" r="4" fill="var(--green)"/><polyline points="${ix-2},${iy} ${ix-0.5},${iy+2} ${ix+2.5},${iy-2}" fill="none" stroke="white" stroke-width="1"/>`;
+        } else if (n.status === 'inprogress') {
+          s += `<circle cx="${ix}" cy="${iy}" r="4" fill="none" stroke="var(--blue)" stroke-width="1" stroke-dasharray="4 2" class="topo-spinner"/>`;
+        } else {
+          s += `<circle cx="${ix}" cy="${iy}" r="4" fill="none" stroke="var(--text3)" stroke-width="1"/>`;
+        }
+
+        s += `<text x="${p.x + 20}" y="${p.y + p.h/2 + 3.5}" fill="var(--text)" font-size="8.5" font-weight="600">${esc(label)}</text>`;
+
+        // In-progress badge
+        if (n.status === 'inprogress') {
+          const bx = p.x + p.w - 28, by = p.y + 2;
+          s += `<rect x="${bx}" y="${by}" width="26" height="11" fill="var(--blue)" rx="3"/>`;
+          s += `<text x="${bx + 13}" y="${by + 8}" text-anchor="middle" fill="white" font-size="6" font-weight="700">${lang === 'zh' ? '&#25191;&#34892;&#20013;' : 'WIP'}</text>`;
+        }
+
+        s += `</g>`;
+      });
+
+      s += '</svg>';
+      container.innerHTML = s;
+
+      // ── Pan/Zoom ──
+      const svg = document.getElementById('swimlaneSVG');
+      let vb = { x: 0, y: 0, w: svgW, h: svgH };
+      const origVB = { ...vb };
+      function setVB() { svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`); }
+
+      let dragging = false, dragStart = { x: 0, y: 0 }, vbStart = { x: 0, y: 0 };
+      container.onmousedown = e => {
+        if (e.target.closest('.swim-node')) return;
+        dragging = true;
+        dragStart = { x: e.clientX, y: e.clientY };
+        vbStart = { x: vb.x, y: vb.y };
+        container.classList.add('grabbing');
+      };
+      container.onmousemove = e => {
+        if (dragging) {
+          const scale = vb.w / container.clientWidth;
+          vb.x = vbStart.x - (e.clientX - dragStart.x) * scale;
+          vb.y = vbStart.y - (e.clientY - dragStart.y) * scale;
+          setVB();
+        }
+        // Tooltip
+        const node = e.target.closest('.swim-node');
+        handleTooltip(node, e, nodes, edges, pos);
+      };
+      container.onmouseup = () => { dragging = false; container.classList.remove('grabbing'); };
+      container.onmouseleave = () => { dragging = false; container.classList.remove('grabbing'); hideTooltip(); };
+
+      // Wheel zoom
+      container.onwheel = e => {
+        e.preventDefault();
+        const zf = e.deltaY > 0 ? 1.1 : 0.9;
+        const rect = container.getBoundingClientRect();
+        const mx = (e.clientX - rect.left) / rect.width;
+        const my = (e.clientY - rect.top) / rect.height;
+        const nw = vb.w * zf, nh = vb.h * zf;
+        vb.x += (vb.w - nw) * mx;
+        vb.y += (vb.h - nh) * my;
+        vb.w = nw; vb.h = nh;
+        setVB();
+      };
+
+      // Hover highlight
+      container.addEventListener('mouseover', e => {
+        const node = e.target.closest('.swim-node');
+        highlightNode(node, nodes, edges);
+      });
+      container.addEventListener('mouseout', e => {
+        const node = e.target.closest('.swim-node');
+        if (node && !e.relatedTarget?.closest('.swim-node')) resetHighlight();
+      });
+
+      // Keyboard
+      _swimKeyHandler = e => {
+        if (e.key === 'Escape') closeSwimlaneFull();
+        const panStep = vb.w * 0.1;
+        const panStepY = vb.h * 0.1;
+        if (e.key === 'a' || e.key === 'A' || e.key === 'ArrowLeft') { vb.x -= panStep; setVB(); }
+        if (e.key === 'd' || e.key === 'D' || e.key === 'ArrowRight') { vb.x += panStep; setVB(); }
+        if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') { vb.y -= panStepY; setVB(); e.preventDefault(); }
+        if (e.key === 's' || e.key === 'S' || e.key === 'ArrowDown') { vb.y += panStepY; setVB(); e.preventDefault(); }
+        if (e.key === 'r' || e.key === 'R') { vb = { ...origVB }; setVB(); }
+      };
+      document.addEventListener('keydown', _swimKeyHandler);
+    }
+
+    let _swimKeyHandler = null;
+
+    function closeSwimlaneFull() {
+      document.getElementById('swimlaneOverlay').style.display = 'none';
+      document.getElementById('swimlaneContainer').innerHTML = '';
+      if (_swimKeyHandler) { document.removeEventListener('keydown', _swimKeyHandler); _swimKeyHandler = null; }
+      hideTooltip();
+    }
+
+    function handleTooltip(nodeEl, e, nodes, edges, pos) {
+      const tip = document.getElementById('topoTooltip');
+      if (!nodeEl) { tip.style.display = 'none'; return; }
+      const id = nodeEl.getAttribute('data-id');
+      const n = nodes.find(nd => nd.id === id);
+      if (!n) { tip.style.display = 'none'; return; }
+      const deps = edges.filter(ed => ed.to === id).map(ed => ed.from);
+      const dependents = edges.filter(ed => ed.from === id).map(ed => ed.to);
+      tip.innerHTML = `<div class="tt-id">${esc(n.id)}</div><div class="tt-label">${esc(ct(n.label))}</div><div class="tt-meta">${esc(n.agent || '')} | ${esc(n.phase || '')} | ${n.status}</div>` +
+        (n.desc ? `<div class="tt-desc">${esc(ct(n.desc))}</div>` : '') +
+        (deps.length ? `<div class="tt-deps">Depends on: ${deps.join(', ')}</div>` : '') +
+        (dependents.length ? `<div class="tt-deps">Blocks: ${dependents.join(', ')}</div>` : '');
+      tip.style.display = 'block';
+      const tx = Math.min(e.clientX + 12, window.innerWidth - 340);
+      const ty = Math.min(e.clientY + 12, window.innerHeight - 150);
+      tip.style.left = tx + 'px'; tip.style.top = ty + 'px';
+    }
+
+    function hideTooltip() { document.getElementById('topoTooltip').style.display = 'none'; }
+
+    function highlightNode(nodeEl, nodes, edges) {
+      if (!nodeEl) return;
+      const id = nodeEl.getAttribute('data-id');
+      // Build dependency chain
+      const related = new Set([id]);
+      edges.forEach(e => { if (e.to === id) related.add(e.from); if (e.from === id) related.add(e.to); });
+
+      document.querySelectorAll('.swim-node').forEach(el => {
+        el.style.opacity = related.has(el.getAttribute('data-id')) ? '1' : '0.3';
+      });
+      document.querySelectorAll('.swim-edge').forEach(el => {
+        const from = el.getAttribute('data-from'), to = el.getAttribute('data-to');
+        el.style.opacity = (from === id || to === id) ? '0.9' : '0.1';
+        if (from === id || to === id) { el.setAttribute('stroke', 'var(--blue)'); el.setAttribute('stroke-width', '1.5'); }
+        else { el.setAttribute('stroke', 'var(--text3)'); el.setAttribute('stroke-width', '1'); }
+      });
+    }
+
+    function resetHighlight() {
+      document.querySelectorAll('.swim-node').forEach(el => { el.style.opacity = '1'; });
+      document.querySelectorAll('.swim-edge').forEach(el => {
+        el.style.opacity = '0.4';
+        el.setAttribute('stroke', 'var(--text3)');
+        el.setAttribute('stroke-width', '1');
+      });
+    }
+
+    // ── Phase-Aggregated Gantt ──
+    function ganttPhase(nodes, phases) {
+      // Group nodes by phase
+      const pg = {}, po = [];
+      nodes.forEach(n => { if (!pg[n.phase]) { pg[n.phase] = []; po.push(n.phase); } pg[n.phase].push(n); });
+
+      // Compute date ranges per phase
+      const phaseRows = [];
+      const allDates = [];
+      po.forEach(phase => {
+        const group = pg[phase];
+        let minDate = null, maxDate = null;
+        group.forEach(n => {
+          if (n.startDate) {
+            const d = n.startDate.split(' ')[0];
+            if (!minDate || d < minDate) minDate = d;
+            allDates.push(d);
+          }
+          if (n.endDate) {
+            const d = n.endDate.split(' ')[0];
+            if (!maxDate || d > maxDate) maxDate = d;
+            allDates.push(d);
+          }
+        });
+        // For active phases without end date, use today
+        const doneCount = group.filter(n => n.status === 'done').length;
+        const ipCount = group.filter(n => n.status === 'inprogress').length;
+        const status = doneCount === group.length ? 'done' : (ipCount > 0 || doneCount > 0) ? 'inprogress' : 'todo';
+        if (!maxDate && status !== 'todo') maxDate = new Date().toISOString().split('T')[0];
+        if (minDate) {
+          phaseRows.push({ phase, minDate, maxDate: maxDate || minDate, status, count: group.length, doneCount });
+        }
+      });
+
+      if (!phaseRows.length) return '<p class="empty">No timeline data</p>';
+
+      allDates.sort();
+      const mn = allDates[0];
+      const mxD = new Date(allDates[allDates.length - 1]);
+      mxD.setDate(mxD.getDate() + 7);
+      const mx = mxD.toISOString().split('T')[0];
+      const td = daysBetween(mn, mx) || 1;
+
+      let h = '';
+      phaseRows.forEach(r => {
+        const lp = Math.max(0, daysBetween(mn, r.minDate) / td * 100);
+        const wp = Math.max(2, daysBetween(r.minDate, r.maxDate) / td * 100);
+        const barLabel = r.status === 'done' ? `Done (${r.count})` : r.status === 'inprogress' ? `${r.doneCount}/${r.count}` : '';
+        h += `<div class="gantt-row"><div class="gantt-label">${esc(r.phase)}</div><div class="gantt-track"><div class="gantt-bar ${r.status}" style="left:${lp}%;width:${wp}%">${barLabel}</div></div></div>`;
+      });
+
+      h += '<div class="gantt-dates">';
+      for (let i = 0; i <= 4; i++) {
+        const d = new Date(mn);
+        d.setDate(d.getDate() + Math.round(td * i / 4));
+        h += `<span>${d.toISOString().split('T')[0].slice(5)}</span>`;
+      }
+      h += '</div>';
+      return h;
+    }
+
+    function daysBetween(a, b) { return Math.max(0, Math.round((new Date(b) - new Date(a)) / 864e5)); }
+
+    function taskList(title, tasks, type) {
+      let h = `<div class="card"><h2>${title} (${tasks.length})</h2>`;
+      if (!tasks.length) { h += '<p class="empty">' + t('None') + '</p>'; }
+      else {
+        h += '<div class="task-scroll">';
+        tasks.forEach(tk => {
+          const ex = tk.date ? `<span style="font-size:0.68rem;color:var(--text3)">${esc(tk.date)}</span>` :
+                    tk.agent ? `<span style="font-size:0.68rem;color:var(--text3)">${esc(tk.agent)}</span>` : '';
+          h += `<div class="task-item"><div class="tdot ${type}"></div><span style="flex:1;color:var(--text2)">${esc(ct(tk.text))}</span>${ex}</div>`;
+        });
+        h += '</div>';
+      }
+      return h + '</div>';
+    }
+
+    function backlogCol(title, items, color) {
+      let h = `<div class="card"><h2>${title} (${items.length})</h2>`;
+      if (!items.length) { h += '<p class="empty">' + t('None') + '</p>'; }
+      else {
+        h += '<div class="task-scroll">';
+        items.forEach(item => {
+          h += `<div class="task-item"><div class="tdot" style="background:${color}"></div><span style="flex:1;color:var(--text2)">${item.id ? '<code style="font-size:0.68rem;background:var(--surface2);padding:1px 4px;border-radius:3px;color:var(--blue)">' + esc(item.id) + '</code> ' : ''}${esc(ct(item.text))}</span></div>`;
+        });
+        h += '</div>';
+      }
+      return h + '</div>';
+    }
+
+    // ── Wave Command Center ──
+    function waveCommandCenter(waves, coverage, playbook) {
+      const LANE_META = {
+        human:   { label: 'Boris Huai', color: 'var(--yellow)', icon: '👤' },
+        agentpm: { label: 'AgentPM',  color: 'var(--blue)',   icon: '📋' },
+        agenth:  { label: 'AgentH',   color: 'var(--green)',  icon: '🔧' },
+        agentg:  { label: 'AgentG',   color: 'var(--purple)', icon: '🛡' },
+        agenta:  { label: lang === 'zh' ? 'AgentA (已合并→H)' : 'AgentA (merged→H)', color: 'var(--text3)', icon: '🔍' },
+        general: { label: lang === 'zh' ? '通用' : 'General', color: 'var(--text3)',  icon: '•' },
+      };
+
+      let h = '<div class="row row-full"><div class="card"><h2>Wave Command Center — Swarm-Loop Swimlane</h2>';
+
+      // ── Pipeline with convergence gates ──
+      h += '<div class="wave-pipeline">';
+      waves.forEach((w, i) => {
+        // Convergence gate between waves (not before first)
+        if (i > 0) {
+          const prevDone = waves[i-1].status === 'done';
+          const gateIcon = prevDone ? '🔓' : '🔒';
+          const gateLabel = prevDone ? 'GO' : 'NO-GO';
+          h += `<div class="wave-gate"><div class="gate-line"></div><div class="gate-icon">${gateIcon}</div><div class="gate-label">${gateLabel}</div><div class="gate-line"></div></div>`;
+        }
+        h += `<div class="wave-node ${w.status}">`;
+        h += `<div class="wn-id">Wave ${esc(w.id)}</div>`;
+        h += `<div class="wn-name">${esc(ct(w.name))}</div>`;
+        h += `<div class="wn-progress"><div class="wn-progress-fill" style="width:${w.progress}%"></div></div>`;
+        h += `<div class="wn-stats">${w.done}/${w.tasks}`;
+        if (w.status === 'done') h += ' ✓';
+        h += '</div>';
+        if (w.humanWaiting > 0) h += `<div class="wave-alert">${w.humanWaiting} ${lang === 'zh' ? '项等你' : ' waiting for you'}</div>`;
+        if (w.blockers > 0) h += `<div class="wave-alert warn">${w.blockers} ${lang === 'zh' ? '项阻塞' : ' blocked'}</div>`;
+        h += '</div>';
+      });
+      h += '</div>';
+
+      // ── Knowledge Loop (feedback arrow) ──
+      h += '<div class="wave-loop">';
+      h += lang === 'zh'
+        ? '<div class="wave-loop-bar"><span class="loop-arrow">↩</span> 知识回流: 每个 Wave 沉淀 pitfall / pattern / api-note → 注入下一 Wave <span class="loop-arrow">↪</span></div>'
+        : '<div class="wave-loop-bar"><span class="loop-arrow">↩</span> Knowledge Loop: Each Wave captures pitfall / pattern / api-note → Inject into next Wave <span class="loop-arrow">↪</span></div>';
+      h += '</div>';
+
+      // ── Guardian Audit Banner (above swimlane) ──
+      if (playbook && playbook.guardianAudits && playbook.guardianAudits.length > 0) {
+        const latestAudit = playbook.guardianAudits[playbook.guardianAudits.length - 1];
+        const verdictColor = latestAudit.verdict === 'GO' ? '#38a169' : latestAudit.verdict === 'NOT-GO' ? '#e53e3e' : '#d69e2e';
+        const verdictBg = latestAudit.verdict === 'GO' ? 'rgba(56,161,105,0.1)' : latestAudit.verdict === 'NOT-GO' ? 'rgba(229,62,62,0.1)' : 'rgba(214,158,46,0.1)';
+        const verdictBorder = latestAudit.verdict === 'GO' ? 'rgba(56,161,105,0.3)' : latestAudit.verdict === 'NOT-GO' ? 'rgba(229,62,62,0.3)' : 'rgba(214,158,46,0.3)';
+
+        h += `<div style="background:${verdictBg};border:1px solid ${verdictBorder};border-radius:8px;padding:0.7rem 1rem;margin:0.8rem 0">`;
+        h += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">`;
+        h += `<span style="font-weight:700;font-size:0.8rem;color:var(--text)">🛡️ Guardian ${lang === 'zh' ? '审计报告' : 'Audit Report'} — Wave ${esc(latestAudit.wave)}</span>`;
+        h += `<span style="background:${verdictColor};color:white;padding:3px 10px;border-radius:4px;font-size:0.7rem;font-weight:700">${esc(latestAudit.verdict)}</span>`;
+        h += '</div>';
+
+        // Stats row
+        if (latestAudit.stats && latestAudit.stats.implemented) {
+          const total = (latestAudit.stats.implemented || 0) + (latestAudit.stats.empty || 0) + (latestAudit.stats.partial || 0);
+          const pct = total > 0 ? Math.round(latestAudit.stats.implemented / total * 100) : 0;
+          h += `<div style="display:flex;gap:1.2rem;font-size:0.7rem;margin-bottom:0.5rem;flex-wrap:wrap">`;
+          h += `<span>${lang === 'zh' ? '按钮覆盖率' : 'Button Coverage'}: <b>${latestAudit.stats.implemented}/${total}</b> (${pct}%)</span>`;
+          if (latestAudit.stats.empty > 0) h += `<span style="color:#e53e3e">🔴 ${latestAudit.stats.empty} ${lang === 'zh' ? '空壳 handler' : 'empty handlers'}</span>`;
+          if (latestAudit.stats.partial > 0) h += `<span style="color:#d69e2e">🟡 ${latestAudit.stats.partial} ${lang === 'zh' ? '部分实现' : 'partial'}</span>`;
+          h += '</div>';
+        }
+
+        // Findings
+        if (latestAudit.findings.length > 0) {
+          h += `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px;font-size:0.65rem">`;
+          latestAudit.findings.forEach(f => {
+            const icon = f.status.includes('TODO') ? '🔴' : f.status.includes('部分') || f.status.includes('缺') || f.status.includes('无') ? '🟡' : '✅';
+            h += `<div style="background:var(--surface);border-radius:4px;padding:3px 6px">${icon} <b>${esc(f.id)}</b> ${esc(f.issue)}</div>`;
+          });
+          h += '</div>';
+        }
+
+        // Pitfall compliance
+        if (latestAudit.pitfallCompliance && latestAudit.pitfallCompliance.length > 0) {
+          h += `<div style="margin-top:0.4rem;font-size:0.65rem;display:flex;gap:0.8rem;flex-wrap:wrap">`;
+          latestAudit.pitfallCompliance.forEach(p => {
+            h += `<span>${esc(p.result)} ${esc(p.id)} ${esc(p.check)}</span>`;
+          });
+          h += '</div>';
+        }
+
+        if (latestAudit.date) {
+          h += `<div style="font-size:0.58rem;color:var(--text3);margin-top:0.4rem;text-align:right">${esc(latestAudit.date)}</div>`;
+        }
+        h += '</div>';
+      }
+
+      // ── Swimlane grid (main visualization) ──
+      // Collect all lanes across all waves
+      const allLanes = new Set();
+      waves.forEach(w => { if (w.tracks) Object.keys(w.tracks).forEach(l => allLanes.add(l)); });
+      // Order: human first, then agentpm, agenta, agenth, agentg, general
+      const laneOrder = ['human', 'agentpm', 'agenta', 'agenth', 'agentg', 'general'];
+      const lanes = laneOrder.filter(l => allLanes.has(l));
+
+      h += '<div style="overflow-x:auto;margin-top:0.8rem">';
+      h += '<table style="width:100%;border-collapse:separate;border-spacing:3px">';
+
+      // Header row: Wave names
+      h += '<tr><th style="width:90px;font-size:0.65rem;color:var(--text3);text-align:left;padding:4px 6px">Agent</th>';
+      waves.forEach(w => {
+        const isCurrent = w.status === 'active';
+        const bg = isCurrent ? 'rgba(79,143,247,0.1)' : 'transparent';
+        const border = isCurrent ? '2px solid var(--blue)' : '1px solid var(--border)';
+        h += `<th style="font-size:0.68rem;color:${isCurrent ? 'var(--blue)' : 'var(--text3)'};text-align:center;padding:4px;background:${bg};border-radius:6px 6px 0 0;border-top:${border};border-left:${border};border-right:${border};font-weight:700">Wave ${esc(w.id)}</th>`;
+      });
+      h += '</tr>';
+
+      // Lane rows
+      lanes.forEach(lane => {
+        const meta = LANE_META[lane] || LANE_META.general;
+        h += `<tr>`;
+        h += `<td style="font-size:0.7rem;font-weight:600;color:${meta.color};padding:6px;white-space:nowrap;vertical-align:top">${meta.icon} ${meta.label}</td>`;
+
+        waves.forEach(w => {
+          const isCurrent = w.status === 'active';
+          const tasks = (w.tracks && w.tracks[lane]) || [];
+          const bg = isCurrent ? 'rgba(79,143,247,0.04)' : 'var(--surface2)';
+          const borderColor = isCurrent ? 'var(--blue)' : 'var(--border)';
+
+          h += `<td style="vertical-align:top;padding:4px;background:${bg};border-left:1px solid ${borderColor};border-right:1px solid ${borderColor};border-radius:0;min-width:140px">`;
+
+          if (tasks.length === 0) {
+            h += `<div style="font-size:0.62rem;color:var(--text3);text-align:center;padding:0.3rem">—</div>`;
+          } else {
+            tasks.forEach(t => {
+              let taskBg = 'var(--surface)';
+              let taskBorder = 'var(--border)';
+              let statusDot = '○';
+              let dotColor = 'var(--text3)';
+
+              if (t.isDone) { statusDot = '●'; dotColor = 'var(--green)'; taskBg = 'rgba(52,211,153,0.06)'; }
+              else if (t.isBlocked) { statusDot = '◆'; dotColor = 'var(--red)'; taskBg = 'rgba(239,68,68,0.06)'; taskBorder = 'rgba(239,68,68,0.3)'; }
+              else if (t.needsHuman) { statusDot = '◆'; dotColor = 'var(--yellow)'; taskBg = 'rgba(251,191,36,0.06)'; taskBorder = 'rgba(251,191,36,0.3)'; }
+              else if (isCurrent) { statusDot = '◎'; dotColor = 'var(--blue)'; }
+
+              // Clean up display text
+              let displayText = ct(t.text).replace(/\|/g, '·').replace(/\*\*/g, '');
+              if (displayText.length > 50) displayText = displayText.slice(0, 48) + '…';
+
+              h += `<div style="background:${taskBg};border:1px solid ${taskBorder};border-radius:5px;padding:3px 6px;margin-bottom:3px;font-size:0.64rem;line-height:1.3;display:flex;gap:4px;align-items:flex-start">`;
+              h += `<span style="color:${dotColor};flex-shrink:0;font-size:0.7rem">${statusDot}</span>`;
+              h += `<span style="color:var(--text2)">${esc(displayText)}</span>`;
+              h += '</div>';
+            });
+          }
+          h += '</td>';
+        });
+        h += '</tr>';
+      });
+
+      // Knowledge flow row
+      h += '<tr>';
+      h += `<td style="font-size:0.65rem;font-weight:600;color:var(--green);padding:6px;white-space:nowrap;vertical-align:middle">🔄 ${lang === 'zh' ? '知识流' : 'Knowledge'}</td>`;
+      waves.forEach(w => {
+        const isCurrent = w.status === 'active';
+        const bg = isCurrent ? 'rgba(79,143,247,0.04)' : 'var(--surface2)';
+        const borderColor = isCurrent ? 'var(--blue)' : 'var(--border)';
+        h += `<td style="vertical-align:middle;padding:4px;background:${bg};border-left:1px solid ${borderColor};border-right:1px solid ${borderColor};text-align:center">`;
+        if (w.status === 'done') {
+          h += `<div style="font-size:0.58rem;color:var(--green)">✓ ${lang === 'zh' ? '已沉淀' : 'Captured'}</div>`;
+        } else if (w.status === 'active') {
+          h += `<div style="font-size:0.58rem;color:var(--blue)">← ${lang === 'zh' ? '注入中 → 沉淀中' : 'Injecting → Capturing'}</div>`;
+        } else {
+          h += `<div style="font-size:0.58rem;color:var(--text3)">← ${lang === 'zh' ? '待注入' : 'Pending'}</div>`;
+        }
+        h += '</td>';
+      });
+      h += '</tr>';
+
+      // Bottom border for current wave column
+      h += '<tr><td></td>';
+      waves.forEach(w => {
+        const isCurrent = w.status === 'active';
+        if (isCurrent) {
+          h += `<td style="border-bottom:2px solid var(--blue);border-left:1px solid var(--blue);border-right:1px solid var(--blue);border-radius:0 0 6px 6px;height:2px"></td>`;
+        } else {
+          h += '<td></td>';
+        }
+      });
+      h += '</tr>';
+
+      h += '</table></div>';
+
+      // ── Legend ──
+      h += '<div style="display:flex;gap:1rem;margin-top:0.5rem;font-size:0.62rem;color:var(--text3);flex-wrap:wrap">';
+      if (lang === 'zh') {
+        h += '<span><span style="color:var(--green)">●</span> 完成</span>';
+        h += '<span><span style="color:var(--blue)">◎</span> 进行中</span>';
+        h += '<span><span style="color:var(--text3)">○</span> 待做</span>';
+        h += '<span><span style="color:var(--yellow)">◆</span> 等待Boris</span>';
+        h += '<span><span style="color:var(--red)">◆</span> 阻塞</span>';
+        h += '<span>🔒 收敛门控</span>';
+        h += '<span><span style="color:var(--green)">🔄</span> 知识回流</span>';
+      } else {
+        h += '<span><span style="color:var(--green)">●</span> Done</span>';
+        h += '<span><span style="color:var(--blue)">◎</span> In Progress</span>';
+        h += '<span><span style="color:var(--text3)">○</span> To Do</span>';
+        h += '<span><span style="color:var(--yellow)">◆</span> Waiting for Boris</span>';
+        h += '<span><span style="color:var(--red)">◆</span> Blocked</span>';
+        h += '<span>🔒 Convergence Gate</span>';
+        h += '<span><span style="color:var(--green)">🔄</span> Knowledge Loop</span>';
+      }
+      h += '</div>';
+
+      // ── Delivery Coverage (粗细两用) ──
+      if (coverage && coverage.total > 0) {
+        const pct = coverage.coverage;
+        const barColor = pct >= 90 ? 'var(--green)' : pct >= 70 ? 'var(--yellow)' : 'var(--red)';
+        h += '<div style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border)">';
+        h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem">';
+        h += `<span style="font-size:0.72rem;font-weight:700;color:var(--text)">${lang === 'zh' ? '能力可用率 (Capability Coverage)' : 'Capability Coverage'}</span>`;
+        h += `<span style="font-size:0.85rem;font-weight:800;color:${barColor}">${pct}%</span>`;
+        h += '</div>';
+        h += `<div style="height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;margin-bottom:0.4rem"><div style="width:${pct}%;height:100%;background:${barColor};border-radius:4px"></div></div>`;
+        h += `<div style="display:flex;gap:1rem;font-size:0.65rem;color:var(--text3)">`;
+        h += `<span style="color:var(--green)">✅ ${coverage.implemented} ${lang === 'zh' ? '已实现' : 'Implemented'}</span>`;
+        h += `<span style="color:var(--yellow)">⚠️ ${coverage.partial} ${lang === 'zh' ? '部分' : 'Partial'}</span>`;
+        h += `<span style="color:var(--red)">❌ ${coverage.todo} ${lang === 'zh' ? '未实现' : 'Todo'}</span>`;
+        h += `<span>${lang === 'zh' ? '共' : 'Total:'} ${coverage.total} ${lang === 'zh' ? '交互点' : 'touchpoints'}</span>`;
+        h += '</div>';
+
+        // Per-page breakdown (细粒度预览)
+        if (coverage.pages && coverage.pages.length > 0) {
+          h += '<div style="margin-top:0.5rem;font-size:0.65rem">';
+          coverage.pages.forEach(p => {
+            const ppct = p.total > 0 ? Math.round(p.ok / p.total * 100) : 0;
+            const pc = ppct >= 90 ? 'var(--green)' : ppct >= 70 ? 'var(--yellow)' : 'var(--red)';
+            h += `<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:2px">`;
+            h += `<span style="width:120px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(ct(p.title))}</span>`;
+            h += `<div style="flex:1;height:4px;background:var(--surface2);border-radius:2px"><div style="width:${ppct}%;height:100%;background:${pc};border-radius:2px"></div></div>`;
+            h += `<span style="color:${pc};width:35px;text-align:right">${ppct}%</span>`;
+            h += `<span style="color:var(--text3);width:50px">${p.ok}/${p.total}</span>`;
+            h += '</div>';
+          });
+          h += `<div style="text-align:center;margin-top:0.3rem;color:var(--text3);font-size:0.6rem">${lang === 'zh' ? '细粒度详情见' : 'Details in'} docs/delivery-checklist.md</div>`;
+          h += '</div>';
+        }
+        h += '</div>';
+      }
+
+      h += '</div></div>';
+      return h;
+    }
+
+    // ── Playbook (Swarm-Loop Methodology) ──
+    function playbookSection(pb) {
+      if (!pb || (!pb.methodology && pb.scripts.length === 0)) return '';
+      let h = '<div class="row row-2">';
+
+      // Left card: Methodology overview + Mottos + Features
+      h += '<div class="card"><h2>' + t('Swarm-Loop Playbook') + '</h2>';
+
+      // Current Wave badge
+      if (pb.convergence) {
+        h += `<div class="pb-wave-badge">Wave ${esc(pb.convergence.id)} — ${esc(ct(pb.convergence.name))}</div>`;
+      }
+
+      // Version
+      if (pb.methodology) {
+        h += `<div style="font-size:0.68rem;color:var(--text3);margin-bottom:0.6rem">v${esc(pb.methodology.version)} — ${lang === 'zh' ? 'Swarm-Loop 研发方法论' : 'Swarm-Loop Methodology'}</div>`;
+      }
+
+      // Mottos
+      if (pb.mottos.length > 0) {
+        h += `<div class="pb-section"><div class="pb-section-title">${lang === 'zh' ? '口诀速查' : 'Mottos Quick Ref'}</div><div class="pb-motto">`;
+        pb.mottos.forEach(m => {
+          h += `<span class="pb-pill">${esc(ct(m.name))}<span class="pb-tip">${esc(ct(m.meaning))}</span></span>`;
+        });
+        h += '</div></div>';
+      }
+
+      // Features
+      if (pb.features.length > 0) {
+        h += `<div class="pb-section"><div class="pb-section-title">${lang === 'zh' ? '六大特色' : 'Key Features'}</div><div class="pb-feat">`;
+        pb.features.forEach(f => {
+          h += `<div class="pb-feat-name">${esc(ct(f.name))}</div><div class="pb-feat-desc">${esc(ct(f.swarmloop))}</div>`;
+        });
+        h += '</div></div>';
+      }
+
+      // Templates
+      if (pb.templates.length > 0) {
+        h += `<div class="pb-section"><div class="pb-section-title">${t('Templates')}</div><div class="pb-tpl">`;
+        pb.templates.forEach(tmpl => {
+          h += `<span class="pb-tpl-tag">${esc(tmpl.name)}</span>`;
+        });
+        h += '</div></div>';
+      }
+
+      h += '</div>';
+
+      // Right card: Scripts / Commands
+      h += `<div class="card"><h2>${lang === 'zh' ? '命令速查' : 'Command Reference'}</h2>`;
+      const cmdScripts = pb.scripts.filter(s => s.usage);
+      if (cmdScripts.length > 0) {
+        cmdScripts.forEach(s => {
+          const cmd = s.example || s.usage;
+          h += `<div class="pb-cmd" onclick="navigator.clipboard.writeText('${cmd.replace(/'/g, "\\'")}')"><span>${esc(cmd)}</span><span class="pb-cmd-desc">${esc(s.desc)}</span></div>`;
+        });
+        h += `<div style="font-size:0.6rem;color:var(--text3);margin-top:0.5rem;text-align:center">${lang === 'zh' ? '点击命令可复制到剪贴板' : 'Click to copy command'}</div>`;
+      }
+
+      // Guardian Audit Reports
+      if (pb.guardianAudits && pb.guardianAudits.length > 0) {
+        h += `<div class="pb-section" style="margin-top:0.8rem"><div class="pb-section-title">${lang === 'zh' ? '🛡️ Guardian 审计报告' : '🛡️ Guardian Audit Reports'}</div>`;
+        pb.guardianAudits.forEach(a => {
+          const verdictColor = a.verdict === 'GO' ? 'var(--green)' : a.verdict === 'NOT-GO' ? 'var(--red,#e53e3e)' : 'var(--yellow,#d69e2e)';
+          const verdictBg = a.verdict === 'GO' ? 'rgba(72,187,120,0.15)' : a.verdict === 'NOT-GO' ? 'rgba(229,62,62,0.15)' : 'rgba(214,158,46,0.15)';
+          h += `<div style="background:${verdictBg};border-radius:8px;padding:0.6rem;margin-bottom:0.5rem">`;
+          h += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem">`;
+          h += `<span style="font-weight:600;font-size:0.75rem">Wave ${esc(a.wave)} ${lang === 'zh' ? '收敛审计' : 'Convergence Audit'}</span>`;
+          h += `<span style="background:${verdictColor};color:white;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700">${esc(a.verdict)}</span>`;
+          h += '</div>';
+          if (a.date) {
+            h += `<div style="font-size:0.6rem;color:var(--text3);margin-bottom:0.3rem">${esc(a.date)}</div>`;
+          }
+          // Button coverage stats
+          if (a.stats.implemented) {
+            const total = (a.stats.implemented || 0) + (a.stats.empty || 0) + (a.stats.partial || 0);
+            const pct = total > 0 ? Math.round(a.stats.implemented / total * 100) : 0;
+            h += `<div style="font-size:0.65rem;margin-bottom:0.3rem">`;
+            h += `${lang === 'zh' ? '按钮覆盖率' : 'Button Coverage'}: <b>${a.stats.implemented}/${total}</b> (${pct}%)`;
+            if (a.stats.empty > 0) h += ` · <span style="color:var(--red,#e53e3e)">${a.stats.empty} ${lang === 'zh' ? '空壳' : 'empty'}</span>`;
+            if (a.stats.partial > 0) h += ` · <span style="color:var(--yellow,#d69e2e)">${a.stats.partial} ${lang === 'zh' ? '部分' : 'partial'}</span>`;
+            h += '</div>';
+          }
+          // Findings
+          if (a.findings.length > 0) {
+            h += `<div style="font-size:0.63rem;margin-top:0.3rem">`;
+            a.findings.forEach(f => {
+              const icon = f.status.includes('TODO') || f.status.includes('空壳') ? '🔴' : f.status.includes('部分') || f.status.includes('缺') ? '🟡' : '✅';
+              h += `<div style="margin-bottom:2px">${icon} <b>${esc(f.id)}</b> ${esc(f.issue)}</div>`;
+            });
+            h += '</div>';
+          }
+          // Pitfall compliance
+          if (a.pitfallCompliance && a.pitfallCompliance.length > 0) {
+            h += `<div style="font-size:0.63rem;margin-top:0.3rem;border-top:1px solid rgba(128,128,128,0.2);padding-top:0.3rem">`;
+            a.pitfallCompliance.forEach(p => {
+              h += `<span style="margin-right:0.5rem">${esc(p.result)} ${esc(p.id)}</span>`;
+            });
+            h += '</div>';
+          }
+          h += '</div>';
+        });
+        h += '</div>';
+      }
+
+      // Ritual triggers reminder
+      if (lang === 'zh') {
+        h += '<div class="pb-section" style="margin-top:0.8rem"><div class="pb-section-title">对抗性仪式触发点</div>';
+        h += '<div style="font-size:0.7rem;color:var(--text2);line-height:1.6">';
+        h += '🔴 <b>Spec签署前</b> → Pre-mortem（事前验尸）<br>';
+        h += '🔴 <b>新API使用前</b> → 假设挑战<br>';
+        h += '🔴 <b>Wave收敛GO前</b> → 魔鬼代言人<br>';
+        h += '🔴 <b>发布前</b> → Day-1 灾难推演';
+        h += '</div></div>';
+      } else {
+        h += '<div class="pb-section" style="margin-top:0.8rem"><div class="pb-section-title">Adversarial Ritual Triggers</div>';
+        h += '<div style="font-size:0.7rem;color:var(--text2);line-height:1.6">';
+        h += '🔴 <b>Before Spec sign-off</b> → Pre-mortem<br>';
+        h += '🔴 <b>Before new API usage</b> → Assumption Challenge<br>';
+        h += '🔴 <b>Before Wave convergence GO</b> → Devil\'s Advocate<br>';
+        h += '🔴 <b>Before release</b> → Day-1 Disaster Drill';
+        h += '</div></div>';
+      }
+
+      // Agent roles reminder
+      if (lang === 'zh') {
+        h += '<div class="pb-section" style="margin-top:0.6rem"><div class="pb-section-title">角色分工</div>';
+        h += '<div style="font-size:0.7rem;color:var(--text2);line-height:1.6">';
+        h += '<b style="color:var(--blue)">AgentPM</b> 规划·Spec·分解·评审<br>';
+        h += '<b style="color:var(--green)">AgentH</b> 源码分析·HarmonyOS开发·L1测试<br>';
+        h += '<b style="color:var(--purple)">AgentG</b> 约束注入·监控·验证·收敛裁决';
+        h += '</div></div>';
+      } else {
+        h += '<div class="pb-section" style="margin-top:0.6rem"><div class="pb-section-title">Agent Roles</div>';
+        h += '<div style="font-size:0.7rem;color:var(--text2);line-height:1.6">';
+        h += '<b style="color:var(--blue)">AgentPM</b> Planning · Spec · Decomposition · Review<br>';
+        h += '<b style="color:var(--green)">AgentH</b> Source Analysis · HarmonyOS Dev · L1 Tests<br>';
+        h += '<b style="color:var(--purple)">AgentG</b> Constraint Injection · Monitoring · Verification · Convergence';
+        h += '</div></div>';
+      }
+
+      h += '</div></div>';
+      return h;
+    }
+
+    // ── UI Comparison ──
+    function uiComparisonSection(uc) {
+      let h = '';
+
+      // Videos section
+      const videos = uc.videos || [];
+      if (videos.length > 0) {
+        h += '<div class="row row-full"><div class="card"><h2>' + t('App Recordings') + '</h2>';
+        h += '<div class="uc-videos">';
+        videos.forEach((v, i) => {
+          h += '<div class="uc-video-card">';
+          if (v.available) {
+            h += `<video controls preload="metadata"><source src="/${v.src}" type="video/mp4"></video>`;
+          } else {
+            h += `<div style="height:200px;display:flex;align-items:center;justify-content:center;background:var(--surface2);color:var(--text3);font-size:0.75rem">${t('Video too large')} (${v.sizeHuman || '?'}), ${t('local only')}</div>`;
+          }
+          h += `<div class="uc-video-label"><span class="uc-platform ${v.platform}">${v.platform === 'android' ? 'Android' : 'HarmonyOS'}</span>${esc(v.label)}</div>`;
+          h += '</div>';
+        });
+        h += '</div></div></div>';
+      }
+
+      // Frame comparisons section
+      const cmps = uc.comparisons || [];
+      if (cmps.length > 0) {
+        const matchCount = cmps.filter(c => c.status === 'match').length;
+        const diffCount = cmps.filter(c => c.status === 'diff').length;
+        const missingCount = cmps.filter(c => c.status === 'missing' || c.status === 'harmonyos-only').length;
+        const avgSim = cmps.filter(c => c.similarity != null);
+        const avgSimVal = avgSim.length > 0 ? Math.round(avgSim.reduce((s, c) => s + c.similarity, 0) / avgSim.length) : null;
+
+        h += '<div class="row row-full"><div class="card"><h2>' + t('Frame Comparison') + '</h2>';
+
+        // Summary stats
+        h += '<div style="display:flex;gap:1.5rem;margin-bottom:0.8rem;font-size:0.75rem">';
+        h += `<span style="color:var(--text2)">${cmps.length} ${t('frames')}</span>`;
+        if (avgSimVal != null) {
+          const simCls = avgSimVal >= 85 ? 'high' : avgSimVal >= 65 ? 'med' : 'low';
+          h += `<span>${t('Avg similarity')}: <span class="uc-similarity ${simCls}">${avgSimVal}%</span></span>`;
+        }
+        if (diffCount) h += `<span style="color:var(--yellow)">${diffCount} ${t('diff')}</span>`;
+        if (missingCount) h += `<span style="color:var(--red)">${missingCount} ${t('missing/extra')}</span>`;
+        h += '</div>';
+
+        // Thumbnail grid
+        h += '<div class="uc-grid" id="ucGrid">';
+        cmps.forEach((c, i) => {
+          const thumbSrc = c.android || c.harmonyos;
+          const badgeCls = c.status || 'diff';
+          const badgeText = c.similarity != null ? c.similarity + '%' : (c.status === 'missing' ? 'N/A' : 'NEW');
+          h += `<div class="uc-thumb ${i === 0 ? 'active' : ''}" data-idx="${i}" title="${esc(c.page)}">`;
+          if (thumbSrc) h += `<img src="/${thumbSrc}" alt="${esc(c.page)}" loading="lazy">`;
+          else h += '<div style="width:100%;height:100%;background:var(--surface2)"></div>';
+          h += `<span class="uc-thumb-badge ${badgeCls}">${badgeText}</span>`;
+          h += '</div>';
+        });
+        h += '</div>';
+
+        // Detail area
+        h += '<div id="ucDetail"></div>';
+        h += '</div></div>';
+      }
+
+      return h;
+    }
+
+    function bindUIComparisonEvents(uc) {
+      const grid = document.getElementById('ucGrid');
+      if (!grid) return;
+
+      showComparison(uc, 0);
+
+      grid.querySelectorAll('.uc-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          grid.querySelectorAll('.uc-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+          showComparison(uc, parseInt(thumb.dataset.idx));
+        });
+      });
+    }
+
+    let _currentUcIdx = 0;
+    let _currentUc = null;
+
+    function showComparison(uc, idx) {
+      _currentUc = uc;
+      _currentUcIdx = idx;
+      const cmps = uc.comparisons || [];
+      const c = cmps[idx];
+      if (!c) return;
+      const el = document.getElementById('ucDetail');
+
+      let h = '';
+
+      // Page name
+      h += `<div style="font-size:0.85rem;font-weight:600;margin-bottom:0.5rem">${esc(c.page)}</div>`;
+
+      // Side-by-side images
+      h += '<div class="uc-detail">';
+
+      // Android
+      h += '<div class="uc-detail-panel">';
+      if (c.android) {
+        h += `<img src="/${c.android}" alt="Android" onclick="openLightbox('/${c.android}')">`;
+      } else {
+        h += '<div class="uc-no-img">' + t('No Android frame') + '</div>';
+      }
+      h += '<div class="uc-detail-label">Android</div>';
+      h += '</div>';
+
+      // HarmonyOS
+      h += '<div class="uc-detail-panel">';
+      if (c.harmonyos) {
+        h += `<img src="/${c.harmonyos}" alt="HarmonyOS" onclick="openLightbox('/${c.harmonyos}')">`;
+      } else {
+        h += '<div class="uc-no-img">' + t('No HarmonyOS frame') + '</div>';
+      }
+      h += '<div class="uc-detail-label">HarmonyOS</div>';
+      h += '</div>';
+
+      h += '</div>';
+
+      // Info bar
+      h += '<div class="uc-detail-info">';
+      if (c.similarity != null) {
+        const cls = c.similarity >= 85 ? 'high' : c.similarity >= 65 ? 'med' : 'low';
+        h += `<span>${t('Similarity')}: <span class="uc-similarity ${cls}">${c.similarity}%</span></span>`;
+      }
+      const statusLabels = { match: t('Match'), diff: t('Differences'), missing: t('Missing in HarmonyOS'), 'harmonyos-only': t('HarmonyOS Only') };
+      h += ` <span style="margin-left:0.8rem;font-size:0.72rem;color:var(--text3)">${statusLabels[c.status] || c.status}</span>`;
+      if (c.notes) {
+        h += `<div class="uc-notes">${esc(c.notes)}</div>`;
+      }
+      h += '</div>';
+
+      // Nav
+      h += '<div class="uc-nav">';
+      h += `<button onclick="navComparison(-1)" ${idx === 0 ? 'disabled' : ''}>&larr; ${t('Prev')}</button>`;
+      h += `<span style="font-size:0.72rem;color:var(--text3)">${idx + 1} / ${cmps.length}</span>`;
+      h += `<button onclick="navComparison(1)" ${idx === cmps.length - 1 ? 'disabled' : ''}>${t('Next')} &rarr;</button>`;
+      h += '</div>';
+
+      el.innerHTML = h;
+    }
+
+    function navComparison(dir) {
+      if (!_currentUc) return;
+      const cmps = _currentUc.comparisons || [];
+      const newIdx = Math.max(0, Math.min(cmps.length - 1, _currentUcIdx + dir));
+      if (newIdx === _currentUcIdx) return;
+
+      // Update thumbnail active state
+      const grid = document.getElementById('ucGrid');
+      if (grid) {
+        grid.querySelectorAll('.uc-thumb').forEach(t => t.classList.remove('active'));
+        const thumb = grid.querySelector(`[data-idx="${newIdx}"]`);
+        if (thumb) thumb.classList.add('active');
+      }
+      showComparison(_currentUc, newIdx);
+    }
+
+    function openLightbox(src) {
+      const lb = document.createElement('div');
+      lb.className = 'uc-lightbox';
+      lb.innerHTML = `<img src="${src}">`;
+      lb.onclick = () => lb.remove();
+      document.addEventListener('keydown', function handler(e) {
+        if (e.key === 'Escape') { lb.remove(); document.removeEventListener('keydown', handler); }
+      });
+      document.body.appendChild(lb);
+    }
+
+    // ── Daily Reports ──
+    function dailyReportsSection(reports) {
+      let h = '<div class="row row-full"><div class="card dr-section-wrap">';
+      h += `<h2>${t('Daily Reports')} (${reports.length})</h2>`;
+
+      // Date navigation
+      h += '<div class="dr-nav" id="drNav">';
+      reports.forEach((r, i) => {
+        h += `<button class="dr-nav-btn ${i === 0 ? 'active' : ''}" data-idx="${i}">${r.date}</button>`;
+      });
+      h += '</div>';
+
+      // Report content area
+      h += '<div id="drContent"></div>';
+      h += '</div></div>';
+      return h;
+    }
+
+    function bindDailyReportEvents(reports) {
+      const nav = document.getElementById('drNav');
+      if (!nav) return;
+      // Show first report
+      showDailyReport(reports, 0);
+
+      nav.querySelectorAll('.dr-nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          nav.querySelectorAll('.dr-nav-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          showDailyReport(reports, parseInt(btn.dataset.idx));
+        });
+      });
+    }
+
+    function showDailyReport(reports, idx) {
+      const r = reports[idx];
+      if (!r) return;
+      const el = document.getElementById('drContent');
+
+      let h = '<div class="dr-content">';
+
+      // Highlights with "view full report" button inline
+      if (r.highlights.length > 0) {
+        h += '<div class="dr-section-header"><h3>' + t('Top Highlights') + '</h3>';
+        h += '<button class="dr-full-btn" onclick="this.closest(\'.dr-content\').querySelector(\'.dr-full-details\').open=!this.closest(\'.dr-content\').querySelector(\'.dr-full-details\').open">' + t('Show full report') + '</button>';
+        h += '</div>';
+        r.highlights.forEach(hl => {
+          const hlText = ct(hl);
+          const tagMatch = hlText.match(/^【(.+?)】/);
+          let tag = '', tagCls = '', text = hlText;
+          if (tagMatch) {
+            const raw = tagMatch[1];
+            text = hlText.replace(tagMatch[0], '').trim();
+            if (/完[成结]|Complet/i.test(raw)) { tag = raw; tagCls = 'done'; }
+            else if (/进行|Progress/i.test(raw)) { tag = raw; tagCls = 'progress'; }
+            else if (/启动|Start/i.test(raw)) { tag = raw; tagCls = 'start'; }
+            else if (/解决|Resolv/i.test(raw)) { tag = raw; tagCls = 'resolve'; }
+            else { tag = raw; tagCls = 'progress'; }
+          }
+          h += `<div class="dr-highlight">${tag ? '<span class="dr-highlight-tag ' + tagCls + '">' + esc(tag) + '</span>' : ''}${esc(text)}</div>`;
+        });
+      }
+
+      // Outputs table
+      if (r.outputs.length > 0) {
+        h += '<h3>' + t('Outputs') + '</h3>';
+        h += '<table><thead><tr><th>' + t('Type') + '</th><th>' + t('Count') + '</th><th>' + t('Detail') + '</th></tr></thead><tbody>';
+        r.outputs.forEach(o => {
+          h += `<tr><td>${esc(ct(o.type))}</td><td>${esc(o.count)}</td><td>${esc(ct(o.desc))}</td></tr>`;
+        });
+        h += '</tbody></table>';
+      }
+
+      // Tomorrow plan
+      if (r.plans.length > 0) {
+        h += '<h3>' + t('Next Day Plan') + '</h3>';
+        r.plans.forEach(p => {
+          const icon = p.done ? '<span style="color:var(--green)">&#10003;</span>' : '<span style="color:var(--text3)">&#9675;</span>';
+          h += `<div style="display:flex;align-items:center;gap:0.4rem;padding:0.2rem 0">${icon}<span>${esc(ct(p.text))}</span></div>`;
+        });
+      }
+
+      // Full content (collapsible) — no summary text, toggled by button above
+      h += '<details class="dr-full-details"><summary style="display:none"></summary>';
+      h += '<div class="dr-full-content">' + esc(r.content) + '</div>';
+      h += '</details>';
+
+      h += '</div>';
+      el.innerHTML = h;
+    }
+
+    // ── Track analytics ──
+    try {
+      fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'page', page: location.pathname }),
+      });
+    } catch {}
+
+    // Boot
+    init();
+  </script>
+</body>
+</html>

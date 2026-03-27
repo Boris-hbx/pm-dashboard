@@ -1,0 +1,6966 @@
+{
+  "generatedAt": "2026-03-27 17:19:31",
+  "project": {
+    "id": "antennapod",
+    "name": "AntennaPod",
+    "description": "AntennaPod Android → HarmonyOS Migration"
+  },
+  "roadmap": [
+    {
+      "id": "P0",
+      "name": {
+        "zh": "基础框架",
+        "en": "基础框架"
+      },
+      "desc": {
+        "zh": "搭建工程脚手架，建立数据模型和本地存储层，能存取 Feed/Episode 数据。",
+        "en": "搭建工程脚手架，建立 Data Models 和本地存储层，能存取 Feed/Episode 数据。"
+      },
+      "status": "done"
+    },
+    {
+      "id": "P1",
+      "name": {
+        "zh": "解析 + 网络",
+        "en": "解析 + 网络"
+      },
+      "desc": {
+        "zh": "实现 RSS/Atom 解析器和 HTTP 客户端，能添加和刷新播客源。",
+        "en": "实现 RSS/Atom 解析器和 HTTP 客户端，能添加和刷新播客源。"
+      },
+      "status": "done"
+    },
+    {
+      "id": "P2",
+      "name": {
+        "zh": "播放核心",
+        "en": "播放核心"
+      },
+      "desc": {
+        "zh": "实现音频播放引擎，能播放一集播客。",
+        "en": "实现音频播放引擎，能播放一集播客。"
+      },
+      "status": "done"
+    },
+    {
+      "id": "P3",
+      "name": {
+        "zh": "基础 UI",
+        "en": "基础 UI"
+      },
+      "desc": {
+        "zh": "实现核心页面，组装为可用的最小产品（MVP）。",
+        "en": "实现核心页面，组装为可用的最小产品（ MVP ）。"
+      },
+      "status": "done"
+    },
+    {
+      "id": "P4",
+      "name": {
+        "zh": "下载管理",
+        "en": "下载管理"
+      },
+      "desc": {
+        "zh": "支持离线下载和存储管理。",
+        "en": "Support 离线下载和存储管理。"
+      },
+      "status": "done"
+    },
+    {
+      "id": "P5",
+      "name": {
+        "zh": "高级功能",
+        "en": "高级 Feature"
+      },
+      "desc": {
+        "zh": "补齐核心功能，接近功能完善。",
+        "en": "补齐核心 Feature ，接近 Feature 完善。"
+      },
+      "status": "done"
+    },
+    {
+      "id": "P6",
+      "name": {
+        "zh": "体验优化",
+        "en": "体验优化"
+      },
+      "desc": {
+        "zh": "打磨体验，达到生产可用。",
+        "en": "打磨体验，达到生产可用。"
+      },
+      "status": "done"
+    }
+  ],
+  "taskboard": {
+    "inProgress": [],
+    "todo": [
+      {
+        "text": {
+          "zh": "AgentH：**#53 数据库凭据加密 + 安全等级提升**",
+          "en": "AgentH ：**#53 Database 凭据加密 + 安全 Level 提升**"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "PM：**#54 PM 看板安全修复**",
+          "en": "PM ：**#54 PM 看板安全修复**"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#55 备份导出加密 + BackupAbility 实现**",
+          "en": "AgentH ：**#55 备份导出加密 + BackupAbility 实现**"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#56 HTTPS 强制 + Deep Link 安全校验**",
+          "en": "AgentH ：**#56 HTTPS 强制 + Deep Link 安全校验**"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#57 日志脱敏 + 安全杂项**",
+          "en": "AgentH ：**#57 日志脱敏 + 安全杂项**"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "📱 用户验证：BUG-1 剧集列表长按菜单",
+          "en": "📱 用户验证： BUG-1 剧集列表长按菜单"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "📱 用户验证：BUG-2 Feed 设置 5 个子项弹窗",
+          "en": "📱 用户验证： BUG-2 Feed Settings 5 子项弹窗"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "📱 用户验证：BUG-3 订阅页长按封面",
+          "en": "📱 用户验证： BUG-3 订阅页长按封面"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "📱 用户验证：BUG-4 播放器倍速按钮",
+          "en": "📱 用户验证： BUG-4 播放器倍速按钮"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "📱 用户验证：BUG-5 播放器\"下一集\"不再卡死",
+          "en": "📱 用户验证： BUG-5 播放器\"下一集\"不再卡死"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "📱 用户验证：BUG-6 队列拖拽+长按",
+          "en": "📱 用户验证： BUG-6 队列拖拽+长按"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "📱 用户验证：BUG-7 首页 Section 顺序（继续收听→不期而遇→最近更新）",
+          "en": "📱 用户验证： BUG-7 首页 Section 顺序（继续收听→不期而遇→最近更新）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "**📱 真机测试 T3**（全部 bug 修复后）",
+          "en": "**📱 真机测试 T3**（全部 bug 修复后）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "AgentH：搜索结果点击 → bindSheet 底部卡片（×关闭+⋮+封面+订阅按钮+描述+单集预览）",
+          "en": "AgentH ： Search 结果 Click → bindSheet 底部卡片（×关闭+⋮+封面+订阅按钮+Description+单集预览）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：剧集列表 ⋮ → 排序弹窗（日期/时长/未播/收藏，升/降序）",
+          "en": "AgentH ：剧集列表 ⋮ → Sort 弹窗（ Date/时长/未播/Favorites ，升/降序）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：剧集列表 🔽 → 筛选弹窗（已播/未播/已下载/收藏，多选）",
+          "en": "AgentH ：剧集列表 🔽 → 筛选弹窗（已播/未播/已下载/Favorites ， Multi-select ）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：滑动操作配置弹窗（左右滑动自定义）",
+          "en": "AgentH ：滑动操作配置弹窗（ Left/Right Swipe 自定义）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：订阅页 ⋮ → 排序弹窗（A-Z / 新增时间 / 上次更新）",
+          "en": "AgentH ：订阅页 ⋮ → Sort 弹窗（ A-Z / Added 时间 / 上次更新）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：订阅页 ⋮ → 筛选器弹窗（按标签/自动下载状态）",
+          "en": "AgentH ：订阅页 ⋮ → 筛选器弹窗（按标签/自动下载状态）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：订阅页 ⋮ → 计数弹窗（显示/隐藏未播集数角标）",
+          "en": "AgentH ：订阅页 ⋮ → 计数弹窗（显示/隐藏未播集数角标）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：长按订阅封面 → 完整菜单（取消订阅 + 重命名 + 编辑标签 + Feed 设置）",
+          "en": "AgentH ：长按订阅封面 → 完整菜单（取消订阅 + Rename + Edit 标签 + Feed Settings ）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：播放器倍速选择弹窗（0.5x ~ 2x + 自定义）",
+          "en": "AgentH ：播放器倍速选择弹窗（0.5x ~ 2x + 自定义）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：播放器 ⋮ 更多菜单（删除/标记已播/添加收藏/跳转播客详情）",
+          "en": "AgentH ：播放器 ⋮ 更多菜单（ Delete/标记已播/添加 Favorites/Navigate 播客详情）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：睡眠定时「自动启用」时间范围选择弹窗",
+          "en": "AgentH ：睡眠定时「自动启用」时间范围选择弹窗"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：搜索结果中增加「隐藏此结果」功能",
+          "en": "AgentH ： Search 结果中增加「隐藏此结果」 Feature"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：创建 6 个设置子页（用户界面 / 播放 / 下载 / 同步 / 备份和恢复 / 通知）",
+          "en": "AgentH ：创建 6 Settings 子页（用户界面 / 播放 / 下载 / 同 Steps / 备份和恢复 / 通知）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：首页 ⋮ → Section 排序编辑器（拖拽排序 + 显示/隐藏）",
+          "en": "AgentH ：首页 ⋮ → Section SortEdit 器（拖拽 Sort + 显示/隐藏）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：自动下载过滤器 UI（后端 FeedFilter 已有）",
+          "en": "AgentH ：自动下载 Filter 器 UI （后端 FeedFilter 已有）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：队列锁定功能",
+          "en": "AgentH ：队列锁定 Feature"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：播客标签管理 UI",
+          "en": "AgentH ：播客标签管理 UI"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "AgentH：发布周期预测显示（ReleaseScheduleGuesser）",
+          "en": "AgentH ：发布周期预测显示（ ReleaseScheduleGuesser ）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "用户：队列空状态 / 下载空状态 / 搜索结果页 / 播放页倍速弹窗 / 睡眠定时弹窗 / 单集说明展开 / 设置各子页 / 统计页 / 收藏页 / 深色模式（首页+播放+队列）",
+          "en": "用户：队列空状态 / 下载空状态 / Search 结果页 / 播放页倍速弹窗 / 睡眠定时弹窗 / 单集说明展开 / Settings 各子页 / 统计页 / Favorites 页 / 深色模式（首页+播放+队列）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      },
+      {
+        "text": {
+          "zh": "AgentH：ShareSheet 文件分享功能（GAP-F04）",
+          "en": "AgentH ： ShareSheet FileShareFeature （ GAP-F04）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "**📱 真机测试 T3**（15 项用例）",
+          "en": "**📱 真机测试 T3**（15 项用例）"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
+      }
+    ],
+    "done": [
+      {
+        "text": {
+          "zh": "PM：**#36 全页面 UI Checklist**",
+          "en": "PM ：**#36 全页面 UI Checklist**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：重命名订阅 UI 入口",
+          "en": "AgentH ： Rename 订阅 UI 入口"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：最终审计",
+          "en": "PM ：最终审计"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：更新 roadmap",
+          "en": "PM ：更新 roadmap"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：整理经验库",
+          "en": "PM ：整理经验库"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：GitHub 同步",
+          "en": "PM ： GitHub 同 Steps"
+        },
+        "date": ""
+      },
+      {
+        "text": {
+          "zh": "PM：项目总结文档",
+          "en": "PM ：项目总结文档"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#19 剧集长按上下文菜单",
+          "en": "#19 剧集长按上下文菜单"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#20 Feed 设置页（9 项设置+6 个弹窗）",
+          "en": "#20 Feed Settings 页（9 项 Settings+6 弹窗）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#21 首页补全 2 Section（订阅列表+管理下载）",
+          "en": "#21 首页补全 2 Section （订阅列表+管理下载）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#22 Feed 信息页",
+          "en": "#22 Feed 信息页"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#23 搜索结果底部弹窗预览",
+          "en": "#23 Search 结果底部弹窗预览"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#24 剧集排序+筛选弹窗",
+          "en": "#24 剧集 Sort+筛选弹窗"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#25 订阅排序+筛选+长按菜单",
+          "en": "#25 订阅 Sort+筛选+长按菜单"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#26 播放器弹窗补全（倍速+更多菜单）",
+          "en": "#26 播放器弹窗补全（倍速+更多菜单）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#27 发现页完善（国家选择+隐藏）",
+          "en": "#27 发现页完善（国家选择+隐藏）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#28 设置 6 个子页面",
+          "en": "#28 Settings 6 子页面"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#29 添加播客页（热门网格+6 入口）",
+          "en": "#29 添加播客页（热门 Grid+6 入口）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#30 首页 Section 自定义排序",
+          "en": "#30 首页 Section 自定义 Sort"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "#31 其他功能（队列锁定+标签管理+发布预测）",
+          "en": "#31 其他 Feature （队列锁定+标签管理+发布预测）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#58 修复全页面长按完全失效**",
+          "en": "AgentH ：**#58 修复全页面长按完全失效**"
+        },
+        "date": "2026-03-19"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#52 备份恢复落地**",
+          "en": "AgentH ：**#52 备份恢复落地**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#51 下载日志查询补全**",
+          "en": "AgentH ：**#51 下载日志查询补全**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentA：**A-05 备份恢复深度分析**",
+          "en": "AgentA ：**A-05 备份恢复深度分析**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#50 权限动态申请**",
+          "en": "AgentH ：**#50 Permissions 动态申请**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#49 系统事件监听补全**",
+          "en": "AgentH ：**#49 系统事件监听补全**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#49 系统事件监听**",
+          "en": "AgentH ：**#49 系统事件监听**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#48 AVSession + 音频焦点 + 播放通知**",
+          "en": "AgentH ：**#48 AVSession + 音频焦点 + 播放通知**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#48 AVSession + 音频焦点 + 播放通知**",
+          "en": "AgentH ：**#48 AVSession + 音频焦点 + 播放通知**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#46 Feed 信息页补全**",
+          "en": "AgentH ：**#46 Feed 信息页补全**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#45 设置-UI 页补全**",
+          "en": "AgentH ：**#45 Settings-UI 页补全**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#44 搜索页增强**",
+          "en": "AgentH ：**#44 Search 页增强**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#43 统计页图表化**",
+          "en": "AgentH ：**#43 统计页图表化**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentA：**A-04 播放通知深度分析**",
+          "en": "AgentA ：**A-04 播放通知深度分析**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#42 单集详情页补全**",
+          "en": "AgentH ：**#42 单集详情页补全**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentA：**A-03 系统事件广播接收深度分析**",
+          "en": "AgentA ：**A-03 系统事件广播接收深度分析**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentA：**A-02 音频焦点管理深度分析**",
+          "en": "AgentA ：**A-02 音频焦点管理深度分析**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#41 收件箱页完善**",
+          "en": "AgentH ：**#41 收件箱页完善**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentA：**A-01 MediaSession / 媒体会话深度分析**",
+          "en": "AgentA ：**A-01 MediaSession / 媒体会话深度分析**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#40 播放历史页完善**",
+          "en": "AgentH ：**#40 播放历史页完善**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#47 修复下载按钮状态回退 + 全页面长按无响应**",
+          "en": "AgentH ：**#47 修复下载按钮状态回退 + 全页面长按无响应**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#39 下载管理页重构**",
+          "en": "AgentH ：**#39 下载管理页重构**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#38 通知设置页开关未持久化**",
+          "en": "AgentH ：**#38 通知 Settings 页 Toggle 未持久化**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#37 修复队列页+剧集列表长按无响应**",
+          "en": "AgentH ：**#37 修复队列页+剧集列表长按无响应**"
+        },
+        "date": "2026-03-17"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#35 统一下载/播放按钮组件**",
+          "en": "AgentH ：**#35 统一下载/播放按钮组件**"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#32 自动定时刷新（workScheduler 注册周期任务）**",
+          "en": "AgentH ：**#32 自动定时刷新（ workScheduler 注册周期任务）**"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#34 MiniPlayer→全屏播放器无缝衔接**",
+          "en": "AgentH ：**#34 MiniPlayer →全屏播放器无缝衔接**"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：**#33 下载引擎重写**",
+          "en": "AgentH ：**#33 下载引擎重写**"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：重命名订阅 UI 入口",
+          "en": "AgentH ： Rename 订阅 UI 入口"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：自动定时刷新（workScheduler 注册周期任务）",
+          "en": "AgentH ：自动定时刷新（ workScheduler 注册周期任务）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：OPML 导入功能（替换\"OPML 导入功能开发中\" toast）",
+          "en": "AgentH ： OPML 导入 Feature （替换\"OPML 导入 Feature 开发中\" toast ）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：ShareSheet 文件分享（替换\"文件分享功能开发中\" toast）",
+          "en": "AgentH ： ShareSheet FileShare （替换\"FileShareFeature 开发中\" toast ）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：#HE-8 任务指标追踪 `docs/metrics.md`（每任务返工次数 / 审查通过率 / 常见失败模式）",
+          "en": "PM ：#HE-8 任务指标追踪 `docs/metrics.md`（每任务返工次数 / 审查 Passed 率 / 常见失败模式）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：#HE-7 文档一致性检查脚本 `scripts/check-consistency.js`（Spec vs 代码 / topology vs taskboard / DR 超时）",
+          "en": "PM ：#HE-7 文档一致性检查 Script `scripts/check-consistency.js`（ Spec vs 代码 / topology vs taskboard / DR 超时）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：#HE-6 高频 Pitfall 转自动化检查脚本（PIT-028 hardcoded 颜色 / PIT-034 Stack justifyContent 等）",
+          "en": "PM ：#HE-6 高频 Pitfall 转自动化检查 Script （ PIT-028 hardcoded 颜色 / PIT-034 Stack justifyContent 等）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：#HE-5 complete-task.js 加前置校验（检查 Spec 存在 + DR 无阻塞 + taskboard 一致性）",
+          "en": "PM ：#HE-5 complete-task.js 加前置校验（检查 Spec 存在 + DR 无阻塞 + taskboard 一致性）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：#HE-4 任务完成定义（DoD）标准化（每个任务文档必须含机器可验证的完成条件）",
+          "en": "PM ：#HE-4 任务完成定义（ DoD ）标准化（每任务文档必须含机器可验证的完成条件）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：#HE-3 AgentH 交付前自验证清单（编译通过 + 对照 Spec 自查 + 代码自审）",
+          "en": "PM ：#HE-3 AgentH 交付前自验证 Checklist （编译 Passed + 对照 Spec 自查 + 代码自审）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：#HE-2 AgentH 领任务前查知识库（CLAUDE.md 增加\"查 knowledge/INDEX.md\"步骤）",
+          "en": "PM ：#HE-2 AgentH 领任务前查知识库（ CLAUDE.md 增加\"查 knowledge/INDEX.md\"Steps 骤）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "PM：#HE-1 精简 CLAUDE.md 为索引式结构（~100 行索引 + 拆分子文档到 `docs/templates/`）",
+          "en": "PM ：#HE-1 精简 CLAUDE.md 为索引式结构（~100 lines 索引 + 拆分子文档到 `docs/templates/`）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：添加播客页新增热门网格（4×3）+ 6 种添加方式入口",
+          "en": "AgentH ：添加播客页 Added 热门 Grid （4×3）+ 6 种添加方式入口"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：发现页新增国家/地区选择器",
+          "en": "AgentH ：发现页 Added 国家/地区选择器"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：首页新增「管理下载」Section（当前下载任务 + 已下载概览）",
+          "en": "AgentH ：首页 Added 「管理下载」 Section （当前下载任务 + 已下载概览）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：创建 Feed 信息页 `FeedInfoPage.ets`（模糊头部 + 统计 + 描述 + URL）",
+          "en": "AgentH ：创建 Feed 信息页 `FeedInfoPage.ets`（模糊头部 + 统计 + Description + URL ）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：首页新增「订阅列表」Section（横向滚动封面列表）",
+          "en": "AgentH ：首页 Added 「订阅列表」 Section （横向滚动封面列表）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "AgentH：长按剧集列表项 → 弹出底部上下文菜单（8 项操作）",
+          "en": "AgentH ：长按剧集列表项 → 弹出底部上下文菜单（8 项操作）"
+        },
+        "date": "2026-03-16"
+      },
+      {
+        "text": {
+          "zh": "**#18 UI 精确复刻",
+          "en": "**#18 UI 精确复刻"
+        },
+        "date": "2026-03-15"
+      },
+      {
+        "text": {
+          "zh": "**#17 UI 精确复刻",
+          "en": "**#17 UI 精确复刻"
+        },
+        "date": "2026-03-15"
+      },
+      {
+        "text": {
+          "zh": "**#16 UI 精确复刻",
+          "en": "**#16 UI 精确复刻"
+        },
+        "date": "2026-03-15"
+      },
+      {
+        "text": {
+          "zh": "**#15 UI 精确复刻",
+          "en": "**#15 UI 精确复刻"
+        },
+        "date": "2026-03-15"
+      },
+      {
+        "text": {
+          "zh": "**#14 UI 精确复刻",
+          "en": "**#14 UI 精确复刻"
+        },
+        "date": "2026-03-15"
+      },
+      {
+        "text": {
+          "zh": "MiniPlayer 全面打通（Index.ets EventBus wiring + onTap 参数）",
+          "en": "MiniPlayer 全面打通（ Index.ets EventBus wiring + onTap 参数）"
+        },
+        "date": "2026-03-15"
+      },
+      {
+        "text": {
+          "zh": "InboxPage 空状态修复（envelope SymbolGlyph + 正确文字）",
+          "en": "InboxPage 空状态修复（ envelope SymbolGlyph + 正确文字）"
+        },
+        "date": "2026-03-15"
+      },
+      {
+        "text": {
+          "zh": "PM：基于 AgentA 分析 + Android 截图，补全 `docs/tasks/task-012-player-ui-overhaul.md` 为完整 Spec",
+          "en": "PM ：基于 AgentA 分析 + Android 截图，补全 `docs/tasks/task-012-player-ui-overhaul.md` 为完整 Spec"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "AgentA：深度分析 Android 播放器 UI 层源码",
+          "en": "AgentA ：深度分析 Android 播放器 UI 层源码"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "AgentH：剧集列表 UI 打磨",
+          "en": "AgentH ：剧集列表 UI 打磨"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "PM：审查 #9A",
+          "en": "PM ：审查 #9A"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "AgentH：#4 音频焦点 + #5 自动续播 + #9B 自动刷新/分享",
+          "en": "AgentH ：#4 音频焦点 + #5 自动续播 + #9B 自动刷新/Share"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "初始化 PM 工程结构 + 编写 CLAUDE.md",
+          "en": "初始化 PM 工程结构 + 编写 CLAUDE.md"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "源码分析：Android 模块清单（35 模块）+ 功能矩阵（110 功能点）",
+          "en": "源码分析： Android 模块 Checklist （35 模块）+ Feature 矩阵（110 Feature 点）"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "编写平台映射表（13 大类、80+ 映射项）",
+          "en": "编写平台映射表（13 大类、80+ 映射项）"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "AgentA：深度分析全部模块（model/storage/event/parser/net/playback/UI）",
+          "en": "AgentA ：深度分析全部模块（ model/storage/event/parser/net/playback/UI ）"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "编写全部 Spec（15 份）+ ADR-001 + ADR-002",
+          "en": "编写全部 Spec （15 份）+ ADR-001 + ADR-002"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "AgentH：创建 4 个 HSP + entry 全部页面代码",
+          "en": "AgentH ：创建 4 HSP + entry 全部页面代码"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "PM：审查 P0-P5 + 审计 P0-P5",
+          "en": "PM ：审查 P0-P5 + 审计 P0-P5"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "**📱 T1 MVP 通过** + **📱 T2 高级功能通过**",
+          "en": "**📱 T1 MVP Passed** + **📱 T2 高级 FeaturePassed**"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "AgentH：P6（主题+OPML+Widget+通知+多语言+Tab修复+UI打磨）",
+          "en": "AgentH ： P6（主题+OPML+Widget+通知+多语言+Tab 修复+UI 打磨）"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "PM：分解 #1~#9 全部任务",
+          "en": "PM ：分解 #1~#9 全部任务"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "AgentH：#1 接入 PlaybackController（17 个 TODO 清零）",
+          "en": "AgentH ：#1 接入 PlaybackController （17 TODO 清零）"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "AgentH：#2 接入 DownloadManager",
+          "en": "AgentH ：#2 接入 DownloadManager"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "AgentH：#3 创建 EpisodeDetailPage",
+          "en": "AgentH ：#3 创建 EpisodeDetailPage"
+        },
+        "date": "2026-03-13"
+      },
+      {
+        "text": {
+          "zh": "AgentH：#9A 取消订阅+搜索页",
+          "en": "AgentH ：#9A 取消订阅+Search 页"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "AgentH：#9B 分享+DeepLink+自动刷新",
+          "en": "AgentH ：#9B Share+DeepLink+自动刷新"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "AgentH：修复 Widget/Notification/UI Bug（3 项）",
+          "en": "AgentH ：修复 Widget/Notification/UI Bug （3 项）"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "PM：#7 TODO 清零 + 功能矩阵核对（108/110 落地）",
+          "en": "PM ：#7 TODO 清零 + Feature 矩阵核对（108/110 落地）"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "AgentH：#12 剧集列表 UI 复刻 + #12.1~12.5 MiniPlayer/FullPlayer/SleepTimer/Share",
+          "en": "AgentH ：#12 剧集列表 UI 复刻 + #12.1~12.5 MiniPlayer/FullPlayer/SleepTimer/Share"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "AgentH：#13 首页 UI 复刻",
+          "en": "AgentH ：#13 首页 UI 复刻"
+        },
+        "date": "2026-03-14"
+      },
+      {
+        "text": {
+          "zh": "PM：审查 #12~#13 + 审计 P6",
+          "en": "PM ：审查 #12~#13 + 审计 P6"
+        },
+        "date": "2026-03-14"
+      }
+    ],
+    "inReview": [],
+    "blocked": []
+  },
+  "topology": {
+    "phases": [
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5",
+      "P6",
+      "HE"
+    ],
+    "agents": [
+      "AgentPM",
+      "AgentA",
+      "AgentH"
+    ],
+    "nodes": [
+      {
+        "id": "analysis-modules",
+        "label": {
+          "zh": "模块清单分析",
+          "en": "模块 Checklist 分析"
+        },
+        "phase": "P0",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "Android 35 模块清单",
+          "en": "Android 35 模块 Checklist"
+        },
+        "startDate": "2026-03-13 09:00",
+        "endDate": "2026-03-13 09:25"
+      },
+      {
+        "id": "analysis-matrix",
+        "label": {
+          "zh": "功能矩阵",
+          "en": "Feature 矩阵"
+        },
+        "phase": "P0",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "110 功能点移植策略",
+          "en": "110 Feature 点移植策略"
+        },
+        "startDate": "2026-03-13 09:25",
+        "endDate": "2026-03-13 09:55"
+      },
+      {
+        "id": "platform-map",
+        "label": {
+          "zh": "平台映射表",
+          "en": "平台映射表"
+        },
+        "phase": "P0",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "13 大类 80+ 映射项",
+          "en": "13 大类 80+ 映射项"
+        },
+        "startDate": "2026-03-13 09:55",
+        "endDate": "2026-03-13 10:30"
+      },
+      {
+        "id": "adr-001",
+        "label": {
+          "zh": "ADR-001 工程结构",
+          "en": "ADR-001 工程结构"
+        },
+        "phase": "P0",
+        "type": "adr",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "1 HAP + 4 HSP",
+          "en": "1 HAP + 4 HSP"
+        },
+        "startDate": "2026-03-13 10:30",
+        "endDate": "2026-03-13 10:45"
+      },
+      {
+        "id": "data-model",
+        "label": {
+          "zh": "Data Model Spec",
+          "en": "Data Model Spec"
+        },
+        "phase": "P0",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "Feed/FeedItem/FeedMedia/Chapter",
+          "en": "Feed/FeedItem/FeedMedia/Chapter"
+        },
+        "startDate": "2026-03-13 11:00",
+        "endDate": "2026-03-13 11:35"
+      },
+      {
+        "id": "storage",
+        "label": {
+          "zh": "Storage Spec",
+          "en": "Storage Spec"
+        },
+        "phase": "P0",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "RDB + Preferences",
+          "en": "RDB + Preferences"
+        },
+        "startDate": "2026-03-13 11:35",
+        "endDate": "2026-03-13 12:15"
+      },
+      {
+        "id": "feed-parser-spec",
+        "label": {
+          "zh": "Feed Parser Spec",
+          "en": "Feed Parser Spec"
+        },
+        "phase": "P1",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "RSS/Atom 解析规格",
+          "en": "RSS/Atom 解析规格"
+        },
+        "startDate": "2026-03-13 14:30",
+        "endDate": "2026-03-13 15:05"
+      },
+      {
+        "id": "http-client-spec",
+        "label": {
+          "zh": "HTTP Client Spec",
+          "en": "HTTP Client Spec"
+        },
+        "phase": "P1",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "@ohos.net.http wrapper",
+          "en": "@ohos.net.http wrapper"
+        },
+        "startDate": "2026-03-13 15:05",
+        "endDate": "2026-03-13 15:25"
+      },
+      {
+        "id": "playback-spec",
+        "label": {
+          "zh": "播放引擎 Spec",
+          "en": "播放引擎 Spec"
+        },
+        "phase": "P2",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "AVPlayer+AVSession+ContinuousTask",
+          "en": "AVPlayer+AVSession+ContinuousTask"
+        },
+        "startDate": "2026-03-13 18:10",
+        "endDate": "2026-03-13 18:40"
+      },
+      {
+        "id": "ui-spec",
+        "label": {
+          "zh": "基础 UI Spec",
+          "en": "基础 UI Spec"
+        },
+        "phase": "P3",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "5 页面 + 通用组件",
+          "en": "5 页面 + 通用组件"
+        },
+        "startDate": "2026-03-13 20:25",
+        "endDate": "2026-03-13 20:30"
+      },
+      {
+        "id": "adr-002",
+        "label": {
+          "zh": "ADR-002 导航架构",
+          "en": "ADR-002 Navigation 架构"
+        },
+        "phase": "P3",
+        "type": "adr",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "Tabs+Panel+Router",
+          "en": "Tabs+Panel+Router"
+        },
+        "startDate": "2026-03-13 20:15",
+        "endDate": "2026-03-13 20:25"
+      },
+      {
+        "id": "download-spec",
+        "label": {
+          "zh": "下载管理 Spec",
+          "en": "下载管理 Spec"
+        },
+        "phase": "P4",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "7 需求",
+          "en": "7 需求"
+        },
+        "startDate": "2026-03-13 22:05",
+        "endDate": "2026-03-13 22:15"
+      },
+      {
+        "id": "queue-spec",
+        "label": {
+          "zh": "队列/搜索/统计Spec",
+          "en": "队列/Search/统计 Spec"
+        },
+        "phase": "P5",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "播放队列+搜索发现+统计",
+          "en": "播放队列+Search 发现+统计"
+        },
+        "startDate": "2026-03-13 23:30",
+        "endDate": "2026-03-13 23:45"
+      },
+      {
+        "id": "p6-specs",
+        "label": {
+          "zh": "P6 全部 Spec",
+          "en": "P6 全部 Spec"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "主题+OPML+Widget+通知",
+          "en": "主题+OPML+Widget+通知"
+        },
+        "startDate": "2026-03-13 23:45",
+        "endDate": "2026-03-13 23:55"
+      },
+      {
+        "id": "src-model",
+        "label": {
+          "zh": "分析 model",
+          "en": "分析 model"
+        },
+        "phase": "P0",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "Android model 模块",
+          "en": "Android model 模块"
+        },
+        "startDate": "2026-03-13 10:00",
+        "endDate": "2026-03-13 10:35"
+      },
+      {
+        "id": "src-storage",
+        "label": {
+          "zh": "分析 storage",
+          "en": "分析 storage"
+        },
+        "phase": "P0",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "storage/preferences/event",
+          "en": "storage/preferences/event"
+        },
+        "startDate": "2026-03-13 10:35",
+        "endDate": "2026-03-13 11:45"
+      },
+      {
+        "id": "src-parser",
+        "label": {
+          "zh": "分析 parser",
+          "en": "分析 parser"
+        },
+        "phase": "P1",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "parser:feed 深度分析",
+          "en": "parser:feed 深度分析"
+        },
+        "startDate": "2026-03-13 13:00",
+        "endDate": "2026-03-13 13:40"
+      },
+      {
+        "id": "src-net",
+        "label": {
+          "zh": "分析 net",
+          "en": "分析 net"
+        },
+        "phase": "P1",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "net:common 深度分析",
+          "en": "net:common 深度分析"
+        },
+        "startDate": "2026-03-13 13:40",
+        "endDate": "2026-03-13 14:15"
+      },
+      {
+        "id": "src-playback",
+        "label": {
+          "zh": "分析 playback",
+          "en": "分析 playback"
+        },
+        "phase": "P2",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "playback 模块源码分析",
+          "en": "playback 模块源码分析"
+        },
+        "startDate": "2026-03-13 17:30",
+        "endDate": "2026-03-13 18:05"
+      },
+      {
+        "id": "src-appui",
+        "label": {
+          "zh": "分析 UI 层",
+          "en": "分析 UI 层"
+        },
+        "phase": "P3",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "App UI 页面结构+导航+交互",
+          "en": "App UI 页面结构+Navigation+交互"
+        },
+        "startDate": "2026-03-13 19:30",
+        "endDate": "2026-03-13 20:05"
+      },
+      {
+        "id": "src-player-ui",
+        "label": {
+          "zh": "分析 播放器UI",
+          "en": "分析 播放器 UI"
+        },
+        "phase": "P6",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "ExternalPlayer/AudioPlayer/Cover/SleepTimer/Share/VariableSpeed 深度分析",
+          "en": "ExternalPlayer/AudioPlayer/Cover/SleepTimer/Share/VariableSpeed 深度分析"
+        },
+        "startDate": "2026-03-14 09:00",
+        "endDate": "2026-03-14 10:00"
+      },
+      {
+        "id": "pm-spec-player-ui",
+        "label": {
+          "zh": "PM: 补全播放器UI Spec",
+          "en": "PM: 补全播放器 UI Spec"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "基于 AgentA 分析 + Android 截图补全 task-012",
+          "en": "基于 AgentA 分析 + Android 截图补全 task-012"
+        },
+        "startDate": "2026-03-14 10:05",
+        "endDate": "2026-03-14 10:20"
+      },
+      {
+        "id": "src-download",
+        "label": {
+          "zh": "分析 download",
+          "en": "分析 download"
+        },
+        "phase": "P4",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "net:download 模块分析",
+          "en": "net:download 模块分析"
+        },
+        "startDate": "2026-03-13 21:40",
+        "endDate": "2026-03-13 22:00"
+      },
+      {
+        "id": "scaffold",
+        "label": {
+          "zh": "工程脚手架+common",
+          "en": "工程脚手架+common"
+        },
+        "phase": "P0",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "HarmonyOS init+common HSP+数据模型",
+          "en": "HarmonyOS init+common HSP+Data Models"
+        },
+        "startDate": "2026-03-13 12:30",
+        "endDate": "2026-03-13 13:10"
+      },
+      {
+        "id": "impl-model",
+        "label": {
+          "zh": "实现数据模型",
+          "en": "实现 Data Models"
+        },
+        "phase": "P0",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "Feed/FeedItem/FeedMedia/Chapter",
+          "en": "Feed/FeedItem/FeedMedia/Chapter"
+        },
+        "startDate": "2026-03-13 13:10",
+        "endDate": "2026-03-13 13:40"
+      },
+      {
+        "id": "impl-storage",
+        "label": {
+          "zh": "datastore+存储层",
+          "en": "datastore+存储层"
+        },
+        "phase": "P0",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "DB Schema+prefs+eventbus",
+          "en": "DB Schema+prefs+eventbus"
+        },
+        "startDate": "2026-03-13 13:40",
+        "endDate": "2026-03-13 14:30"
+      },
+      {
+        "id": "impl-http",
+        "label": {
+          "zh": "HTTP 客户端",
+          "en": "HTTP 客户端"
+        },
+        "phase": "P1",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "network HSP+HttpClient",
+          "en": "network HSP+HttpClient"
+        },
+        "startDate": "2026-03-13 15:30",
+        "endDate": "2026-03-13 16:00"
+      },
+      {
+        "id": "impl-parser",
+        "label": {
+          "zh": "Feed 解析器",
+          "en": "Feed 解析器"
+        },
+        "phase": "P1",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "RssFeedHandler+AtomFeedHandler",
+          "en": "RssFeedHandler+AtomFeedHandler"
+        },
+        "startDate": "2026-03-13 16:00",
+        "endDate": "2026-03-13 16:30"
+      },
+      {
+        "id": "feed-refresh",
+        "label": {
+          "zh": "Feed 订阅刷新",
+          "en": "Feed 订阅刷新"
+        },
+        "phase": "P1",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "FeedUpdateManager",
+          "en": "FeedUpdateManager"
+        },
+        "startDate": "2026-03-13 16:30",
+        "endDate": "2026-03-13 17:00"
+      },
+      {
+        "id": "impl-avplayer",
+        "label": {
+          "zh": "AVPlayer 封装",
+          "en": "AVPlayer 封装"
+        },
+        "phase": "P2",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "playback HSP+状态机+PlaybackEngine",
+          "en": "playback HSP+状态机+PlaybackEngine"
+        },
+        "startDate": "2026-03-13 18:45",
+        "endDate": "2026-03-13 19:10"
+      },
+      {
+        "id": "impl-playcontrol",
+        "label": {
+          "zh": "播放控制+后台",
+          "en": "播放控制+后台"
+        },
+        "phase": "P2",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "Controller+ContinuousTask+AVSession",
+          "en": "Controller+ContinuousTask+AVSession"
+        },
+        "startDate": "2026-03-13 19:10",
+        "endDate": "2026-03-13 19:30"
+      },
+      {
+        "id": "impl-playpersist",
+        "label": {
+          "zh": "进度+定时+结束",
+          "en": "进度+定时+结束"
+        },
+        "phase": "P2",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "持久化+回退+SleepTimer+onComplete",
+          "en": "持久化+回退+SleepTimer+onComplete"
+        },
+        "startDate": "2026-03-13 19:30",
+        "endDate": "2026-03-13 19:50"
+      },
+      {
+        "id": "impl-mainframe",
+        "label": {
+          "zh": "主框架",
+          "en": "主框架"
+        },
+        "phase": "P3",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "Tabs+Panel+Router",
+          "en": "Tabs+Panel+Router"
+        },
+        "startDate": "2026-03-13 20:30",
+        "endDate": "2026-03-13 20:50"
+      },
+      {
+        "id": "ui-home",
+        "label": {
+          "zh": "首页",
+          "en": "首页"
+        },
+        "phase": "P3",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "HomePage",
+          "en": "HomePage"
+        },
+        "startDate": "2026-03-13 20:50",
+        "endDate": "2026-03-13 21:10"
+      },
+      {
+        "id": "ui-subs",
+        "label": {
+          "zh": "订阅列表",
+          "en": "订阅列表"
+        },
+        "phase": "P3",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "SubscriptionsPage",
+          "en": "SubscriptionsPage"
+        },
+        "startDate": "2026-03-13 21:10",
+        "endDate": "2026-03-13 21:25"
+      },
+      {
+        "id": "ui-episodes",
+        "label": {
+          "zh": "剧集列表",
+          "en": "剧集列表"
+        },
+        "phase": "P3",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "EpisodeListPage",
+          "en": "EpisodeListPage"
+        },
+        "startDate": "2026-03-13 21:25",
+        "endDate": "2026-03-13 21:40"
+      },
+      {
+        "id": "ui-player",
+        "label": {
+          "zh": "播放页",
+          "en": "播放页"
+        },
+        "phase": "P3",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "MiniPlayer+FullPlayer",
+          "en": "MiniPlayer+FullPlayer"
+        },
+        "startDate": "2026-03-13 21:50",
+        "endDate": "2026-03-13 22:10"
+      },
+      {
+        "id": "ui-addfeed",
+        "label": {
+          "zh": "添加订阅",
+          "en": "添加订阅"
+        },
+        "phase": "P3",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "AddFeedPage",
+          "en": "AddFeedPage"
+        },
+        "startDate": "2026-03-13 22:10",
+        "endDate": "2026-03-13 22:25"
+      },
+      {
+        "id": "impl-download",
+        "label": {
+          "zh": "下载队列+断点续传",
+          "en": "下载队列+断点续传"
+        },
+        "phase": "P4",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "DownloadManager",
+          "en": "DownloadManager"
+        },
+        "startDate": "2026-03-13 22:30",
+        "endDate": "2026-03-13 22:50"
+      },
+      {
+        "id": "impl-autoclean",
+        "label": {
+          "zh": "自动下载+清理",
+          "en": "自动下载+清理"
+        },
+        "phase": "P4",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "自动下载+存储清理+后台下载",
+          "en": "自动下载+存储清理+后台下载"
+        },
+        "startDate": "2026-03-13 22:50",
+        "endDate": "2026-03-13 23:05"
+      },
+      {
+        "id": "ui-downloads",
+        "label": {
+          "zh": "下载 UI",
+          "en": "下载 UI"
+        },
+        "phase": "P4",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "DownloadsPage",
+          "en": "DownloadsPage"
+        },
+        "startDate": "2026-03-13 23:05",
+        "endDate": "2026-03-13 23:15"
+      },
+      {
+        "id": "impl-queue",
+        "label": {
+          "zh": "播放队列",
+          "en": "播放队列"
+        },
+        "phase": "P5",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "QueuePage",
+          "en": "QueuePage"
+        },
+        "startDate": "2026-03-13 23:20",
+        "endDate": "2026-03-13 23:35"
+      },
+      {
+        "id": "impl-favorites",
+        "label": {
+          "zh": "收藏/标记",
+          "en": "Favorites/标记"
+        },
+        "phase": "P5",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "收藏功能",
+          "en": "FavoritesFeature"
+        },
+        "startDate": "2026-03-13 23:35",
+        "endDate": "2026-03-13 23:45"
+      },
+      {
+        "id": "impl-discovery",
+        "label": {
+          "zh": "播客搜索/发现",
+          "en": "播客 Search/发现"
+        },
+        "phase": "P5",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "iTunes API",
+          "en": "iTunes API"
+        },
+        "startDate": "2026-03-13 23:45",
+        "endDate": "2026-03-13 23:55"
+      },
+      {
+        "id": "impl-statistics",
+        "label": {
+          "zh": "统计+历史+章节",
+          "en": "统计+历史+章节"
+        },
+        "phase": "P5",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "统计+播放历史+章节+Logo",
+          "en": "统计+播放历史+章节+Logo"
+        },
+        "startDate": "2026-03-14 00:00",
+        "endDate": "2026-03-14 00:15"
+      },
+      {
+        "id": "impl-theme",
+        "label": {
+          "zh": "主题/深色+设置",
+          "en": "主题/深色+Settings"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "主题切换+设置页面",
+          "en": "主题切换+Settings 页面"
+        },
+        "startDate": "2026-03-14 00:20",
+        "endDate": "2026-03-14 00:40"
+      },
+      {
+        "id": "impl-opml",
+        "label": {
+          "zh": "OPML 导入导出",
+          "en": "OPML 导入导出"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "OPML 备份/恢复",
+          "en": "OPML 备份/恢复"
+        },
+        "startDate": "2026-03-14 00:45",
+        "endDate": "2026-03-14 01:00"
+      },
+      {
+        "id": "impl-widget",
+        "label": {
+          "zh": "桌面 Widget",
+          "en": "桌面 Widget"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "FormExtensionAbility",
+          "en": "FormExtensionAbility"
+        },
+        "startDate": "2026-03-14 01:05",
+        "endDate": "2026-03-14 01:20"
+      },
+      {
+        "id": "impl-notification",
+        "label": {
+          "zh": "通知管理",
+          "en": "通知管理"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "媒体+下载通知",
+          "en": "媒体+下载通知"
+        },
+        "startDate": "2026-03-14 01:25",
+        "endDate": "2026-03-14 01:40"
+      },
+      {
+        "id": "impl-i18n",
+        "label": {
+          "zh": "多语言",
+          "en": "多语言"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "中/英双语",
+          "en": "中/英双语"
+        },
+        "startDate": "2026-03-14 01:45",
+        "endDate": "2026-03-14 01:55"
+      },
+      {
+        "id": "review-common",
+        "label": {
+          "zh": "审查: common",
+          "en": "审查: common"
+        },
+        "phase": "P0",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "common HSP 审查",
+          "en": "common HSP 审查"
+        },
+        "startDate": "2026-03-13 13:15",
+        "endDate": "2026-03-13 13:25"
+      },
+      {
+        "id": "review-datastore",
+        "label": {
+          "zh": "审查: datastore",
+          "en": "审查: datastore"
+        },
+        "phase": "P0",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "datastore 模块审查",
+          "en": "datastore 模块审查"
+        },
+        "startDate": "2026-03-13 14:35",
+        "endDate": "2026-03-13 14:50"
+      },
+      {
+        "id": "review-prefs",
+        "label": {
+          "zh": "审查: 偏好设置",
+          "en": "审查: Preferences"
+        },
+        "phase": "P0",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "偏好设置+事件总线审查",
+          "en": "Preferences+事件总线审查"
+        },
+        "startDate": "2026-03-13 14:50",
+        "endDate": "2026-03-13 15:05"
+      },
+      {
+        "id": "audit-p0",
+        "label": {
+          "zh": "审计: P0",
+          "en": "审计: P0"
+        },
+        "phase": "P0",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "P0 综合审计",
+          "en": "P0 综合审计"
+        },
+        "startDate": "2026-03-13 15:25",
+        "endDate": "2026-03-13 15:40"
+      },
+      {
+        "id": "review-http",
+        "label": {
+          "zh": "审查: HTTP",
+          "en": "审查: HTTP"
+        },
+        "phase": "P1",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "network HSP 审查",
+          "en": "network HSP 审查"
+        },
+        "startDate": "2026-03-13 16:05",
+        "endDate": "2026-03-13 16:15"
+      },
+      {
+        "id": "review-parser",
+        "label": {
+          "zh": "审查: 解析器",
+          "en": "审查: 解析器"
+        },
+        "phase": "P1",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "Feed 解析器审查",
+          "en": "Feed 解析器审查"
+        },
+        "startDate": "2026-03-13 16:35",
+        "endDate": "2026-03-13 16:45"
+      },
+      {
+        "id": "review-refresh",
+        "label": {
+          "zh": "审查: Feed刷新",
+          "en": "审查: Feed 刷新"
+        },
+        "phase": "P1",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "Feed 刷新审查",
+          "en": "Feed 刷新审查"
+        },
+        "startDate": "2026-03-13 17:05",
+        "endDate": "2026-03-13 17:15"
+      },
+      {
+        "id": "audit-p1",
+        "label": {
+          "zh": "审计: P1",
+          "en": "审计: P1"
+        },
+        "phase": "P1",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "P1 综合审计",
+          "en": "P1 综合审计"
+        },
+        "startDate": "2026-03-13 17:15",
+        "endDate": "2026-03-13 17:25"
+      },
+      {
+        "id": "review-avplayer",
+        "label": {
+          "zh": "审查: AVPlayer",
+          "en": "审查: AVPlayer"
+        },
+        "phase": "P2",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "AVPlayer 封装审查",
+          "en": "AVPlayer 封装审查"
+        },
+        "startDate": "2026-03-13 19:15",
+        "endDate": "2026-03-13 19:25"
+      },
+      {
+        "id": "review-playctrl",
+        "label": {
+          "zh": "审查: 播放控制",
+          "en": "审查: 播放控制"
+        },
+        "phase": "P2",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "播放控制+后台审查",
+          "en": "播放控制+后台审查"
+        },
+        "startDate": "2026-03-13 19:35",
+        "endDate": "2026-03-13 19:45"
+      },
+      {
+        "id": "review-playpersist",
+        "label": {
+          "zh": "审查: 进度持久化",
+          "en": "审查: 进度持久化"
+        },
+        "phase": "P2",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "进度+定时+结束审查",
+          "en": "进度+定时+结束审查"
+        },
+        "startDate": "2026-03-13 19:55",
+        "endDate": "2026-03-13 20:05"
+      },
+      {
+        "id": "audit-p2",
+        "label": {
+          "zh": "审计: P2",
+          "en": "审计: P2"
+        },
+        "phase": "P2",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "P2 综合审计",
+          "en": "P2 综合审计"
+        },
+        "startDate": "2026-03-13 20:05",
+        "endDate": "2026-03-13 20:15"
+      },
+      {
+        "id": "review-mainframe",
+        "label": {
+          "zh": "审查: 主框架",
+          "en": "审查: 主框架"
+        },
+        "phase": "P3",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "主框架审查",
+          "en": "主框架审查"
+        },
+        "startDate": "2026-03-13 20:55",
+        "endDate": "2026-03-13 21:05"
+      },
+      {
+        "id": "review-home",
+        "label": {
+          "zh": "审查: 首页",
+          "en": "审查: 首页"
+        },
+        "phase": "P3",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "首页审查",
+          "en": "首页审查"
+        },
+        "startDate": "2026-03-13 21:15",
+        "endDate": "2026-03-13 21:25"
+      },
+      {
+        "id": "review-subs",
+        "label": {
+          "zh": "审查: 订阅列表",
+          "en": "审查: 订阅列表"
+        },
+        "phase": "P3",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "订阅列表审查",
+          "en": "订阅列表审查"
+        },
+        "startDate": "2026-03-13 21:30",
+        "endDate": "2026-03-13 21:40"
+      },
+      {
+        "id": "review-episodes",
+        "label": {
+          "zh": "审查: 剧集列表",
+          "en": "审查: 剧集列表"
+        },
+        "phase": "P3",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "剧集列表审查",
+          "en": "剧集列表审查"
+        },
+        "startDate": "2026-03-13 21:45",
+        "endDate": "2026-03-13 21:55"
+      },
+      {
+        "id": "review-player",
+        "label": {
+          "zh": "审查: 播放页",
+          "en": "审查: 播放页"
+        },
+        "phase": "P3",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "播放页审查",
+          "en": "播放页审查"
+        },
+        "startDate": "2026-03-13 22:15",
+        "endDate": "2026-03-13 22:25"
+      },
+      {
+        "id": "review-addfeed",
+        "label": {
+          "zh": "审查: 添加订阅",
+          "en": "审查: 添加订阅"
+        },
+        "phase": "P3",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "AddFeedPage 审查",
+          "en": "AddFeedPage 审查"
+        },
+        "startDate": "2026-03-13 22:30",
+        "endDate": "2026-03-13 22:40"
+      },
+      {
+        "id": "audit-p3",
+        "label": {
+          "zh": "审计: P3 MVP",
+          "en": "审计: P3 MVP"
+        },
+        "phase": "P3",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "MVP 验收通过",
+          "en": "MVP 验收 Passed"
+        },
+        "startDate": "2026-03-13 22:40",
+        "endDate": "2026-03-13 22:50"
+      },
+      {
+        "id": "review-download",
+        "label": {
+          "zh": "审查: 下载队列",
+          "en": "审查: 下载队列"
+        },
+        "phase": "P4",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "下载队列审查",
+          "en": "下载队列审查"
+        },
+        "startDate": "2026-03-13 22:55",
+        "endDate": "2026-03-13 23:05"
+      },
+      {
+        "id": "review-autoclean",
+        "label": {
+          "zh": "审查: 自动清理",
+          "en": "审查: 自动清理"
+        },
+        "phase": "P4",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "自动下载+清理审查",
+          "en": "自动下载+清理审查"
+        },
+        "startDate": "2026-03-13 23:10",
+        "endDate": "2026-03-13 23:15"
+      },
+      {
+        "id": "review-dlui",
+        "label": {
+          "zh": "审查: 下载UI",
+          "en": "审查: 下载 UI"
+        },
+        "phase": "P4",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "下载 UI 审查",
+          "en": "下载 UI 审查"
+        },
+        "startDate": "2026-03-13 23:20",
+        "endDate": "2026-03-13 23:25"
+      },
+      {
+        "id": "audit-p4",
+        "label": {
+          "zh": "审计: P4",
+          "en": "审计: P4"
+        },
+        "phase": "P4",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "P4 综合审计",
+          "en": "P4 综合审计"
+        },
+        "startDate": "2026-03-13 23:25",
+        "endDate": "2026-03-13 23:30"
+      },
+      {
+        "id": "audit-p5",
+        "label": {
+          "zh": "审计: P5",
+          "en": "审计: P5"
+        },
+        "phase": "P5",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "P5 综合审计",
+          "en": "P5 综合审计"
+        },
+        "startDate": "2026-03-14 00:20",
+        "endDate": "2026-03-14 00:30"
+      },
+      {
+        "id": "review-theme",
+        "label": {
+          "zh": "审查: 主题/设置",
+          "en": "审查: 主题/Settings"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "主题+设置审查",
+          "en": "主题+Settings 审查"
+        },
+        "startDate": "2026-03-14 00:45",
+        "endDate": "2026-03-14 00:55"
+      },
+      {
+        "id": "pm-decompose-1",
+        "label": {
+          "zh": "PM: 分解播放接入",
+          "en": "PM: 分解播放接入"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#1 分解 PlaybackController 接入任务",
+          "en": "#1 分解 PlaybackController 接入任务"
+        },
+        "startDate": "2026-03-14 01:00",
+        "endDate": "2026-03-14 01:15"
+      },
+      {
+        "id": "fix-playback",
+        "label": {
+          "zh": "🚨 接入播放控制器",
+          "en": "🚨 接入播放控制器"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "消除 17 个 TODO，全局单例初始化",
+          "en": "消除 17 TODO ，全局单例初始化"
+        },
+        "startDate": "2026-03-14 03:36",
+        "endDate": "2026-03-14 04:30"
+      },
+      {
+        "id": "review-fix-play",
+        "label": {
+          "zh": "审查: 播放接入",
+          "en": "审查: 播放接入"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "grep TODO=0 + 真机播放验证",
+          "en": "grep TODO=0 + 真机播放验证"
+        },
+        "startDate": "2026-03-14 04:35",
+        "endDate": "2026-03-14 04:50"
+      },
+      {
+        "id": "pm-decompose-2",
+        "label": {
+          "zh": "PM: 分解下载接入",
+          "en": "PM: 分解下载接入"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#2 分解 DownloadManager 接入任务",
+          "en": "#2 分解 DownloadManager 接入任务"
+        },
+        "startDate": "2026-03-14 01:15",
+        "endDate": "2026-03-14 01:30"
+      },
+      {
+        "id": "fix-download",
+        "label": {
+          "zh": "🚨 接入下载管理器",
+          "en": "🚨 接入下载管理器"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "剧集列表下载按钮+下载页播放按钮",
+          "en": "剧集列表下载按钮+下载页播放按钮"
+        },
+        "startDate": "2026-03-14 04:35",
+        "endDate": "2026-03-14 05:15"
+      },
+      {
+        "id": "review-fix-dl",
+        "label": {
+          "zh": "审查: 下载接入",
+          "en": "审查: 下载接入"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "下载功能端到端验证",
+          "en": "下载 Feature 端到端验证"
+        },
+        "startDate": "2026-03-14 05:20",
+        "endDate": "2026-03-14 05:35"
+      },
+      {
+        "id": "pm-decompose-3",
+        "label": {
+          "zh": "PM: 分解详情页",
+          "en": "PM: 分解详情页"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#3 分解 EpisodeDetailPage 任务",
+          "en": "#3 分解 EpisodeDetailPage 任务"
+        },
+        "startDate": "2026-03-14 01:30",
+        "endDate": "2026-03-14 01:45"
+      },
+      {
+        "id": "fix-detail-page",
+        "label": {
+          "zh": "🚨 创建单集详情页",
+          "en": "🚨 创建单集详情页"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "show notes + 播放/下载/队列/收藏按钮",
+          "en": "show notes + 播放/下载/队列/Favorites 按钮"
+        },
+        "startDate": "2026-03-14 05:20",
+        "endDate": "2026-03-14 06:00"
+      },
+      {
+        "id": "review-fix-detail",
+        "label": {
+          "zh": "审查: 详情页",
+          "en": "审查: 详情页"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "详情页审查",
+          "en": "详情页审查"
+        },
+        "startDate": "2026-03-14 06:05",
+        "endDate": "2026-03-14 06:20"
+      },
+      {
+        "id": "pm-decompose-4",
+        "label": {
+          "zh": "PM: 分解音频焦点",
+          "en": "PM: 分解音频焦点"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#4 分解音频焦点+蓝牙断开任务",
+          "en": "#4 分解音频焦点+蓝牙断开任务"
+        },
+        "startDate": "2026-03-14 01:45",
+        "endDate": "2026-03-14 02:00"
+      },
+      {
+        "id": "fix-audiofocus",
+        "label": {
+          "zh": "接入音频焦点",
+          "en": "接入音频焦点"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "audioInterrupt + 蓝牙断开暂停",
+          "en": "audioInterrupt + 蓝牙断开暂停"
+        },
+        "startDate": "2026-03-14 06:05",
+        "endDate": "2026-03-14 06:30"
+      },
+      {
+        "id": "review-fix-audio",
+        "label": {
+          "zh": "审查: 音频焦点",
+          "en": "审查: 音频焦点"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "音频焦点审查",
+          "en": "音频焦点审查"
+        },
+        "startDate": "2026-03-14 06:35",
+        "endDate": "2026-03-14 06:50"
+      },
+      {
+        "id": "pm-decompose-5",
+        "label": {
+          "zh": "PM: 分解自动续播",
+          "en": "PM: 分解自动续播"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#5 分解播放结束自动续播任务",
+          "en": "#5 分解播放结束自动续播任务"
+        },
+        "startDate": "2026-03-14 02:00",
+        "endDate": "2026-03-14 02:15"
+      },
+      {
+        "id": "fix-autoplay",
+        "label": {
+          "zh": "自动续播下一集",
+          "en": "自动续播下一集"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "handlePlaybackCompletion + isFollowQueue",
+          "en": "handlePlaybackCompletion + isFollowQueue"
+        },
+        "startDate": "2026-03-14 06:35",
+        "endDate": "2026-03-14 06:55"
+      },
+      {
+        "id": "review-fix-auto",
+        "label": {
+          "zh": "审查: 自动续播",
+          "en": "审查: 自动续播"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "自动续播审查",
+          "en": "自动续播审查"
+        },
+        "startDate": "2026-03-14 07:00",
+        "endDate": "2026-03-14 07:15"
+      },
+      {
+        "id": "fix-unsub-swipe",
+        "label": {
+          "zh": "#9A 取消订阅+滑动+搜索",
+          "en": "#9A 取消订阅+滑动+Search"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "取消订阅+滑动操作+本地搜索页",
+          "en": "取消订阅+滑动操作+本地 Search 页"
+        },
+        "startDate": "2026-03-14 07:00",
+        "endDate": "2026-03-14 07:15"
+      },
+      {
+        "id": "review-9a",
+        "label": {
+          "zh": "审查: #9A",
+          "en": "审查: #9A"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "取消订阅+滑动+搜索审查",
+          "en": "取消订阅+滑动+Search 审查"
+        },
+        "startDate": "2026-03-14 07:20",
+        "endDate": "2026-03-14 07:35"
+      },
+      {
+        "id": "fix-autorefresh-share",
+        "label": {
+          "zh": "#9B 刷新+链接+分享",
+          "en": "#9B 刷新+链接+Share"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "自动刷新+DeepLink+分享+跳过片头",
+          "en": "自动刷新+DeepLink+Share+跳过片头"
+        },
+        "startDate": "2026-03-14 07:20",
+        "endDate": "2026-03-14 07:50"
+      },
+      {
+        "id": "review-9b",
+        "label": {
+          "zh": "审查: #9B",
+          "en": "审查: #9B"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "自动刷新+DeepLink+分享审查",
+          "en": "自动刷新+DeepLink+Share 审查"
+        },
+        "startDate": "2026-03-14 07:55",
+        "endDate": "2026-03-14 08:10"
+      },
+      {
+        "id": "review-opml",
+        "label": {
+          "zh": "审查: OPML",
+          "en": "审查: OPML"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#6 OPML 导入导出审查",
+          "en": "#6 OPML 导入导出审查"
+        },
+        "startDate": "2026-03-14 08:15",
+        "endDate": "2026-03-14 08:25"
+      },
+      {
+        "id": "review-widget-notif",
+        "label": {
+          "zh": "审查: Widget+通知",
+          "en": "审查: Widget+通知"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#6 Widget+通知+多语言审查",
+          "en": "#6 Widget+通知+多语言审查"
+        },
+        "startDate": "2026-03-14 08:30",
+        "endDate": "2026-03-14 08:45"
+      },
+      {
+        "id": "pm-todo-scan",
+        "label": {
+          "zh": "PM: TODO 清零扫描",
+          "en": "PM: TODO 清零 Scan"
+        },
+        "phase": "P6",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#7 grep -rn TODO 结果为 0",
+          "en": "#7 grep -rn TODO 结果为 0"
+        },
+        "startDate": "2026-03-14 09:45",
+        "endDate": "2026-03-14 10:00"
+      },
+      {
+        "id": "pm-feature-check",
+        "label": {
+          "zh": "PM: 功能矩阵核对",
+          "en": "PM: Feature 矩阵核对"
+        },
+        "phase": "P6",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#7 110 功能中除 2 项低优先级外全部落地",
+          "en": "#7 110 Feature 中除 2 项低优先级外全部落地"
+        },
+        "startDate": "2026-03-14 10:00",
+        "endDate": "2026-03-14 10:20"
+      },
+      {
+        "id": "fix-widget-reg",
+        "label": {
+          "zh": "修复 Widget 注册",
+          "en": "修复 Widget 注册"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "FormExtensionAbility 导入修正+form_config.json+module.json5 声明",
+          "en": "FormExtensionAbility 导入修正+form_config.json+module.json5 声明"
+        },
+        "startDate": "2026-03-14 08:50",
+        "endDate": "2026-03-14 09:05"
+      },
+      {
+        "id": "fix-notif-compile",
+        "label": {
+          "zh": "修复 NotificationHelper",
+          "en": "修复 NotificationHelper"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "移除不存在的导入+ArkTS 类型声明修正",
+          "en": "移除不存在的导入+ArkTS 类型声明修正"
+        },
+        "startDate": "2026-03-14 09:05",
+        "endDate": "2026-03-14 09:15"
+      },
+      {
+        "id": "fix-3-ui-bugs",
+        "label": {
+          "zh": "修复 3 个 UI Bug",
+          "en": "修复 3 UI Bug"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "长按取消订阅+滑动清队列+下载按钮空指针防护",
+          "en": "长按取消订阅+滑动清队列+下载按钮空指针防护"
+        },
+        "startDate": "2026-03-14 09:15",
+        "endDate": "2026-03-14 09:40"
+      },
+      {
+        "id": "impl-episode-ui",
+        "label": {
+          "zh": "#12 剧集列表 UI 复刻",
+          "en": "#12 剧集列表 UI 复刻"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "模糊头部+封面60+状态按钮+进度条+分隔线",
+          "en": "模糊头部+封面60+状态按钮+进度条+分隔线"
+        },
+        "startDate": "2026-03-14 10:25",
+        "endDate": "2026-03-14 11:05"
+      },
+      {
+        "id": "impl-home-ui",
+        "label": {
+          "zh": "#13 首页 UI 复刻",
+          "en": "#13 首页 UI 复刻"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "水平卡片170+悬浮按钮+智能日期+Section链接",
+          "en": "水平卡片170+悬浮按钮+智能 Date+Section 链接"
+        },
+        "startDate": "2026-03-14 11:10",
+        "endDate": "2026-03-14 11:50"
+      },
+      {
+        "id": "impl-episode-polish",
+        "label": {
+          "zh": "剧集列表 UI 打磨",
+          "en": "剧集列表 UI 打磨"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "参考 task-012-episode-list-ui-polish.md",
+          "en": "参考 task-012-episode-list-ui-polish.md"
+        },
+        "startDate": "2026-03-14 11:55",
+        "endDate": "2026-03-14 12:25"
+      },
+      {
+        "id": "review-12",
+        "label": {
+          "zh": "审查: #12 剧集UI",
+          "en": "审查: #12 剧集 UI"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "剧集列表 UI 复刻审查",
+          "en": "剧集列表 UI 复刻审查"
+        },
+        "startDate": "2026-03-14 12:30",
+        "endDate": "2026-03-14 12:45"
+      },
+      {
+        "id": "review-13",
+        "label": {
+          "zh": "审查: #13 首页UI",
+          "en": "审查: #13 首页 UI"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "首页 UI 复刻审查",
+          "en": "首页 UI 复刻审查"
+        },
+        "startDate": "2026-03-14 12:45",
+        "endDate": "2026-03-14 13:00"
+      },
+      {
+        "id": "ui-14-home",
+        "label": {
+          "zh": "#14 首页对标(14项)",
+          "en": "#14 首页对标(14项)"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "颜色统一+卡片尺寸+按钮样式+MiniPlayer+导航栏+字号",
+          "en": "颜色统一+卡片尺寸+按钮样式+MiniPlayer+Navigation 栏+字号"
+        },
+        "startDate": "2026-03-14 20:00",
+        "endDate": "2026-03-15 02:00"
+      },
+      {
+        "id": "review-14",
+        "label": {
+          "zh": "审查: #14 首页",
+          "en": "审查: #14 首页"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "首页 UI 对标审查",
+          "en": "首页 UI 对标审查"
+        },
+        "startDate": "2026-03-15 10:00",
+        "endDate": "2026-03-15 10:30"
+      },
+      {
+        "id": "ui-15-detail",
+        "label": {
+          "zh": "#15 详情页对标(11项)",
+          "en": "#15 详情页对标(11项)"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "下载进度环+图标替换+头部布局+字号+颜色",
+          "en": "下载进度环+图标替换+头部布局+字号+颜色"
+        },
+        "startDate": "2026-03-14 22:00",
+        "endDate": "2026-03-15 04:00"
+      },
+      {
+        "id": "review-15",
+        "label": {
+          "zh": "审查: #15 详情页",
+          "en": "审查: #15 详情页"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "详情页 UI 对标审查",
+          "en": "详情页 UI 对标审查"
+        },
+        "startDate": "2026-03-15 10:30",
+        "endDate": "2026-03-15 11:00"
+      },
+      {
+        "id": "ui-16-player",
+        "label": {
+          "zh": "#16 播放页对标(9项)",
+          "en": "#16 播放页对标(9项)"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "播放按钮+字号+封面margin+图标替换+seekbar反馈",
+          "en": "播放按钮+字号+封面 margin+图标替换+seekbar 反馈"
+        },
+        "startDate": "2026-03-15 00:00",
+        "endDate": "2026-03-15 06:00"
+      },
+      {
+        "id": "review-16",
+        "label": {
+          "zh": "审查: #16 播放页",
+          "en": "审查: #16 播放页"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "播放页 UI 对标审查",
+          "en": "播放页 UI 对标审查"
+        },
+        "startDate": "2026-03-15 11:00",
+        "endDate": "2026-03-15 11:30"
+      },
+      {
+        "id": "ui-17-queue",
+        "label": {
+          "zh": "#17 队列页对标(8项)",
+          "en": "#17 队列页对标(8项)"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "封面+标题+操作按钮+拖拽手柄+信息栏+padding",
+          "en": "封面+标题+操作按钮+拖拽手柄+信息栏+padding"
+        },
+        "startDate": "2026-03-15 02:00",
+        "endDate": "2026-03-15 08:00"
+      },
+      {
+        "id": "review-17",
+        "label": {
+          "zh": "审查: #17 队列页",
+          "en": "审查: #17 队列页"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "队列页 UI 对标审查",
+          "en": "队列页 UI 对标审查"
+        },
+        "startDate": "2026-03-15 11:30",
+        "endDate": "2026-03-15 12:00"
+      },
+      {
+        "id": "ui-18-subs",
+        "label": {
+          "zh": "#18 订阅页对标(6项)",
+          "en": "#18 订阅页对标(6项)"
+        },
+        "phase": "P6",
+        "type": "ui",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "封面圆角+徽标+间距+自适应+图标+列表模式",
+          "en": "封面圆角+徽标+间距+自适应+图标+列表模式"
+        },
+        "startDate": "2026-03-15 04:00",
+        "endDate": "2026-03-15 10:00"
+      },
+      {
+        "id": "review-18",
+        "label": {
+          "zh": "审查: #18 订阅页",
+          "en": "审查: #18 订阅页"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "订阅页 UI 对标审查",
+          "en": "订阅页 UI 对标审查"
+        },
+        "startDate": "2026-03-15 12:00",
+        "endDate": "2026-03-15 12:30"
+      },
+      {
+        "id": "audit-p6",
+        "label": {
+          "zh": "审计: P6",
+          "en": "审计: P6"
+        },
+        "phase": "P6",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#7 P6 全功能完整性检查",
+          "en": "#7 P6 全 Feature 完整性检查"
+        },
+        "startDate": "2026-03-15 12:30",
+        "endDate": "2026-03-15 13:00"
+      },
+      {
+        "id": "test-t3",
+        "label": {
+          "zh": "📱 真机测试 T3",
+          "en": "📱 真机测试 T3"
+        },
+        "phase": "P6",
+        "type": "audit",
+        "status": "todo",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "#8 生产可用验收（15 项逐一验证）",
+          "en": "#8 生产可用验收（15 项逐一验证）"
+        },
+        "startDate": "",
+        "endDate": ""
+      },
+      {
+        "id": "he-1-context",
+        "label": {
+          "zh": "#HE-1 精简 CLAUDE.md",
+          "en": "#HE-1 精简 CLAUDE.md"
+        },
+        "phase": "HE",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "三个 CLAUDE.md 精简为~100行索引+子文档按需加载",
+          "en": "三 CLAUDE.md 精简为~100lines 索引+子文档按需加载"
+        },
+        "startDate": "2026-03-16 11:31",
+        "endDate": "2026-03-16 11:35"
+      },
+      {
+        "id": "he-2-knowledge",
+        "label": {
+          "zh": "#HE-2 领任务前查知识库",
+          "en": "#HE-2 领任务前查知识库"
+        },
+        "phase": "HE",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "AgentH CLAUDE.md 增加查 knowledge/INDEX.md 步骤",
+          "en": "AgentH CLAUDE.md 增加查 knowledge/INDEX.md Steps 骤"
+        },
+        "startDate": "2026-03-16 11:36",
+        "endDate": "2026-03-16 11:36"
+      },
+      {
+        "id": "he-3-selfcheck",
+        "label": {
+          "zh": "#HE-3 交付前自验证",
+          "en": "#HE-3 交付前自验证"
+        },
+        "phase": "HE",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "AgentH 交付前编译+Spec自查+代码自审清单",
+          "en": "AgentH 交付前编译+Spec 自查+代码自审 Checklist"
+        },
+        "startDate": "2026-03-16 11:36",
+        "endDate": "2026-03-16 11:36"
+      },
+      {
+        "id": "he-4-dod",
+        "label": {
+          "zh": "#HE-4 DoD 标准化",
+          "en": "#HE-4 DoD 标准化"
+        },
+        "phase": "HE",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "每个任务文档必须含机器可验证的完成条件",
+          "en": "每任务文档必须含机器可验证的完成条件"
+        },
+        "startDate": "2026-03-16 11:36",
+        "endDate": "2026-03-16 11:36"
+      },
+      {
+        "id": "he-5-validate",
+        "label": {
+          "zh": "#HE-5 交付前置校验",
+          "en": "#HE-5 交付前置校验"
+        },
+        "phase": "HE",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "complete-task.js 加 Spec存在+DR无阻塞+一致性校验",
+          "en": "complete-task.js 加 Spec 存在+DR 无阻塞+一致性校验"
+        },
+        "startDate": "2026-03-16 11:37",
+        "endDate": "2026-03-16 11:37"
+      },
+      {
+        "id": "he-6-lint",
+        "label": {
+          "zh": "#HE-6 Pitfall 转自动化",
+          "en": "#HE-6 Pitfall 转自动化"
+        },
+        "phase": "HE",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "高频 Pitfall 转为自动扫描脚本",
+          "en": "高频 Pitfall 转为自动 ScanScript"
+        },
+        "startDate": "2026-03-16 11:37",
+        "endDate": "2026-03-16 11:38"
+      },
+      {
+        "id": "he-7-consistency",
+        "label": {
+          "zh": "#HE-7 一致性检查脚本",
+          "en": "#HE-7 一致性检查 Script"
+        },
+        "phase": "HE",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "check-consistency.js: Spec↔代码/topology↔taskboard/DR超时",
+          "en": "check-consistency.js: Spec ↔代码/topology ↔ taskboard/DR 超时"
+        },
+        "startDate": "2026-03-16 11:39",
+        "endDate": "2026-03-16 11:39"
+      },
+      {
+        "id": "he-8-metrics",
+        "label": {
+          "zh": "#HE-8 任务指标追踪",
+          "en": "#HE-8 任务指标追踪"
+        },
+        "phase": "HE",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "返工次数/审查通过率/常见失败模式追踪",
+          "en": "返工次数/审查 Passed 率/常见失败模式追踪"
+        },
+        "startDate": "2026-03-16 11:40",
+        "endDate": "2026-03-16 11:40"
+      },
+      {
+        "id": "impl-19",
+        "label": {
+          "zh": "#19 剧集长按上下文菜单",
+          "en": "#19 剧集长按上下文菜单"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "长按剧集→底部上下文菜单(8项操作)",
+          "en": "长按剧集→底部上下文菜单(8项操作)"
+        },
+        "startDate": "2026-03-16 08:00",
+        "endDate": "2026-03-16 09:00"
+      },
+      {
+        "id": "review-19",
+        "label": {
+          "zh": "审查: #19",
+          "en": "审查: #19"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 09:00",
+        "endDate": "2026-03-16 09:20"
+      },
+      {
+        "id": "impl-20",
+        "label": {
+          "zh": "#20 Feed 设置页",
+          "en": "#20 Feed Settings 页"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "9项设置+6个弹窗",
+          "en": "9项 Settings+6弹窗"
+        },
+        "startDate": "2026-03-16 09:00",
+        "endDate": "2026-03-16 10:30"
+      },
+      {
+        "id": "review-20",
+        "label": {
+          "zh": "审查: #20",
+          "en": "审查: #20"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 10:30",
+        "endDate": "2026-03-16 10:50"
+      },
+      {
+        "id": "impl-21",
+        "label": {
+          "zh": "#21 首页补全2Section",
+          "en": "#21 首页补全2Section"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "订阅列表+管理下载Section",
+          "en": "订阅列表+管理下载 Section"
+        },
+        "startDate": "2026-03-16 10:30",
+        "endDate": "2026-03-16 11:30"
+      },
+      {
+        "id": "review-21",
+        "label": {
+          "zh": "审查: #21",
+          "en": "审查: #21"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 11:30",
+        "endDate": "2026-03-16 11:45"
+      },
+      {
+        "id": "impl-22",
+        "label": {
+          "zh": "#22 Feed 信息页",
+          "en": "#22 Feed 信息页"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "播放时长/集数/空间占用/描述/URL",
+          "en": "播放时长/集数/空间占用/Description/URL"
+        },
+        "startDate": "2026-03-16 11:30",
+        "endDate": "2026-03-16 12:30"
+      },
+      {
+        "id": "review-22",
+        "label": {
+          "zh": "审查: #22",
+          "en": "审查: #22"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 12:30",
+        "endDate": "2026-03-16 12:45"
+      },
+      {
+        "id": "impl-23",
+        "label": {
+          "zh": "#23 搜索预览弹窗",
+          "en": "#23 Search 预览弹窗"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "搜索结果点击→底部卡片预览",
+          "en": "Search 结果 Click →底部卡片预览"
+        },
+        "startDate": "2026-03-16 12:30",
+        "endDate": "2026-03-16 13:30"
+      },
+      {
+        "id": "review-23",
+        "label": {
+          "zh": "审查: #23",
+          "en": "审查: #23"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 13:30",
+        "endDate": "2026-03-16 13:45"
+      },
+      {
+        "id": "impl-24",
+        "label": {
+          "zh": "#24 剧集排序+筛选弹窗",
+          "en": "#24 剧集 Sort+筛选弹窗"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "排序/筛选/滑动配置弹窗",
+          "en": "Sort/筛选/滑动配置弹窗"
+        },
+        "startDate": "2026-03-16 13:30",
+        "endDate": "2026-03-16 14:30"
+      },
+      {
+        "id": "review-24",
+        "label": {
+          "zh": "审查: #24",
+          "en": "审查: #24"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 14:30",
+        "endDate": "2026-03-16 14:45"
+      },
+      {
+        "id": "impl-25",
+        "label": {
+          "zh": "#25 订阅排序+筛选+长按菜单",
+          "en": "#25 订阅 Sort+筛选+长按菜单"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "排序/筛选/计数/长按菜单",
+          "en": "Sort/筛选/计数/长按菜单"
+        },
+        "startDate": "2026-03-16 14:30",
+        "endDate": "2026-03-16 15:30"
+      },
+      {
+        "id": "review-25",
+        "label": {
+          "zh": "审查: #25",
+          "en": "审查: #25"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 15:30",
+        "endDate": "2026-03-16 15:45"
+      },
+      {
+        "id": "impl-26",
+        "label": {
+          "zh": "#26 播放器弹窗补全",
+          "en": "#26 播放器弹窗补全"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "倍速+更多菜单+睡眠定时",
+          "en": "倍速+更多菜单+睡眠定时"
+        },
+        "startDate": "2026-03-16 15:30",
+        "endDate": "2026-03-16 16:30"
+      },
+      {
+        "id": "review-26",
+        "label": {
+          "zh": "审查: #26",
+          "en": "审查: #26"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 16:30",
+        "endDate": "2026-03-16 16:45"
+      },
+      {
+        "id": "impl-27",
+        "label": {
+          "zh": "#27 发现页完善",
+          "en": "#27 发现页完善"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "国家选择+隐藏功能",
+          "en": "国家选择+隐藏 Feature"
+        },
+        "startDate": "2026-03-16 16:30",
+        "endDate": "2026-03-16 17:30"
+      },
+      {
+        "id": "review-27",
+        "label": {
+          "zh": "审查: #27",
+          "en": "审查: #27"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 17:30",
+        "endDate": "2026-03-16 17:45"
+      },
+      {
+        "id": "impl-28",
+        "label": {
+          "zh": "#28 设置6个子页面",
+          "en": "#28 Settings6子页面"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "UI/播放/下载/同步/备份/通知",
+          "en": "UI/播放/下载/同 Steps/备份/通知"
+        },
+        "startDate": "2026-03-16 17:30",
+        "endDate": "2026-03-16 18:30"
+      },
+      {
+        "id": "review-28",
+        "label": {
+          "zh": "审查: #28",
+          "en": "审查: #28"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 18:30",
+        "endDate": "2026-03-16 18:45"
+      },
+      {
+        "id": "impl-29",
+        "label": {
+          "zh": "#29 添加播客页",
+          "en": "#29 添加播客页"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "热门网格4x3+6种入口",
+          "en": "热门 Grid4x3+6种入口"
+        },
+        "startDate": "2026-03-16 18:30",
+        "endDate": "2026-03-16 19:30"
+      },
+      {
+        "id": "review-29",
+        "label": {
+          "zh": "审查: #29",
+          "en": "审查: #29"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 19:30",
+        "endDate": "2026-03-16 19:45"
+      },
+      {
+        "id": "impl-30",
+        "label": {
+          "zh": "#30 首页Section自定义排序",
+          "en": "#30 首页 Section 自定义 Sort"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "拖拽排序+显示/隐藏",
+          "en": "拖拽 Sort+显示/隐藏"
+        },
+        "startDate": "2026-03-16 19:30",
+        "endDate": "2026-03-16 20:30"
+      },
+      {
+        "id": "review-30",
+        "label": {
+          "zh": "审查: #30",
+          "en": "审查: #30"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 20:30",
+        "endDate": "2026-03-16 20:45"
+      },
+      {
+        "id": "impl-31",
+        "label": {
+          "zh": "#31 其他功能补全",
+          "en": "#31 其他 Feature 补全"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "队列锁定+标签管理+发布预测",
+          "en": "队列锁定+标签管理+发布预测"
+        },
+        "startDate": "2026-03-16 20:30",
+        "endDate": "2026-03-16 21:30"
+      },
+      {
+        "id": "review-31",
+        "label": {
+          "zh": "审查: #31",
+          "en": "审查: #31"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 21:30",
+        "endDate": "2026-03-16 21:45"
+      },
+      {
+        "id": "impl-32",
+        "label": {
+          "zh": "#32 自动定时刷新",
+          "en": "#32 自动定时刷新"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "workScheduler 注册周期任务",
+          "en": "workScheduler 注册周期任务"
+        },
+        "startDate": "2026-03-16 14:00",
+        "endDate": "2026-03-16 15:00"
+      },
+      {
+        "id": "review-32",
+        "label": {
+          "zh": "审查: #32",
+          "en": "审查: #32"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 15:00",
+        "endDate": "2026-03-16 15:15"
+      },
+      {
+        "id": "impl-33",
+        "label": {
+          "zh": "#33 下载引擎重写",
+          "en": "#33 下载引擎重写"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "流式分块下载+进度+断点续传+错误反馈",
+          "en": "流式分块下载+进度+断点续传+错误反馈"
+        },
+        "startDate": "2026-03-16 15:00",
+        "endDate": "2026-03-16 16:30"
+      },
+      {
+        "id": "review-33",
+        "label": {
+          "zh": "审查: #33",
+          "en": "审查: #33"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 16:30",
+        "endDate": "2026-03-16 16:45"
+      },
+      {
+        "id": "impl-34",
+        "label": {
+          "zh": "#34 MiniPlayer全屏衔接",
+          "en": "#34 MiniPlayer 全屏衔接"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "bindSheet 替代 router.pushUrl",
+          "en": "bindSheet 替代 router.pushUrl"
+        },
+        "startDate": "2026-03-16 16:30",
+        "endDate": "2026-03-16 17:30"
+      },
+      {
+        "id": "review-34",
+        "label": {
+          "zh": "审查: #34",
+          "en": "审查: #34"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "对照 Spec 审查代码",
+          "en": "对照 Spec 审查代码"
+        },
+        "startDate": "2026-03-16 17:30",
+        "endDate": "2026-03-16 17:45"
+      },
+      {
+        "id": "impl-opml-import",
+        "label": {
+          "zh": "OPML 导入功能",
+          "en": "OPML 导入 Feature"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "替换开发中toast为真实功能",
+          "en": "替换开发中 toast 为真实 Feature"
+        },
+        "startDate": "2026-03-16 17:30",
+        "endDate": "2026-03-16 18:15"
+      },
+      {
+        "id": "impl-share-sheet",
+        "label": {
+          "zh": "ShareSheet 文件分享",
+          "en": "ShareSheet FileShare"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "替换开发中toast为真实功能",
+          "en": "替换开发中 toast 为真实 Feature"
+        },
+        "startDate": "2026-03-16 18:15",
+        "endDate": "2026-03-16 19:00"
+      },
+      {
+        "id": "impl-rename-sub",
+        "label": {
+          "zh": "重命名订阅 UI 入口",
+          "en": "Rename 订阅 UI 入口"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "经核实已实现",
+          "en": "经核实已实现"
+        },
+        "startDate": "2026-03-16 19:00",
+        "endDate": "2026-03-16 19:15"
+      },
+      {
+        "id": "pm-final-audit",
+        "label": {
+          "zh": "PM 最终审计",
+          "en": "PM 最终审计"
+        },
+        "phase": "P6",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "TODO清零+功能矩阵终核+差距报告",
+          "en": "TODO 清零+Feature 矩阵终核+差距报告"
+        },
+        "startDate": "2026-03-16 19:15",
+        "endDate": "2026-03-16 20:00"
+      },
+      {
+        "id": "pm-project-summary",
+        "label": {
+          "zh": "项目总结文档",
+          "en": "项目总结文档"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "docs/project-summary.md",
+          "en": "docs/project-summary.md"
+        },
+        "startDate": "2026-03-16 20:00",
+        "endDate": "2026-03-16 20:30"
+      },
+      {
+        "id": "impl-35",
+        "label": {
+          "zh": "#35 统一下载/播放按钮",
+          "en": "#35 统一下载/播放按钮"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "全页面一致的4态状态机",
+          "en": "全页面一致的4态状态机"
+        },
+        "startDate": "2026-03-16 21:00",
+        "endDate": "2026-03-16 22:30"
+      },
+      {
+        "id": "review-35",
+        "label": {
+          "zh": "审查: #35",
+          "en": "审查: #35"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-16 22:30",
+        "endDate": "2026-03-16 22:45"
+      },
+      {
+        "id": "impl-36",
+        "label": {
+          "zh": "#36 全页面UI Checklist",
+          "en": "#36 全页面 UI Checklist"
+        },
+        "phase": "P6",
+        "type": "audit",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "20个页面464项检查",
+          "en": "20页面464项检查"
+        },
+        "startDate": "2026-03-17 08:00",
+        "endDate": "2026-03-17 10:00"
+      },
+      {
+        "id": "review-36",
+        "label": {
+          "zh": "审查: #36",
+          "en": "审查: #36"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "汇总",
+          "en": "汇总"
+        },
+        "startDate": "2026-03-17 10:00",
+        "endDate": "2026-03-17 10:15"
+      },
+      {
+        "id": "impl-37",
+        "label": {
+          "zh": "#37 修复长按无响应",
+          "en": "#37 修复长按无响应"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "PIT-039",
+          "en": "PIT-039"
+        },
+        "startDate": "2026-03-17 09:00",
+        "endDate": "2026-03-17 10:00"
+      },
+      {
+        "id": "review-37",
+        "label": {
+          "zh": "审查: #37",
+          "en": "审查: #37"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-17 10:00",
+        "endDate": "2026-03-17 10:15"
+      },
+      {
+        "id": "impl-38",
+        "label": {
+          "zh": "#38 通知设置持久化",
+          "en": "#38 通知 Settings 持久化"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "开关未持久化bug",
+          "en": "Toggle 未持久化 bug"
+        },
+        "startDate": "2026-03-17 10:00",
+        "endDate": "2026-03-17 10:30"
+      },
+      {
+        "id": "review-38",
+        "label": {
+          "zh": "审查: #38",
+          "en": "审查: #38"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-17 10:30",
+        "endDate": "2026-03-17 10:40"
+      },
+      {
+        "id": "impl-39",
+        "label": {
+          "zh": "#39 下载管理页重构",
+          "en": "#39 下载管理页重构"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "28项缺失",
+          "en": "28项缺失"
+        },
+        "startDate": "2026-03-17 10:30",
+        "endDate": "2026-03-17 12:00"
+      },
+      {
+        "id": "review-39",
+        "label": {
+          "zh": "审查: #39",
+          "en": "审查: #39"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-17 12:00",
+        "endDate": "2026-03-17 12:15"
+      },
+      {
+        "id": "impl-40",
+        "label": {
+          "zh": "#40 播放历史页完善",
+          "en": "#40 播放历史页完善"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "11项缺失",
+          "en": "11项缺失"
+        },
+        "startDate": "2026-03-17 12:00",
+        "endDate": "2026-03-17 13:00"
+      },
+      {
+        "id": "review-40",
+        "label": {
+          "zh": "审查: #40",
+          "en": "审查: #40"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-17 13:00",
+        "endDate": "2026-03-17 13:15"
+      },
+      {
+        "id": "impl-41",
+        "label": {
+          "zh": "#41 收件箱页完善",
+          "en": "#41 收件箱页完善"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "10项缺失",
+          "en": "10项缺失"
+        },
+        "startDate": "2026-03-17 13:00",
+        "endDate": "2026-03-17 14:00"
+      },
+      {
+        "id": "review-41",
+        "label": {
+          "zh": "审查: #41",
+          "en": "审查: #41"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-17 14:00",
+        "endDate": "2026-03-17 14:15"
+      },
+      {
+        "id": "impl-42",
+        "label": {
+          "zh": "#42 单集详情页补全",
+          "en": "#42 单集详情页补全"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "12项缺失",
+          "en": "12项缺失"
+        },
+        "startDate": "2026-03-17 14:00",
+        "endDate": "2026-03-17 15:00"
+      },
+      {
+        "id": "review-42",
+        "label": {
+          "zh": "审查: #42",
+          "en": "审查: #42"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-17 15:00",
+        "endDate": "2026-03-17 15:15"
+      },
+      {
+        "id": "impl-43",
+        "label": {
+          "zh": "#43 统计页图表化",
+          "en": "#43 统计页图表化"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "饼图/柱状图/Feed列表",
+          "en": "饼图/柱状图/Feed 列表"
+        },
+        "startDate": "2026-03-17 15:00",
+        "endDate": "2026-03-17 16:30"
+      },
+      {
+        "id": "review-43",
+        "label": {
+          "zh": "审查: #43",
+          "en": "审查: #43"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-17 16:30",
+        "endDate": "2026-03-17 16:45"
+      },
+      {
+        "id": "impl-44",
+        "label": {
+          "zh": "#44 搜索页增强",
+          "en": "#44 Search 页增强"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "inprogress",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "13项缺失",
+          "en": "13项缺失"
+        },
+        "startDate": "2026-03-17 17:00",
+        "endDate": ""
+      },
+      {
+        "id": "review-44",
+        "label": {
+          "zh": "审查: #44",
+          "en": "审查: #44"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "todo",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "",
+        "endDate": ""
+      },
+      {
+        "id": "impl-45",
+        "label": {
+          "zh": "#45 设置-UI页补全",
+          "en": "#45 Settings-UI 页补全"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "todo",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "10项缺失",
+          "en": "10项缺失"
+        },
+        "startDate": "",
+        "endDate": ""
+      },
+      {
+        "id": "review-45",
+        "label": {
+          "zh": "审查: #45",
+          "en": "审查: #45"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "todo",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "",
+        "endDate": ""
+      },
+      {
+        "id": "impl-46",
+        "label": {
+          "zh": "#46 Feed信息页补全",
+          "en": "#46 Feed 信息页补全"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "todo",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "7项缺失",
+          "en": "7项缺失"
+        },
+        "startDate": "",
+        "endDate": ""
+      },
+      {
+        "id": "review-46",
+        "label": {
+          "zh": "审查: #46",
+          "en": "审查: #46"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "todo",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "",
+        "endDate": ""
+      },
+      {
+        "id": "impl-47",
+        "label": {
+          "zh": "#47 下载按钮状态修复",
+          "en": "#47 下载按钮状态修复"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "下载按钮回退+长按无响应",
+          "en": "下载按钮回退+长按无响应"
+        },
+        "startDate": "2026-03-17 11:00",
+        "endDate": "2026-03-17 12:00"
+      },
+      {
+        "id": "review-47",
+        "label": {
+          "zh": "审查: #47",
+          "en": "审查: #47"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "2026-03-17 12:00",
+        "endDate": "2026-03-17 12:10"
+      },
+      {
+        "id": "impl-48",
+        "label": {
+          "zh": "#48 AVSession+音频焦点",
+          "en": "#48 AVSession+音频焦点"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "锁屏播控/来电暂停/后台通知",
+          "en": "锁屏播控/来电暂停/后台通知"
+        },
+        "startDate": "2026-03-17 19:47",
+        "endDate": "2026-03-17 19:58"
+      },
+      {
+        "id": "review-48",
+        "label": {
+          "zh": "审查: #48",
+          "en": "审查: #48"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "todo",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "",
+        "endDate": ""
+      },
+      {
+        "id": "impl-49",
+        "label": {
+          "zh": "#49 系统事件监听",
+          "en": "#49 系统事件监听"
+        },
+        "phase": "P6",
+        "type": "impl",
+        "status": "done",
+        "agent": "AgentH",
+        "desc": {
+          "zh": "网络/充电/耳机/蓝牙",
+          "en": "网络/充电/耳机/蓝牙"
+        },
+        "startDate": "2026-03-17 19:59",
+        "endDate": "2026-03-17 20:06"
+      },
+      {
+        "id": "review-49",
+        "label": {
+          "zh": "审查: #49",
+          "en": "审查: #49"
+        },
+        "phase": "P6",
+        "type": "review",
+        "status": "todo",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "审查",
+          "en": "审查"
+        },
+        "startDate": "",
+        "endDate": ""
+      },
+      {
+        "id": "analysis-a01",
+        "label": {
+          "zh": "A-01 MediaSession分析",
+          "en": "A-01 MediaSession 分析"
+        },
+        "phase": "P6",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "锁屏播控+通知栏",
+          "en": "锁屏播控+通知栏"
+        },
+        "startDate": "2026-03-17 08:00",
+        "endDate": "2026-03-17 09:00"
+      },
+      {
+        "id": "analysis-a02",
+        "label": {
+          "zh": "A-02 音频焦点分析",
+          "en": "A-02 音频焦点分析"
+        },
+        "phase": "P6",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "AudioFocus策略",
+          "en": "AudioFocus 策略"
+        },
+        "startDate": "2026-03-17 09:00",
+        "endDate": "2026-03-17 10:00"
+      },
+      {
+        "id": "analysis-a03",
+        "label": {
+          "zh": "A-03 系统事件广播分析",
+          "en": "A-03 系统事件广播分析"
+        },
+        "phase": "P6",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "网络/充电/耳机",
+          "en": "网络/充电/耳机"
+        },
+        "startDate": "2026-03-17 10:00",
+        "endDate": "2026-03-17 11:00"
+      },
+      {
+        "id": "analysis-a04",
+        "label": {
+          "zh": "A-04 播放通知分析",
+          "en": "A-04 播放通知分析"
+        },
+        "phase": "P6",
+        "type": "analysis",
+        "status": "done",
+        "agent": "AgentA",
+        "desc": {
+          "zh": "常驻通知+前台服务",
+          "en": "常驻通知+前台服务"
+        },
+        "startDate": "2026-03-17 11:00",
+        "endDate": "2026-03-17 12:00"
+      },
+      {
+        "id": "spec-sys-integration",
+        "label": {
+          "zh": "系统集成层 Spec",
+          "en": "系统集成层 Spec"
+        },
+        "phase": "P6",
+        "type": "spec",
+        "status": "done",
+        "agent": "AgentPM",
+        "desc": {
+          "zh": "specs/system-integration/spec.md",
+          "en": "specs/system-integration/spec.md"
+        },
+        "startDate": "2026-03-17 12:00",
+        "endDate": "2026-03-17 13:00"
+      }
+    ],
+    "edges": [
+      {
+        "from": "analysis-modules",
+        "to": "analysis-matrix"
+      },
+      {
+        "from": "analysis-matrix",
+        "to": "platform-map"
+      },
+      {
+        "from": "analysis-modules",
+        "to": "src-model"
+      },
+      {
+        "from": "analysis-modules",
+        "to": "src-storage"
+      },
+      {
+        "from": "src-model",
+        "to": "data-model"
+      },
+      {
+        "from": "src-storage",
+        "to": "storage"
+      },
+      {
+        "from": "data-model",
+        "to": "impl-model"
+      },
+      {
+        "from": "storage",
+        "to": "impl-storage"
+      },
+      {
+        "from": "adr-001",
+        "to": "scaffold"
+      },
+      {
+        "from": "scaffold",
+        "to": "impl-model"
+      },
+      {
+        "from": "scaffold",
+        "to": "impl-storage"
+      },
+      {
+        "from": "scaffold",
+        "to": "review-common"
+      },
+      {
+        "from": "impl-storage",
+        "to": "review-datastore"
+      },
+      {
+        "from": "review-datastore",
+        "to": "review-prefs"
+      },
+      {
+        "from": "review-common",
+        "to": "audit-p0"
+      },
+      {
+        "from": "review-prefs",
+        "to": "audit-p0"
+      },
+      {
+        "from": "src-parser",
+        "to": "feed-parser-spec"
+      },
+      {
+        "from": "src-net",
+        "to": "http-client-spec"
+      },
+      {
+        "from": "http-client-spec",
+        "to": "impl-http"
+      },
+      {
+        "from": "feed-parser-spec",
+        "to": "impl-parser"
+      },
+      {
+        "from": "impl-http",
+        "to": "feed-refresh"
+      },
+      {
+        "from": "impl-parser",
+        "to": "feed-refresh"
+      },
+      {
+        "from": "impl-http",
+        "to": "review-http"
+      },
+      {
+        "from": "impl-parser",
+        "to": "review-parser"
+      },
+      {
+        "from": "feed-refresh",
+        "to": "review-refresh"
+      },
+      {
+        "from": "review-http",
+        "to": "audit-p1"
+      },
+      {
+        "from": "review-parser",
+        "to": "audit-p1"
+      },
+      {
+        "from": "review-refresh",
+        "to": "audit-p1"
+      },
+      {
+        "from": "src-playback",
+        "to": "playback-spec"
+      },
+      {
+        "from": "playback-spec",
+        "to": "impl-avplayer"
+      },
+      {
+        "from": "impl-avplayer",
+        "to": "impl-playcontrol"
+      },
+      {
+        "from": "impl-playcontrol",
+        "to": "impl-playpersist"
+      },
+      {
+        "from": "impl-avplayer",
+        "to": "review-avplayer"
+      },
+      {
+        "from": "impl-playcontrol",
+        "to": "review-playctrl"
+      },
+      {
+        "from": "impl-playpersist",
+        "to": "review-playpersist"
+      },
+      {
+        "from": "review-avplayer",
+        "to": "audit-p2"
+      },
+      {
+        "from": "review-playctrl",
+        "to": "audit-p2"
+      },
+      {
+        "from": "review-playpersist",
+        "to": "audit-p2"
+      },
+      {
+        "from": "src-appui",
+        "to": "ui-spec"
+      },
+      {
+        "from": "adr-002",
+        "to": "impl-mainframe"
+      },
+      {
+        "from": "ui-spec",
+        "to": "impl-mainframe"
+      },
+      {
+        "from": "impl-mainframe",
+        "to": "ui-home"
+      },
+      {
+        "from": "feed-refresh",
+        "to": "ui-home"
+      },
+      {
+        "from": "ui-home",
+        "to": "ui-subs"
+      },
+      {
+        "from": "ui-subs",
+        "to": "ui-episodes"
+      },
+      {
+        "from": "impl-playpersist",
+        "to": "ui-player"
+      },
+      {
+        "from": "ui-episodes",
+        "to": "ui-player"
+      },
+      {
+        "from": "ui-player",
+        "to": "ui-addfeed"
+      },
+      {
+        "from": "impl-mainframe",
+        "to": "review-mainframe"
+      },
+      {
+        "from": "ui-home",
+        "to": "review-home"
+      },
+      {
+        "from": "ui-subs",
+        "to": "review-subs"
+      },
+      {
+        "from": "ui-episodes",
+        "to": "review-episodes"
+      },
+      {
+        "from": "ui-player",
+        "to": "review-player"
+      },
+      {
+        "from": "ui-addfeed",
+        "to": "review-addfeed"
+      },
+      {
+        "from": "review-addfeed",
+        "to": "audit-p3"
+      },
+      {
+        "from": "review-player",
+        "to": "audit-p3"
+      },
+      {
+        "from": "src-download",
+        "to": "download-spec"
+      },
+      {
+        "from": "download-spec",
+        "to": "impl-download"
+      },
+      {
+        "from": "impl-download",
+        "to": "impl-autoclean"
+      },
+      {
+        "from": "impl-autoclean",
+        "to": "ui-downloads"
+      },
+      {
+        "from": "impl-download",
+        "to": "review-download"
+      },
+      {
+        "from": "impl-autoclean",
+        "to": "review-autoclean"
+      },
+      {
+        "from": "ui-downloads",
+        "to": "review-dlui"
+      },
+      {
+        "from": "review-dlui",
+        "to": "audit-p4"
+      },
+      {
+        "from": "queue-spec",
+        "to": "impl-queue"
+      },
+      {
+        "from": "queue-spec",
+        "to": "impl-favorites"
+      },
+      {
+        "from": "queue-spec",
+        "to": "impl-discovery"
+      },
+      {
+        "from": "queue-spec",
+        "to": "impl-statistics"
+      },
+      {
+        "from": "impl-statistics",
+        "to": "audit-p5"
+      },
+      {
+        "from": "p6-specs",
+        "to": "impl-theme"
+      },
+      {
+        "from": "p6-specs",
+        "to": "impl-opml"
+      },
+      {
+        "from": "p6-specs",
+        "to": "impl-widget"
+      },
+      {
+        "from": "p6-specs",
+        "to": "impl-notification"
+      },
+      {
+        "from": "p6-specs",
+        "to": "impl-i18n"
+      },
+      {
+        "from": "impl-theme",
+        "to": "review-theme"
+      },
+      {
+        "from": "review-theme",
+        "to": "pm-decompose-1"
+      },
+      {
+        "from": "impl-notification",
+        "to": "pm-decompose-1"
+      },
+      {
+        "from": "pm-decompose-1",
+        "to": "fix-playback"
+      },
+      {
+        "from": "fix-playback",
+        "to": "review-fix-play"
+      },
+      {
+        "from": "review-fix-play",
+        "to": "pm-decompose-2"
+      },
+      {
+        "from": "pm-decompose-2",
+        "to": "fix-download"
+      },
+      {
+        "from": "fix-download",
+        "to": "review-fix-dl"
+      },
+      {
+        "from": "review-fix-dl",
+        "to": "pm-decompose-3"
+      },
+      {
+        "from": "pm-decompose-3",
+        "to": "fix-detail-page"
+      },
+      {
+        "from": "fix-detail-page",
+        "to": "review-fix-detail"
+      },
+      {
+        "from": "review-fix-detail",
+        "to": "pm-decompose-4"
+      },
+      {
+        "from": "pm-decompose-4",
+        "to": "fix-audiofocus"
+      },
+      {
+        "from": "fix-audiofocus",
+        "to": "review-fix-audio"
+      },
+      {
+        "from": "review-fix-audio",
+        "to": "pm-decompose-5"
+      },
+      {
+        "from": "pm-decompose-5",
+        "to": "fix-autoplay"
+      },
+      {
+        "from": "fix-autoplay",
+        "to": "review-fix-auto"
+      },
+      {
+        "from": "review-fix-auto",
+        "to": "fix-unsub-swipe"
+      },
+      {
+        "from": "fix-unsub-swipe",
+        "to": "review-9a"
+      },
+      {
+        "from": "review-9a",
+        "to": "fix-autorefresh-share"
+      },
+      {
+        "from": "fix-autorefresh-share",
+        "to": "review-9b"
+      },
+      {
+        "from": "review-9b",
+        "to": "review-opml"
+      },
+      {
+        "from": "impl-opml",
+        "to": "review-opml"
+      },
+      {
+        "from": "review-opml",
+        "to": "review-widget-notif"
+      },
+      {
+        "from": "impl-widget",
+        "to": "review-widget-notif"
+      },
+      {
+        "from": "review-widget-notif",
+        "to": "fix-widget-reg"
+      },
+      {
+        "from": "review-widget-notif",
+        "to": "fix-notif-compile"
+      },
+      {
+        "from": "review-widget-notif",
+        "to": "fix-3-ui-bugs"
+      },
+      {
+        "from": "fix-widget-reg",
+        "to": "pm-todo-scan"
+      },
+      {
+        "from": "fix-notif-compile",
+        "to": "pm-todo-scan"
+      },
+      {
+        "from": "fix-3-ui-bugs",
+        "to": "pm-todo-scan"
+      },
+      {
+        "from": "pm-todo-scan",
+        "to": "pm-feature-check"
+      },
+      {
+        "from": "src-player-ui",
+        "to": "pm-spec-player-ui"
+      },
+      {
+        "from": "pm-spec-player-ui",
+        "to": "impl-episode-ui"
+      },
+      {
+        "from": "pm-spec-player-ui",
+        "to": "impl-home-ui"
+      },
+      {
+        "from": "pm-feature-check",
+        "to": "impl-episode-ui"
+      },
+      {
+        "from": "pm-feature-check",
+        "to": "impl-home-ui"
+      },
+      {
+        "from": "pm-feature-check",
+        "to": "impl-episode-polish"
+      },
+      {
+        "from": "impl-episode-ui",
+        "to": "review-12"
+      },
+      {
+        "from": "impl-episode-polish",
+        "to": "review-12"
+      },
+      {
+        "from": "impl-home-ui",
+        "to": "review-13"
+      },
+      {
+        "from": "review-12",
+        "to": "audit-p6"
+      },
+      {
+        "from": "review-13",
+        "to": "audit-p6"
+      },
+      {
+        "from": "ui-14-home",
+        "to": "review-14"
+      },
+      {
+        "from": "review-14",
+        "to": "ui-15-detail"
+      },
+      {
+        "from": "ui-15-detail",
+        "to": "review-15"
+      },
+      {
+        "from": "review-15",
+        "to": "ui-16-player"
+      },
+      {
+        "from": "ui-16-player",
+        "to": "review-16"
+      },
+      {
+        "from": "review-16",
+        "to": "ui-17-queue"
+      },
+      {
+        "from": "ui-17-queue",
+        "to": "review-17"
+      },
+      {
+        "from": "review-17",
+        "to": "ui-18-subs"
+      },
+      {
+        "from": "ui-18-subs",
+        "to": "review-18"
+      },
+      {
+        "from": "review-18",
+        "to": "audit-p6"
+      },
+      {
+        "from": "audit-p6",
+        "to": "test-t3"
+      },
+      {
+        "from": "he-1-context",
+        "to": "he-2-knowledge"
+      },
+      {
+        "from": "he-2-knowledge",
+        "to": "he-3-selfcheck"
+      },
+      {
+        "from": "he-3-selfcheck",
+        "to": "he-4-dod"
+      },
+      {
+        "from": "he-4-dod",
+        "to": "he-5-validate"
+      },
+      {
+        "from": "he-5-validate",
+        "to": "he-6-lint"
+      },
+      {
+        "from": "he-6-lint",
+        "to": "he-7-consistency"
+      },
+      {
+        "from": "he-7-consistency",
+        "to": "he-8-metrics"
+      },
+      {
+        "from": "impl-19",
+        "to": "review-19"
+      },
+      {
+        "from": "review-18",
+        "to": "impl-19"
+      },
+      {
+        "from": "impl-20",
+        "to": "review-20"
+      },
+      {
+        "from": "review-19",
+        "to": "impl-20"
+      },
+      {
+        "from": "impl-21",
+        "to": "review-21"
+      },
+      {
+        "from": "review-20",
+        "to": "impl-21"
+      },
+      {
+        "from": "impl-22",
+        "to": "review-22"
+      },
+      {
+        "from": "review-21",
+        "to": "impl-22"
+      },
+      {
+        "from": "impl-23",
+        "to": "review-23"
+      },
+      {
+        "from": "review-22",
+        "to": "impl-23"
+      },
+      {
+        "from": "impl-24",
+        "to": "review-24"
+      },
+      {
+        "from": "review-23",
+        "to": "impl-24"
+      },
+      {
+        "from": "impl-25",
+        "to": "review-25"
+      },
+      {
+        "from": "review-24",
+        "to": "impl-25"
+      },
+      {
+        "from": "impl-26",
+        "to": "review-26"
+      },
+      {
+        "from": "review-25",
+        "to": "impl-26"
+      },
+      {
+        "from": "impl-27",
+        "to": "review-27"
+      },
+      {
+        "from": "review-26",
+        "to": "impl-27"
+      },
+      {
+        "from": "impl-28",
+        "to": "review-28"
+      },
+      {
+        "from": "review-27",
+        "to": "impl-28"
+      },
+      {
+        "from": "impl-29",
+        "to": "review-29"
+      },
+      {
+        "from": "review-28",
+        "to": "impl-29"
+      },
+      {
+        "from": "impl-30",
+        "to": "review-30"
+      },
+      {
+        "from": "review-29",
+        "to": "impl-30"
+      },
+      {
+        "from": "impl-31",
+        "to": "review-31"
+      },
+      {
+        "from": "review-30",
+        "to": "impl-31"
+      },
+      {
+        "from": "review-31",
+        "to": "test-t3"
+      },
+      {
+        "from": "impl-32",
+        "to": "review-32"
+      },
+      {
+        "from": "review-31",
+        "to": "impl-32"
+      },
+      {
+        "from": "impl-33",
+        "to": "review-33"
+      },
+      {
+        "from": "review-32",
+        "to": "impl-33"
+      },
+      {
+        "from": "impl-34",
+        "to": "review-34"
+      },
+      {
+        "from": "review-33",
+        "to": "impl-34"
+      },
+      {
+        "from": "review-34",
+        "to": "impl-opml-import"
+      },
+      {
+        "from": "impl-opml-import",
+        "to": "impl-share-sheet"
+      },
+      {
+        "from": "impl-share-sheet",
+        "to": "impl-rename-sub"
+      },
+      {
+        "from": "impl-rename-sub",
+        "to": "pm-final-audit"
+      },
+      {
+        "from": "pm-final-audit",
+        "to": "pm-project-summary"
+      },
+      {
+        "from": "pm-project-summary",
+        "to": "test-t3"
+      },
+      {
+        "from": "impl-35",
+        "to": "review-35"
+      },
+      {
+        "from": "review-34",
+        "to": "impl-35"
+      },
+      {
+        "from": "impl-36",
+        "to": "review-36"
+      },
+      {
+        "from": "review-35",
+        "to": "impl-36"
+      },
+      {
+        "from": "impl-37",
+        "to": "review-37"
+      },
+      {
+        "from": "review-36",
+        "to": "impl-37"
+      },
+      {
+        "from": "impl-38",
+        "to": "review-38"
+      },
+      {
+        "from": "review-37",
+        "to": "impl-38"
+      },
+      {
+        "from": "impl-39",
+        "to": "review-39"
+      },
+      {
+        "from": "review-38",
+        "to": "impl-39"
+      },
+      {
+        "from": "impl-40",
+        "to": "review-40"
+      },
+      {
+        "from": "review-39",
+        "to": "impl-40"
+      },
+      {
+        "from": "impl-41",
+        "to": "review-41"
+      },
+      {
+        "from": "review-40",
+        "to": "impl-41"
+      },
+      {
+        "from": "impl-42",
+        "to": "review-42"
+      },
+      {
+        "from": "review-41",
+        "to": "impl-42"
+      },
+      {
+        "from": "impl-43",
+        "to": "review-43"
+      },
+      {
+        "from": "review-42",
+        "to": "impl-43"
+      },
+      {
+        "from": "impl-44",
+        "to": "review-44"
+      },
+      {
+        "from": "review-43",
+        "to": "impl-44"
+      },
+      {
+        "from": "impl-45",
+        "to": "review-45"
+      },
+      {
+        "from": "review-44",
+        "to": "impl-45"
+      },
+      {
+        "from": "impl-46",
+        "to": "review-46"
+      },
+      {
+        "from": "review-45",
+        "to": "impl-46"
+      },
+      {
+        "from": "impl-47",
+        "to": "review-47"
+      },
+      {
+        "from": "impl-48",
+        "to": "review-48"
+      },
+      {
+        "from": "review-46",
+        "to": "impl-48"
+      },
+      {
+        "from": "impl-49",
+        "to": "review-49"
+      },
+      {
+        "from": "review-48",
+        "to": "impl-49"
+      },
+      {
+        "from": "analysis-a01",
+        "to": "spec-sys-integration"
+      },
+      {
+        "from": "analysis-a02",
+        "to": "spec-sys-integration"
+      },
+      {
+        "from": "analysis-a03",
+        "to": "spec-sys-integration"
+      },
+      {
+        "from": "analysis-a04",
+        "to": "spec-sys-integration"
+      },
+      {
+        "from": "spec-sys-integration",
+        "to": "impl-48"
+      },
+      {
+        "from": "review-49",
+        "to": "test-t3"
+      }
+    ]
+  },
+  "backlog": {
+    "high": [
+      {
+        "id": "B-ANALYSIS-MODULES",
+        "text": {
+          "zh": "完成 Android 59 个模块的清单和移植优先级评估",
+          "en": "完成 Android 59 模块的 Checklist 和移植优先级评估"
+        }
+      },
+      {
+        "id": "B-ANALYSIS-MATRIX",
+        "text": {
+          "zh": "完成功能矩阵，确定每个功能的移植策略",
+          "en": "完成 Feature 矩阵，确定每 Feature 的移植策略"
+        }
+      },
+      {
+        "id": "B-PLATFORM-MAP",
+        "text": {
+          "zh": "建立 Android ↔ HarmonyOS 核心 API 映射表",
+          "en": "建立 Android ↔ HarmonyOS 核心 API 映射表"
+        }
+      },
+      {
+        "id": "B-SPEC-MODEL",
+        "text": {
+          "zh": "编写数据模型 Spec（Feed/FeedItem/FeedMedia/Chapter）",
+          "en": "编写 Data Models Spec （ Feed/FeedItem/FeedMedia/Chapter ）"
+        }
+      },
+      {
+        "id": "B-SPEC-STORAGE",
+        "text": {
+          "zh": "编写存储层 Spec（数据库 schema + Preferences）",
+          "en": "编写存储层 Spec （ Database schema + Preferences ）"
+        }
+      }
+    ],
+    "medium": [
+      {
+        "id": "B-ADR-STRUCTURE",
+        "text": {
+          "zh": "ADR-001 HarmonyOS 工程模块化结构设计",
+          "en": "ADR-001 HarmonyOS 工程模块化结构设计"
+        }
+      },
+      {
+        "id": "B-SPEC-PARSER",
+        "text": {
+          "zh": "编写 RSS/Atom 解析器 Spec（P1 预备）",
+          "en": "编写 RSS/Atom 解析器 Spec （ P1 预备）"
+        }
+      },
+      {
+        "id": "B-SPEC-NETWORK",
+        "text": {
+          "zh": "编写网络层 Spec（P1 预备）",
+          "en": "编写网络层 Spec （ P1 预备）"
+        }
+      }
+    ],
+    "low": [
+      {
+        "id": "B-SPEC-PLAYBACK",
+        "text": {
+          "zh": "编写播放引擎 Spec（P2）",
+          "en": "编写播放引擎 Spec （ P2）"
+        }
+      },
+      {
+        "id": "B-SPEC-DOWNLOAD",
+        "text": {
+          "zh": "编写下载管理 Spec（P4）",
+          "en": "编写下载管理 Spec （ P4）"
+        }
+      },
+      {
+        "id": "B-SPEC-DISCOVERY",
+        "text": {
+          "zh": "编写播客发现 Spec（P5）",
+          "en": "编写播客发现 Spec （ P5）"
+        }
+      },
+      {
+        "id": "B-SPEC-SYNC",
+        "text": {
+          "zh": "评估 gPodder 同步是否移植（P5+）",
+          "en": "评估 gPodder 同 Steps 是否移植（ P5+）"
+        }
+      },
+      {
+        "id": "B-CAST",
+        "text": {
+          "zh": "评估 HarmonyOS 投屏方案（P6+）",
+          "en": "评估 HarmonyOS 投屏方案（ P6+）"
+        }
+      }
+    ]
+  },
+  "risks": [
+    {
+      "id": "RISK-001",
+      "title": {
+        "zh": "播放引擎能力缺口",
+        "en": "播放引擎能力缺口"
+      },
+      "level": "high",
+      "phase": "P2",
+      "desc": {
+        "zh": "ExoPlayer/Media3 功能远超 HarmonyOS AVPlayer，可能导致部分播放功能无法实现（自适应码率、章节跳转精度、音频焦点竞争策略等）",
+        "en": "ExoPlayer/Media3 Feature 远超 HarmonyOS AVPlayer ，可能导致部分播放 Feature 无法实现（自适应码率、章节 Navigate 精度、音频焦点竞争策略等）"
+      }
+    },
+    {
+      "id": "RISK-002",
+      "title": {
+        "zh": "EventBus 架构替换",
+        "en": "EventBus 架构替换"
+      },
+      "level": "medium",
+      "phase": "P0",
+      "desc": {
+        "zh": "AntennaPod 深度依赖 EventBus（24 种事件），替换为 ArkUI 响应式架构需要重新设计组件间通信",
+        "en": "AntennaPod 深度依赖 EventBus （24 种事件），替换为 ArkUI 响应式架构需要重新设计组件间通信"
+      }
+    },
+    {
+      "id": "RISK-003",
+      "title": {
+        "zh": "后台任务限制",
+        "en": "后台任务限制"
+      },
+      "level": "medium",
+      "phase": "P2 / P4",
+      "desc": {
+        "zh": "HarmonyOS 对后台任务限制比 Android 更严格，可能影响后台播放和下载",
+        "en": "HarmonyOS 对后台任务限制比 Android 更严格，可能影响后台播放和下载"
+      }
+    },
+    {
+      "id": "RISK-004",
+      "title": {
+        "zh": "RSS 解析性能",
+        "en": "RSS 解析性能"
+      },
+      "level": "low",
+      "phase": "P1",
+      "desc": {
+        "zh": "AntennaPod 使用 SAX 解析 XML（内存高效），ArkTS 的 @ohos.xml 解析器性能和能力待验证",
+        "en": "AntennaPod 使用 SAX 解析 XML （内存高效）， ArkTS 的 @ohos.xml 解析器性能和能力待验证"
+      }
+    },
+    {
+      "id": "RISK-005",
+      "title": {
+        "zh": "HarmonyOS API 稳定性",
+        "en": "HarmonyOS API 稳定性"
+      },
+      "level": "medium",
+      "phase": "全程",
+      "desc": {
+        "zh": "HarmonyOS API 仍在演进，部分 API 可能在后续版本中变更或废弃",
+        "en": "HarmonyOS API 仍在演进，部分 API 可能在后续版本中变更或废弃"
+      }
+    }
+  ],
+  "designDecisions": {
+    "pending": [],
+    "resolved": [
+      {
+        "id": "DR-001",
+        "title": {
+          "zh": "UI 图标资源方案 — SymbolGlyph 系统符号",
+          "en": "UI 图标资源方案 — SymbolGlyph 系统符号"
+        },
+        "type": {
+          "zh": "能力缺失（Android 用 VectorDrawable XML，HarmonyOS 无直接对应）",
+          "en": "能力缺失（ Android 用 VectorDrawable XML ， HarmonyOS 无直接对应）"
+        },
+        "date": "2026-03-15",
+        "decision": {
+          "zh": "{选择了哪个方案}",
+          "en": "{选择了哪方案}"
+        }
+      }
+    ],
+    "closed": []
+  },
+  "knowledge": {
+    "pitfalls": [
+      {
+        "id": "PIT-001-STRINGSET-SERIALIZATION",
+        "title": {
+          "zh": "HarmonyOS Preferences 不支持 StringSet",
+          "en": "HarmonyOS Preferences 不 Support StringSet"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS Preferences 只支持 string / number / boolean 三种基本类型。任何复合类型（数组、集合、对象）都需...",
+          "en": "HarmonyOS Preferences 只 Support string / number / boolean 三种基本类型。任何复合类型（数组、集合、对象）都需..."
+        },
+        "file": "knowledge/pitfalls/PIT-001-stringset-serialization.md"
+      },
+      {
+        "id": "PIT-002-HSP-MODULE-JSON-MISSING-DEVICETYPES",
+        "title": {
+          "zh": "HSP 模块 module.json5 必须包含 deviceTypes",
+          "en": "HSP 模块 module.json5 必须 Including deviceTypes"
+        },
+        "domain": {
+          "zh": "{build} {hsp}",
+          "en": "{build} {hsp}"
+        },
+        "summary": {
+          "zh": "HarmonyOS 的模块配置比 Android 更严格：**每个模块（无论 HAP 还是 HSP）都必须声明 `deviceTypes`**。创建新 H...",
+          "en": "HarmonyOS 的模块配置比 Android 更严格：**每模块（无论 HAP 还是 HSP ）都必须声明 `deviceTypes`**。创建新 H..."
+        },
+        "file": "knowledge/pitfalls/PIT-002-hsp-module-json-missing-deviceTypes.md"
+      },
+      {
+        "id": "PIT-003-HSP-EMPTY-PAGES-ARRAY-FORBIDDEN",
+        "title": {
+          "zh": "HSP 模块不应配置 pages，空数组会导致 schema 校验失败",
+          "en": "HSP 模块不应配置 pages ，空数组会导致 schema 校验失败"
+        },
+        "domain": {
+          "zh": "{build} {hsp}",
+          "en": "{build} {hsp}"
+        },
+        "summary": {
+          "zh": "HarmonyOS 的 HAP 和 HSP 模块配置有明确区别：",
+          "en": "HarmonyOS 的 HAP 和 HSP 模块配置有明确区别："
+        },
+        "file": "knowledge/pitfalls/PIT-003-hsp-empty-pages-array-forbidden.md"
+      },
+      {
+        "id": "PIT-004-ARKTS-COMPUTED-PROPERTY-NAMES",
+        "title": {
+          "zh": "ArkTS 不支持计算属性名",
+          "en": "ArkTS 不 Support 计算属性名"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到需要动态构建键值对的场景时，ArkTS 中不能用 `[expr]: value`。应直接使用字符串字面量作为属性名。如果列名是常量，在对象字面量中直接...",
+          "en": "遇到需要动态构建键值对的场景时， ArkTS 中不能用 `[expr]: value`。应直接使用字符串字面量作为属性名。如果列名是 Constants ，在对象字面量中直接..."
+        },
+        "file": "knowledge/pitfalls/PIT-004-arkts-computed-property-names.md"
+      },
+      {
+        "id": "PIT-005-ARKTS-NO-DESTRUCTURING-NO-SPREAD",
+        "title": {
+          "zh": "ArkTS 不支持解构赋值和展开运算符",
+          "en": "ArkTS 不 Support 解构赋值和展开运算符"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkTS 是 TypeScript 的严格子集，移除了动态性强的语法糖。遇到迭代键值对、合并对象、提取数组元素的场景，一律改为显式索引循环或逐项赋值。",
+          "en": "ArkTS 是 TypeScript 的严格子集，移除了动态性强的语法糖。遇到迭代键值对、合并对象、提取数组元素的场景，一律改为显式索引循环或逐项赋值。"
+        },
+        "file": "knowledge/pitfalls/PIT-005-arkts-no-destructuring-no-spread.md"
+      },
+      {
+        "id": "PIT-006-ARKTS-XML-PARSEINFO-NO-ATTRIBUTE-METHODS",
+        "title": {
+          "zh": "XmlPullParser 的属性获取必须通过回调，ParseInfo 无属性方法",
+          "en": "XmlPullParser 的属性获取必须 Passed 回调， ParseInfo 无属性方法"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 的 XML 解析器采用\"分离回调\"模式：元素事件和属性事件通过不同的回调函数传递。移植 SAX/Pull 解析器时，需要用一个中间 M...",
+          "en": "HarmonyOS 的 XML 解析器采用\"分离回调\"模式：元素事件和属性事件 Passed 不同的回调函数传递。移植 SAX/Pull 解析器时，需要用一中间 M..."
+        },
+        "file": "knowledge/pitfalls/PIT-006-arkts-xml-parseinfo-no-attribute-methods.md"
+      },
+      {
+        "id": "PIT-007-ARKTS-MISC-SYNTAX-RESTRICTIONS",
+        "title": {
+          "zh": "ArkTS 其他常见语法限制汇总",
+          "en": "ArkTS 其他常见语法限制汇总"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkTS 是静态强类型语言，比标准 TypeScript 严格得多。移植时需注意：",
+          "en": "ArkTS 是静态强类型语言，比标准 TypeScript 严格得多。移植时需注意："
+        },
+        "file": "knowledge/pitfalls/PIT-007-arkts-misc-syntax-restrictions.md"
+      },
+      {
+        "id": "PIT-008-ARKTS-OBJECT-LITERAL-MUST-MATCH-INTERFACE",
+        "title": {
+          "zh": "ArkTS 对象字面量必须匹配已声明的接口",
+          "en": "ArkTS 对象字面量必须匹配已声明的接口"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkTS 要求所有对象字面量都必须有对应的具名类型（interface 或 class）。遇到需要传递结构化数据的场景，先声明 interface，再创...",
+          "en": "ArkTS 要求所有对象字面量都必须有对应的具名类型（ interface 或 class ）。遇到需要传递结构化数据的场景，先声明 interface ，再创..."
+        },
+        "file": "knowledge/pitfalls/PIT-008-arkts-object-literal-must-match-interface.md"
+      },
+      {
+        "id": "PIT-009-ARKTS-GENERIC-TYPE-INFERENCE-LIMITED",
+        "title": {
+          "zh": "ArkTS 泛型函数调用必须显式指定类型参数",
+          "en": "ArkTS 泛型函数调用必须显式指定类型参数"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "调用泛型函数时，始终显式提供类型参数 `<T>`，不依赖类型推断。特别是当不传数据参数（如事件通知）时，用 `<void>` 明确标注。",
+          "en": "调用泛型函数时，始终显式提供类型参数 `<T>`，不依赖类型推断。特别是当不传数据参数（如事件通知）时，用 `<void>` 明确标注。"
+        },
+        "file": "knowledge/pitfalls/PIT-009-arkts-generic-type-inference-limited.md"
+      },
+      {
+        "id": "PIT-010-CONTEXT-TYPE-FOR-BACKGROUND-TASK",
+        "title": {
+          "zh": "后台任务需要 UIAbilityContext，不能用通用 Context",
+          "en": "后台任务需要 UIAbilityContext ，不能用通用 Context"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 的 Context 体系比 Android 更细分。涉及 Ability 信息（bundleName、abilityName）或后台任...",
+          "en": "HarmonyOS 的 Context 体系比 Android 更细分。涉及 Ability 信息（ bundleName 、 abilityName ）或后台任..."
+        },
+        "file": "knowledge/pitfalls/PIT-010-context-type-for-background-task.md"
+      },
+      {
+        "id": "PIT-011-BUSINESS-ERROR-NOT-INSTANCEOF-ERROR",
+        "title": {
+          "zh": "HarmonyOS 异常不是标准 Error，instanceof Error 失败",
+          "en": "HarmonyOS 异常不是标准 Error ， instanceof Error 失败"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 的异常体系与标准 JS/TS 不同。所有 catch 块都应同时处理 `Error`（用户代码抛出）和 `BusinessError`...",
+          "en": "HarmonyOS 的异常体系与标准 JS/TS 不同。所有 catch 块都应同时处理 `Error`（用户代码抛出）和 `BusinessError`..."
+        },
+        "file": "knowledge/pitfalls/PIT-011-business-error-not-instanceof-error.md"
+      },
+      {
+        "id": "PIT-012-DATABASE-MUST-INIT-IN-ENTRYABILITY",
+        "title": {
+          "zh": "数据库和偏好设置必须在 EntryAbility 启动时初始化",
+          "en": "Database 和 Preferences 必须在 EntryAbility 启动时初始化"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 没有全局 Application 生命周期。所有需要 Context 的单例服务（数据库、偏好、通知等）必须在 `EntryAbili...",
+          "en": "HarmonyOS 没有全局 Application 生命周期。所有需要 Context 的单例服务（ Database 、偏好、通知等）必须在 `EntryAbili..."
+        },
+        "file": "knowledge/pitfalls/PIT-012-database-must-init-in-entryability.md"
+      },
+      {
+        "id": "PIT-013-TAB-COMPONENT-NO-RELOAD-ON-SWITCH",
+        "title": {
+          "zh": "Tab 页组件切回时不会重新执行 aboutToAppear",
+          "en": "Tab 页组件切回时不会重新执 lines aboutToAppear"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS Tabs 中的组件是\"常驻\"的（类似 Android ViewPager + BEHAVIOR_RESUME_ONLY_CURRENT...",
+          "en": "HarmonyOS Tabs 中的组件是\"常驻\"的（类似 Android ViewPager + BEHAVIOR_RESUME_ONLY_CURRENT..."
+        },
+        "file": "knowledge/pitfalls/PIT-013-tab-component-no-reload-on-switch.md"
+      },
+      {
+        "id": "PIT-014-EVENTBUS-CALLBACK-TYPE-MUST-MATCH",
+        "title": {
+          "zh": "EventBus 回调函数类型必须与泛型参数严格匹配",
+          "en": "EventBus 回调函数类型必须与泛型参数严格匹配"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkTS 不支持 TypeScript 中常见的\"鸭子类型\"兼容。回调函数的参数类型必须精确匹配泛型声明。即使回调体内不使用参数，签名也必须一致。每种事...",
+          "en": "ArkTS 不 Support TypeScript 中常见的\"鸭子类型\"兼容。回调函数的参数类型必须精确匹配泛型声明。即使回调体内不使用参数，签名也必须一致。每种事..."
+        },
+        "file": "knowledge/pitfalls/PIT-014-eventbus-callback-type-must-match.md"
+      },
+      {
+        "id": "PIT-015-ASYNC-INIT-MUST-COMPLETE-BEFORE-LOADCONTENT",
+        "title": {
+          "zh": "异步初始化必须在 loadContent 之前完成",
+          "en": "异 Steps 初始化必须在 loadContent 之前完成"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 的数据库、偏好设置等服务初始化都是异步的。必须确保所有依赖服务初始化完成后再加载 UI 页面。推荐在 `onWindowStageCr...",
+          "en": "HarmonyOS 的 Database 、 Preferences 等服务初始化都是异 Steps 的。必须确保所有依赖服务初始化完成后再加载 UI 页面。推荐在 `onWindowStageCr..."
+        },
+        "file": "knowledge/pitfalls/PIT-015-async-init-must-complete-before-loadcontent.md"
+      },
+      {
+        "id": "PIT-016-FOREACH-KEY-MUST-INCLUDE-MUTABLE-STATE",
+        "title": {
+          "zh": "ForEach 的 key 必须包含可变状态，否则不重渲染",
+          "en": "ForEach 的 key 必须 Including 可变状态，否则不重渲染"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ForEach 的 key 函数必须反映所有影响 UI 显示的可变状态。key 变化 = 组件重建。如果 item 有多个影响显示的属性（播放状态、收藏、...",
+          "en": "ForEach 的 key 函数必须反映所有影响 UI 显示的可变状态。 key 变化 = 组件重建。如果 item 有多影响显示的属性（播放状态、 Favorites 、..."
+        },
+        "file": "knowledge/pitfalls/PIT-016-foreach-key-must-include-mutable-state.md"
+      },
+      {
+        "id": "PIT-017-APPSCOPE-ICON-VS-ENTRY-ICON",
+        "title": {
+          "zh": "桌面图标在 AppScope 而非 entry 模块",
+          "en": "桌面图标在 AppScope 而非 entry 模块"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 的资源文件分布在 AppScope（全局）和各模块（entry/HSP）两层。全局配置（应用名、图标、版本）在 AppScope，模块...",
+          "en": "HarmonyOS 的资源 File 分布在 AppScope （全局）和各模块（ entry/HSP ）两层。全局配置（应用名、图标、版本）在 AppScope ，模块..."
+        },
+        "file": "knowledge/pitfalls/PIT-017-appscope-icon-vs-entry-icon.md"
+      },
+      {
+        "id": "PIT-018-FORMEXTENSIONABILITY-IMPORT-FROM-FORMKIT",
+        "title": {
+          "zh": "FormExtensionAbility 从 @kit.FormKit 导入，不是 @kit.AbilityKit",
+          "en": "FormExtensionAbility From @kit.FormKit 导入，不是 @kit.AbilityKit"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 的 Kit 分包比 Android 更细粒度。不要假设同类 API 在同一个 Kit 中。遇到 \"not exported from ...",
+          "en": "HarmonyOS 的 Kit 分包比 Android 更细粒度。不要假设同类 API 在同一 Kit 中。遇到 \"not exported from ..."
+        },
+        "file": "knowledge/pitfalls/PIT-018-formextensionability-import-from-formkit.md"
+      },
+      {
+        "id": "PIT-018-NOTIFICATION-COLD-VS-HOT-START",
+        "title": {
+          "zh": "通知点击跳转需同时处理冷启动和热启动",
+          "en": "通知 ClickNavigate 需同时处理冷启动和热启动"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到\"通知/DeepLink 点击跳转\"场景时，必须同时处理 `onCreate`（冷启动）和 `onNewWant`（热启动）两条路径。冷启动时页面未就...",
+          "en": "遇到\"通知/DeepLink ClickNavigate\"场景时，必须同时处理 `onCreate`（冷启动）和 `onNewWant`（热启动）两条路径。冷启动时页面未就..."
+        },
+        "file": "knowledge/pitfalls/PIT-018-notification-cold-vs-hot-start.md"
+      },
+      {
+        "id": "PIT-018-PARALLEL-TASK-CONFLICT",
+        "title": {
+          "zh": "多终端并行开发时需确认任务未被认领",
+          "en": "多终端 Parallel 开发时需确认任务未被认领"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "多终端并行开发时：",
+          "en": "多终端 Parallel 开发时："
+        },
+        "file": "knowledge/pitfalls/PIT-018-parallel-task-conflict.md"
+      },
+      {
+        "id": "PIT-019-ASYNC-ONCLICK-SILENT-FAILURE",
+        "title": {
+          "zh": "onClick 中调用 async 方法可能静默失败",
+          "en": "onClick 中调用 async 方法可能静默失败"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "所有 onClick 中的 async 调用都应该：",
+          "en": "所有 onClick 中的 async 调用都应该："
+        },
+        "file": "knowledge/pitfalls/PIT-019-async-onclick-silent-failure.md"
+      },
+      {
+        "id": "PIT-019-GESTURE-VS-ONCLICK-PRIORITY",
+        "title": {
+          "zh": "自定义手势与 onClick 冲突",
+          "en": "自定义 Gesture 与 onClick 冲突"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 ArkUI 中，**同一组件上需要多种手势交互时，绝对不要同时使用 `.onClick()` 和 `.gesture()`**。应根据场景选择：",
+          "en": "在 ArkUI 中，**同一组件上需要多种 Gesture 交互时，绝对不要同时使用 `.onClick()` 和 `.gesture()`**。应根据场景选择："
+        },
+        "file": "knowledge/pitfalls/PIT-019-gesture-vs-onclick-priority.md"
+      },
+      {
+        "id": "PIT-020-NULL-MEDIA-BUTTON-SILENT-FAIL",
+        "title": {
+          "zh": "media 为 null 时操作按钮静默失败",
+          "en": "media 为 null 时操作按钮静默失败"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到\"按钮点击无反应\"类 bug 时，优先检查 onClick 内部是否所有 if/else 分支都有覆盖。ArkUI 中操作按钮应与数据可用性绑定渲染，...",
+          "en": "遇到\"按钮 Click 无反应\"类 bug 时，优先检查 onClick 内部是否所有 if/else 分支都有覆盖。 ArkUI 中操作按钮应与数据可用性绑定渲染，..."
+        },
+        "file": "knowledge/pitfalls/PIT-020-null-media-button-silent-fail.md"
+      },
+      {
+        "id": "PIT-020-XMLPULLPARSER-ATTRIBUTE-CALLBACK-ORDER",
+        "title": {
+          "zh": "XmlPullParser 属性回调在 START_TAG 之后触发，必须延迟处理",
+          "en": "XmlPullParser 属性回调在 START_TAG 之后触发，必须延迟处理"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS XmlPullParser 的属性回调是\"异步\"的——不在 START_TAG 事件中同步提供。任何依赖 XML 属性的解析逻辑都必须...",
+          "en": "HarmonyOS XmlPullParser 的属性回调是\"异 Steps\"的——不在 START_TAG 事件中同 Steps 提供。任何依赖 XML 属性的解析逻辑都必须..."
+        },
+        "file": "knowledge/pitfalls/PIT-020-xmlpullparser-attribute-callback-order.md"
+      },
+      {
+        "id": "PIT-021-AVPLAYER-MUST-WAIT-STATE-BEFORE-OPERATION",
+        "title": {
+          "zh": "AVPlayer 状态等待的竞态条件（waitForState 陷阱）",
+          "en": "AVPlayer 状态等待的竞态条件（ waitForState 陷阱）"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS AVPlayer 的状态等待分两种情况：",
+          "en": "HarmonyOS AVPlayer 的状态等待分两种情况："
+        },
+        "file": "knowledge/pitfalls/PIT-021-avplayer-must-wait-state-before-operation.md"
+      },
+      {
+        "id": "PIT-021-HOMEPAGE-QUEUE-WRONG-VARIABLE-CAPTURE",
+        "title": {
+          "zh": "ForEach 闭包中误用外层 @State 变量代替循环变量",
+          "en": "ForEach 闭包中误用外层 @State 变量代替循环变量"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 ForEach 闭包中编写回调时，始终检查引用的是循环变量（`item`）还是外层组件的 `this.xxx`。复制粘贴\"继续播放\"区代码到\"队列\"区...",
+          "en": "在 ForEach 闭包中编写回调时，始终检查引用的是循环变量（`item`）还是外层组件的 `this.xxx`。 Copy 粘贴\"继续播放\"区代码到\"队列\"区..."
+        },
+        "file": "knowledge/pitfalls/PIT-021-homepage-queue-wrong-variable-capture.md"
+      },
+      {
+        "id": "PIT-022-WIDGET-BUTTON-NO-ONCLICK",
+        "title": {
+          "zh": "Widget 卡片按钮缺少 onClick + postCardAction 导致点击无效",
+          "en": "Widget 卡片按钮缺少 onClick + postCardAction 导致 Click 无效"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "Widget 卡片中每个交互按钮必须有 `postCardAction` 调用。只写 Button 不写 onClick 在 Widget 中等于装饰品。...",
+          "en": "Widget 卡片中每交互按钮必须有 `postCardAction` 调用。只写 Button 不写 onClick 在 Widget 中等于装饰品。..."
+        },
+        "file": "knowledge/pitfalls/PIT-022-widget-button-no-onclick.md"
+      },
+      {
+        "id": "PIT-023-PLAYMEDIA-EMPTY-URL-SILENT-FAIL",
+        "title": {
+          "zh": "playMedia 空 URL 静默失败 — 必须校验并打日志",
+          "en": "playMedia 空 URL 静默失败 — 必须校验并打日志"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "所有异步播放链路的关键节点（setDataSource / prepare / play）都需要日志 + 空值校验。async 方法在 UI onClic...",
+          "en": "所有异 Steps 播放链路的关键节点（ setDataSource / prepare / play ）都需要日志 + 空值校验。 async 方法在 UI onClic..."
+        },
+        "file": "knowledge/pitfalls/PIT-023-playmedia-empty-url-silent-fail.md"
+      },
+      {
+        "id": "PIT-024-MISSING-IMPORT-AFTER-ADDING-API-CALL",
+        "title": {
+          "zh": "添加 API 调用后忘记补 import 导致编译失败",
+          "en": "添加 API 调用后忘记补 import 导致编译失败"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "每次在文件中新增外部 API 调用时，必须同时检查 import 行。多人/多终端协作时，修改者可能不了解文件原有的 import 状态，应在保存前确认所...",
+          "en": "每次在 File 中 Added 外部 API 调用时，必须同时检查 import lines 。多人/多终端协作时，修改者可能不了解 File 原有的 import 状态，应在保存前确认所..."
+        },
+        "file": "knowledge/pitfalls/PIT-024-missing-import-after-adding-api-call.md"
+      },
+      {
+        "id": "PIT-025-MENUITEM-NO-FONTCOLOR",
+        "title": {
+          "zh": "MenuItem 不支持 .fontColor 属性",
+          "en": "MenuItem 不 Support .fontColor 属性"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkUI 各组件支持的链式属性不完全一致。`MenuItem`、`TabContent` 等容器型组件的样式自定义能力有限。遇到 \"Property d...",
+          "en": "ArkUI 各组件 Support 的链式属性不完全一致。`MenuItem`、`TabContent` 等容器型组件的样式自定义能力有限。遇到 \"Property d..."
+        },
+        "file": "knowledge/pitfalls/PIT-025-menuitem-no-fontcolor.md"
+      },
+      {
+        "id": "PIT-026-DOWNLOAD-COMPLETE-NO-UI-REFRESH",
+        "title": {
+          "zh": "下载完成后列表按钮状态不更新",
+          "en": "下载完成后列表按钮状态不更新"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "异步操作（下载/上传/同步）完成后，内存中的数据对象与数据库不同步。不能只依赖中间进度事件（`DOWNLOAD_PROGRESS`）做 UI 更新——必须...",
+          "en": "异 Steps 操作（下载/上传/同 Steps ）完成后，内存中的数据对象与 Database 不同 Steps 。不能只依赖中间进度事件（`DOWNLOAD_PROGRESS`）做 UI 更新——必须..."
+        },
+        "file": "knowledge/pitfalls/PIT-026-download-complete-no-ui-refresh.md"
+      },
+      {
+        "id": "PIT-027-AVPLAYER-RESET-FAIL-NEED-RECREATE",
+        "title": {
+          "zh": "AVPlayer reset() 失败时必须重建实例",
+          "en": "AVPlayer reset() 失败时必须重建实例"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到有状态机的系统组件（AVPlayer、数据库连接、Socket 等），`reset()` 类方法本身也可能失败。必须有\"释放旧实例 + 创建新实例\"的...",
+          "en": "遇到有状态机的系统组件（ AVPlayer 、 Database 连接、 Socket 等），`reset()` 类方法本身也可能失败。必须有\"释放旧实例 + 创建新实例\"的..."
+        },
+        "file": "knowledge/pitfalls/PIT-027-avplayer-reset-fail-need-recreate.md"
+      },
+      {
+        "id": "PIT-027-FOREACH-KEY-GLOBAL-COUNTER-CAUSES-FLICKER",
+        "title": {
+          "zh": "ForEach key 中放全局计数器导致全部列表项闪烁",
+          "en": "ForEach key 中放全局计数器导致全部列表项闪烁"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ForEach 的 key 函数是 ArkUI 性能的关键：",
+          "en": "ForEach 的 key 函数是 ArkUI 性能的关键："
+        },
+        "file": "knowledge/pitfalls/PIT-027-foreach-key-global-counter-causes-flicker.md"
+      },
+      {
+        "id": "PIT-028-HARDCODED-COLORS-ACROSS-FILES",
+        "title": {
+          "zh": "颜色值硬编码分散在 20+ 文件中，全局替换困难",
+          "en": "颜色值硬编码分散在 20+ File 中，全局替换困难"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "**颜色值永远不要硬编码**。从项目第一天就建立 Design Token 系统：",
+          "en": "**颜色值永远不要硬编码**。 From 项目第一天就建立 Design Token 系统："
+        },
+        "file": "knowledge/pitfalls/PIT-028-hardcoded-colors-across-files.md"
+      },
+      {
+        "id": "PIT-029-SYMBOLGLYPH-RESOURCE-NAMES-NOT-UNIVERSAL",
+        "title": {
+          "zh": "SymbolGlyph 系统符号名称不通用，必须查 SDK 实际支持列表",
+          "en": "SymbolGlyph 系统符号名称不通用，必须查 SDK 实际 Support 列表"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "1. **SymbolGlyph 名称用下划线**，不用点（`music_note_list` 不是 `music.note.list`）",
+          "en": "1. **SymbolGlyph 名称用下划线**，不用点（`music_note_list` 不是 `music.note.list`）"
+        },
+        "file": "knowledge/pitfalls/PIT-029-symbolglyph-resource-names-not-universal.md"
+      },
+      {
+        "id": "PIT-030-EVENTBUS-DATA-STRUCTURE-MISMATCH",
+        "title": {
+          "zh": "EventBus 事件数据结构不匹配导致编译失败",
+          "en": "EventBus 事件数据结构不匹配导致编译失败"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "1. EventBus 事件的数据接口定义在 `common` 模块中，修改前先 Read 确认实际结构",
+          "en": "1. EventBus 事件的数据接口定义在 `common` 模块中，修改前先 Read 确认实际结构"
+        },
+        "file": "knowledge/pitfalls/PIT-030-eventbus-data-structure-mismatch.md"
+      },
+      {
+        "id": "PIT-031-HTTP-DOWNLOAD-MUST-USE-ARRAYBUFFER",
+        "title": {
+          "zh": "HTTP 下载二进制文件必须指定 expectDataType: ARRAY_BUFFER",
+          "en": "HTTP 下载二进制 File 必须指定 expectDataType: ARRAY_BUFFER"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 HarmonyOS 中下载任何非文本文件（音频/视频/图片/ZIP 等），**必须**设置 `expectDataType: http.HttpDat...",
+          "en": "在 HarmonyOS 中下载任何非文本 File （音频/视频/图片/ZIP 等），**必须**Settings `expectDataType: http.HttpDat..."
+        },
+        "file": "knowledge/pitfalls/PIT-031-http-download-must-use-arraybuffer.md"
+      },
+      {
+        "id": "PIT-032-SYMBOLGLYPH-FONTCOLOR-MUST-BE-ARRAY",
+        "title": {
+          "zh": "SymbolGlyph 的 fontColor 必须传数组，且不能直接设 width/height",
+          "en": "SymbolGlyph 的 fontColor 必须传数组，且不能直接设 width/height"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 HarmonyOS UI 中，**任何需要固定点击区域或对齐图标的场景**，都应该用 `Stack` 包裹 `SymbolGlyph`，而不是直接给 ...",
+          "en": "在 HarmonyOS UI 中，**任何需要固定 Click 区域或对齐图标的场景**，都应该用 `Stack` 包裹 `SymbolGlyph`，而不是直接给 ..."
+        },
+        "file": "knowledge/pitfalls/PIT-032-symbolglyph-fontcolor-must-be-array.md"
+      },
+      {
+        "id": "PIT-033-STATE-MAP-INPLACE-MUTATION-NO-RERENDER",
+        "title": {
+          "zh": "@State Map/Set 就地修改不触发重渲染，必须重新赋值",
+          "en": "@State Map/Set 就地修改不触发重渲染，必须重新赋值"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "**凡是 @State 的 Map/Set/复杂对象，改完必须重新赋值**。可以封装成工具方法：",
+          "en": "**凡是 @State 的 Map/Set/复杂对象，改完必须重新赋值**。可以封装成 Utils 方法："
+        },
+        "file": "knowledge/pitfalls/PIT-033-state-map-inplace-mutation-no-rerender.md"
+      },
+      {
+        "id": "PIT-034-STACK-NO-JUSTIFYCONTENT",
+        "title": {
+          "zh": "Stack 组件没有 justifyContent 属性，必须用 alignContent 构造参数",
+          "en": "Stack 组件没有 justifyContent 属性，必须用 alignContent 构造参数"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到\"需要在 Stack 中居中子组件\"的场景时，Android 用 `Gravity.CENTER`，HarmonyOS 应该用 `Stack({ al...",
+          "en": "遇到\"需要在 Stack 中居中子组件\"的场景时， Android 用 `Gravity.CENTER`， HarmonyOS 应该用 `Stack({ al..."
+        },
+        "file": "knowledge/pitfalls/PIT-034-stack-no-justifycontent.md"
+      },
+      {
+        "id": "PIT-035-BUILDER-NO-VARIABLE-DECLARATION",
+        "title": {
+          "zh": "@Builder 方法的条件分支内不能声明局部变量",
+          "en": "@Builder 方法的条件分支内不能声明局部变量"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 `@Builder` 方法中，条件分支（if/else）内只能写 UI 组件。需要临时变量时，要么内联表达式，要么提取为类的方法/计算属性，要么放到事...",
+          "en": "在 `@Builder` 方法中，条件分支（ if/else ）内只能写 UI 组件。需要临时变量时，要么内联表达式，要么提取为类的方法/计算属性，要么放到事..."
+        },
+        "file": "knowledge/pitfalls/PIT-035-builder-no-variable-declaration.md"
+      },
+      {
+        "id": "PIT-036-HVIGOR-DAEMON-SDK-JAVA-ENV",
+        "title": {
+          "zh": "hvigor daemon 从 CLI 启动时丢失 SDK/Java 环境变量",
+          "en": "hvigor daemon From CLI 启动时丢失 SDK/Java 环境变量"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "不要随意停止 hvigor daemon（`--stop-daemon`），因为从 DevEco Studio 启动的 daemon 带有完整的环境变量。...",
+          "en": "不要随意停止 hvigor daemon （`--stop-daemon`），因为 From DevEco Studio 启动的 daemon 带有完整的环境变量。..."
+        },
+        "file": "knowledge/pitfalls/PIT-036-hvigor-daemon-sdk-java-env.md"
+      },
+      {
+        "id": "PIT-037-ITUNES-API-JSON-INDEXED-KEYS",
+        "title": {
+          "zh": "iTunes API 返回带冒号的 JSON 键名，ArkTS 不支持 indexed access",
+          "en": "iTunes API Return 带冒号的 JSON 键名， ArkTS 不 Support indexed access"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "当第三方 API 返回的 JSON 包含 ArkTS 不支持的键名（含特殊字符如冒号、点、连字符等）时，在 `JSON.parse()` 之前用 `.re...",
+          "en": "当第三方 API Return 的 JSON Including ArkTS 不 Support 的键名（含特殊字符如冒号、点、连字符等）时，在 `JSON.parse()` 之前用 `.re..."
+        },
+        "file": "knowledge/pitfalls/PIT-037-itunes-api-json-indexed-keys.md"
+      },
+      {
+        "id": "PIT-038-BINDMENU-VS-BINDSHEET-CHOICE",
+        "title": {
+          "zh": "bindMenu vs bindSheet 选择 — 轻量菜单 vs 复杂弹窗",
+          "en": "bindMenu vs bindSheet 选择 — 轻量菜单 vs 复杂弹窗"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "简单纯文字菜单用 `bindMenu`，需要自定义 UI 的弹窗用 `bindSheet`，长按用 `bindContextMenu`。**不要**试图在...",
+          "en": "简单纯文字菜单用 `bindMenu`，需要自定义 UI 的弹窗用 `bindSheet`，长按用 `bindContextMenu`。**不要**试图在..."
+        },
+        "file": "knowledge/pitfalls/PIT-038-bindmenu-vs-bindsheet-choice.md"
+      },
+      {
+        "id": "PIT-038-ONFOREGROUND-BEFORE-ASYNC-INIT",
+        "title": {
+          "zh": "onForeground 在异步初始化完成前就被调用，导致崩溃",
+          "en": "onForeground 在异 Steps 初始化完成前就被调用，导致崩溃"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 `onForeground` / `onBackground` 等生命周期回调中，如果依赖异步初始化的服务（数据库、偏好设置等），必须先检查初始化是否...",
+          "en": "在 `onForeground` / `onBackground` 等生命周期回调中，如果依赖异 Steps 初始化的服务（ Database 、 Preferences 等），必须先检查初始化是否..."
+        },
+        "file": "knowledge/pitfalls/PIT-038-onforeground-before-async-init.md"
+      },
+      {
+        "id": "PIT-038-PREFERENCES-MUST-FLUSH-AFTER-PUT",
+        "title": {
+          "zh": "Preferences put 后必须 flush，否则重启丢失",
+          "en": "Preferences put 后必须 flush ，否则重启丢失"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS `Preferences` 的 `put()` 等价于 Android `SharedPreferences.Editor` 的 `p...",
+          "en": "HarmonyOS `Preferences` 的 `put()` 等价于 Android `SharedPreferences.Editor` 的 `p..."
+        },
+        "file": "knowledge/pitfalls/PIT-038-preferences-must-flush-after-put.md"
+      },
+      {
+        "id": "PIT-039-AVPLAYER-RESET-PROMISE-NEVER-RESOLVES",
+        "title": {
+          "zh": "AVPlayer.reset() 的 Promise 可能永不 resolve，导致 UI 卡死",
+          "en": "AVPlayer.reset() 的 Promise 可能永不 resolve ，导致 UI 卡死"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "1. **永远不要裸 await 系统 API 的 Promise** — 必须用 `Promise.race` 加超时上限",
+          "en": "1. **永远不要裸 await 系统 API 的 Promise** — 必须用 `Promise.race` 加超时上限"
+        },
+        "file": "knowledge/pitfalls/PIT-039-avplayer-reset-promise-never-resolves.md"
+      },
+      {
+        "id": "PIT-039-LISTITEM-LONGPRESS-BLOCKED-BY-CHILD-ONCLICK",
+        "title": {
+          "zh": "ListItem 长按被子组件 onClick 和 swipeAction 双重拦截",
+          "en": "ListItem 长按被子组件 onClick 和 swipeAction 双重拦截"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkUI 中，当 ListItem/GridItem 需要同时支持\"短按导航 + 长按菜单 + 左右滑动操作\"三种交互时：",
+          "en": "ArkUI 中，当 ListItem/GridItem 需要同时 Support\"短按 Navigation + 长按菜单 + Left/Right Swipe 操作\"三种交互时："
+        },
+        "file": "knowledge/pitfalls/PIT-039-listitem-longpress-blocked-by-child-onclick.md"
+      },
+      {
+        "id": "PIT-039-MULTIPLE-BINDSHEET-CONFLICT",
+        "title": {
+          "zh": "一个组件链式绑多个 bindSheet 会互相覆盖，只有最后一个生效",
+          "en": "一组件链式绑多 bindSheet 会互相覆盖，只有最后一生效"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到\"一个页面需要多个底部弹窗\"的场景时，Android 可以自由创建多个独立 Dialog/BottomSheet，HarmonyOS 必须合并为一个 ...",
+          "en": "遇到\"一页面需要多底部弹窗\"的场景时， Android 可以自由创建多独立 Dialog/BottomSheet ， HarmonyOS 必须合并为一 ..."
+        },
+        "file": "knowledge/pitfalls/PIT-039-multiple-bindsheet-conflict.md"
+      },
+      {
+        "id": "PIT-040-SKIP-UNDOWNLOADED-EPISODE-CRASH",
+        "title": {
+          "zh": "skip() 跳到未下载剧集时传 stream=false 导致播放失败",
+          "en": "skip() 跳到未下载剧集时传 stream=false 导致播放失败"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "调用 `playMedia(media, feedId, stream)` 时，**不能盲目传 `stream = false`**。必须先检查 `med...",
+          "en": "调用 `playMedia(media, feedId, stream)` 时，**不能盲目传 `stream = false`**。必须先检查 `med..."
+        },
+        "file": "knowledge/pitfalls/PIT-040-skip-undownloaded-episode-crash.md"
+      },
+      {
+        "id": "PIT-041-HTTP-REQUEST-LOADS-ENTIRE-RESPONSE-TO-MEMORY",
+        "title": {
+          "zh": "http.request() 将整个响应加载到内存，大文件必须用流式 API",
+          "en": "http.request() 将整响应加载到内存，大 File 必须用流式 API"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "下载 50MB+ 的播客音频文件时：",
+          "en": "下载 50MB+ 的播客音频 File 时："
+        },
+        "file": "knowledge/pitfalls/PIT-041-http-request-loads-entire-response-to-memory.md"
+      },
+      {
+        "id": "PIT-042-ROUTER-PUSHURL-BREAKS-PLAYBACK-CONTINUITY",
+        "title": {
+          "zh": "router.pushUrl 页面跳转打断播放连续性，应用 bindSheet",
+          "en": "router.pushUrl 页面 Navigate 打断播放连续性，应用 bindSheet"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "MiniPlayer 正在播放时，点击 MiniPlayer 进入全屏播放器后：",
+          "en": "MiniPlayer 正在播放时， Click MiniPlayer 进入全屏播放器后："
+        },
+        "file": "knowledge/pitfalls/PIT-042-router-pushurl-breaks-playback-continuity.md"
+      },
+      {
+        "id": "PIT-043-DOWNLOAD-ERROR-SILENTLY-SWALLOWED",
+        "title": {
+          "zh": "下载失败静默吞掉异常，用户无任何反馈",
+          "en": "下载失败静默吞掉异常，用户无任何反馈"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "下载大文件超时或网络断开后：",
+          "en": "下载大 File 超时或网络断开后："
+        },
+        "file": "knowledge/pitfalls/PIT-043-download-error-silently-swallowed.md"
+      },
+      {
+        "id": "PIT-044-ENTRY-BUILD-MUST-HAVE-CONTAINER-ROOT",
+        "title": {
+          "zh": "@Entry 组件的 build 根节点必须是容器组件",
+          "en": "@Entry 组件的 build 根节点必须是容器组件"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 ArkUI 中，`@Entry` 页面的 `build()` 根节点必须是系统容器组件。将可复用逻辑抽成 `@Component` 后，在 `@Ent...",
+          "en": "在 ArkUI 中，`@Entry` 页面的 `build()` 根节点必须是系统容器组件。将可复用逻辑抽成 `@Component` 后，在 `@Ent..."
+        },
+        "file": "knowledge/pitfalls/PIT-044-entry-build-must-have-container-root.md"
+      },
+      {
+        "id": "PIT-045-DOWNLOAD-HANGS-NO-TIMEOUT-NO-STALL-DETECTION",
+        "title": {
+          "zh": "流式下载挂起 — 无整体超时、无停滞检测、无后台保活",
+          "en": "流式下载挂起 — 无整体超时、无停滞检测、无后台保活"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "流式下载必须同时具备三层超时保护：",
+          "en": "流式下载必须同时具备三层超时保护："
+        },
+        "file": "knowledge/pitfalls/PIT-045-download-hangs-no-timeout-no-stall-detection.md"
+      },
+      {
+        "id": "PIT-045-GESTURE-SYSTEM-FAILS-IN-SCROLLABLE-CONTAINERS",
+        "title": {
+          "zh": "ArkUI 手势系统在可滚动容器内全面失效",
+          "en": "ArkUI Gesture 系统在可滚动容器内全面失效"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 ArkUI 中，**可滚动容器内的长按交互不要使用手势系统（LongPressGesture）**：",
+          "en": "在 ArkUI 中，**可滚动容器内的长按交互不要使用 Gesture 系统（ LongPressGesture ）**："
+        },
+        "file": "knowledge/pitfalls/PIT-045-gesture-system-fails-in-scrollable-containers.md"
+      },
+      {
+        "id": "PIT-046-PROGRESS-RING-ANIMATION-CAUSES-FLASH",
+        "title": {
+          "zh": "Progress 环形组件动画导致已下载项闪烁",
+          "en": "Progress 环形组件动画导致已下载项闪烁"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "当 Progress 组件的 value 会因为异步数据加载而从默认值跳变到目标值时，",
+          "en": "当 Progress 组件的 value 会因为异 Steps 数据加载而 From 默认值跳变到目标值时，"
+        },
+        "file": "knowledge/pitfalls/PIT-046-progress-ring-animation-causes-flash.md"
+      }
+    ],
+    "patterns": [
+      {
+        "id": "PAT-001-SERIAL-WRITE-QUEUE",
+        "title": {
+          "zh": "数据库串行写队列模式",
+          "en": "Database 串 lines 写队列模式"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "Android 中 DBWriter 使用单线程 `ExecutorService` 保证数据库写操作串行执行，防止并发写入导致数据损坏。HarmonyO...",
+          "en": "Android 中 DBWriter 使用单线程 `ExecutorService` 保证 Database 写操作串 lines 执 lines ，防止并发写入导致数据损坏。 HarmonyO..."
+        },
+        "file": "knowledge/patterns/PAT-001-serial-write-queue.md"
+      },
+      {
+        "id": "PAT-002-IMMEDIATE-UI-UPDATE-PATTERN",
+        "title": {
+          "zh": "操作后即时 UI 更新模式",
+          "en": "操作后即时 UI 更新模式"
+        },
+        "domain": "",
+        "summary": "",
+        "file": "knowledge/patterns/PAT-002-immediate-ui-update-pattern.md"
+      },
+      {
+        "id": "PAT-003-TOAST-FEEDBACK-FOR-USER-ACTIONS",
+        "title": {
+          "zh": "用户操作后的 Toast 反馈模式",
+          "en": "用户操作后的 Toast 反馈模式"
+        },
+        "domain": "",
+        "summary": "",
+        "file": "knowledge/patterns/PAT-003-toast-feedback-for-user-actions.md"
+      },
+      {
+        "id": "PAT-004-I18N-RESOURCE-IN-BUILDER",
+        "title": {
+          "zh": "Builder 方法参数需声明 string | Resource 才能接受 $r()",
+          "en": "Builder 方法参数需声明 string | Resource 才能接受 $r()"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到自定义组件/Builder 接收文本参数的场景，Android 可以直接用 `getString()` 返回 String，HarmonyOS 应将参...",
+          "en": "遇到自定义组件/Builder 接收文本参数的场景， Android 可以直接用 `getString()` Return String ， HarmonyOS 应将参..."
+        },
+        "file": "knowledge/patterns/PAT-004-i18n-resource-in-builder.md"
+      },
+      {
+        "id": "PAT-004-LIST-ITEM-BUTTON-LAYOUT",
+        "title": {
+          "zh": "列表项操作按钮布局——横排精简 + 详情页承载完整操作",
+          "en": "列表项操作按钮布局——横排精简 + 详情页承载完整操作"
+        },
+        "domain": "",
+        "summary": "",
+        "file": "knowledge/patterns/PAT-004-list-item-button-layout.md"
+      },
+      {
+        "id": "PAT-004-NOTIFICATION-CLICK-WANTAGENT",
+        "title": {
+          "zh": "通知点击跳转使用 WantAgent",
+          "en": "通知 ClickNavigate 使用 WantAgent"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到\"通知点击跳转\"场景时，Android 用 PendingIntent，HarmonyOS 应该用 WantAgent + Want paramete...",
+          "en": "遇到\"通知 ClickNavigate\"场景时， Android 用 PendingIntent ， HarmonyOS 应该用 WantAgent + Want paramete..."
+        },
+        "file": "knowledge/patterns/PAT-004-notification-click-wantagent.md"
+      },
+      {
+        "id": "PAT-005-CROSS-HSP-EVENT-BRIDGE",
+        "title": {
+          "zh": "跨 HSP 模块通信用 EventBus 桥接",
+          "en": "跨 HSP 模块通信用 EventBus 桥接"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到\"底层模块需要触发上层模块逻辑\"的场景时，Android 可以用广播或回调，HarmonyOS 应该用 common 层 EventBus 桥接，因为...",
+          "en": "遇到\"底层模块需要触发上层模块逻辑\"的场景时， Android 可以用广播或回调， HarmonyOS 应该用 common 层 EventBus 桥接，因为..."
+        },
+        "file": "knowledge/patterns/PAT-005-cross-hsp-event-bridge.md"
+      },
+      {
+        "id": "PAT-005-DOWNLOAD-LIFECYCLE-EVENT-DRIVEN",
+        "title": {
+          "zh": "下载生命周期的事件驱动刷新模式",
+          "en": "下载生命周期的事件驱动刷新模式"
+        },
+        "domain": "",
+        "summary": "",
+        "file": "knowledge/patterns/PAT-005-download-lifecycle-event-driven.md"
+      },
+      {
+        "id": "PAT-006-CONTEXT-MENU-MAPPING",
+        "title": {
+          "zh": "Android 上下文菜单 → ArkUI bindContextMenu 映射模式",
+          "en": "Android 上下文菜单 → ArkUI bindContextMenu 映射模式"
+        },
+        "domain": {
+          "zh": "ui",
+          "en": "ui"
+        },
+        "summary": {
+          "zh": "Android 中列表项的长按上下文菜单采用 `onCreateContextMenu` 回调 + XML 菜单定义 + `onContextItemSe...",
+          "en": "Android 中列表项的长按上下文菜单采用 `onCreateContextMenu` 回调 + XML 菜单定义 + `onContextItemSe..."
+        },
+        "file": "knowledge/patterns/PAT-006-context-menu-mapping.md"
+      },
+      {
+        "id": "PAT-007-MULTISELECT-MODE-PATTERN",
+        "title": {
+          "zh": "Android ActionMode 多选 → ArkUI 状态驱动多选模式",
+          "en": "Android ActionMode Multi-select → ArkUI 状态驱动 Multi-select 模式"
+        },
+        "domain": {
+          "zh": "ui",
+          "en": "ui"
+        },
+        "summary": {
+          "zh": "Android 使用 `ActionMode`（Contextual Action Bar）实现多选，自带生命周期管理、工具栏替换、浮动菜单。ArkUI ...",
+          "en": "Android 使用 `ActionMode`（ Contextual Action Bar ）实现 Multi-select ，自带生命周期管理、 Utils 栏替换、浮动菜单。 ArkUI ..."
+        },
+        "file": "knowledge/patterns/PAT-007-multiselect-mode-pattern.md"
+      },
+      {
+        "id": "PAT-008-PM-DASHBOARD-LESSONS",
+        "title": {
+          "zh": "PM 看板建设经验总结",
+          "en": "PM 看板建设经验总结"
+        },
+        "domain": {
+          "zh": "{pm} {dashboard} {multi-agent}",
+          "en": "{pm} {dashboard} {multi-agent}"
+        },
+        "summary": {
+          "zh": "多 Agent 并发项目中，**数据一致性**是最大挑战。人工同步多个文件必然出错，必须建立自动化机制。",
+          "en": "多 Agent 并发项目中，**数据一致性**是最大挑战。 Manual 同 Steps 多 File 必然出错，必须建立自动化机制。"
+        },
+        "file": "knowledge/patterns/PAT-008-pm-dashboard-lessons.md"
+      },
+      {
+        "id": "PAT-009-ANDROID-TO-HARMONYOS-UI-MIGRATION-CHECKLIST",
+        "title": {
+          "zh": "Android → HarmonyOS UI 精确复刻的系统方法",
+          "en": "Android → HarmonyOS UI 精确复刻的系统方法"
+        },
+        "domain": "",
+        "summary": "",
+        "file": "knowledge/patterns/PAT-009-android-to-harmonyos-ui-migration-checklist.md"
+      },
+      {
+        "id": "PAT-010-GRID-ADAPTIVE-COVER-LAYOUT",
+        "title": {
+          "zh": "Grid 网格封面自适应列宽 + 多列切换",
+          "en": "Grid Grid 封面自适应列宽 + 多列切换"
+        },
+        "domain": "",
+        "summary": "",
+        "file": "knowledge/patterns/PAT-010-grid-adaptive-cover-layout.md"
+      },
+      {
+        "id": "PAT-011-BINDSHEET-PICKER-PATTERN",
+        "title": {
+          "zh": "bindSheet 做选择器弹窗（替代 AlertDialog 列表）",
+          "en": "bindSheet 做选择器弹窗（替代 AlertDialog 列表）"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到\"弹出列表让用户选择\"的需求时，Android 的 AlertDialog/BottomSheet 统一映射为 HarmonyOS 的 `bindSh...",
+          "en": "遇到\"弹出列表让用户选择\"的需求时， Android 的 AlertDialog/BottomSheet 统一映射为 HarmonyOS 的 `bindSh..."
+        },
+        "file": "knowledge/patterns/PAT-011-bindsheet-picker-pattern.md"
+      },
+      {
+        "id": "PAT-011-FOREACH-DRIVEN-SECTION-ORDER",
+        "title": {
+          "zh": "ForEach 驱动的 Section 自定义排序模式",
+          "en": "ForEach 驱动的 Section 自定义 Sort 模式"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到「页面内多个区块需要用户自定义顺序」场景时，将区块 key 存为 JSON 数组持久化到 Preferences，渲染时用 ForEach + if ...",
+          "en": "遇到「页面内多区块需要用户自定义顺序」场景时，将区块 key 存为 JSON 数组持久化到 Preferences ，渲染时用 ForEach + if ..."
+        },
+        "file": "knowledge/patterns/PAT-011-foreach-driven-section-order.md"
+      },
+      {
+        "id": "PAT-011-STATE-OBJECT-CLONE-FOR-REACTIVITY",
+        "title": {
+          "zh": "@State 对象属性变更必须整体替换才能触发 UI 刷新",
+          "en": "@State 对象属性变更必须整体替换才能触发 UI 刷新"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到\"修改 @State 对象字段后 UI 不更新\"的场景，不能用展开运算符，必须：",
+          "en": "遇到\"修改 @State 对象字段后 UI 不更新\"的场景，不能用展开运算符，必须："
+        },
+        "file": "knowledge/patterns/PAT-011-state-object-clone-for-reactivity.md"
+      },
+      {
+        "id": "PAT-011-STREAMING-DOWNLOAD-WITH-REQUESTINSTREAM",
+        "title": {
+          "zh": "大文件下载使用 requestInStream 流式分块写盘",
+          "en": "大 File 下载使用 requestInStream 流式分块写盘"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "下载播客音频等大文件（50-150MB），需要实时进度、断点续传、内存恒定",
+          "en": "下载播客音频等大 File （50-150MB ），需要实时进度、断点续传、内存恒定"
+        },
+        "file": "knowledge/patterns/PAT-011-streaming-download-with-requestInStream.md"
+      },
+      {
+        "id": "PAT-012-HOMEPAGE-MULTI-SECTION-DATA-LOADING",
+        "title": {
+          "zh": "首页多 Section 数据加载策略",
+          "en": "首页多 Section 数据加载策略"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "首页型\"仪表盘\"页面，将 `loadData()` 拆成独立子函数，EventBus 回调中按事件类型调用对应子函数而非全量刷新，避免不必要的重渲染。",
+          "en": "首页型\"仪表盘\"页面，将 `loadData()` 拆成独立子函数， EventBus 回调中按事件类型调用对应子函数而非全量刷新，避免不必要的重渲染。"
+        },
+        "file": "knowledge/patterns/PAT-012-homepage-multi-section-data-loading.md"
+      },
+      {
+        "id": "PAT-012-PLAYBACK-LOCAL-FILE-VALIDATION",
+        "title": {
+          "zh": "播放前验证本地文件完整性，损坏时自动回退在线播放",
+          "en": "播放前验证本地 File 完整性，损坏时自动回退在线播放"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "用户点击播放已下载的剧集时，本地文件可能不完整（下载中断、磁盘错误等）",
+          "en": "用户 Click 播放已下载的剧集时，本地 File 可能不完整（下载中断、磁盘错误等）"
+        },
+        "file": "knowledge/patterns/PAT-012-playback-local-file-validation.md"
+      },
+      {
+        "id": "PAT-012-QUEUE-LOCK-CONDITIONAL-DISABLE",
+        "title": {
+          "zh": "队列锁定 — 多表面条件禁用模式",
+          "en": "队列锁定 — 多表面条件禁用模式"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "当一个页面有 N 个操作入口需要统一禁用时，用一个 `@State locked: boolean` + Preferences 持久化，在每个操作表面（...",
+          "en": "当一页面有 N 操作入口需要统一禁用时，用一 `@State locked: boolean` + Preferences 持久化，在每操作表面（..."
+        },
+        "file": "knowledge/patterns/PAT-012-queue-lock-conditional-disable.md"
+      },
+      {
+        "id": "PAT-013-GLOBAL-TAG-MANAGEMENT",
+        "title": {
+          "zh": "全局标签管理 — 跨 Feed 批量操作",
+          "en": "全局标签管理 — 跨 Feed 批量操作"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "当数据分散存储在多个实体中（per-feed tags），全局管理页需要 **先收集汇总 → 再批量更新**。写操作要遍历所有相关实体调用 `setFee...",
+          "en": "当数据分散存储在多实体中（ per-feed tags ），全局管理页需要 **先收集汇总 → 再批量更新**。写操作要遍历所有相关实体调用 `setFee..."
+        },
+        "file": "knowledge/patterns/PAT-013-global-tag-management.md"
+      },
+      {
+        "id": "PAT-014-PUBLISH-CYCLE-PREDICTION",
+        "title": {
+          "zh": "发布周期预测 — 基于 pubDate 间隔估算",
+          "en": "发布周期预测 — 基于 pubDate 间隔估算"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "估算周期性内容的发布频率：取最近 N 个日期 → 计算相邻间隔平均值 → 映射为人性化文案。至少需要 3 个数据点才有意义。限制最多取 20 个间隔避免被...",
+          "en": "估算周期性内容的发布频率：取最近 N Date → 计算相邻间隔平均值 → 映射为人性化文案。至少需要 3 数据点才有意义。限制最多取 20 间隔避免被..."
+        },
+        "file": "knowledge/patterns/PAT-014-publish-cycle-prediction.md"
+      },
+      {
+        "id": "PAT-015-ASYNC-OPERATION-CONCURRENCY-GUARD",
+        "title": {
+          "zh": "异步操作并发互斥 — isXxxing 标志位模式",
+          "en": "异 Steps 操作并发互斥 — isXxxing 标志位模式"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 ArkTS 中，凡是从 UI 的 onClick 调用的 async 方法，如果该方法内部会操作共享状态（AVPlayer、数据库连接等），都应该加 ...",
+          "en": "在 ArkTS 中，凡是 From UI 的 onClick 调用的 async 方法，如果该方法内部会操作共享状态（ AVPlayer 、 Database 连接等），都应该加 ..."
+        },
+        "file": "knowledge/patterns/PAT-015-async-operation-concurrency-guard.md"
+      },
+      {
+        "id": "PAT-016-ROUTER-PAGE-TO-BINDSHEET-COMPONENT",
+        "title": {
+          "zh": "Router 页面转 bindSheet 内嵌组件",
+          "en": "Router 页面转 bindSheet 内嵌组件"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "当两个页面需要共享状态（如 AVPlayer 单例）且不希望页面切换导致状态中断时，优先用 bindSheet 替代 router.pushUrl。这是 ...",
+          "en": "当两页面需要共享状态（如 AVPlayer 单例）且不希望页面切换导致状态中断时，优先用 bindSheet 替代 router.pushUrl 。这是 ..."
+        },
+        "file": "knowledge/patterns/PAT-016-router-page-to-bindsheet-component.md"
+      },
+      {
+        "id": "PAT-017-ONTOUCH-LONGPRESS-IN-SCROLLABLE",
+        "title": {
+          "zh": "可滚动容器内的长按检测 — onTouch + setTimeout 方案",
+          "en": "可滚动容器内的长按检测 — onTouch + setTimeout 方案"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "在 List、Scroll、Grid 等可滚动容器内的子组件上需要长按交互（如弹出上下文菜单）。",
+          "en": "在 List 、 Scroll 、 Grid 等可滚动容器内的子组件上需要长按交互（如弹出上下文菜单）。"
+        },
+        "file": "knowledge/patterns/PAT-017-ontouch-longpress-in-scrollable.md"
+      }
+    ],
+    "apiNotes": [
+      {
+        "id": "API-001-AVPLAYER-SPEED-ENUM",
+        "title": {
+          "zh": "AVPlayer 倍速只支持枚举值，不支持任意浮点数",
+          "en": "AVPlayer 倍速只 Support 枚举值，不 Support 任意浮点数"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "只支持以下固定倍速：",
+          "en": "只 Support 以下固定倍速："
+        },
+        "file": "knowledge/api-notes/API-001-avplayer-speed-enum.md"
+      },
+      {
+        "id": "API-002-AVPLAYER-BUILTIN-AUDIO-FOCUS",
+        "title": {
+          "zh": "AVPlayer 内置音频焦点管理，无需手动注册 interrupt 监听",
+          "en": "AVPlayer 内置音频焦点管理，无需手动注册 interrupt 监听"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到音频焦点/打断场景时，Android 需要手动 requestAudioFocus + listener，HarmonyOS 的 AVPlayer 已...",
+          "en": "遇到音频焦点/打断场景时， Android 需要手动 requestAudioFocus + listener ， HarmonyOS 的 AVPlayer 已..."
+        },
+        "file": "knowledge/api-notes/API-002-avplayer-builtin-audio-focus.md"
+      },
+      {
+        "id": "API-003-BINDCONTEXTMENU-BUILDER-PARAMS",
+        "title": {
+          "zh": "bindContextMenu 的 Builder 参数传递",
+          "en": "bindContextMenu 的 Builder 参数传递"
+        },
+        "domain": {
+          "zh": "ui",
+          "en": "ui"
+        },
+        "summary": {
+          "zh": "当在 `ForEach` 循环中使用 `bindContextMenu`，需要将循环变量（如 `item`、`index`）传递给 `@Builder` ...",
+          "en": "当在 `ForEach` 循环中使用 `bindContextMenu`，需要将循环变量（如 `item`、`index`）传递给 `@Builder` ..."
+        },
+        "file": "knowledge/api-notes/API-003-bindcontextmenu-builder-params.md"
+      },
+      {
+        "id": "API-004-AVPLAYER-LOCAL-FILE-MUST-USE-FDSRC",
+        "title": {
+          "zh": "AVPlayer 播放本地文件必须用 fdSrc，不能直接设 url",
+          "en": "AVPlayer 播放本地 File 必须用 fdSrc ，不能直接设 url"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "遇到 AVPlayer 播放本地文件的场景时，Android 可以直接用文件路径，HarmonyOS 必须用 `fdSrc`（文件描述符），因为 `url...",
+          "en": "遇到 AVPlayer 播放本地 File 的场景时， Android 可以直接用 File 路径， HarmonyOS 必须用 `fdSrc`（ FileDescription 符），因为 `url..."
+        },
+        "file": "knowledge/api-notes/API-004-avplayer-local-file-must-use-fdsrc.md"
+      },
+      {
+        "id": "API-005-ACTIONSHEET-REQUIRES-MESSAGE",
+        "title": {
+          "zh": "ActionSheet.show() 必须传 message 参数",
+          "en": "ActionSheet.show() 必须传 message 参数"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkUI 的对话框类 API（ActionSheet、AlertDialog 等）的参数比 Android 更严格，title、message 通常都是...",
+          "en": "ArkUI 的对话框类 API （ ActionSheet 、 AlertDialog 等）的参数比 Android 更严格， title 、 message 通常都是..."
+        },
+        "file": "knowledge/api-notes/API-005-actionsheet-requires-message.md"
+      },
+      {
+        "id": "API-005-CLICKEVENT-NO-STOPPROPAGATION",
+        "title": {
+          "zh": "ArkUI ClickEvent 没有 stopPropagation，用 hitTestBehavior 代替",
+          "en": "ArkUI ClickEvent 没有 stopPropagation ，用 hitTestBehavior 代替"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkUI 不支持 Web 风格的事件冒泡控制（stopPropagation/preventDefault）。要阻止事件穿透到父/兄弟组件，使用 `.h...",
+          "en": "ArkUI 不 Support Web 风格的事件冒泡控制（ stopPropagation/preventDefault ）。要阻止事件穿透到父/兄弟组件，使用 `.h..."
+        },
+        "file": "knowledge/api-notes/API-005-clickevent-no-stoppropagation.md"
+      },
+      {
+        "id": "API-006-AVPLAYER-BUILTIN-AUDIO-INTERRUPT",
+        "title": {
+          "zh": "HarmonyOS AVPlayer 内置音频中断处理，无需额外注册 audioInterrupt",
+          "en": "HarmonyOS AVPlayer 内置音频中断处理，无需额外注册 audioInterrupt"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 的 AVPlayer 封装程度比 Android ExoPlayer 高，音频焦点管理已内置。不需要（也无法）在 AudioStrea...",
+          "en": "HarmonyOS 的 AVPlayer 封装程度比 Android ExoPlayer 高，音频焦点管理已内置。不需要（也无法）在 AudioStrea..."
+        },
+        "file": "knowledge/api-notes/API-006-avplayer-builtin-audio-interrupt.md"
+      },
+      {
+        "id": "API-007-AUDIO-ROUTING-DEVICECHANGE-NEEDS-FLAG",
+        "title": {
+          "zh": "AudioRoutingManager.on('deviceChange') 需要 DeviceFlag 参数",
+          "en": "AudioRoutingManager.on('deviceChange') 需要 DeviceFlag 参数"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "Argument of type '\"deviceChange\"' is not assignable to parameter of type '\"mi...",
+          "en": "Argument of type '\"deviceChange\"' is not assignable to parameter of type '\"mi..."
+        },
+        "file": "knowledge/api-notes/API-007-audio-routing-devicechange-needs-flag.md"
+      },
+      {
+        "id": "API-008-NOTIFICATION-PERMISSION-NOT-STANDARD",
+        "title": {
+          "zh": "HarmonyOS 通知权限不是标准 permission，用 notificationManager.requestEnableNotification",
+          "en": "HarmonyOS 通知 Permissions 不是标准 permission ，用 notificationManager.requestEnableNotification"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "HarmonyOS 的通知权限通过 `notificationManager` API 管理，不是 `abilityAccessCtrl` 权限体系的一部...",
+          "en": "HarmonyOS 的通知 PermissionsPassed `notificationManager` API 管理，不是 `abilityAccessCtrl` Permissions 体系的一部..."
+        },
+        "file": "knowledge/api-notes/API-008-notification-permission-not-standard.md"
+      },
+      {
+        "id": "API-009-ARKTS-NO-NESTED-FUNCS-IN-PROMISE",
+        "title": {
+          "zh": "ArkTS 禁止嵌套函数 — Promise 回调中不能定义 function",
+          "en": "ArkTS 禁止嵌套函数 — Promise 回调中不能定义 function"
+        },
+        "domain": "",
+        "summary": {
+          "zh": "ArkTS 中需要在异步流程中共享可变状态时，优先用类封装。",
+          "en": "ArkTS 中需要在异 Steps 流程中共享可变状态时，优先用类封装。"
+        },
+        "file": "knowledge/api-notes/API-009-arkts-no-nested-funcs-in-promise.md"
+      }
+    ]
+  },
+  "changelog": [
+    {
+      "date": "2026-03-13",
+      "entries": [
+        {
+          "zh": "初始化 PM 工程: 创建项目管理中心目录结构、CLAUDE.md、路线图、任务看板、Backlog、平台映射表、模块清单、功能矩阵",
+          "en": "初始化 PM 工程: 创建项目管理中心目录结构、 CLAUDE.md 、路线图、任务看板、 Backlog 、平台映射表、模块 Checklist 、 Feature 矩阵"
+        },
+        {
+          "zh": "PM 看板网页版: 创建 web/index.html + scripts/build-dashboard.js，支持从 markdown 源文件自动生成看板",
+          "en": "PM 看板网页版: 创建 web/index.html + scripts/build-dashboard.js ， SupportFrom markdown 源 File 自动生成看板"
+        },
+        {
+          "zh": "模块拓扑图: 添加 SVG 交互拓扑图（24 节点 29 连线），展示 P0~P6 阶段模块依赖关系，数据源独立为 web/topology.json",
+          "en": "模块拓扑图: 添加 SVG 交互拓扑图（24 节点 29 连线），展示 P0~P6 Phase 模块依赖关系，数据源独立为 web/topology.json"
+        },
+        {
+          "zh": "移植经验库: 创建 knowledge/ 目录体系（Pitfall/Pattern/API Note），含模板和触发机制",
+          "en": "移植经验库: 创建 knowledge/ 目录体系（ Pitfall/Pattern/API Note ），含 Template 和触发机制"
+        },
+        {
+          "zh": "UI 一致性 + DR 机制: 建立设计决策请求（DR）流程，冲突时实现方必须提 DR 等 PM 裁决",
+          "en": "UI 一致性 + DR 机制: 建立设计 Decision 请求（ DR ）流程，冲突时实现方必须提 DR 等 PM 裁决"
+        },
+        {
+          "zh": "依赖风险评估: 完成 53 个第三方依赖的分析，识别 5 个活跃风险（1 高 3 中 1 低）",
+          "en": "依赖风险评估: 完成 53 第三方依赖的分析，识别 5 活跃风险（1 高 3 中 1 低）"
+        },
+        {
+          "zh": "风险登记册: 创建 docs/risks.md，跟踪活跃风险及缓解措施",
+          "en": "风险登记册: 创建 docs/risks.md ，跟踪活跃风险及缓解措施"
+        },
+        {
+          "zh": "角色分工: 定义 AgentPM/AgentA/AgentH 三角色体系，更新三个工程的 CLAUDE.md",
+          "en": "角色分工: 定义 AgentPM/AgentA/AgentH 三角色体系，更新三工程的 CLAUDE.md"
+        },
+        {
+          "zh": "口号指令: 建立口号指令系统，三个工程统一响应",
+          "en": "口号指令: 建立口号指令系统，三工程统一响应"
+        },
+        {
+          "zh": "看板泳道化: 拓扑图改为 Agent 泳道布局（左 Agent 行 / 右工作项），节点增加时间戳和 Agent 标签",
+          "en": "看板泳道化: 拓扑图改为 Agent 泳道布局（左 Agent lines / 右工作项），节点增加时间戳和 Agent 标签"
+        },
+        {
+          "zh": "模块清单分析完成: 分析 Android 35 个 Gradle 模块，标注移植阶段(P0-P6)、难度、裁剪决策，识别 5 个风险模块",
+          "en": "模块 Checklist 分析完成: 分析 Android 35 Gradle 模块，标注移植 Phase(P0-P6)、难度、 CropDecision ，识别 5 风险模块"
+        },
+        {
+          "zh": "功能矩阵完成: 梳理 110 个功能点（10 大类），58% 移植、23% 替代、5% 裁剪、7% 延后",
+          "en": "Feature 矩阵完成: 梳理 110 Feature 点（10 大类），58% 移植、23% 替代、5% Crop 、7% 延后"
+        },
+        {
+          "zh": "平台映射表完成: 13 大类、80+ 映射项，标注置信度，识别 7 个待验证风险映射",
+          "en": "平台映射表完成: 13 大类、80+ 映射项，标注置信度，识别 7 待验证风险映射"
+        },
+        {
+          "zh": "发布 AgentA 任务: 4 个深度分析任务（model、storage:database、storage:preferences、event）",
+          "en": "发布 AgentA 任务: 4 深度分析任务（ model 、 storage:database 、 storage:preferences 、 event ）"
+        },
+        {
+          "zh": "ADR-001 完成: 决定 1 HAP + 4 HSP 分层架构（entry + common + datastore + network + playback），35 Android 模块合并为 5 个",
+          "en": "ADR-001 完成: 决定 1 HAP + 4 HSP 分层架构（ entry + common + datastore + network + playback ），35 Android 模块合并为 5"
+        },
+        {
+          "zh": "AgentA 完成 model 深度分析: AgentA 领取并交付了第一个任务",
+          "en": "AgentA 完成 model 深度分析: AgentA 领取并交付了第一任务"
+        },
+        {
+          "zh": "AgentA 完成全部 4 项分析: model、storage:database、storage:preferences、event",
+          "en": "AgentA 完成全部 4 项分析: model 、 storage:database 、 storage:preferences 、 event"
+        },
+        {
+          "zh": "数据模型 Spec 完成: 9 个需求，覆盖 Feed/FeedItem/FeedMedia/FeedPreferences/Chapter/Transcript/SortOrder/Filter 等全部实体",
+          "en": "Data Models Spec 完成: 9 需求，覆盖 Feed/FeedItem/FeedMedia/FeedPreferences/Chapter/Transcript/SortOrder/Filter 等全部实体"
+        },
+        {
+          "zh": "存储层 Spec 完成: 8 个需求，覆盖数据库 Schema(7 表 6 索引)、DBReader(16 方法)、DBWriter(18 方法)、偏好设置(62 键)、事件总线",
+          "en": "存储层 Spec 完成: 8 需求，覆盖 Database Schema(7 表 6 索引)、 DBReader(16 方法)、 DBWriter(18 方法)、 Preferences(62 键)、事件总线"
+        },
+        {
+          "zh": "发布 AgentH P0 任务: 4 个实现任务（common 模块、datastore 模块、偏好设置、事件总线）",
+          "en": "发布 AgentH P0 任务: 4 实现任务（ common 模块、 datastore 模块、 Preferences 、事件总线）"
+        },
+        {
+          "zh": "AgentH 完成 P0 实现: common HSP + 数据模型、datastore HSP + DB Schema + DBReader/DBWriter、偏好设置 + 事件总线",
+          "en": "AgentH 完成 P0 实现: common HSP + Data Models 、 datastore HSP + DB Schema + DBReader/DBWriter 、 Preferences + 事件总线"
+        },
+        {
+          "zh": "PM 审查 P0: common 模块（通过）、datastore 模块（通过）、偏好设置（通过）、事件总线（通过）",
+          "en": "PM 审查 P0: common 模块（ Passed ）、 datastore 模块（ Passed ）、 Preferences （ Passed ）、事件总线（ Passed ）"
+        },
+        {
+          "zh": "PM 审计 P0: 通过，3 处差异已记录，PIT-001 + PAT-001 已入库",
+          "en": "PM 审计 P0: Passed ，3 处差异已记录， PIT-001 + PAT-001 已入库"
+        },
+        {
+          "zh": "AgentA 完成 P1 分析: parser:feed 模块深度分析、net:common 模块深度分析",
+          "en": "AgentA 完成 P1 分析: parser:feed 模块深度分析、 net:common 模块深度分析"
+        },
+        {
+          "zh": "Feed 解析器 Spec 完成: RSS/Atom 解析规格",
+          "en": "Feed 解析器 Spec 完成: RSS/Atom 解析规格"
+        },
+        {
+          "zh": "网络层 Spec 完成: HTTP 客户端规格（@ohos.net.http wrapper）",
+          "en": "网络层 Spec 完成: HTTP 客户端规格（@ohos.net.http wrapper ）"
+        },
+        {
+          "zh": "AgentH 完成 P1 实现: network HSP + HTTP 客户端、Feed 解析器（RssFeedHandler + AtomFeedHandler）、Feed 订阅刷新（FeedUpdateManager）",
+          "en": "AgentH 完成 P1 实现: network HSP + HTTP 客户端、 Feed 解析器（ RssFeedHandler + AtomFeedHandler ）、 Feed 订阅刷新（ FeedUpdateManager ）"
+        },
+        {
+          "zh": "PM 审查 P1: HTTP 客户端（通过）、Feed 解析器（通过）、Feed 刷新（通过）",
+          "en": "PM 审查 P1: HTTP 客户端（ Passed ）、 Feed 解析器（ Passed ）、 Feed 刷新（ Passed ）"
+        },
+        {
+          "zh": "PM 审计 P1: 通过",
+          "en": "PM 审计 P1: Passed"
+        },
+        {
+          "zh": "AgentA 完成 P2 分析: playback 模块源码分析",
+          "en": "AgentA 完成 P2 分析: playback 模块源码分析"
+        },
+        {
+          "zh": "播放引擎 Spec 完成: AVPlayer + AVSession + ContinuousTask（10 需求）",
+          "en": "播放引擎 Spec 完成: AVPlayer + AVSession + ContinuousTask （10 需求）"
+        },
+        {
+          "zh": "AgentH P2 实现进行中: AVPlayer 封装（playback HSP + 状态机 + PlaybackEngine）",
+          "en": "AgentH P2 实现 In Progress: AVPlayer 封装（ playback HSP + 状态机 + PlaybackEngine ）"
+        },
+        {
+          "zh": "PM 审查 P2: AVPlayer 封装（通过）、播放控制+后台+AVSession（通过）、进度持久化+定时+结束处理（通过）",
+          "en": "PM 审查 P2: AVPlayer 封装（ Passed ）、播放控制+后台+AVSession （ Passed ）、进度持久化+定时+结束处理（ Passed ）"
+        },
+        {
+          "zh": "PM 审计 P2: 通过",
+          "en": "PM 审计 P2: Passed"
+        },
+        {
+          "zh": "AgentA 完成 P3 UI 分析: App UI 页面结构+导航+交互分析",
+          "en": "AgentA 完成 P3 UI 分析: App UI 页面结构+Navigation+交互分析"
+        },
+        {
+          "zh": "监工看板大改: 泳道图支持 WASD 缩放平移、全屏、时间线压缩、审查节点可视化、依赖关系驱动的任务分类",
+          "en": "监工看板大改: 泳道图 Support WASD 缩放 Pan 、全屏、时间线压缩、审查节点可视化、依赖关系驱动的任务分类"
+        },
+        {
+          "zh": "经验库增长: 新增 PIT-002 ~ PIT-010（HSP 配置、ArkTS 语法限制等）、API-001（AVPlayer 倍速枚举）",
+          "en": "经验库增长: Added PIT-002 ~ PIT-010（ HSP 配置、 ArkTS 语法限制等）、 API-001（ AVPlayer 倍速枚举）"
+        },
+        {
+          "zh": "看板数据写入规范: 统一三个 Agent 的 topology.json 时间戳格式（YYYY-MM-DD HH:MM），审查/审计节点命名规范",
+          "en": "看板数据写入规范: 统一三 Agent 的 topology.json 时间戳格式（ YYYY-MM-DD HH:MM ），审查/审计节点命名规范"
+        }
+      ]
+    }
+  ],
+  "dailyReports": [],
+  "uiComparison": null,
+  "playbook": {
+    "methodology": null,
+    "scripts": [
+      {
+        "file": "add-missing-nodes.js",
+        "usage": "",
+        "example": "",
+        "desc": "add-missing-nodes.js"
+      },
+      {
+        "file": "build-dashboard.js",
+        "usage": "node scripts/build-dashboard.js",
+        "example": "",
+        "desc": "build-dashboard.js"
+      },
+      {
+        "file": "check-consistency.js",
+        "usage": "*   node scripts/check-consistency.js",
+        "example": "",
+        "desc": "check-consistency.js — Entropy management / consistency checker"
+      },
+      {
+        "file": "check-pitfalls.js",
+        "usage": "*   node scripts/check-pitfalls.js [--path <dir>]  (default: C:\\Project\\AntennaPodHarmony)",
+        "example": "",
+        "desc": "check-pitfalls.js — Automated checks for known Pitfalls"
+      },
+      {
+        "file": "complete-task.js",
+        "usage": "*   node scripts/complete-task.js --done \"任务描述关键词\"",
+        "example": "",
+        "desc": "complete-task.js — One-command task completion"
+      },
+      {
+        "file": "fix-timestamps.js",
+        "usage": "",
+        "example": "",
+        "desc": "Fix topology.json timestamps based on ACTUAL work timeline"
+      },
+      {
+        "file": "watch.js",
+        "usage": "node scripts/watch.js",
+        "example": "",
+        "desc": "watch.js — 文件监视器"
+      }
+    ],
+    "templates": [
+      {
+        "file": "adr-template.md",
+        "name": "adr"
+      },
+      {
+        "file": "commands.md",
+        "name": "commands"
+      },
+      {
+        "file": "dashboard-sync.md",
+        "name": "dashboard-sync"
+      },
+      {
+        "file": "dod-template.md",
+        "name": "dod"
+      },
+      {
+        "file": "dr-template.md",
+        "name": "dr"
+      },
+      {
+        "file": "knowledge-template.md",
+        "name": "knowledge"
+      },
+      {
+        "file": "review-checklist.md",
+        "name": "review-checklist"
+      },
+      {
+        "file": "spec-template.md",
+        "name": "spec"
+      },
+      {
+        "file": "task-publish-flow.md",
+        "name": "task-publish-flow"
+      },
+      {
+        "file": "ui-consistency.md",
+        "name": "ui-consistency"
+      }
+    ],
+    "mottos": [],
+    "features": [],
+    "convergence": null,
+    "guardianAudits": []
+  },
+  "deliveryCoverage": null,
+  "waves": []
+}
