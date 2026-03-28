@@ -665,12 +665,22 @@ function parseFeatureTree(filePath) {
       continue;
     }
 
-    // Feature row in table: | F-x.y.z | name | status |
-    const rowMatch = line.match(/\|\s*(F-[\d.]+)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*\|/);
+    // Feature row in table: | F-x.y[.z] | name | [extra cols...] | status | [notes] |
+    // ID must contain at least one dot to exclude summary rows (F-1, F-2)
+    // Status is the cell containing a status emoji (✅⏸🔧⛔), not necessarily the last cell
+    const rowMatch = line.match(/\|\s*(F-\d+\.\d[\d.]*)\s*\|\s*(.+?)\s*\|/);
     if (rowMatch && currentCat) {
       const id = rowMatch[1].trim();
-      const name = rowMatch[2].trim();
-      const rawStatus = rowMatch[3].trim();
+      const allCells = line.split('|').map(c => c.trim()).filter(Boolean);
+      const name = allCells.length >= 2 ? allCells[1] : rowMatch[2].trim();
+      // Find the cell that contains a status emoji; fall back to last cell
+      let rawStatus = allCells.length >= 3 ? allCells[allCells.length - 1] : '';
+      for (let ci = 2; ci < allCells.length; ci++) {
+        if (/[✅⏸🔧⛔]/.test(allCells[ci])) {
+          rawStatus = allCells[ci];
+          break;
+        }
+      }
 
       let status = 'done';
       if (/⛔/.test(rawStatus)) status = 'blocked';

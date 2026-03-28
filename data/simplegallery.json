@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-28 01:32:15",
+  "generatedAt": "2026-03-28 01:49:55",
   "project": {
     "id": "simplegallery",
     "name": "Simple Gallery",
@@ -377,6 +377,78 @@
         "tag": "",
         "phase": "",
         "agent": ""
+      },
+      {
+        "text": {
+          "zh": "T-071 | 多选高级操作 MainPage（属性/复制到/移动到/隐藏）| P1 | M | AgentH | 4 项",
+          "en": "T-071 | Multi-select 高级操作 MainPage （属性/Copy 到/Move 到/隐藏）| P1 | M | AgentH | 4 项"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-072 | 多选高级操作 MediaPage（重命名/旋转/隐藏/属性/设为/打开/调整）| P1 | M | AgentH | 7 项",
+          "en": "T-072 | Multi-select 高级操作 MediaPage （ Rename/Rotation/隐藏/属性/设为/打开/调整）| P1 | M | AgentH | 7 项"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-073 | 文件夹管理增强（锁定/封面/密码/相机/排除/新建/回收站入口/默认）| P1 | M | AgentH | 8 项",
+          "en": "T-073 | Folder Management 增强（锁定/封面/密码/相机/排除/新建/Recycle Bin 入口/默认）| P1 | M | AgentH | 8 项"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-074 | 查看页菜单补全（旋转/打开方式/隐藏/属性/地图/打印/调整/另存为）| P1 | M | AgentH | 8 项",
+          "en": "T-074 | 查看页菜单补全（ Rotation/打开方式/隐藏/属性/地图/打印/调整/另存为）| P1 | M | AgentH | 8 项"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-078 | 回收站功能（文件夹/恢复/清空/保留天数）| P1 | M | AgentH | 4 项",
+          "en": "T-078 | Recycle BinFeature （ Folder/恢复/清空/保留天数）| P1 | M | AgentH | 4 项"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-075 | 查看页手势增强（视频双击缩放/下滑关闭/单指缩放）| P2 | S | AgentH | 5 项",
+          "en": "T-075 | 查看页 Gesture 增强（视频 Double-tap Zoom/下滑关闭/单指缩放）| P2 | S | AgentH | 5 项"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-077 | 设置项补全（文件名显示/视频独立窗口/回收站开关/保留天数/动画/RAW）| P2 | S | AgentH | 6 项",
+          "en": "T-077 | Settings 项补全（ File 名显示/视频独立窗口/Recycle BinToggle/保留天数/动画/RAW ）| P2 | S | AgentH | 6 项"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-076 | 编辑器高级功能（亮度对比度/滤镜/文字/贴纸/调整大小）| P2 | L | AgentH | 5 项",
+          "en": "T-076 | Edit 器高级 Feature （ Brightness 对比度/滤镜/文字/贴纸/调整大小）| P2 | L | AgentH | 5 项"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
       }
     ],
     "todo": [],
@@ -4214,6 +4286,18 @@
         {
           "zh": "**任务开始**：[object Object]",
           "en": "**任务开始**：[object Object]"
+        },
+        {
+          "zh": "**任务完成**：[object Object]",
+          "en": "**任务完成**：[object Object]"
+        },
+        {
+          "zh": "**任务开始**：[object Object]",
+          "en": "**任务开始**：[object Object]"
+        },
+        {
+          "zh": "Wave F 任务令发布。48 项未迁移功能全量开发（排除 3 项平台不适用）。分 8 个任务包：T-071(多选MainPage) T-072(多选MediaPage) T-073(文件夹管理) T-074(查看页菜单) T-075(手势增强) T-076(编辑器高级) T-077(设置项) T-078(回收站)。",
+          "en": "Wave F 任务令发布。48 项未迁移 Feature 全量开发（排除 3 项平台不适用）。分 8 任务包： T-071(Multi-selectMainPage) T-072(Multi-selectMediaPage) T-073(Folder Management) T-074(查看页菜单) T-075(Gesture 增强) T-076(Edit 器高级) T-077(Settings 项) T-078(Recycle Bin)。"
         }
       ]
     },
@@ -5363,16 +5447,16 @@
       "date": "2026-03-28",
       "highlights": [
         {
-          "zh": "【完结】BUG-034 收藏功能 6 轮修复彻底闭环 + BUG-037 全文件夹计数刷新 — 从 isFavorite 硬编码 false（Round 1）到 LazyForEach key（Round 2）到读端验证（Round 3）到写端竞态（Round 4）到单一数据源（Round 5）到全文件夹增量刷新（Round 6），历经 5 条蓝军报告、2 次 BlueAgent 介入，最终沉淀 5 条知识（PIT-069/070/071 + PAT-024/025）。过程中额外修复 @Reusable 组件复用污染（PIT-070）和构造函数异步竞态（PIT-071）。真机验证 10/10 PASS。全局进度 62/70 任务完成（89%）→ **Wave D GO**。",
-          "en": "【完结】 BUG-034 FavoritesFeature 6 轮修复彻底闭环 + BUG-037 全 Folder 计数刷新 — From isFavorite 硬编码 false （ Round 1）到 LazyForEach key （ Round 2）到读端验证（ Round 3）到写端竞态（ Round 4）到单一数据源（ Round 5）到全 Folder 增量刷新（ Round 6），历经 5 条蓝军报告、2 次 BlueAgent 介入，最终沉淀 5 条知识（ PIT-069/070/071 + PAT-024/025）。过程中额外修复 @Reusable 组件复用污染（ PIT-070）和构造函数异 Steps 竞态（ PIT-071）。 Device Test 10/10 PASS 。全局进度 62/70 任务完成（89%）→ **Wave D GO**。"
+          "zh": "【完成】功能特性 161/212 已完成开发（其余 51 项经决策不迁移），开发完成度 100%。闭环 16 个 Bug（BUG-034 系列 6 轮 + BUG-037/038/039 + D1-001~003），真机验收 10/10 PASS。Spec 驱动的迁移实践证明：单一数据源原则（PAT-024）是计数类 Bug 的终极解法 — BUG-034 前 4 轮都在独立计数路径上打补丁，第 5 轮统一数据源后一次性解决；增量 diff 刷新（PAT-025）在不破坏用户排序的前提下实现了全文件夹实时计数更新。",
+          "en": "【完成】 Feature 特性 161/212 Done 开发（其余 51 项经 Decision 不迁移），开发完成度 100%。闭环 16 Bug （ BUG-034 系列 6 轮 + BUG-037/038/039 + D1-001~003），真机验收 10/10 PASS 。 Spec 驱动的迁移实践证明：单一数据源原则（ PAT-024）是计数类 Bug 的终极解法 — BUG-034 前 4 轮都在独立计数路径上打补丁，第 5 轮统一数据源后一次性解决；增量 diff 刷新（ PAT-025）在不破坏用户 Sort 的前提下实现了全 Folder 实时计数更新。"
         },
         {
-          "zh": "【完成】Wave D → Wave E 全流程推进 — Guardian 收敛审计发现 4 个多选空壳 handler（BUG-039），AgentH 当日修复。Day-1 灾难推演（RITUAL-006）7 场景推演裁决 CONDITIONAL-GO，3 项 P0 修复（删除确认 + 后台刷新 + 操作 Toast）当日全部完成。Wave E 验收阶段正式启动。",
-          "en": "【完成】 Wave D → Wave E 全流程推进 — Guardian 收敛审计发现 4 Multi-select 空壳 handler （ BUG-039）， AgentH 当日修复。 Day-1 灾难推演（ RITUAL-006）7 场景推演裁决 CONDITIONAL-GO ，3 项 P0 修复（ Delete 确认 + 后台刷新 + 操作 Toast ）当日 All Completed 。 Wave E 验收 Phase 正式启动。"
+          "zh": "【完成】Wave D 收敛 GO → Wave E 验收阶段启动。真机验证 10/10 PASS（100%），Guardian 审计通过，Day-1 灾难推演 CONDITIONAL-GO（3 项 P0 当日修复）。",
+          "en": "【完成】 Wave D 收敛 GO → Wave E 验收 Phase 启动。 Device Test 10/10 PASS （100%）， Guardian 审计 Passed ， Day-1 灾难推演 CONDITIONAL-GO （3 项 P0 当日修复）。"
         },
         {
-          "zh": "【完成】PM 看板基础设施升级 — GitHub Pages 部署（替代 Fly.io 慢构建）、Guardian 审计报告可视化（泳道 + 横幅）、顶部粘性导航栏、功能树布局重构（左 1/3 统计 + 右 2/3 三列树）。GitHub 协作者 ZhifeiDou 已添加到两个仓库。",
-          "en": "【完成】 PM 看板 Infrastructure 升级 — GitHub Pages 部署（替代 Fly.io 慢构建）、 Guardian 审计报告可视化（泳道 + 横幅）、顶部粘性 Navigation 栏、 Feature 树布局重构（左 1/3 统计 + 右 2/3 三列树）。 GitHub 协作者 ZhifeiDou 已添加到两仓库。"
+          "zh": "【完成】PM 看板迁移至 GitHub Pages（`git push` 秒级部署，替代 Fly.io 超时问题）+ Guardian 审计可视化 + 功能树布局重构。",
+          "en": "【完成】 PM 看板迁移至 GitHub Pages （`git push` 秒级部署，替代 Fly.io 超时问题）+ Guardian 审计可视化 + Feature 树布局重构。"
         }
       ],
       "outputs": [
@@ -5524,7 +5608,7 @@
           "done": false
         }
       ],
-      "content": "# 日报 — 2026-03-28\n\n## 一、整体开发进展（Top 3）\n\n1. 【完结】BUG-034 收藏功能 6 轮修复彻底闭环 + BUG-037 全文件夹计数刷新 — 从 isFavorite 硬编码 false（Round 1）到 LazyForEach key（Round 2）到读端验证（Round 3）到写端竞态（Round 4）到单一数据源（Round 5）到全文件夹增量刷新（Round 6），历经 5 条蓝军报告、2 次 BlueAgent 介入，最终沉淀 5 条知识（PIT-069/070/071 + PAT-024/025）。过程中额外修复 @Reusable 组件复用污染（PIT-070）和构造函数异步竞态（PIT-071）。真机验证 10/10 PASS。全局进度 62/70 任务完成（89%）→ **Wave D GO**。\n\n2. 【完成】Wave D → Wave E 全流程推进 — Guardian 收敛审计发现 4 个多选空壳 handler（BUG-039），AgentH 当日修复。Day-1 灾难推演（RITUAL-006）7 场景推演裁决 CONDITIONAL-GO，3 项 P0 修复（删除确认 + 后台刷新 + 操作 Toast）当日全部完成。Wave E 验收阶段正式启动。\n\n3. 【完成】PM 看板基础设施升级 — GitHub Pages 部署（替代 Fly.io 慢构建）、Guardian 审计报告可视化（泳道 + 横幅）、顶部粘性导航栏、功能树布局重构（左 1/3 统计 + 右 2/3 三列树）。GitHub 协作者 ZhifeiDou 已添加到两个仓库。\n\n## 二、多Agent范式探索（SynergyHarness）\n\n1. **Guardian 角色首次全流程落地** — 从\"文档中的角色定义\"到\"可见的审计产出\"：Wave D 收敛审计→NOT-GO→BUG-039→重新审计→GO→Day-1 灾难推演→CONDITIONAL-GO→3 项 P0 修复→闭环。Guardian 的价值在于：不做这个审计，4 个多选空壳 handler 会带到 Wave E 验收才暴露。审计报告已嵌入 PM 看板泳道，后续每次审计自动可视化。\n\n2. **RETRO-001 复盘方法论验证** — BUG-034 系列 6 轮复盘产出 4 条核心教训：非确定性症状=竞态（第一反应不应是逻辑错误）、修 2 轮不好要升级审视层级（不是哪行代码有 bug 而是设计对不对）、@Reusable 不是免费午餐、蓝军 2 次介入各 1 轮定位（质疑假设链效率远高于同方向深挖）。\n\n3. **部署流程优化** — Fly.io Depot builder 排队严重（6 次部署全部超时），切换到 GitHub Pages 后 `git push` 秒级部署。验证了\"静态站点不需要容器化\"的原则。\n\n## 三、产出明细\n\n| 类型 | 数量 | 说明 |\n|------|------|------|\n| Bug 修复 | 8 个 | BUG-034b/c/d/e（收藏 4 轮）+ BUG-037（全文件夹计数）+ BUG-039（多选空壳×4）+ D1-001/002/003 |\n| 编译修复 | 3 处 | paths→count 残留变量、formProvider.requestForm→updateForm、loadFavoritePaths 竞态 |\n| 代码修复 | 1 处 | DirectoryItem @Reusable 移除（组件复用污染） |\n| 壁纸方案 | 1 个 | 方案 B 裁决 + 提示对话框实现 |\n| 知识沉淀 | 8 条增量，累计 138 | PIT-069/070/071/072/073 + PAT-024/025/026 |\n| 复盘报告 | 1 份 | RETRO-001 BUG-034 系列 6 轮复盘 |\n| Guardian 报告 | 2 份 | Wave D 收敛审计 + RITUAL-006 Day-1 灾难推演 |\n| 真机测试 | 10/10 PASS | T-042 Round 2 精简测试全量通过 |\n| 看板功能 | 3 项 | Guardian 泳道 + 粘性导航栏 + 功能树布局重构 |\n| 任务完成 | 16 个 | BUG-034b~e + BUG-037~039 + D1-001~003 + AUDIT-001~004 + T-068 + RITUAL-006 |\n\n## 四、风险与阻塞\n\n- 🟡 R-005 真机测试 — T-042v2 全量回归（24 项）和 T-043 边界测试（12 项）仍需人工真机操作，但已非阻塞（Wave E 已启动）\n- 🟡 横竖屏旋转 — Day-1 推演发现无状态保存，不崩溃但丢滚动位置（v1.1 修复）\n- 🟡 大量照片场景 — 10000+ 张照片的首次加载未做并发限制（v1.1 优化）\n- 🟢 当前无 🔴 高风险阻塞项\n\n## 五、明日计划\n\n- [ ] T-042v2 全量回归测试 24 项（含 BUG-039 多选操作验证）\n- [ ] T-043 边界场景测试 12 项\n- [ ] AgentPM 最终准出检查（发布准出标准全项）\n- [ ] PM 看板更新部署（GitHub Pages）\n- [ ] 评估是否满足发布条件\n"
+      "content": "# 日报 — 2026-03-28\n\n## 一、整体开发进展（Top 3）\n\n1. 【完成】功能特性 161/212 已完成开发（其余 51 项经决策不迁移），开发完成度 100%。闭环 16 个 Bug（BUG-034 系列 6 轮 + BUG-037/038/039 + D1-001~003），真机验收 10/10 PASS。Spec 驱动的迁移实践证明：单一数据源原则（PAT-024）是计数类 Bug 的终极解法 — BUG-034 前 4 轮都在独立计数路径上打补丁，第 5 轮统一数据源后一次性解决；增量 diff 刷新（PAT-025）在不破坏用户排序的前提下实现了全文件夹实时计数更新。\n\n2. 【完成】Wave D 收敛 GO → Wave E 验收阶段启动。真机验证 10/10 PASS（100%），Guardian 审计通过，Day-1 灾难推演 CONDITIONAL-GO（3 项 P0 当日修复）。\n\n3. 【完成】PM 看板迁移至 GitHub Pages（`git push` 秒级部署，替代 Fly.io 超时问题）+ Guardian 审计可视化 + 功能树布局重构。\n\n## 二、多Agent范式探索（SynergyHarness）\n\n1. **BlueAgent（蓝军）**: 累计介入 5 次（BA-001~005），本日 2 次（BA-003 收藏 UI 刷新、BA-004 收藏竞态）。实践结果：每次介入均 1 轮定位根因，而 Red Team 同一问题平均需要 2-3 轮。BA-003 定位 LazyForEach key 不含可变状态（PIT-016 翻版），BA-004 定位 async DB 写操作竞态（PIT-069）。核心价值：**质疑假设链而非继续深挖同方向**。复盘教训：非确定性症状（\"有时多有时少\"）第一反应应该是竞态，不要当逻辑错误修 3 轮。\n\n2. **Guardian（守护审计官）**: 首次全流程落地，本日执行 2 次审计。① Wave D 收敛审计：扫描 130+ 交互处理器，发现 4 个空壳 handler → NOT-GO → BUG-039 修复后重新审计 → GO。② Day-1 灾难推演（RITUAL-006）：7 场景推演（权限拒绝/大量照片/空设备/横竖屏/后台杀进程/并发操作/存储满），裁决 CONDITIONAL-GO，3 项 P0 当日闭环。核心价值：**不做收敛审计，4 个多选空壳 handler 会带到 Wave E 验收才暴露**。审计报告已嵌入 PM 看板泳道，后续自动可视化。\n\n3. **RETRO-001 复盘机制验证** — BUG-034 系列 6 轮复盘沉淀 5 条知识，产出 4 条核心教训和 3 条流程改进建议（preflight 加数据路径一致性检查、@Reusable 强制审计清单、非确定性 bug 立即触发蓝军）。\n\n## 三、产出明细\n\n| 类型 | 数量 | 说明 |\n|------|------|------|\n| Bug 修复 | 8 个 | BUG-034b/c/d/e（收藏 4 轮）+ BUG-037（全文件夹计数）+ BUG-039（多选空壳×4）+ D1-001/002/003 |\n| 编译修复 | 3 处 | paths→count 残留变量、formProvider.requestForm→updateForm、loadFavoritePaths 竞态 |\n| 代码修复 | 1 处 | DirectoryItem @Reusable 移除（组件复用污染） |\n| 壁纸方案 | 1 个 | 方案 B 裁决 + 提示对话框实现 |\n| 知识沉淀 | 8 条增量，累计 138 | PIT-069/070/071/072/073 + PAT-024/025/026 |\n| 复盘报告 | 1 份 | RETRO-001 BUG-034 系列 6 轮复盘 |\n| Guardian 报告 | 2 份 | Wave D 收敛审计 + RITUAL-006 Day-1 灾难推演 |\n| 真机测试 | 10/10 PASS | T-042 Round 2 精简测试全量通过 |\n| 看板功能 | 3 项 | Guardian 泳道 + 粘性导航栏 + 功能树布局重构 |\n| 任务完成 | 16 个 | BUG-034b~e + BUG-037~039 + D1-001~003 + AUDIT-001~004 + T-068 + RITUAL-006 |\n\n## 四、风险与阻塞\n\n- 🟡 R-005 真机测试 — T-042v2 全量回归（24 项）和 T-043 边界测试（12 项）仍需人工真机操作，但已非阻塞（Wave E 已启动）\n- 🟡 横竖屏旋转 — Day-1 推演发现无状态保存，不崩溃但丢滚动位置（v1.1 修复）\n- 🟡 大量照片场景 — 10000+ 张照片的首次加载未做并发限制（v1.1 优化）\n- 🟢 当前无 🔴 高风险阻塞项\n\n## 五、明日计划\n\n- [ ] T-042v2 全量回归测试 24 项（含 BUG-039 多选操作验证）\n- [ ] T-043 边界场景测试 12 项\n- [ ] AgentPM 最终准出检查（发布准出标准全项）\n- [ ] PM 看板更新部署（GitHub Pages）\n- [ ] 评估是否满足发布条件\n"
     },
     {
       "date": "2026-03-27",
@@ -7277,11 +7361,11 @@
               "zh": "媒体管理权限（MANAGE_MEDIA）",
               "en": "媒体管理 Permissions （ MANAGE_MEDIA ）"
             },
-            "status": "done"
+            "status": "notMigrated"
           }
         ],
         "total": 3,
-        "done": 3
+        "done": 2
       },
       {
         "id": "F-2",
@@ -9345,9 +9429,9 @@
     ],
     "stats": {
       "total": 212,
-      "done": 161,
+      "done": 160,
       "fixing": 0,
-      "notMigrated": 49,
+      "notMigrated": 50,
       "blocked": 2
     }
   },
@@ -10578,6 +10662,146 @@
             "needsType": "DEVICE",
             "isBlocked": false,
             "priority": "P1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "F",
+      "name": {
+        "zh": "48 项未迁移功能全量开发 — 2026-03-28",
+        "en": "48 项未迁移 Feature 全量开发 — 2026-03-28"
+      },
+      "status": "active",
+      "date": "2026-03-28",
+      "tasks": 8,
+      "done": 0,
+      "progress": 0,
+      "humanWaiting": 0,
+      "blockers": 0,
+      "humanItems": [],
+      "blockerItems": [],
+      "tracks": {
+        "agenth": [
+          {
+            "text": {
+              "zh": "T-071 | 多选高级操作 MainPage（属性/复制到/移动到/隐藏）| P1 | M | AgentH | 4 项",
+              "en": "T-071 | Multi-select 高级操作 MainPage （属性/Copy 到/Move 到/隐藏）| P1 | M | AgentH | 4 项"
+            },
+            "isDone": false,
+            "track": {
+              "zh": "AgentH 轨道 — P1 优先",
+              "en": "AgentH Track — P1 优先"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P1"
+          },
+          {
+            "text": {
+              "zh": "T-072 | 多选高级操作 MediaPage（重命名/旋转/隐藏/属性/设为/打开/调整）| P1 | M | AgentH | 7 项",
+              "en": "T-072 | Multi-select 高级操作 MediaPage （ Rename/Rotation/隐藏/属性/设为/打开/调整）| P1 | M | AgentH | 7 项"
+            },
+            "isDone": false,
+            "track": {
+              "zh": "AgentH 轨道 — P1 优先",
+              "en": "AgentH Track — P1 优先"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P1"
+          },
+          {
+            "text": {
+              "zh": "T-073 | 文件夹管理增强（锁定/封面/密码/相机/排除/新建/回收站入口/默认）| P1 | M | AgentH | 8 项",
+              "en": "T-073 | Folder Management 增强（锁定/封面/密码/相机/排除/新建/Recycle Bin 入口/默认）| P1 | M | AgentH | 8 项"
+            },
+            "isDone": false,
+            "track": {
+              "zh": "AgentH 轨道 — P1 优先",
+              "en": "AgentH Track — P1 优先"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P1"
+          },
+          {
+            "text": {
+              "zh": "T-074 | 查看页菜单补全（旋转/打开方式/隐藏/属性/地图/打印/调整/另存为）| P1 | M | AgentH | 8 项",
+              "en": "T-074 | 查看页菜单补全（ Rotation/打开方式/隐藏/属性/地图/打印/调整/另存为）| P1 | M | AgentH | 8 项"
+            },
+            "isDone": false,
+            "track": {
+              "zh": "AgentH 轨道 — P1 优先",
+              "en": "AgentH Track — P1 优先"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P1"
+          },
+          {
+            "text": {
+              "zh": "T-078 | 回收站功能（文件夹/恢复/清空/保留天数）| P1 | M | AgentH | 4 项",
+              "en": "T-078 | Recycle BinFeature （ Folder/恢复/清空/保留天数）| P1 | M | AgentH | 4 项"
+            },
+            "isDone": false,
+            "track": {
+              "zh": "AgentH 轨道 — P1 优先",
+              "en": "AgentH Track — P1 优先"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P1"
+          },
+          {
+            "text": {
+              "zh": "T-075 | 查看页手势增强（视频双击缩放/下滑关闭/单指缩放）| P2 | S | AgentH | 5 项",
+              "en": "T-075 | 查看页 Gesture 增强（视频 Double-tap Zoom/下滑关闭/单指缩放）| P2 | S | AgentH | 5 项"
+            },
+            "isDone": false,
+            "track": {
+              "zh": "AgentH 轨道 — P2 补全",
+              "en": "AgentH Track — P2 补全"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P2"
+          },
+          {
+            "text": {
+              "zh": "T-077 | 设置项补全（文件名显示/视频独立窗口/回收站开关/保留天数/动画/RAW）| P2 | S | AgentH | 6 项",
+              "en": "T-077 | Settings 项补全（ File 名显示/视频独立窗口/Recycle BinToggle/保留天数/动画/RAW ）| P2 | S | AgentH | 6 项"
+            },
+            "isDone": false,
+            "track": {
+              "zh": "AgentH 轨道 — P2 补全",
+              "en": "AgentH Track — P2 补全"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P2"
+          },
+          {
+            "text": {
+              "zh": "T-076 | 编辑器高级功能（亮度对比度/滤镜/文字/贴纸/调整大小）| P2 | L | AgentH | 5 项",
+              "en": "T-076 | Edit 器高级 Feature （ Brightness 对比度/滤镜/文字/贴纸/调整大小）| P2 | L | AgentH | 5 项"
+            },
+            "isDone": false,
+            "track": {
+              "zh": "AgentH 轨道 — P2 补全",
+              "en": "AgentH Track — P2 补全"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P2"
           }
         ]
       }
