@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-28 02:27:35",
+  "generatedAt": "2026-03-28 02:44:09",
   "project": {
     "id": "simplegallery",
     "name": "Simple Gallery",
@@ -443,8 +443,8 @@
       },
       {
         "text": {
-          "zh": "T-079 | 搁置功能补全（锁定/封面/密码/地图/打印/调整/保留天数/动画）| P1 | M | AgentH | 8 项",
-          "en": "T-079 | 搁置 Feature 补全（锁定/封面/密码/地图/打印/调整/保留天数/动画）| P1 | M | AgentH | 8 项"
+          "zh": "T-079 | 搁置功能（锁定/解锁+封面API+保留天数+动画设置+PIN）| P1 | AgentH ✓",
+          "en": "T-079 | 搁置 Feature （锁定/解锁+封面 API+保留天数+动画 Settings+PIN ）| P1 | AgentH ✓"
         },
         "tag": "",
         "phase": "",
@@ -452,12 +452,21 @@
       },
       {
         "text": {
-          "zh": "T-076 | 编辑器高级功能（亮度对比度/滤镜/文字/贴纸/调整大小）| P2 | L | AgentH | 5 项",
-          "en": "T-076 | Edit 器高级 Feature （ Brightness 对比度/滤镜/文字/贴纸/调整大小）| P2 | L | AgentH | 5 项"
+          "zh": "T-080 | 缺口功能（单指缩放已有+RAW已识别；新建文件夹/调整大小受限搁置）| P1 | AgentH ✓",
+          "en": "T-080 | 缺口 Feature （单指缩放已有+RAW 已识别；新建 Folder/调整大小受限搁置）| P1 | AgentH ✓"
         },
         "tag": "",
         "phase": "",
         "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-076 | 编辑器高级功能（亮度对比度/滤镜/文字/贴纸/调整大小）| P2 | L | ⏸ 搁置",
+          "en": "T-076 | Edit 器高级 Feature （ Brightness 对比度/滤镜/文字/贴纸/调整大小）| P2 | L | ⏸ 搁置"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": ""
       }
     ],
     "todo": [],
@@ -4319,6 +4328,18 @@
         {
           "zh": "Wave F-2 任务令发布。T-079 搁置功能补全（8项：锁定/封面/密码/地图/打印/调整/保留天数/动画）+ T-076 编辑器高级功能（5项：亮度/滤镜/文字/贴纸/调整大小）。Boris 裁决：全部要做，不留搁置。",
           "en": "Wave F-2 任务令发布。 T-079 搁置 Feature 补全（8项：锁定/封面/密码/地图/打印/调整/保留天数/动画）+ T-076 Edit 器高级 Feature （5项： Brightness/滤镜/文字/贴纸/调整大小）。 Boris 裁决：全部要做，不留搁置。"
+        },
+        {
+          "zh": "**任务完成**：[object Object]",
+          "en": "**任务完成**：[object Object]"
+        },
+        {
+          "zh": "**任务开始**：[object Object]",
+          "en": "**任务开始**：[object Object]"
+        },
+        {
+          "zh": "T-080 缺口功能补全任务令发布（7项）。核对发现 Wave F 遗漏：创建新文件夹、多选旋转/设为/调整大小、RAW预览、单指缩放+设置项。加上 T-079(8项) + T-076(5项)，共 20 项补全后功能树 100% 覆盖。",
+          "en": "T-080 缺口 Feature 补全任务令发布（7项）。核对发现 Wave F 遗漏：创建新 Folder 、 Multi-selectRotation/设为/调整大小、 RAW 预览、单指缩放+Settings 项。加上 T-079(8项) + T-076(5项)，共 20 项补全后 Feature 树 100% 覆盖。"
         }
       ]
     },
@@ -10695,9 +10716,9 @@
       },
       "status": "active",
       "date": "2026-03-28",
-      "tasks": 9,
-      "done": 7,
-      "progress": 78,
+      "tasks": 10,
+      "done": 9,
+      "progress": 90,
       "humanWaiting": 0,
       "blockers": 0,
       "humanItems": [],
@@ -10811,10 +10832,10 @@
           },
           {
             "text": {
-              "zh": "T-079 | 搁置功能补全（锁定/封面/密码/地图/打印/调整/保留天数/动画）| P1 | M | AgentH | 8 项",
-              "en": "T-079 | 搁置 Feature 补全（锁定/封面/密码/地图/打印/调整/保留天数/动画）| P1 | M | AgentH | 8 项"
+              "zh": "T-079 | 搁置功能（锁定/解锁+封面API+保留天数+动画设置+PIN）| P1 | AgentH ✓",
+              "en": "T-079 | 搁置 Feature （锁定/解锁+封面 API+保留天数+动画 Settings+PIN ）| P1 | AgentH ✓"
             },
-            "isDone": false,
+            "isDone": true,
             "track": {
               "zh": "AgentH 轨道 — P2 补全",
               "en": "AgentH Track — P2 补全"
@@ -10826,8 +10847,23 @@
           },
           {
             "text": {
-              "zh": "T-076 | 编辑器高级功能（亮度对比度/滤镜/文字/贴纸/调整大小）| P2 | L | AgentH | 5 项",
-              "en": "T-076 | Edit 器高级 Feature （ Brightness 对比度/滤镜/文字/贴纸/调整大小）| P2 | L | AgentH | 5 项"
+              "zh": "T-080 | 缺口功能（单指缩放已有+RAW已识别；新建文件夹/调整大小受限搁置）| P1 | AgentH ✓",
+              "en": "T-080 | 缺口 Feature （单指缩放已有+RAW 已识别；新建 Folder/调整大小受限搁置）| P1 | AgentH ✓"
+            },
+            "isDone": true,
+            "track": {
+              "zh": "AgentH 轨道 — P2 补全",
+              "en": "AgentH Track — P2 补全"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P1"
+          },
+          {
+            "text": {
+              "zh": "T-076 | 编辑器高级功能（亮度对比度/滤镜/文字/贴纸/调整大小）| P2 | L | ⏸ 搁置",
+              "en": "T-076 | Edit 器高级 Feature （ Brightness 对比度/滤镜/文字/贴纸/调整大小）| P2 | L | ⏸ 搁置"
             },
             "isDone": false,
             "track": {
