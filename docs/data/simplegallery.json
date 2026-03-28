@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-27 21:58:15",
+  "generatedAt": "2026-03-28 01:32:15",
   "project": {
     "id": "simplegallery",
     "name": "Simple Gallery",
@@ -317,8 +317,44 @@
       },
       {
         "text": {
-          "zh": "最终准出检查 (发布准出标准全项) | AgentPM | P0 | Blocked by D1修复 + 全量回归",
-          "en": "Final Release Readiness Check (All Release Criteria) | AgentPM | P0 | Blocked by D1修复 + Full Regression"
+          "zh": "T-071 | ViewingPage 菜单补全（打开方式+隐藏+另存为+旋转，下滑/详情已有）| P1 | AgentH ✓",
+          "en": "T-071 | ViewingPage 菜单补全（打开方式+隐藏+另存为+Rotation ，下滑/详情已有）| P1 | AgentH ✓"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-072 | 主页补全（打开相机；封面图/重命名/文件名切换 P3 搁置）| P2 | AgentH ✓",
+          "en": "T-072 | 主页补全（打开相机；封面图/Rename/File 名切换 P3 搁置）| P2 | AgentH ✓"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-073 | 视频双击缩放（独立屏幕/幻灯片动画 P3 搁置）| P2 | AgentH ✓",
+          "en": "T-073 | 视频 Double-tap Zoom （独立屏幕/Slideshow 动画 P3 搁置）| P2 | AgentH ✓"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "BUG-040 | 编辑比例(@Watch重算) + Pin中文Toast + 旋转保存刷新 | P1 | AgentH ✓",
+          "en": "BUG-040 | Edit 比例(@Watch 重算) + Pin 中文 Toast + Rotation 保存刷新 | P1 | AgentH ✓"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "最终准出检查 (发布准出标准全项) | AgentPM | P0 | Blocked by BUG-040 + 回归验证",
+          "en": "Final Release Readiness Check (All Release Criteria) | AgentPM | P0 | Blocked by BUG-040 + 回归验证"
         },
         "tag": "",
         "phase": "",
@@ -4169,6 +4205,19 @@
   },
   "changelog": [
     {
+      "date": "2026-03-28",
+      "entries": [
+        {
+          "zh": "**任务完成**：[object Object]",
+          "en": "**任务完成**：[object Object]"
+        },
+        {
+          "zh": "**任务开始**：[object Object]",
+          "en": "**任务开始**：[object Object]"
+        }
+      ]
+    },
+    {
       "date": "2026-03-27",
       "entries": [
         {
@@ -4230,6 +4279,26 @@
         {
           "zh": "**任务开始**：[object Object]",
           "en": "**任务开始**：[object Object]"
+        },
+        {
+          "zh": "**任务完成**：[object Object]",
+          "en": "**任务完成**：[object Object]"
+        },
+        {
+          "zh": "**任务开始**：[object Object]",
+          "en": "**任务开始**：[object Object]"
+        },
+        {
+          "zh": "Round 3 真机测试完成：33项，29 PASS / 3 Bug / 1 描述问题。P0 8/8 全过，收藏 3/3 全过，通过率 88%。",
+          "en": "Round 3 真机测试完成：33项，29 PASS / 3 Bug / 1 Description 问题。 P0 8/8 全过， Favorites 3/3 全过， Passed 率 88%。"
+        },
+        {
+          "zh": "BUG-040 修复：旋转已修 ✓、Pin Toast 已修 ✓、编辑保存→追加修复（fd 读取 + 沙箱写入 + 裁剪框重置满幅）。",
+          "en": "BUG-040 修复： Rotation 已修 ✓、 Pin Toast 已修 ✓、 Edit 保存→追加修复（ fd 读取 + 沙箱写入 + Crop 框重置满幅）。"
+        },
+        {
+          "zh": "功能树裁决：35 项未迁移中 7 项 TRIM（平台不适用）、15 项 v2 延后、13 项 v1 实现（T-071/072/073 已完成）。",
+          "en": "Feature 树裁决：35 项未迁移中 7 项 TRIM （平台不适用）、15 项 v2 延后、13 项 v1 实现（ T-071/072/073 Done ）。"
         }
       ]
     },
@@ -5290,6 +5359,173 @@
     }
   ],
   "dailyReports": [
+    {
+      "date": "2026-03-28",
+      "highlights": [
+        {
+          "zh": "【完结】BUG-034 收藏功能 6 轮修复彻底闭环 + BUG-037 全文件夹计数刷新 — 从 isFavorite 硬编码 false（Round 1）到 LazyForEach key（Round 2）到读端验证（Round 3）到写端竞态（Round 4）到单一数据源（Round 5）到全文件夹增量刷新（Round 6），历经 5 条蓝军报告、2 次 BlueAgent 介入，最终沉淀 5 条知识（PIT-069/070/071 + PAT-024/025）。过程中额外修复 @Reusable 组件复用污染（PIT-070）和构造函数异步竞态（PIT-071）。真机验证 10/10 PASS。全局进度 62/70 任务完成（89%）→ **Wave D GO**。",
+          "en": "【完结】 BUG-034 FavoritesFeature 6 轮修复彻底闭环 + BUG-037 全 Folder 计数刷新 — From isFavorite 硬编码 false （ Round 1）到 LazyForEach key （ Round 2）到读端验证（ Round 3）到写端竞态（ Round 4）到单一数据源（ Round 5）到全 Folder 增量刷新（ Round 6），历经 5 条蓝军报告、2 次 BlueAgent 介入，最终沉淀 5 条知识（ PIT-069/070/071 + PAT-024/025）。过程中额外修复 @Reusable 组件复用污染（ PIT-070）和构造函数异 Steps 竞态（ PIT-071）。 Device Test 10/10 PASS 。全局进度 62/70 任务完成（89%）→ **Wave D GO**。"
+        },
+        {
+          "zh": "【完成】Wave D → Wave E 全流程推进 — Guardian 收敛审计发现 4 个多选空壳 handler（BUG-039），AgentH 当日修复。Day-1 灾难推演（RITUAL-006）7 场景推演裁决 CONDITIONAL-GO，3 项 P0 修复（删除确认 + 后台刷新 + 操作 Toast）当日全部完成。Wave E 验收阶段正式启动。",
+          "en": "【完成】 Wave D → Wave E 全流程推进 — Guardian 收敛审计发现 4 Multi-select 空壳 handler （ BUG-039）， AgentH 当日修复。 Day-1 灾难推演（ RITUAL-006）7 场景推演裁决 CONDITIONAL-GO ，3 项 P0 修复（ Delete 确认 + 后台刷新 + 操作 Toast ）当日 All Completed 。 Wave E 验收 Phase 正式启动。"
+        },
+        {
+          "zh": "【完成】PM 看板基础设施升级 — GitHub Pages 部署（替代 Fly.io 慢构建）、Guardian 审计报告可视化（泳道 + 横幅）、顶部粘性导航栏、功能树布局重构（左 1/3 统计 + 右 2/3 三列树）。GitHub 协作者 ZhifeiDou 已添加到两个仓库。",
+          "en": "【完成】 PM 看板 Infrastructure 升级 — GitHub Pages 部署（替代 Fly.io 慢构建）、 Guardian 审计报告可视化（泳道 + 横幅）、顶部粘性 Navigation 栏、 Feature 树布局重构（左 1/3 统计 + 右 2/3 三列树）。 GitHub 协作者 ZhifeiDou 已添加到两仓库。"
+        }
+      ],
+      "outputs": [
+        {
+          "type": {
+            "zh": "Bug 修复",
+            "en": "Bug Fix"
+          },
+          "count": "8 个",
+          "desc": {
+            "zh": "BUG-034b/c/d/e（收藏 4 轮）+ BUG-037（全文件夹计数）+ BUG-039（多选空壳×4）+ D1-001/002/003",
+            "en": "BUG-034b/c/d/e （ Favorites 4 轮）+ BUG-037（全 Folder 计数）+ BUG-039（ Multi-select 空壳×4）+ D1-001/002/003"
+          }
+        },
+        {
+          "type": {
+            "zh": "编译修复",
+            "en": "Build Fix"
+          },
+          "count": "3 处",
+          "desc": {
+            "zh": "paths→count 残留变量、formProvider.requestForm→updateForm、loadFavoritePaths 竞态",
+            "en": "paths → count 残留变量、 formProvider.requestForm → updateForm 、 loadFavoritePaths 竞态"
+          }
+        },
+        {
+          "type": {
+            "zh": "代码修复",
+            "en": "代码修复"
+          },
+          "count": "1 处",
+          "desc": {
+            "zh": "DirectoryItem @Reusable 移除（组件复用污染）",
+            "en": "DirectoryItem @Reusable 移除（组件复用污染）"
+          }
+        },
+        {
+          "type": {
+            "zh": "壁纸方案",
+            "en": "Wallpaper 方案"
+          },
+          "count": "1 个",
+          "desc": {
+            "zh": "方案 B 裁决 + 提示对话框实现",
+            "en": "方案 B 裁决 + 提示对话框实现"
+          }
+        },
+        {
+          "type": {
+            "zh": "知识沉淀",
+            "en": "知识沉淀"
+          },
+          "count": "8 条增量，累计 138",
+          "desc": {
+            "zh": "PIT-069/070/071/072/073 + PAT-024/025/026",
+            "en": "PIT-069/070/071/072/073 + PAT-024/025/026"
+          }
+        },
+        {
+          "type": {
+            "zh": "复盘报告",
+            "en": "复盘报告"
+          },
+          "count": "1 份",
+          "desc": {
+            "zh": "RETRO-001 BUG-034 系列 6 轮复盘",
+            "en": "RETRO-001 BUG-034 系列 6 轮复盘"
+          }
+        },
+        {
+          "type": {
+            "zh": "Guardian 报告",
+            "en": "Guardian 报告"
+          },
+          "count": "2 份",
+          "desc": {
+            "zh": "Wave D 收敛审计 + RITUAL-006 Day-1 灾难推演",
+            "en": "Wave D 收敛审计 + RITUAL-006 Day-1 灾难推演"
+          }
+        },
+        {
+          "type": {
+            "zh": "真机测试",
+            "en": "真机测试"
+          },
+          "count": "10/10 PASS",
+          "desc": {
+            "zh": "T-042 Round 2 精简测试全量通过",
+            "en": "T-042 Round 2 精简测试全量 Passed"
+          }
+        },
+        {
+          "type": {
+            "zh": "看板功能",
+            "en": "看板 Feature"
+          },
+          "count": "3 项",
+          "desc": {
+            "zh": "Guardian 泳道 + 粘性导航栏 + 功能树布局重构",
+            "en": "Guardian 泳道 + 粘性 Navigation 栏 + Feature 树布局重构"
+          }
+        },
+        {
+          "type": {
+            "zh": "任务完成",
+            "en": "Task Completed"
+          },
+          "count": "16 个",
+          "desc": {
+            "zh": "BUG-034b~e + BUG-037~039 + D1-001~003 + AUDIT-001~004 + T-068 + RITUAL-006",
+            "en": "BUG-034b~e + BUG-037~039 + D1-001~003 + AUDIT-001~004 + T-068 + RITUAL-006"
+          }
+        }
+      ],
+      "plans": [
+        {
+          "text": {
+            "zh": "T-042v2 全量回归测试 24 项（含 BUG-039 多选操作验证）",
+            "en": "T-042v2 Full Regression 测试 24 项（含 BUG-039 Multi-select 操作验证）"
+          },
+          "done": false
+        },
+        {
+          "text": {
+            "zh": "T-043 边界场景测试 12 项",
+            "en": "T-043 Edge Case Test 12 项"
+          },
+          "done": false
+        },
+        {
+          "text": {
+            "zh": "AgentPM 最终准出检查（发布准出标准全项）",
+            "en": "AgentPM Final Release Readiness Check （ All Release Criteria ）"
+          },
+          "done": false
+        },
+        {
+          "text": {
+            "zh": "PM 看板更新部署（GitHub Pages）",
+            "en": "PM 看板更新部署（ GitHub Pages ）"
+          },
+          "done": false
+        },
+        {
+          "text": {
+            "zh": "评估是否满足发布条件",
+            "en": "评估是否满足发布条件"
+          },
+          "done": false
+        }
+      ],
+      "content": "# 日报 — 2026-03-28\n\n## 一、整体开发进展（Top 3）\n\n1. 【完结】BUG-034 收藏功能 6 轮修复彻底闭环 + BUG-037 全文件夹计数刷新 — 从 isFavorite 硬编码 false（Round 1）到 LazyForEach key（Round 2）到读端验证（Round 3）到写端竞态（Round 4）到单一数据源（Round 5）到全文件夹增量刷新（Round 6），历经 5 条蓝军报告、2 次 BlueAgent 介入，最终沉淀 5 条知识（PIT-069/070/071 + PAT-024/025）。过程中额外修复 @Reusable 组件复用污染（PIT-070）和构造函数异步竞态（PIT-071）。真机验证 10/10 PASS。全局进度 62/70 任务完成（89%）→ **Wave D GO**。\n\n2. 【完成】Wave D → Wave E 全流程推进 — Guardian 收敛审计发现 4 个多选空壳 handler（BUG-039），AgentH 当日修复。Day-1 灾难推演（RITUAL-006）7 场景推演裁决 CONDITIONAL-GO，3 项 P0 修复（删除确认 + 后台刷新 + 操作 Toast）当日全部完成。Wave E 验收阶段正式启动。\n\n3. 【完成】PM 看板基础设施升级 — GitHub Pages 部署（替代 Fly.io 慢构建）、Guardian 审计报告可视化（泳道 + 横幅）、顶部粘性导航栏、功能树布局重构（左 1/3 统计 + 右 2/3 三列树）。GitHub 协作者 ZhifeiDou 已添加到两个仓库。\n\n## 二、多Agent范式探索（SynergyHarness）\n\n1. **Guardian 角色首次全流程落地** — 从\"文档中的角色定义\"到\"可见的审计产出\"：Wave D 收敛审计→NOT-GO→BUG-039→重新审计→GO→Day-1 灾难推演→CONDITIONAL-GO→3 项 P0 修复→闭环。Guardian 的价值在于：不做这个审计，4 个多选空壳 handler 会带到 Wave E 验收才暴露。审计报告已嵌入 PM 看板泳道，后续每次审计自动可视化。\n\n2. **RETRO-001 复盘方法论验证** — BUG-034 系列 6 轮复盘产出 4 条核心教训：非确定性症状=竞态（第一反应不应是逻辑错误）、修 2 轮不好要升级审视层级（不是哪行代码有 bug 而是设计对不对）、@Reusable 不是免费午餐、蓝军 2 次介入各 1 轮定位（质疑假设链效率远高于同方向深挖）。\n\n3. **部署流程优化** — Fly.io Depot builder 排队严重（6 次部署全部超时），切换到 GitHub Pages 后 `git push` 秒级部署。验证了\"静态站点不需要容器化\"的原则。\n\n## 三、产出明细\n\n| 类型 | 数量 | 说明 |\n|------|------|------|\n| Bug 修复 | 8 个 | BUG-034b/c/d/e（收藏 4 轮）+ BUG-037（全文件夹计数）+ BUG-039（多选空壳×4）+ D1-001/002/003 |\n| 编译修复 | 3 处 | paths→count 残留变量、formProvider.requestForm→updateForm、loadFavoritePaths 竞态 |\n| 代码修复 | 1 处 | DirectoryItem @Reusable 移除（组件复用污染） |\n| 壁纸方案 | 1 个 | 方案 B 裁决 + 提示对话框实现 |\n| 知识沉淀 | 8 条增量，累计 138 | PIT-069/070/071/072/073 + PAT-024/025/026 |\n| 复盘报告 | 1 份 | RETRO-001 BUG-034 系列 6 轮复盘 |\n| Guardian 报告 | 2 份 | Wave D 收敛审计 + RITUAL-006 Day-1 灾难推演 |\n| 真机测试 | 10/10 PASS | T-042 Round 2 精简测试全量通过 |\n| 看板功能 | 3 项 | Guardian 泳道 + 粘性导航栏 + 功能树布局重构 |\n| 任务完成 | 16 个 | BUG-034b~e + BUG-037~039 + D1-001~003 + AUDIT-001~004 + T-068 + RITUAL-006 |\n\n## 四、风险与阻塞\n\n- 🟡 R-005 真机测试 — T-042v2 全量回归（24 项）和 T-043 边界测试（12 项）仍需人工真机操作，但已非阻塞（Wave E 已启动）\n- 🟡 横竖屏旋转 — Day-1 推演发现无状态保存，不崩溃但丢滚动位置（v1.1 修复）\n- 🟡 大量照片场景 — 10000+ 张照片的首次加载未做并发限制（v1.1 优化）\n- 🟢 当前无 🔴 高风险阻塞项\n\n## 五、明日计划\n\n- [ ] T-042v2 全量回归测试 24 项（含 BUG-039 多选操作验证）\n- [ ] T-043 边界场景测试 12 项\n- [ ] AgentPM 最终准出检查（发布准出标准全项）\n- [ ] PM 看板更新部署（GitHub Pages）\n- [ ] 评估是否满足发布条件\n"
+    },
     {
       "date": "2026-03-27",
       "highlights": [],
@@ -7310,7 +7546,7 @@
                   "zh": "多选删除",
                   "en": "Multi-selectDelete"
                 },
-                "status": "fixing"
+                "status": "done"
               },
               {
                 "id": "F-2.4.4",
@@ -7318,7 +7554,7 @@
                   "zh": "多选 Pin/Unpin",
                   "en": "Multi-select Pin/Unpin"
                 },
-                "status": "fixing"
+                "status": "done"
               },
               {
                 "id": "F-2.4.5",
@@ -7430,7 +7666,7 @@
         ],
         "features": [],
         "total": 41,
-        "done": 26
+        "done": 28
       },
       {
         "id": "F-3",
@@ -7655,7 +7891,7 @@
                   "zh": "多选删除",
                   "en": "Multi-selectDelete"
                 },
-                "status": "fixing"
+                "status": "done"
               },
               {
                 "id": "F-3.4.4",
@@ -7663,7 +7899,7 @@
                   "zh": "多选分享",
                   "en": "Multi-selectShare"
                 },
-                "status": "fixing"
+                "status": "done"
               },
               {
                 "id": "F-3.4.5",
@@ -7750,7 +7986,7 @@
         ],
         "features": [],
         "total": 34,
-        "done": 25
+        "done": 27
       },
       {
         "id": "F-4",
@@ -7975,7 +8211,7 @@
                   "zh": "删除",
                   "en": "Delete"
                 },
-                "status": "fixing"
+                "status": "done"
               },
               {
                 "id": "F-4.4.2",
@@ -8151,7 +8387,7 @@
         ],
         "features": [],
         "total": 43,
-        "done": 30
+        "done": 31
       },
       {
         "id": "F-5",
@@ -9109,8 +9345,8 @@
     ],
     "stats": {
       "total": 212,
-      "done": 156,
-      "fixing": 5,
+      "done": 161,
+      "fixing": 0,
       "notMigrated": 49,
       "blocked": 2
     }
@@ -10143,9 +10379,9 @@
       },
       "status": "active",
       "date": "",
-      "tasks": 7,
-      "done": 4,
-      "progress": 57,
+      "tasks": 11,
+      "done": 8,
+      "progress": 73,
       "humanWaiting": 2,
       "blockers": 1,
       "humanItems": [
@@ -10166,8 +10402,8 @@
       ],
       "blockerItems": [
         {
-          "zh": "最终准出检查 (发布准出标准全项) | AgentPM | P0 | Blocked by D1修复 + 全量回归",
-          "en": "Final Release Readiness Check (All Release Criteria) | AgentPM | P0 | Blocked by D1修复 + Full Regression"
+          "zh": "最终准出检查 (发布准出标准全项) | AgentPM | P0 | Blocked by BUG-040 + 回归验证",
+          "en": "Final Release Readiness Check (All Release Criteria) | AgentPM | P0 | Blocked by BUG-040 + 回归验证"
         }
       ],
       "tracks": {
@@ -10233,13 +10469,73 @@
             "needsType": "",
             "isBlocked": false,
             "priority": "P0"
+          },
+          {
+            "text": {
+              "zh": "T-071 | ViewingPage 菜单补全（打开方式+隐藏+另存为+旋转，下滑/详情已有）| P1 | AgentH ✓",
+              "en": "T-071 | ViewingPage 菜单补全（打开方式+隐藏+另存为+Rotation ，下滑/详情已有）| P1 | AgentH ✓"
+            },
+            "isDone": true,
+            "track": {
+              "zh": "AgentH 轨道 — 功能树补全 (13项)",
+              "en": "AgentH Track — Feature 树补全 (13项)"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P1"
+          },
+          {
+            "text": {
+              "zh": "T-072 | 主页补全（打开相机；封面图/重命名/文件名切换 P3 搁置）| P2 | AgentH ✓",
+              "en": "T-072 | 主页补全（打开相机；封面图/Rename/File 名切换 P3 搁置）| P2 | AgentH ✓"
+            },
+            "isDone": true,
+            "track": {
+              "zh": "AgentH 轨道 — 功能树补全 (13项)",
+              "en": "AgentH Track — Feature 树补全 (13项)"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P2"
+          },
+          {
+            "text": {
+              "zh": "T-073 | 视频双击缩放（独立屏幕/幻灯片动画 P3 搁置）| P2 | AgentH ✓",
+              "en": "T-073 | 视频 Double-tap Zoom （独立屏幕/Slideshow 动画 P3 搁置）| P2 | AgentH ✓"
+            },
+            "isDone": true,
+            "track": {
+              "zh": "AgentH 轨道 — 功能树补全 (13项)",
+              "en": "AgentH Track — Feature 树补全 (13项)"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P2"
+          },
+          {
+            "text": {
+              "zh": "BUG-040 | 编辑比例(@Watch重算) + Pin中文Toast + 旋转保存刷新 | P1 | AgentH ✓",
+              "en": "BUG-040 | Edit 比例(@Watch 重算) + Pin 中文 Toast + Rotation 保存刷新 | P1 | AgentH ✓"
+            },
+            "isDone": true,
+            "track": {
+              "zh": "AgentH 轨道 — Round 3 真机 Bug 修复",
+              "en": "AgentH Track — Round 3 真机 Bug Fix"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P1"
           }
         ],
         "agentpm": [
           {
             "text": {
-              "zh": "最终准出检查 (发布准出标准全项) | AgentPM | P0 | Blocked by D1修复 + 全量回归",
-              "en": "Final Release Readiness Check (All Release Criteria) | AgentPM | P0 | Blocked by D1修复 + Full Regression"
+              "zh": "最终准出检查 (发布准出标准全项) | AgentPM | P0 | Blocked by BUG-040 + 回归验证",
+              "en": "Final Release Readiness Check (All Release Criteria) | AgentPM | P0 | Blocked by BUG-040 + 回归验证"
             },
             "isDone": false,
             "track": {
