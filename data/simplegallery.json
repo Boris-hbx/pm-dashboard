@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-28 01:49:55",
+  "generatedAt": "2026-03-28 02:27:35",
   "project": {
     "id": "simplegallery",
     "name": "Simple Gallery",
@@ -380,8 +380,8 @@
       },
       {
         "text": {
-          "zh": "T-071 | 多选高级操作 MainPage（属性/复制到/移动到/隐藏）| P1 | M | AgentH | 4 项",
-          "en": "T-071 | Multi-select 高级操作 MainPage （属性/Copy 到/Move 到/隐藏）| P1 | M | AgentH | 4 项"
+          "zh": "T-071 | 多选高级 MainPage（属性dialog+排除/隐藏/复制/移动已有）| P1 | AgentH ✓",
+          "en": "T-071 | Multi-select 高级 MainPage （属性 dialog+排除/隐藏/Copy/Move 已有）| P1 | AgentH ✓"
         },
         "tag": "",
         "phase": "",
@@ -389,8 +389,8 @@
       },
       {
         "text": {
-          "zh": "T-072 | 多选高级操作 MediaPage（重命名/旋转/隐藏/属性/设为/打开/调整）| P1 | M | AgentH | 7 项",
-          "en": "T-072 | Multi-select 高级操作 MediaPage （ Rename/Rotation/隐藏/属性/设为/打开/调整）| P1 | M | AgentH | 7 项"
+          "zh": "T-072 | 多选高级 MediaPage（隐藏+属性+打开方式+重命名/复制/移动已有）| P1 | AgentH ✓",
+          "en": "T-072 | Multi-select 高级 MediaPage （隐藏+属性+打开方式+Rename/Copy/Move 已有）| P1 | AgentH ✓"
         },
         "tag": "",
         "phase": "",
@@ -398,8 +398,8 @@
       },
       {
         "text": {
-          "zh": "T-073 | 文件夹管理增强（锁定/封面/密码/相机/排除/新建/回收站入口/默认）| P1 | M | AgentH | 8 项",
-          "en": "T-073 | Folder Management 增强（锁定/封面/密码/相机/排除/新建/Recycle Bin 入口/默认）| P1 | M | AgentH | 8 项"
+          "zh": "T-073 | 文件夹管理（默认文件夹+相机/排除/回收站已有；锁定/封面/密码搁置）| P1 | AgentH ✓",
+          "en": "T-073 | Folder Management （默认 Folder+相机/排除/Recycle Bin 已有；锁定/封面/密码搁置）| P1 | AgentH ✓"
         },
         "tag": "",
         "phase": "",
@@ -407,8 +407,8 @@
       },
       {
         "text": {
-          "zh": "T-074 | 查看页菜单补全（旋转/打开方式/隐藏/属性/地图/打印/调整/另存为）| P1 | M | AgentH | 8 项",
-          "en": "T-074 | 查看页菜单补全（ Rotation/打开方式/隐藏/属性/地图/打印/调整/另存为）| P1 | M | AgentH | 8 项"
+          "zh": "T-074 | 查看页菜单（旋转/打开/隐藏/详情/另存已有；地图/打印/调整搁置）| P1 | AgentH ✓",
+          "en": "T-074 | 查看页菜单（ Rotation/打开/隐藏/详情/另存已有；地图/打印/调整搁置）| P1 | AgentH ✓"
         },
         "tag": "",
         "phase": "",
@@ -416,8 +416,8 @@
       },
       {
         "text": {
-          "zh": "T-078 | 回收站功能（文件夹/恢复/清空/保留天数）| P1 | M | AgentH | 4 项",
-          "en": "T-078 | Recycle BinFeature （ Folder/恢复/清空/保留天数）| P1 | M | AgentH | 4 项"
+          "zh": "T-078 | 回收站功能（文件夹/恢复/清空已有+设置开关已有）| P1 | AgentH ✓",
+          "en": "T-078 | Recycle BinFeature （ Folder/恢复/清空已有+SettingsToggle 已有）| P1 | AgentH ✓"
         },
         "tag": "",
         "phase": "",
@@ -425,8 +425,8 @@
       },
       {
         "text": {
-          "zh": "T-075 | 查看页手势增强（视频双击缩放/下滑关闭/单指缩放）| P2 | S | AgentH | 5 项",
-          "en": "T-075 | 查看页 Gesture 增强（视频 Double-tap Zoom/下滑关闭/单指缩放）| P2 | S | AgentH | 5 项"
+          "zh": "T-075 | 查看页手势（双击缩放/下滑关闭/捏合缩放全部已有）| P2 | AgentH ✓",
+          "en": "T-075 | 查看页 Gesture （ Double-tap Zoom/下滑关闭/捏合缩放全部已有）| P2 | AgentH ✓"
         },
         "tag": "",
         "phase": "",
@@ -434,8 +434,17 @@
       },
       {
         "text": {
-          "zh": "T-077 | 设置项补全（文件名显示/视频独立窗口/回收站开关/保留天数/动画/RAW）| P2 | S | AgentH | 6 项",
-          "en": "T-077 | Settings 项补全（ File 名显示/视频独立窗口/Recycle BinToggle/保留天数/动画/RAW ）| P2 | S | AgentH | 6 项"
+          "zh": "T-077 | 设置项（文件名/独立窗口/回收站开关已有；保留天数/动画搁置）| P2 | AgentH ✓",
+          "en": "T-077 | Settings 项（ File 名/独立窗口/Recycle BinToggle 已有；保留天数/动画搁置）| P2 | AgentH ✓"
+        },
+        "tag": "",
+        "phase": "",
+        "agent": "AgentH"
+      },
+      {
+        "text": {
+          "zh": "T-079 | 搁置功能补全（锁定/封面/密码/地图/打印/调整/保留天数/动画）| P1 | M | AgentH | 8 项",
+          "en": "T-079 | 搁置 Feature 补全（锁定/封面/密码/地图/打印/调整/保留天数/动画）| P1 | M | AgentH | 8 项"
         },
         "tag": "",
         "phase": "",
@@ -4298,6 +4307,18 @@
         {
           "zh": "Wave F 任务令发布。48 项未迁移功能全量开发（排除 3 项平台不适用）。分 8 个任务包：T-071(多选MainPage) T-072(多选MediaPage) T-073(文件夹管理) T-074(查看页菜单) T-075(手势增强) T-076(编辑器高级) T-077(设置项) T-078(回收站)。",
           "en": "Wave F 任务令发布。48 项未迁移 Feature 全量开发（排除 3 项平台不适用）。分 8 任务包： T-071(Multi-selectMainPage) T-072(Multi-selectMediaPage) T-073(Folder Management) T-074(查看页菜单) T-075(Gesture 增强) T-076(Edit 器高级) T-077(Settings 项) T-078(Recycle Bin)。"
+        },
+        {
+          "zh": "**任务完成**：[object Object]",
+          "en": "**任务完成**：[object Object]"
+        },
+        {
+          "zh": "**任务开始**：[object Object]",
+          "en": "**任务开始**：[object Object]"
+        },
+        {
+          "zh": "Wave F-2 任务令发布。T-079 搁置功能补全（8项：锁定/封面/密码/地图/打印/调整/保留天数/动画）+ T-076 编辑器高级功能（5项：亮度/滤镜/文字/贴纸/调整大小）。Boris 裁决：全部要做，不留搁置。",
+          "en": "Wave F-2 任务令发布。 T-079 搁置 Feature 补全（8项：锁定/封面/密码/地图/打印/调整/保留天数/动画）+ T-076 Edit 器高级 Feature （5项： Brightness/滤镜/文字/贴纸/调整大小）。 Boris 裁决：全部要做，不留搁置。"
         }
       ]
     },
@@ -7687,7 +7708,7 @@
                   "zh": "打开相机",
                   "en": "打开相机"
                 },
-                "status": "notMigrated"
+                "status": "done"
               },
               {
                 "id": "F-2.5.2",
@@ -7750,7 +7771,7 @@
         ],
         "features": [],
         "total": 41,
-        "done": 28
+        "done": 29
       },
       {
         "id": "F-3",
@@ -8221,7 +8242,7 @@
                   "zh": "视频双击缩放",
                   "en": "视频 Double-tap Zoom"
                 },
-                "status": "notMigrated"
+                "status": "done"
               }
             ]
           },
@@ -8375,7 +8396,7 @@
                   "zh": "旋转（90°/180°/270°）",
                   "en": "Rotation （90°/180°/270°）"
                 },
-                "status": "notMigrated"
+                "status": "done"
               },
               {
                 "id": "F-4.4.12",
@@ -8383,7 +8404,7 @@
                   "zh": "打开方式",
                   "en": "打开方式"
                 },
-                "status": "notMigrated"
+                "status": "done"
               },
               {
                 "id": "F-4.4.13",
@@ -8391,7 +8412,7 @@
                   "zh": "隐藏/取消隐藏",
                   "en": "隐藏/取消隐藏"
                 },
-                "status": "notMigrated"
+                "status": "done"
               },
               {
                 "id": "F-4.4.14",
@@ -8431,7 +8452,7 @@
                   "zh": "另存为",
                   "en": "另存为"
                 },
-                "status": "notMigrated"
+                "status": "done"
               }
             ]
           },
@@ -8471,7 +8492,7 @@
         ],
         "features": [],
         "total": 43,
-        "done": 31
+        "done": 36
       },
       {
         "id": "F-5",
@@ -9429,9 +9450,9 @@
     ],
     "stats": {
       "total": 212,
-      "done": 160,
+      "done": 166,
       "fixing": 0,
-      "notMigrated": 50,
+      "notMigrated": 44,
       "blocked": 2
     }
   },
@@ -10674,9 +10695,9 @@
       },
       "status": "active",
       "date": "2026-03-28",
-      "tasks": 8,
-      "done": 0,
-      "progress": 0,
+      "tasks": 9,
+      "done": 7,
+      "progress": 78,
       "humanWaiting": 0,
       "blockers": 0,
       "humanItems": [],
@@ -10685,10 +10706,10 @@
         "agenth": [
           {
             "text": {
-              "zh": "T-071 | 多选高级操作 MainPage（属性/复制到/移动到/隐藏）| P1 | M | AgentH | 4 项",
-              "en": "T-071 | Multi-select 高级操作 MainPage （属性/Copy 到/Move 到/隐藏）| P1 | M | AgentH | 4 项"
+              "zh": "T-071 | 多选高级 MainPage（属性dialog+排除/隐藏/复制/移动已有）| P1 | AgentH ✓",
+              "en": "T-071 | Multi-select 高级 MainPage （属性 dialog+排除/隐藏/Copy/Move 已有）| P1 | AgentH ✓"
             },
-            "isDone": false,
+            "isDone": true,
             "track": {
               "zh": "AgentH 轨道 — P1 优先",
               "en": "AgentH Track — P1 优先"
@@ -10700,10 +10721,10 @@
           },
           {
             "text": {
-              "zh": "T-072 | 多选高级操作 MediaPage（重命名/旋转/隐藏/属性/设为/打开/调整）| P1 | M | AgentH | 7 项",
-              "en": "T-072 | Multi-select 高级操作 MediaPage （ Rename/Rotation/隐藏/属性/设为/打开/调整）| P1 | M | AgentH | 7 项"
+              "zh": "T-072 | 多选高级 MediaPage（隐藏+属性+打开方式+重命名/复制/移动已有）| P1 | AgentH ✓",
+              "en": "T-072 | Multi-select 高级 MediaPage （隐藏+属性+打开方式+Rename/Copy/Move 已有）| P1 | AgentH ✓"
             },
-            "isDone": false,
+            "isDone": true,
             "track": {
               "zh": "AgentH 轨道 — P1 优先",
               "en": "AgentH Track — P1 优先"
@@ -10715,10 +10736,10 @@
           },
           {
             "text": {
-              "zh": "T-073 | 文件夹管理增强（锁定/封面/密码/相机/排除/新建/回收站入口/默认）| P1 | M | AgentH | 8 项",
-              "en": "T-073 | Folder Management 增强（锁定/封面/密码/相机/排除/新建/Recycle Bin 入口/默认）| P1 | M | AgentH | 8 项"
+              "zh": "T-073 | 文件夹管理（默认文件夹+相机/排除/回收站已有；锁定/封面/密码搁置）| P1 | AgentH ✓",
+              "en": "T-073 | Folder Management （默认 Folder+相机/排除/Recycle Bin 已有；锁定/封面/密码搁置）| P1 | AgentH ✓"
             },
-            "isDone": false,
+            "isDone": true,
             "track": {
               "zh": "AgentH 轨道 — P1 优先",
               "en": "AgentH Track — P1 优先"
@@ -10730,10 +10751,10 @@
           },
           {
             "text": {
-              "zh": "T-074 | 查看页菜单补全（旋转/打开方式/隐藏/属性/地图/打印/调整/另存为）| P1 | M | AgentH | 8 项",
-              "en": "T-074 | 查看页菜单补全（ Rotation/打开方式/隐藏/属性/地图/打印/调整/另存为）| P1 | M | AgentH | 8 项"
+              "zh": "T-074 | 查看页菜单（旋转/打开/隐藏/详情/另存已有；地图/打印/调整搁置）| P1 | AgentH ✓",
+              "en": "T-074 | 查看页菜单（ Rotation/打开/隐藏/详情/另存已有；地图/打印/调整搁置）| P1 | AgentH ✓"
             },
-            "isDone": false,
+            "isDone": true,
             "track": {
               "zh": "AgentH 轨道 — P1 优先",
               "en": "AgentH Track — P1 优先"
@@ -10745,10 +10766,10 @@
           },
           {
             "text": {
-              "zh": "T-078 | 回收站功能（文件夹/恢复/清空/保留天数）| P1 | M | AgentH | 4 项",
-              "en": "T-078 | Recycle BinFeature （ Folder/恢复/清空/保留天数）| P1 | M | AgentH | 4 项"
+              "zh": "T-078 | 回收站功能（文件夹/恢复/清空已有+设置开关已有）| P1 | AgentH ✓",
+              "en": "T-078 | Recycle BinFeature （ Folder/恢复/清空已有+SettingsToggle 已有）| P1 | AgentH ✓"
             },
-            "isDone": false,
+            "isDone": true,
             "track": {
               "zh": "AgentH 轨道 — P1 优先",
               "en": "AgentH Track — P1 优先"
@@ -10760,10 +10781,10 @@
           },
           {
             "text": {
-              "zh": "T-075 | 查看页手势增强（视频双击缩放/下滑关闭/单指缩放）| P2 | S | AgentH | 5 项",
-              "en": "T-075 | 查看页 Gesture 增强（视频 Double-tap Zoom/下滑关闭/单指缩放）| P2 | S | AgentH | 5 项"
+              "zh": "T-075 | 查看页手势（双击缩放/下滑关闭/捏合缩放全部已有）| P2 | AgentH ✓",
+              "en": "T-075 | 查看页 Gesture （ Double-tap Zoom/下滑关闭/捏合缩放全部已有）| P2 | AgentH ✓"
             },
-            "isDone": false,
+            "isDone": true,
             "track": {
               "zh": "AgentH 轨道 — P2 补全",
               "en": "AgentH Track — P2 补全"
@@ -10775,8 +10796,23 @@
           },
           {
             "text": {
-              "zh": "T-077 | 设置项补全（文件名显示/视频独立窗口/回收站开关/保留天数/动画/RAW）| P2 | S | AgentH | 6 项",
-              "en": "T-077 | Settings 项补全（ File 名显示/视频独立窗口/Recycle BinToggle/保留天数/动画/RAW ）| P2 | S | AgentH | 6 项"
+              "zh": "T-077 | 设置项（文件名/独立窗口/回收站开关已有；保留天数/动画搁置）| P2 | AgentH ✓",
+              "en": "T-077 | Settings 项（ File 名/独立窗口/Recycle BinToggle 已有；保留天数/动画搁置）| P2 | AgentH ✓"
+            },
+            "isDone": true,
+            "track": {
+              "zh": "AgentH 轨道 — P2 补全",
+              "en": "AgentH Track — P2 补全"
+            },
+            "needsHuman": false,
+            "needsType": "",
+            "isBlocked": false,
+            "priority": "P2"
+          },
+          {
+            "text": {
+              "zh": "T-079 | 搁置功能补全（锁定/封面/密码/地图/打印/调整/保留天数/动画）| P1 | M | AgentH | 8 项",
+              "en": "T-079 | 搁置 Feature 补全（锁定/封面/密码/地图/打印/调整/保留天数/动画）| P1 | M | AgentH | 8 项"
             },
             "isDone": false,
             "track": {
@@ -10786,7 +10822,7 @@
             "needsHuman": false,
             "needsType": "",
             "isBlocked": false,
-            "priority": "P2"
+            "priority": "P1"
           },
           {
             "text": {

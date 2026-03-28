@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-03-28 01:49:55",
+  "generatedAt": "2026-03-28 02:27:35",
   "projects": [
     {
       "id": "antennapod",
       "name": "AntennaPod",
       "description": "AntennaPod Android → HarmonyOS Migration",
-      "generatedAt": "2026-03-28 01:49:55",
+      "generatedAt": "2026-03-28 02:27:34",
       "stats": {
         "totalTasks": 132,
         "inProgress": 0,
@@ -24,10 +24,10 @@
       "id": "simplegallery",
       "name": "Simple Gallery",
       "description": "Simple Gallery Android → HarmonyOS Migration",
-      "generatedAt": "2026-03-28 01:49:55",
+      "generatedAt": "2026-03-28 02:27:35",
       "stats": {
-        "totalTasks": 91,
-        "inProgress": 44,
+        "totalTasks": 92,
+        "inProgress": 45,
         "todo": 0,
         "done": 47,
         "inReview": 0,
